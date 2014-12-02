@@ -6,4 +6,6 @@
   sudo: yes
   roles:
     - common
+    - linux
+    - java
 

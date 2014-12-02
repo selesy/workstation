@@ -1,0 +1,36 @@
+---
+# File: roles/java/tasks/main.yml
+
+- name: install the latest OpenJDK 7
+  apt: name={{ item }} state=latest
+  with_items:
+    - openjdk-7-jdk
+    - openjdk-7-demo
+    - openjdk-7-source
+    - openjdk-7-doc
+  tags:
+    - java
+
+- name: create a directory for optional Oracle software
+  file: name=/opt/oracle state=directory
+
+- name: get the Oracle JDK 7 download
+  uri: url=http://download.oracle.com/otn-pub/java/jdk/7u71-b14/jdk-7u71-linux-x64.tar.gz
+       dest=~/jdk-7u71-linux-x64.tar.gz
+       creates=~/jdk-7u71-linux-x64.tar.gz
+       HEADER_Cookie="oraclelicense=accept-securebackup-cookie"
+
+- name: install Oracle JDK 7
+  shell: tar -C /opt/oracle -xzf ~/jdk-7u71-linux-x64.tar.gz
+         creates=/opt/oracle/jdk1.7.0_71
+
+- name: get the Oracle JDK 8 downloads
+  uri: url=http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u25-linux-x64.tar.gz
+       dest=~/jdk-8u25-linux-x64.tar.gz
+       creates=~/jdk-8u25-linux-x64.tar.gz
+       HEADER_Cookie="oraclelicense=accept-securebackup-cookie"
+
+- name: install Oracle JDK 8
+  shell: tar -C /opt/oracle -xzf ~/jdk-8u25-linux-x64.tar.gz
+         creates=/opt/oracle/jdk1.8.0_25
+
