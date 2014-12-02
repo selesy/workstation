@@ -1,0 +1,9 @@
+---
+# File: workstation.yml
+
+- hosts: all
+  remote_user: ansible
+  sudo: yes
+  roles:
+    - common
+
