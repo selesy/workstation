@@ -1,0 +1,12 @@
+---
+# File: roles/common/tasks/main.yml
+
+- name: update the repository caches
+  apt: update_cache=yes
+
+- name: install basic Linux tools
+  apt: name={{ item }} state=latest
+  with_items:
+    - curl
+    - tree
+
