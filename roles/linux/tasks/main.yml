@@ -1,0 +1,20 @@
+---
+# File: roles/linux/tasks/main.yml
+
+- name: install linux tools for git
+  apt: name={{ item }} state=latest
+  with_items:
+    - git
+    - git-doc
+    - git-svn
+  tags:
+    - git
+
+- name: install linux tools for LDAP
+  apt: name={{ item }} state=latest
+  with_items:
+    - ldap-utils
+  tags:
+    - ldap
+
+
