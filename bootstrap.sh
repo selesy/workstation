@@ -13,5 +13,6 @@ echo "[targets]" > ansible_inventory.ini
 echo "" >> ansible_inventory.ini
 echo "$1" >> ansible_inventory.ini
 
+export ANSIBLE_NOCOWS=1
 ansible-playbook -K -i ansible_inventory.ini bootstrap.yml
 
