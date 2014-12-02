@@ -1,0 +1,33 @@
+---
+# File: roles/eclipse/tasks/main.yml
+
+- name: create a directory for optional Eclipse software
+  file: name=/opt/eclipse state=directory
+  tags:
+    - eclipse
+
+- name: download latest version of Eclipse JEE/BIRT (Juno)
+  uri: url=http://carroll.aset.psu.edu/pub/eclipse/technology/epp/downloads/release/luna/SR1/eclipse-reporting-luna-SR1-linux-gtk-x86_64.tar.gz
+       dest=~/eclipse-reporting-luna-SR1-linux-gtk-x86_64.tar.gz
+       creates=~/eclipse-reporting-luna-SR1-linux-gtk-x86_64.tar.gz
+  tags:
+    - eclipse
+
+- name: install the latest version of Eclipse JEE/BIRT (Juno)
+  shell: tar -C /opt/eclipse -xzf ~/eclipse-reporting-luna-SR1-linux-gtk-x86_64.tar.gz
+         creates=/opt/eclipse/eclipse-reporting-luna-SR1
+  tags:
+    - eclipse
+
+- name: move the unpacked archive to a more correct location
+  shell: mv /opt/eclipse/eclipse /opt/eclipse/eclipse-reporting-luna-SR1
+         creates=/opt/eclipse/eclipse-reporting-luna-SR1
+
+- name: make a prettier symlink to the Eclipse installation
+  file: src=/opt/eclipse/eclipse-reporting-luna-SR1
+        path=/opt/eclipse/luna state=link
+
+- name: add a launcher to the development menu
+  copy: src=../files/eclipse.desktop
+        dest=/usr/share/applications
+

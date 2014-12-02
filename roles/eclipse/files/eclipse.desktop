@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Exec=/opt/eclipse/luna/eclipse
+Icon=/opt/eclipse/luna/icon.xpm
+StartupNotify=false
+Categories=Development;
+Name=Eclipse IDE
+Comment=Eclipse IDE - Luna JEE/BIRT
+Terminal=false
+Path=
