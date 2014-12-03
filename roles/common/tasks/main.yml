@@ -9,4 +9,5 @@
   with_items:
     - curl
     - tree
+    - whois
 
