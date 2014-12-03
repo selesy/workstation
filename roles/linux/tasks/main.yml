@@ -17,4 +17,11 @@
   tags:
     - ldap
 
+- name: install linux tools for Subversion
+  apt: name={{ item }} state=latest
+  with_items:
+    - subversion
+    - libsvn-java
+  tags:
+    - subversion
 
