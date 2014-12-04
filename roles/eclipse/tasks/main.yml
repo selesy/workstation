@@ -236,6 +236,7 @@
          creates=/opt/eclipse/luna/plugins/com.umlet.plugin_13.1.0.jar
   tags:
     - uml
+    - modeling
 
 - name: add the ERMaster (ERD) plugin
   shell: >
@@ -248,4 +249,5 @@
   with_items:
     - org.insightech.er.feature.feature.group
   tags:
-    - editors
+    - database
+    - modeling
