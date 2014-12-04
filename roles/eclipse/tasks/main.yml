@@ -155,6 +155,82 @@
   with_items:
     - com.mountainminds.eclemma.feature.feature.group
   tags:
-    - coverage
+    - ldap
 
 # TODO (smoyer1) - Add the Sonar plugin
+
+#
+# LDAP plugins
+#
+
+- name: add the Apache Directory Studio plugins
+  shell: >
+         /opt/eclipse/luna/eclipse
+         -noSplash
+         -application org.eclipse.equinox.p2.director
+         -repository http://directory.apache.org/studio/update/2.x
+         -profileProperties org.eclipse.update.install.features=true
+         -installIUs {{ item }}
+  with_items:
+    - org.apache.directory.studio.ldapbrowser.feature.feature.group
+    - org.apache.directory.studio.ldifeditor.feature.feature.group
+    - org.apache.directory.studio.schemaeditor.feature.feature.group
+  tags:
+    - coverage
+
+# NOTE (smoyer1) - The update site includes these 7 features
+#    - org.apache.directory.studio.apacheds.configuration.feature.feature.group
+#    - org.apache.directory.studio.apacheds.configuration.v2.feature.feature.group
+#    - org.apache.directory.studio.ldapbrowser.feature.feature.group
+#    - org.apache.directory.studio.ldapservers.feature.feature.group
+#    - org.apache.directory.studio.ldifeditor.feature.feature.group
+#    - org.apache.directory.studio.rcp.feature.feature.group
+#    - org.apache.directory.studio.schemaeditor.feature.feature.group
+
+#
+# Extra text editors
+#
+
+- name: add the YAML Editor plugin
+  shell: >
+         /opt/eclipse/luna/eclipse
+         -noSplash
+         -application org.eclipse.equinox.p2.director
+         -repository http://dadacoalition.org/yedit
+         -profileProperties org.eclipse.update.install.features=true
+         -installIUs {{ item }}
+  with_items:
+    - org.dadacoalition.yedit.feature.group
+  tags:
+    - editors
+
+# TODO (smoyer1) - There are a lot of other cool tools in this repository
+- name: add JSON and Markdown Editor plugins
+  shell: >
+         /opt/eclipse/luna/eclipse
+         -noSplash
+         -application org.eclipse.equinox.p2.director
+         -repository http://www.nodeclipse.org/updates/
+         -profileProperties org.eclipse.update.install.features=true
+         -installIUs {{ item }}
+  with_items:
+    - markdown.editor.feature.feature.group
+    - jsonedit-feature.feature.group
+    - org.sweetlemonade.eclipse.json.feature.feature.group
+  tags:
+    - editors
+
+#
+# Modeling and Diagraming plugins
+#
+
+- name: download the UMLet plugin
+  uri: url=http://www.umlet.com/umlet_13_1/com.umlet.plugin_13.1.0.jar
+       dest=~/com.umlet.plugin_13.1.0.jar
+       creates=~/com.umlet.plugin_13.1.0.jar
+       
+- name: install the UMLet plugin
+  shell: cp ~/com.umlet.plugin_13.1.0.jar /opt/eclipse/luna/plugins/com.umlet.plugin_13.1.0.jar
+         creates=/opt/eclipse/luna/plugins/com.umlet.plugin_13.1.0.jar
+
+
