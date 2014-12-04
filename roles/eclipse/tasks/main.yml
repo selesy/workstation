@@ -40,6 +40,15 @@
         dest=/usr/share/applications
   tags:
     - eclipse
+    
+- name: set JVM arguments in eclipse.ini
+  shell: >
+         /opt/eclipse/luna/eclipse
+         -noSplash
+         -application org.eclipse.equinox.p2.director
+         -vmargs -Xms12M -Xmx2048M -XX:PermSize=128M -XX:MaxPermSize=512M
+  tags:
+    - eclipse
 
 #
 # SCM Plugin installation
@@ -210,7 +219,7 @@
          /opt/eclipse/luna/eclipse
          -noSplash
          -application org.eclipse.equinox.p2.director
-         -repository http://www.nodeclipse.org/updates/
+         -repository http://www.nodeclipse.org/updates
          -profileProperties org.eclipse.update.install.features=true
          -installIUs {{ item }}
   with_items:
@@ -219,6 +228,50 @@
     - org.sweetlemonade.eclipse.json.feature.feature.group
   tags:
     - editors
+    
+#
+# Issue tracking connectors
+#
+
+- name: Atlassian Bamboo connector requires additional Eclipse plugins (bundles)
+  shell: >
+         /opt/eclipse/luna/eclipse
+         -noSplash
+         -application org.eclipse.equinox.p2.director
+         -repository http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository
+         -profileProperties org.eclipse.update.install.features=true
+         -installIUs {{ item }}
+  with_items:
+    - javax.xml.soap
+    - org.apache.commons.io
+  tags:
+    - issues
+    
+- name: add Atlassian - Mylyn connector
+  shell: >
+         /opt/eclipse/luna/eclipse
+         -noSplash
+         -application org.eclipse.equinox.p2.director
+         -repository http://update.atlassian.com/atlassian-eclipse-plugin/rest/e3.7
+         -profileProperties org.eclipse.update.install.features=true
+         -installIUs {{ item }}
+  with_items:
+    - com.atlassian.connector.eclipse.feature.group
+  tags:
+    - issues
+    
+#- name: add Github - Mylyn connector
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://download.eclipse.org/egit/github/updates
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - org.eclipse.mylyn.github.feature.feature.group
+#  tags:
+#    - issues
 
 #
 # Modeling and Diagraming plugins
