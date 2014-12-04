@@ -1,6 +1,10 @@
 ---
 # File: roles/development/tasks/main.yml
 
+#
+# Source Code Management
+#
+
 - name: install linux tools for git
   apt: name={{ item }} state=latest
   with_items:
@@ -10,13 +14,6 @@
   tags:
     - git
 
-- name: install linux tools for LDAP
-  apt: name={{ item }} state=latest
-  with_items:
-    - ldap-utils
-  tags:
-    - ldap
-
 - name: install linux tools for Subversion
   apt: name={{ item }} state=latest
   with_items:
@@ -24,4 +21,45 @@
     - libsvn-java
   tags:
     - subversion
+
+#
+# LDAP tools
+#
+
+- name: install linux tools for LDAP
+  apt: name={{ item }} state=latest
+  with_items:
+    - ldap-utils
+  tags:
+    - ldap
+
+#
+# Firefox Developer Edition
+#
+
+- name: create a directory for optional firefox-de software
+  file: name=/opt/firefox-de state=directory
+  tags:
+    - firefox-de
+
+- name: download latest version of Firefox Developer Edition
+  uri: url=https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux64&lang=en-US
+       dest=~/firefox-de.en-US.linux-x86_64.tar.bz2
+       creates=~/firefox-de.en-US.linux-x86_64.tar.bz2
+  tags:
+    - firefox-de
+
+- name: install the latest version of Firefox Developer Edition
+  shell: tar -C /opt/firefox-de -xjf ~/firefox-de.en-US.linux-x86_64.tar.bz2
+         creates=/opt/firefox-de/firefox
+  tags:
+    - firefox-de
+
+- name: add a launcher to the development, network, etc menus
+  copy: src=../files/firefox-de.desktop
+        dest=/usr/share/applications
+  tags:
+    - firefox-de
+
+
 
