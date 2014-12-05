@@ -22,3 +22,4 @@ tags:
 - quality
 - subversion
 - uml
+- virtualization
