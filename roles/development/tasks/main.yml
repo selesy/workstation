@@ -2,6 +2,19 @@
 # File: roles/development/tasks/main.yml
 
 #
+# Virtualization
+#
+
+- name: install virtualization tools
+  apt: name={{ item }} state=latest
+  with_items:
+    - ansible
+    - vagrant
+    - virtualbox
+  tags:
+    - virtualization
+
+#
 # Source Code Management
 #
 
