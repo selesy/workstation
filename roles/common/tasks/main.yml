@@ -3,6 +3,9 @@
 
 - name: update the repository caches
   apt: update_cache=yes
+  
+- name: upgrade existing apt packages
+  apt: upgrade=safe
 
 - name: install basic Linux tools
   apt: name={{ item }} state=latest
