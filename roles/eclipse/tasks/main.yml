@@ -1,5 +1,10 @@
 ---
 # File: roles/eclipse/tasks/main.yml
+#
+# See the following link for information on the p2.director application:
+#
+# - http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Fguide%2Fp2_director.html
+#
 
 #
 # Install Eclipse Luna JEE/BIRT (SR1)
@@ -60,10 +65,25 @@
     - eclipse
 
 #
-# SCM Plugin installation
+# SCM Plugin installation 
 #
 
-- name: add the EGit plugin
+- name: add the EGit plugin (force a newer version of EGit core)
+  shell: >
+         /opt/eclipse/luna/eclipse
+         -noSplash
+         -application org.eclipse.equinox.p2.director
+         -repository http://download.eclipse.org/egit/updates
+         -profileProperties org.eclipse.update.install.features=true
+         -installIUs {{ item }}
+  with_items:
+    - org.eclipse.egit.core/3.5.2.201411120430-r
+    - org.eclipse.egit.feature.group
+    - org.eclipse.jgit.feature.group
+  tags:
+    - git
+
+- name: add the EGit - Mylyn interface
   shell: >
          /opt/eclipse/luna/eclipse
          -noSplash
@@ -72,8 +92,6 @@
          -profileProperties org.eclipse.update.install.features=true
          -installIUs {{ item }}
   with_items:
-    - org.eclipse.egit.feature.group
-    - org.eclipse.jgit.feature.group
     - org.eclipse.emf.sdk.feature.group
     - org.eclipse.mylyn_feature.feature.group
   tags:
@@ -242,7 +260,7 @@
 # Issue tracking connectors
 #
 
-- name: Atlassian Bamboo connector requires additional Eclipse plugins (bundles)
+- name: Atlassian - Mylyn connector requires additional Eclipse plugins (bundles)
   shell: >
          /opt/eclipse/luna/eclipse
          -noSplash
@@ -269,18 +287,18 @@
   tags:
     - issues
     
-#- name: add Github - Mylyn connector
-#  shell: >
-#         /opt/eclipse/luna/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://download.eclipse.org/egit/github/updates
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
-#    - org.eclipse.mylyn.github.feature.feature.group
-#  tags:
-#    - issues
+- name: add Github - Mylyn connector (requires egit-core > 3.5.x)
+  shell: >
+         /opt/eclipse/luna/eclipse
+         -noSplash
+         -application org.eclipse.equinox.p2.director
+         -repository http://download.eclipse.org/egit/github/updates
+         -profileProperties org.eclipse.update.install.features=true
+         -installIUs {{ item }}
+  with_items:
+    - org.eclipse.mylyn.github.feature.feature.group
+  tags:
+    - issues
 
 #
 # Modeling and Diagraming plugins
