@@ -10,15 +10,24 @@
   tags:
     - eclipse
 
-- name: download latest version of Eclipse JEE/BIRT (Juno)
+- name: download latest version of Eclipse JEE/BIRT (Luna, 64-bit)
   uri: url=http://carroll.aset.psu.edu/pub/eclipse/technology/epp/downloads/release/luna/SR1/eclipse-reporting-luna-SR1-linux-gtk-x86_64.tar.gz
-       dest=~/eclipse-reporting-luna-SR1-linux-gtk-x86_64.tar.gz
-       creates=~/eclipse-reporting-luna-SR1-linux-gtk-x86_64.tar.gz
+       dest=~/eclipse-reporting-luna-SR1-linux-gtk.tar.gz
+       creates=~/eclipse-reporting-luna-SR1-linux-gtk.tar.gz
+  when: ansible_architecture == "x86_64"
   tags:
     - eclipse
 
-- name: install the latest version of Eclipse JEE/BIRT (Juno)
-  shell: tar -C /opt/eclipse -xzf ~/eclipse-reporting-luna-SR1-linux-gtk-x86_64.tar.gz
+- name: download latest version of Eclipse JEE/BIRT (Luna, 32-bit)
+  uri: url=http://carroll.aset.psu.edu/pub/eclipse/technology/epp/downloads/release/luna/SR1/eclipse-reporting-luna-SR1-linux-gtk.tar.gz
+       dest=~/eclipse-reporting-luna-SR1-linux-gtk.tar.gz
+       creates=~/eclipse-reporting-luna-SR1-linux-gtk.tar.gz
+  when: ansible_architecture == "i386"
+  tags:
+    - eclipse
+
+- name: install the latest version of Eclipse JEE/BIRT (Luna)
+  shell: tar -C /opt/eclipse -xzf ~/eclipse-reporting-luna-SR1-linux-gtk.tar.gz
          creates=/opt/eclipse/eclipse-reporting-luna-SR1
   tags:
     - eclipse
@@ -243,7 +252,7 @@
          -installIUs {{ item }}
   with_items:
     - javax.xml.soap
-    - org.apache.commons.io
+    - org.apache.commons.io/2.0.1.v201105210651
   tags:
     - issues
     
