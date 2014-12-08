@@ -19,6 +19,7 @@ tags:
 - ldap
 - maven
 - modeling
+- networking
 - quality
 - subversion
 - uml
