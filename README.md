@@ -24,3 +24,10 @@ tags:
 - subversion
 - uml
 - virtualization
+
+Example
+-------
+```
+./workstation.sh --tags=networking
+```
+
