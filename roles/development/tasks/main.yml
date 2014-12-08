@@ -47,6 +47,18 @@
     - ldap
 
 #
+# Networking
+#
+
+- name: add packages that are useful when developing networking software
+  apt: name={{ item }} state=latest
+  with_items:
+    - wireshark
+    - zenmap
+  tags:
+    - networking
+
+#
 # Firefox Developer Edition
 #
 
