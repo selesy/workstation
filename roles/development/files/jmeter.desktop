@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Exec=/opt/jmeter/apache-jmeter-2.13/bin/jmeter.sh
+Icon=/opt/jmeter/apache-jmeter-2.13/docs/images/logo.jpg
+StartupNotify=false
+Categories=Development;
+Name=JMeter
+Comment=Java load testing tool
+Terminal=false
+Path=~/jmeter
