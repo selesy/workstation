@@ -8,5 +8,6 @@
     - common
     - development
     - java
-    - eclipse
+    - netbeans
+#    - eclipse
 
