@@ -1,0 +1,14 @@
+---
+# File: roles/netbeans/vars/main.yml
+
+netbeans_version: 8.0.2
+netbeans_build: 201411181905
+
+netbeans_server: http://download.netbeans.org
+netbeans_path: netbeans/{{ netbeans_version }}/final/zip
+netbeans_file: netbeans-{{ netbeans_version }}-{{ netbeans_build }}.zip
+
+netbeans_url: "{{ netbeans_server }}/{{ netbeans_path }}/{{ netbeans_file }}"
+
+netbeans_installation_directory: /opt
+netbeans_home_directory: "{{ netbeans_installation_directory }}/netbeans"

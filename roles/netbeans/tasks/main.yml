@@ -1,0 +1,23 @@
+---
+# File roles/netbeans/tasks/main.yml
+
+- name: download the Netbeans
+  uri: url={{ netbeans_url }}
+       dest=~/{{ netbeans_file }}
+       creates=~/{{ netbeans_file }}
+  tags:
+    - netbeans
+
+- name: unzip the Netbeans distribution
+  unarchive: copy=no
+             src=~/{{ netbeans_file }}
+             dest={{ netbeans_installation_directory }}
+             creates={{ netbeans_home_directory }}
+  tags:
+    - netbeans
+
+- name: add a launcher for Netbeans to the development menu
+  copy: src=../files/netbeans.desktop
+        dest=/usr/share/applications
+  tags:
+    - netbeans
