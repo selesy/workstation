@@ -30,5 +30,8 @@
 - name: add the f.lux signing key
   apt_key: keyserver=keyserver.ubuntu.com id=e602b5ddea4951fb628e7bd4faeb83059bd4ed25
   
+- name: update the apt repositories to include the new f.lux packages
+  apt: upgrade=safe
+  
 - name: install f.lux
-  apt: pkg=fluxgui state=present
+  apt: name=fluxgui state=present
