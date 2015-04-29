@@ -13,4 +13,7 @@
     - curl
     - tree
     - whois
+    
+- name: install the NTP daemon (on Mint ... it's not installed by default)
+  apt: name=ntp state=latest
 
