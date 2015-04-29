@@ -34,6 +34,16 @@
     - libsvn-java
   tags:
     - subversion
+    
+#
+# Build tools
+#
+
+- name: install Java build tools
+  apt: name={{ item }} state=latest
+  with_items:
+    - ant
+    - maven
 
 #
 # LDAP tools
