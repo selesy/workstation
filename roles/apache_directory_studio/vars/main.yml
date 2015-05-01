@@ -1,0 +1,17 @@
+---
+# File: roles/apache_directory_studio/vars/main.yml
+
+studio_version: 2.0.0
+studio_build: 20130628
+
+studio_server: http://carroll.cac.psu.edu
+studio_path: pub/apache/directory/studio/dist/{{ studio_version }}.v{{ studio_build }}
+studio_file_32: ApacheDirectoryStudio-linux-x86-{{ studio_version }}.v{{ studio_build }}.tar.gz
+studio_file_64: ApacheDirectoryStudio-linux-x86_64-{{ studio_version }}.v{{ studio_build }}.tar.gz
+studio_file: ApacheDirectoryStudio-linux-{{ studio_version }}.v{{ studio_build }}.tar.gz
+
+studio_url_32: "{{ studio_server }}/{{ studio_path }}/{{ studio_file_32 }}"
+studio_url_64: "{{ studio_server }}/{{ studio_path }}/{{ studio_file_64 }}"
+
+studio_installation_directory: /opt
+studio_home_directory: "{{ studio_installation_directory }}/xxx"

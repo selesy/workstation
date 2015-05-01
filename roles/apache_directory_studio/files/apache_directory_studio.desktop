@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Exec=/opt/
+Icon=/opt/
+StartupNotify=false
+Categories=Development;
+Name=Apache Directory Studio
+Comment=The RCP-based LDAP browser and directory client
+Terminal=false
+Path=~/

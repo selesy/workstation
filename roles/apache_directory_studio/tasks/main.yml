@@ -1,0 +1,32 @@
+---
+# File: roles/apache_directory_studio/tasks/main.yml
+
+- name: download latest version of Apache Directory Studio (64-bit)
+  uri: url={{ studio_url_64 }}
+       dest=~/{{ studio_file }}
+       creates=~/{{ studio_file }}
+  when: ansible_architecture == "x86_64"
+  tags:
+    - apache_directory_studio
+
+- name: download latest version of Apache Directory Studio (32-bit)
+  uri: url={{ studio_url_32 }}
+       dest=~/{{ studio_file }}
+       creates=~/{{ studio_file }}
+  when: ansible_architecture == "i386"
+  tags:
+    - apache_directory_studio
+    
+- name: unzip the downloaded Apache Directory Studio archive
+  unarchive: copy=no
+             src=~/{{ studio_file }}
+             dest={{ studio_installation_directory }}
+             creates={{ studio_home_directory }}
+  tags:
+    - apache_directory_studio
+
+#- name: add a launcher to the development menu for Apache Directory Studio
+#  copy: src=../files/apache_directory_studio.desktop
+#        dest=/usr/share/applications
+#  tags:
+#    - apache_directory_studio
