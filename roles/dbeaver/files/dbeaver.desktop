@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Exec=/opt/dbeaver/dbeaver
+Icon=/opt/dbeaver/icon.xpm
+StartupNotify=false
+Categories=Development;
+Name=DBeaver
+Comment=Free Universal Database Manager 
+Terminal=false
+Path=~/

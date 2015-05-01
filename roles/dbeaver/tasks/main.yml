@@ -1,0 +1,32 @@
+---
+# File: roles/dbeaver/tasks/main.yml
+
+- name: download latest version of DBeaver (64-bit)
+  uri: url={{ dbeaver_url_64 }}
+       dest=~/{{ dbeaver_file }}
+       creates=~/{{ dbeaver_file }}
+  when: ansible_architecture == "x86_64"
+  tags:
+    - dbeaver
+
+- name: download latest version of DBeaver (32-bit)
+  uri: url={{ dbeaver_url_32 }}
+       dest=~/{{ dbeaver_file }}
+       creates=~/{{ dbeaver_file }}
+  when: ansible_architecture == "i386"
+  tags:
+    - dbeaver
+    
+- name: unzip the downloaded DBeaver archive
+  unarchive: copy=no
+             src=~/{{ dbeaver_file }}
+             dest={{ dbeaver_installation_directory }}
+             creates={{ dbeaver_home_directory }}
+  tags:
+    - dbeaver
+
+- name: add a launcher to the development menu for DBeaver
+  copy: src=../files/dbeaver.desktop
+        dest=/usr/share/applications
+  tags:
+    - dbeaver
