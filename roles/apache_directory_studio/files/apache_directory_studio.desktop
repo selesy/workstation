@@ -2,8 +2,8 @@
 Version=1.0
 Type=Application
 Encoding=UTF-8
-Exec=/opt/
-Icon=/opt/
+Exec=/opt/ApacheDirectoryStudio-linux-x86-2.0.0.v20130628/ApacheDirectoryStudio
+Icon=/opt/ApacheDirectoryStudio-linux-x86-2.0.0.v20130628/ApacheDirectoryStudio.xpm
 StartupNotify=false
 Categories=Development;
 Name=Apache Directory Studio
