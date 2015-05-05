@@ -20,9 +20,9 @@ into two categories.  How these installations are managed is dramatically
 different depending on the class of the application as follows:
 
 -   Operating System (OS) packaged applications - Applications that provide
-        provide packages in the target operating system are installed using
-        the OS' package manager.  Currently these applications are Debian
-        style packages that can be installed using "apt".
+    packages in the target operating system are installed using the OS' package
+    manager.  Currently these applications are Debian style packages that can
+    be installed using "apt".
 
 -   Unpackaged applications - Applications that do not provide OS packages are
     installed by downloading the binary (or source if needed), then compiled
@@ -48,7 +48,8 @@ different depending on the class of the application as follows:
 
     The link to the latest version of the application is used by the desktop
     launchers installed into the OS' menu.  Therefore, launching an application
-    from the menu will result in the latest version being launched.  If you need
+    from the menu will result in the latest version being launched.  If you n
+        provide eed
     to run an older version, you can do so by navigating to the appropriate
     version and run it via the command line.  This project never deletes any of
     the code it installs.  Therefore, if you need to recoup space on your hard
@@ -64,26 +65,23 @@ script does all the work and is idempotent.  Run it periodically and it will
 make sure your system stays up-to-date.  These three scripts are as follows:
 
 *   ansible.sh - This script requires sudo privileges and simply installs
-                 Ansible and its dependencies on the target system, then
-                 creates an SSH key that Ansible will later use to connect
-                 back into the system.  Run this script once or run the steps
-                 manually.  It is possible to alter the Ansible inventory file
-                 to maintain a pool of development workstations.
+    Ansible and its dependencies on the target system, then creates an SSH key
+    that Ansible will later use to connect back into the system.  Run this
+    script once or run the steps manually.  It is possible to alter the Ansible
+    inventory file to maintain a pool of development workstations.
                  
 *   bootstrap.sh - This script creates an Ansible inventory file containing
-                   only localhost, then uses Ansible to execute the playbook
-                   provided by bootstrap.yml.  This playbook creates the ansible
-                   system user, adds the user's public key and then configures
-                   passwordless sudo.  Run this script once, or perform the
-                   equivalent steps manually.
+    only localhost, then uses Ansible to execute the playbook provided by
+    bootstrap.yml.  This playbook creates the ansible system user, adds the
+    user's public key and then configures passwordless sudo.  Run this script
+    once, or perform the equivalent steps manually.
                    
 *   workstation.sh - This script actually runs the Ansible playbook that builds
-                     and maintains the development environment.  It can be run
-                     frequently and at a minimum will keep the programs installed
-                     via the system's package manager (currently apt) up-to-date.
-                     Its possible to exclude some or all of the programs that are
-                     defined in this playbook via the use of tags.  See the "tags"
-                     section below for more details.
+    and maintains the development environment.  It can be run frequently and at
+    a minimum will keep the programs installed via the system's package manager
+    (currently apt) up-to-date.  It's possible to exclude some or all of the
+    programs that are defined in this playbook via the use of tags.  See the
+    "tags" section below for more details.
 
 Tags
 ----
