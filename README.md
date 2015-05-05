@@ -98,7 +98,7 @@ connect to localhost as the ansible user.  You have been warned!
 It is suggested that at a minimum, users of this program should choose a strong
 password.  It's further suggested that users choose encrypted home directories
 to further minimize the possibility of their unprivileged account being
-compromised
+compromised.
 
 Tags
 ----
