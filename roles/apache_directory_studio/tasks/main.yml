@@ -8,6 +8,7 @@
   when: ansible_architecture == "x86_64"
   tags:
     - apache_directory_studio
+    - ldap
 
 - name: download latest version of Apache Directory Studio (32-bit)
   uri: url={{ studio_url_32 }}
@@ -16,6 +17,11 @@
   when: ansible_architecture == "i386"
   tags:
     - apache_directory_studio
+    - ldap
+    
+- name: create the directory where the Apache Directory Studio will be installed
+  file: path={{ studio_installation_directory }}
+        state=directory
     
 - name: unzip the downloaded Apache Directory Studio archive
   unarchive: copy=no
@@ -24,9 +30,35 @@
              creates={{ studio_home_directory }}
   tags:
     - apache_directory_studio
+    - ldap
+
+- name: move the tar's base directory somewhere maintainable
+  command: mv {{ studio_installation_directory }}/{{ studio_tar_directory_64 }}
+           {{ studio_installation_directory }}/{{ studio_version }}.v{{ studio_build }}
+  when: ansible_architecture == "x86_64"
+  tags:
+    - apache_directory_studio
+    - ldap
+           
+- name: move the tar's base directory somewhere maintainable
+  command: mv {{ studio_installation_directory }}/{{ studio_tar_directory_32 }}
+           {{ studio_installation_directory }}/{{ studio_version }}.v{{ studio_build }}
+  when: ansible_architecture == "i386"
+  tags:
+    - apache_directory_studio
+    - ldap
+           
+- name: create a pretty symlink to the latest version
+  file: src={{ studio_installation_directory }}/{{ studio_version }}.v{{ studio_build }}
+        path={{ studio_installation_directory }}/latest
+        state=link
+  tags:
+    - apache_directory_studio
+    - ldap
 
 - name: add a launcher to the development menu for Apache Directory Studio
   copy: src=../files/apache_directory_studio.desktop
         dest=/usr/share/applications
   tags:
     - apache_directory_studio
+    - ldap
