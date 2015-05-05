@@ -28,22 +28,25 @@
              src=~/{{ studio_file }}
              dest={{ studio_installation_directory }}
              creates={{ studio_home_directory }}
+             owner=root
+             group=root
+  register: unarchive_result
   tags:
     - apache_directory_studio
     - ldap
 
-- name: move the tar's base directory somewhere maintainable
+- name: move the tar's base directory somewhere maintainable (64-bit)
   command: mv {{ studio_installation_directory }}/{{ studio_tar_directory_64 }}
            {{ studio_installation_directory }}/{{ studio_version }}.v{{ studio_build }}
-  when: ansible_architecture == "x86_64"
+  when: ansible_architecture == "x86_64" and unarchive_result | changed
   tags:
     - apache_directory_studio
     - ldap
            
-- name: move the tar's base directory somewhere maintainable
+- name: move the tar's base directory somewhere maintainable (32-bit)
   command: mv {{ studio_installation_directory }}/{{ studio_tar_directory_32 }}
            {{ studio_installation_directory }}/{{ studio_version }}.v{{ studio_build }}
-  when: ansible_architecture == "i386"
+  when: ansible_architecture == "i386" and unarchive_result | changed
   tags:
     - apache_directory_studio
     - ldap

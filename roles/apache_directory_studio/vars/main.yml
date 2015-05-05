@@ -17,4 +17,4 @@ studio_tar_directory_32: ApacheDirectoryStudio-linux-x86-{{ studio_version }}.v{
 studio_tar_directory_64: ApacheDirectoryStudio-linux-x86_64-{{ studio_version }}.v{{ studio_build }}
 
 studio_installation_directory: /opt/apache-directory-studio
-studio_home_directory: "{{ studio_installation_directory }}/xxx"
+studio_home_directory: "{{ studio_installation_directory }}/{{ studio_version }}.v{{ studio_build }}"
