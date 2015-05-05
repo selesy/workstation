@@ -32,7 +32,7 @@ different depending on the class of the application as follows:
     from archives or source code can be protected from the updater.  Applications
     are installed into the following directory:
 
-       /opt/&lt;application-name&gt;/&lt;application-version&gt;
+        /opt/&lt;application-name&gt;/&lt;application-version&gt;
 
     For systems that upgrade their distribution by reinstalling the OS from a new
     image (such as Linux Mint), it is recommended that the /opt directory be
