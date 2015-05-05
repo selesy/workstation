@@ -32,7 +32,7 @@ different depending on the class of the application as follows:
     from archives or source code can be protected from the updater.  Applications
     are installed into the following directory:
 
-        /opt/&lt;application-name&gt;/&lt;application-version&gt;
+        /opt/<application-name>/<application-version>
 
     For systems that upgrade their distribution by reinstalling the OS from a new
     image (such as Linux Mint), it is recommended that the /opt directory be
@@ -44,7 +44,7 @@ different depending on the class of the application as follows:
     is included, it's simply installed "next to" the older version of the same
     application.  A soft-link to the most recent version is installed in:
 
-        /opt/&lt;application-name&gt;/latest
+        /opt/<application-name>/latest
 
     The link to the latest version of the application is used by the desktop
     launchers installed into the OS' menu.  Therefore, launching an application
