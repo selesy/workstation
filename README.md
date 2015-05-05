@@ -83,6 +83,23 @@ make sure your system stays up-to-date.  These three scripts are as follows:
     programs that are defined in this playbook via the use of tags.  See the
     "tags" section below for more details.
 
+Security Concerns
+-----------------
+
+Allowing the ansible system user to execute commands via passwordless sudo (as
+described by the "bootstrap.sh" bullet above has security implications.  Since
+the most common use of this system is to keep a development environment on the
+local host up-to-date, the private key that allows Ansible to execute will
+reside on the same machine and will have been installed in an unprivileged
+account.  If a cracker were to breach this unprivileged account, they would
+easily escalate their privileges to root simply by using the SSH key to
+connect to localhost as the ansible user.  You have been warned!
+
+It is suggested that at a minimum, users of this program should choose a strong
+password.  It's further suggested that users choose encrypted home directories
+to further minimize the possibility of their unprivileged account being
+compromised
+
 Tags
 ----
 
