@@ -38,6 +38,22 @@ different depending on the class of the application as follows:
     image (such as Linux Mint), it is recommended that the /opt directory be
     installed in a separate partition.  When the OS is upgraded, simply remap the
     /opt directory into the file system without reformating.
+    
+    Since the path also includes the version number, the applications managed
+    by this project are safe during updates.  When a new version of an application
+    is included, it's simply installed "next to" the older version of the same
+    application.  A soft-link to the most recent version is installed in:
+
+        /opt/&lt;application-name&gt;/latest
+
+    The link to the latest version of the application is used by the desktop
+    launchers installed into the OS' menu.  Therefore, launching an application
+    from the menu will result in the latest version being launched.  If you need
+    to run an older version, you can do so by navigating to the appropriate
+    version and run it via the command line.  This project never deletes any of
+    the code it installs.  Therefore, if you need to recoup space on your hard
+    drive, you'll have to manually delete older versions of the application from
+    the /opt directory.
 
 Use
 ---
