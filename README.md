@@ -12,6 +12,33 @@ This project currently supports 32 and 64 bit Debian-based systems.  It should
 be possible to add support for Fedora-based systems without too much work if
 there's interest.
 
+Operation
+---------
+
+The software development (and systems) tools installed by this project fall
+into two categories.  How these installations are managed is dramatically
+different depending on the class of the application as follows:
+
+-   Operating System (OS) packaged applications - Applications that provide
+        provide packages in the target operating system are installed using
+        the OS' package manager.  Currently these applications are Debian
+        style packages that can be installed using "apt".
+
+-   Unpackaged applications - Applications that do not provide OS packages are
+    installed by downloading the binary (or source if needed), then compiled
+    and/or unarchived into a "safe" location.  Whether you're using a Linux
+    distribution that continuously updates or one that expects you to reinstall
+    the system when updating to a new major version, the applications installed
+    from archives or source code can be protected from the updater.  Applications
+    are installed into the following directory:
+
+       /opt/<application-name>/<application-version>
+
+    For systems that upgrade their distribution by reinstalling the OS from a new
+    image (such as Linux Mint), it is recommended that the /opt directory be
+    installed in a separate partition.  When the OS is upgraded, simply remap the
+    /opt directory into the file system without reformating.
+
 Use
 ---
 
