@@ -199,20 +199,20 @@
 # LDAP plugins
 #
 
-- name: add the Apache Directory Studio plugins
-  shell: >
-         /opt/eclipse/luna/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -repository http://directory.apache.org/studio/update/2.x
-         -profileProperties org.eclipse.update.install.features=true
-         -installIUs {{ item }}
-  with_items:
-    - org.apache.directory.studio.ldapbrowser.feature.feature.group
-    - org.apache.directory.studio.ldifeditor.feature.feature.group
-    - org.apache.directory.studio.schemaeditor.feature.feature.group
-  tags:
-    - coverage
+#- name: add the Apache Directory Studio plugins
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://directory.apache.org/studio/update/2.x
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - org.apache.directory.studio.ldapbrowser.feature.feature.group
+#    - org.apache.directory.studio.ldifeditor.feature.feature.group
+#    - org.apache.directory.studio.schemaeditor.feature.feature.group
+#  tags:
+#    - coverage
 
 # NOTE (smoyer1) - The update site includes these 7 features
 #    - org.apache.directory.studio.apacheds.configuration.feature.feature.group
@@ -304,35 +304,35 @@
 # Modeling and Diagraming plugins
 #
 
-- name: download the UMLet plugin
-  uri: url=http://www.umlet.com/umlet_13_1/com.umlet.plugin_13.1.0.jar
-       dest=~/com.umlet.plugin_13.1.0.jar
-       creates=~/com.umlet.plugin_13.1.0.jar
-  tags:
-    - uml
-       
-- name: install the UMLet plugin
-  shell: cp ~/com.umlet.plugin_13.1.0.jar /opt/eclipse/luna/plugins/com.umlet.plugin_13.1.0.jar
-         creates=/opt/eclipse/luna/plugins/com.umlet.plugin_13.1.0.jar
-  tags:
-    - uml
-    - modeling
+#- name: download the UMLet plugin
+#  uri: url=http://www.umlet.com/umlet_13_1/com.umlet.plugin_13.1.0.jar
+#       dest=~/com.umlet.plugin_13.1.0.jar
+#       creates=~/com.umlet.plugin_13.1.0.jar
+#  tags:
+#    - uml
+#       
+#- name: install the UMLet plugin
+#  shell: cp ~/com.umlet.plugin_13.1.0.jar /opt/eclipse/luna/plugins/com.umlet.plugin_13.1.0.jar
+#         creates=/opt/eclipse/luna/plugins/com.umlet.plugin_13.1.0.jar
+#  tags:
+#    - uml
+#    - modeling
     
 # NOTE: (smoyer1) - Replace with DBeaver?
 
-- name: add the ERMaster (ERD) plugin
-  shell: >
-         /opt/eclipse/luna/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -repository http://ermaster.sourceforge.net/update-site
-         -profileProperties org.eclipse.update.install.features=true
-         -installIUs {{ item }}
-  with_items:
-    - org.insightech.er.feature.feature.group
-  tags:
-    - database
-    - modeling
+#- name: add the ERMaster (ERD) plugin
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://ermaster.sourceforge.net/update-site
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - org.insightech.er.feature.feature.group
+#  tags:
+#    - database
+#    - modeling
 
 #
 # Framework plugins
