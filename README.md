@@ -12,6 +12,40 @@ This project currently supports 32 and 64 bit Debian-based systems.  It should
 be possible to add support for Fedora-based systems without too much work if
 there's interest.
 
+Applications
+------------
+
+This project installs the following applications:
+
+-   Apache Directory Studio - LDAP client (apache_directory_studio)
+-   DBeaver - Database client (dbeaver)
+-   Eclipse IDE with selected plugins (eclipse)
+-   Firefox Developer Edition (firefox-de)
+-   Java JDK - the most recent two versions (java)
+-   JMeter - Load testing (jmeter)
+-   Netbeans IDE (netbeans)
+-   UMLet - UML Diagraming (umlet)
+-   Zed Attack Proxy - Security testing (zaproxy)
+
+Note that the string in parenthesis above is the tag you can use to explicitly
+include or exclude the application's playbook tasks.  See the **Examples**
+section below.
+
+Additional Tags
+---------------
+
+In addition to the tags listed for each application, there's a set of functional
+tags that are applied to the applications as appropriate.  For instance, if you
+only want to install the LDAP tools, using the ldap tag below (with an include
+switch) would install the command-line LDAP client tools as well as the Apache
+Directory Studio.
+
+-   ldap
+-   modeling
+-   uml
+-   virtualization
+-   web
+
 Operation
 ---------
 
@@ -48,8 +82,7 @@ different depending on the class of the application as follows:
 
     The link to the latest version of the application is used by the desktop
     launchers installed into the OS' menu.  Therefore, launching an application
-    from the menu will result in the latest version being launched.  If you n
-        provide eed
+    from the menu will result in the latest version being launched.  If you need
     to run an older version, you can do so by navigating to the appropriate
     version and run it via the command line.  This project never deletes any of
     the code it installs.  Therefore, if you need to recoup space on your hard
