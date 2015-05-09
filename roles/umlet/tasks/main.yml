@@ -1,0 +1,52 @@
+---
+# File: roles/umlet/tasks/main.yml
+
+- name: create the installation directory for UMLet
+  file: path={{ umlet_installation_directory }}
+        state=directory
+
+- name: download the UMLet application
+  uri: url={{ umlet_url }}
+       dest=~/{{ umlet_file }}
+       creates=~/{{ umlet_file }}
+  tags:
+    - uml
+    - modeling
+
+- name: unzip the downloaded UMLet archive
+  unarchive: copy=no
+             src=~/{{ umlet_file }}
+             dest={{ umlet_installation_directory }}
+             creates={{ umlet_home_directory }}
+  register: unarchive_result
+  tags:
+    - uml
+    - modeling
+
+- name: move the ZIP's base directory somewhere maintainable
+  command: mv {{ umlet_zip_directory }}
+           {{ umlet_home_directory }}
+  when: unarchive_result | changed
+  tags:
+    - uml
+    - modeling
+
+- name: create a pretty symlink to the latest version
+  file: src={{ umlet_home_directory }}
+        path={{ umlet_installation_directory }}/latest
+        state=link
+  tags:
+    - uml
+    - modeling
+
+- name: make the UMLet shell script executable
+  file: path={{ umlet_home_directory }}/umlet.sh
+        mode=755
+
+- name: add a launcher to the development menu for UMLet
+  copy: src=../files/umlet.desktop
+        dest=/usr/share/applications
+  tags:
+    - uml
+    - modeling
+

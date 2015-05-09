@@ -1,0 +1,16 @@
+---
+# File: roles/umlet/vars/main.yml
+
+# http://www.umlet.com/umlet_13_2/umlet_13.2.zip
+
+umlet_version: 13.2
+
+umlet_host: http://www.umlet.com
+umlet_path: umlet_13_2
+umlet_file: umlet_{{ umlet_version }}.zip
+
+umlet_url: "{{ umlet_host }}/{{ umlet_path }}/{{ umlet_file }}"
+
+umlet_installation_directory: /opt/umlet
+umlet_zip_directory: "{{ umlet_installation_directory }}/Umlet"
+umlet_home_directory: "{{ umlet_installation_directory }}/{{ umlet_version }}"

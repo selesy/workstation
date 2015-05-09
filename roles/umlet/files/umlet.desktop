@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Exec=/opt/umlet/latest/umlet.sh
+Icon=/opt/umlet/latest/img/umlet_logo64.png
+StartupNotify=false
+Categories=Development;
+Name=UMLet
+Comment=UML Diagramming
+Terminal=false
+Path=
