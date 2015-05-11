@@ -21,9 +21,12 @@ This project installs the following applications:
 -   DBeaver - Database client (dbeaver)
 -   Eclipse IDE with selected plugins (eclipse)
 -   Firefox Developer Edition (firefox-de)
+-   Git source code management (git)
 -   Java JDK - the most recent two versions (java)
 -   JMeter - Load testing (jmeter)
+-   Maven build system (maven)
 -   Netbeans IDE (netbeans)
+-   Subversion source code management (subversion)
 -   UMLet - UML Diagraming (umlet)
 -   Zed Attack Proxy - Security testing (zaproxy)
 
@@ -40,8 +43,14 @@ only want to install the LDAP tools, using the ldap tag below (with an include
 switch) would install the command-line LDAP client tools as well as the Apache
 Directory Studio.
 
+-   coverage
+-   database
+-   editors
+-   issues
 -   ldap
 -   modeling
+-   networking
+-   quality
 -   uml
 -   virtualization
 -   web
@@ -132,28 +141,6 @@ It is suggested that at a minimum, users of this program should choose a strong
 password.  It's further suggested that users choose encrypted home directories
 to further minimize the possibility of their unprivileged account being
 compromised.
-
-Tags
-----
-
-tags:
-
-- coverage
-- database
-- eclipse
-- editors
-- firefox-de
-- git
-- issues
-- java
-- ldap
-- maven
-- modeling
-- networking
-- quality
-- subversion
-- uml
-- virtualization
 
 Example
 -------
