@@ -1,7 +1,13 @@
 ---
 # File roles/netbeans/tasks/main.yml
 
-- name: download the Netbeans
+- name: create a directory for optional Netbeans IDE software
+  file: name={{ netbeans_installation_directory }}
+        state=directory
+  tags:
+    - netbeans
+
+- name: download the Netbeans IDE archive
   uri: url={{ netbeans_url }}
        dest=~/{{ netbeans_file }}
        creates=~/{{ netbeans_file }}
@@ -13,6 +19,21 @@
              src=~/{{ netbeans_file }}
              dest={{ netbeans_installation_directory }}
              creates={{ netbeans_home_directory }}
+  register: unarchive_result
+  tags:
+    - netbeans
+
+- name: move the ZIP file's base directory somewhere maintainable
+  command: mv {{ netbeans_zip_directory }}
+           {{ netbeans_home_directory }}
+  when: unarchive_result | changed
+  tags:
+    - netbeans
+
+- name: create a pretty symlink to the latest version
+  file: src={{ netbeans_home_directory }}
+        path={{ netbeans_installation_directory }}/latest
+        state=link
   tags:
     - netbeans
 
