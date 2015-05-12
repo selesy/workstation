@@ -1,0 +1,14 @@
+---
+# File: roles/zaproxy/vars/main.yml
+
+zaproxy_version: 2.4.0
+
+zaproxy_host: ttp://sourceforge.net
+zaproxy_path: projects/zaproxy/files/{{ zaproxy_version }}
+zaproxy_file: ZAP_{{ zaproxy_version }}_Linux.tar.gz
+
+zaproxy_url: "{{ zaproxy_host }}/{{ zaproxy_path }}/{{ zaproxy_file }}/download"
+
+zaproxy_installation_directory: /opt/zaproxy
+zaproxy_tar_directory: "{{ zaproxy_installation_directory }}/ZAP_{{ zaproxy_version }}"
+zaproxy_home_directory: "{{ zaproxy_installation_directory }}/{{ zaproxy_version }}"
