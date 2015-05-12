@@ -2,8 +2,8 @@
 Version=1.0
 Type=Application
 Encoding=UTF-8
-Exec=/opt/zaproxy/ZAP_2.4.0/zap.sh
-Icon=/opt/zaproxy/ZAP_2.4.0/zap.ico
+Exec=/opt/zaproxy/latest/zap.sh
+Icon=/opt/zaproxy/latest/zap.ico
 StartupNotify=false
 Categories=Development;
 Name=Zed Attack Proxy
