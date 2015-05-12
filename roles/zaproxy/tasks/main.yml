@@ -7,15 +7,32 @@
     - zaproxy
 
 - name: download latest version of the Zed Attack Proxy
-  uri: url=http://sourceforge.net/projects/zaproxy/files/2.4.0/ZAP_2.4.0_Linux.tar.gz/download
-       dest=~/ZAP_2.4.0_Linux.tar.gz
-       creates=~/ZAP_2.4.0_Linux.tar.gz
+  uri: url={{ zaproxy_url }}
+       dest=~/{{ zaproxy_file }}
+       creates=~/{{ zaproxy_file }}
   tags:
     - zaproxy
 
-- name: install the latest version of the Zed Attack Proxy
-  shell: tar -C /opt/zaproxy -xzf ~/ZAP_2.4.0_Linux.tar.gz
-         creates=/opt/zaproxy/ZAP_2.4.0
+- name: untar the Zed Attack Proxy archive
+  unarchive: copy=no
+             src=~/{{ zaproxy_file }}
+             dest={{ zaproxy_installation_directory }}
+             creates={{ zaproxy_home_directory }}
+  register: unarchive_result
+  tags:
+    - zaproxy
+
+- name: move the tar file's base directory somewhere maintainable
+  command: mv {{ zaproxy_tar_directory }}
+           {{ zaproxy_home_directory }}
+  when: unarchive_result | changed
+  tags:
+    - zaproxy
+
+- name: create a pretty symlink to the latest version
+  file: src={{ zaproxy_home_directory }}
+        path={{ zaproxy_installation_directory }}/latest
+        state=link
   tags:
     - zaproxy
 
@@ -24,4 +41,3 @@
         dest=/usr/share/applications
   tags:
     - zaproxy
-
