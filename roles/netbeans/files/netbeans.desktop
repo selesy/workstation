@@ -2,8 +2,8 @@
 Version=1.0
 Type=Application
 Encoding=UTF-8
-Exec=/opt/netbeans/bin/netbeans
-Icon=/opt/netbeans/nb/netbeans.png
+Exec=/opt/netbeans/latest/bin/netbeans
+Icon=/opt/netbeans/latest/nb/netbeans.png
 StartupNotify=false
 Categories=Development;
 Name=NetBeans IDE
