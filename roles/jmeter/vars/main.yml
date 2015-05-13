@@ -1,0 +1,16 @@
+---
+# File: roles/jmeter/vars/main.yml
+
+# http://mirror.symnds.com/software/Apache//jmeter/binaries/apache-jmeter-2.13.tgz
+
+jmeter_version: 2.13
+
+jmeter_host: http://mirror.symnds.com
+jmeter_path: software/Apache/jmeter/binaries
+jmeter_file: apache-jmeter-{{ jmeter_version }}.tgz
+
+jmeter_url: "{{ jmeter_host }}/{{ jmeter_path }}/{{ jmeter_file }}"
+
+jmeter_installation_directory: /opt/jmeter
+jmeter_tar_directory: "{{ jmeter_installation_directory }}/apache-jmeter-{{ jmeter_version }}"
+jmeter_home_directory: "{{ jmeter_installation_directory }}/{{ jmeter_version }}"

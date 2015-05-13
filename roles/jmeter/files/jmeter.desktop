@@ -2,8 +2,8 @@
 Version=1.0
 Type=Application
 Encoding=UTF-8
-Exec=/opt/jmeter/apache-jmeter-2.13/bin/jmeter.sh
-Icon=/opt/jmeter/apache-jmeter-2.13/docs/images/logo.jpg
+Exec=/opt/jmeter/latest/bin/jmeter.sh
+Icon=/opt/jmeter/latest/docs/images/logo.jpg
 StartupNotify=false
 Categories=Development;
 Name=JMeter

@@ -2,20 +2,44 @@
 # File: roles/jmeter/tasks/main.yml
 
 - name: create a directory for optional JMeter software
-  file: name=/opt/jmeter state=directory
+  file: name={{ jmeter_installation_directory }}
+        state=directory
   tags:
     - jmeter
     
 - name: download the latest version of JMeter
-  uri: url=http://mirror.symnds.com/software/Apache//jmeter/binaries/apache-jmeter-2.13.tgz
-       dest=~/apache-jmeter-2.13.tgz
-       creates=~/apache-jmeter-2.13.tgz
+  uri: url={{ jmeter_url }}
+       dest=~/{{ jmeter_file }}
+       creates=~/{{ jmeter_file }}
+  tags:
+    - jmeter
        
-- name: install the latest version of JMeter
-  shell: tar -C /opt/jmeter -xzf ~/apache-jmeter-2.13.tgz
-         creates=/opt/jmeter/apache-jmeter-2.13
+- name: untar the JMeter archive
+  unarchive: copy=no
+             src=~/{{ jmeter_file }}
+             dest={{ jmeter_installation_directory }}
+             creates={{ jmeter_home_directory }}
+  register: unarchive_result
+  tags:
+    - jmeter
+
+- name: move the tar file's base directory somewhere maintainable
+  command: mv {{ jmeter_tar_directory }}
+           {{ jmeter_home_directory }}
+  when: unarchive_result | changed
+  tags:
+    - jmeter
+
+- name: create a pretty symlink to the latest version
+  file: src={{ jmeter_home_directory }}
+        path={{ jmeter_installation_directory }}/latest
+        state=link
+  tags:
+    - jmeter
 
 - name: add a launcher for JMeter to the development menu
   copy: src=../files/jmeter.desktop
         dest=/usr/share/applications
+  tags:
+    - jmeter
         
