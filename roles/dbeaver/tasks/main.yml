@@ -1,6 +1,12 @@
 ---
 # File: roles/dbeaver/tasks/main.yml
 
+- name: create the installation directory for DBeaver
+  file: path={{ dbeaver_installation_directory }}
+        state=directory
+  tags:
+    - dbeaver
+
 - name: download latest version of DBeaver (64-bit)
   uri: url={{ dbeaver_url_64 }}
        dest=~/{{ dbeaver_file }}
@@ -22,6 +28,21 @@
              src=~/{{ dbeaver_file }}
              dest={{ dbeaver_installation_directory }}
              creates={{ dbeaver_home_directory }}
+  register: unarchive_result
+  tags:
+    - dbeaver
+
+- name: move the unzipped files to the standard location
+  command: mv {{ dbeaver_zip_directory }}
+           {{ dbeaver_home_directory }}
+  when: unarchive_result | changed
+  tags:
+    - dbeaver
+
+- name: create a pretty symlink pointing to the most recent version
+  file: src={{ dbeaver_home_directory }}
+        path={{ dbeaver_installation_directory }}/latest
+        state=link
   tags:
     - dbeaver
 

@@ -2,8 +2,8 @@
 Version=1.0
 Type=Application
 Encoding=UTF-8
-Exec=/opt/dbeaver/dbeaver
-Icon=/opt/dbeaver/icon.xpm
+Exec=/opt/dbeaver/latest/dbeaver
+Icon=/opt/dbeaver/latest/icon.xpm
 StartupNotify=false
 Categories=Development;
 Name=DBeaver

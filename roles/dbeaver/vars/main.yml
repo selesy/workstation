@@ -12,5 +12,6 @@ dbeaver_file: dbeaver-{{ dbeaver_version }}-ee-linux.gtk.zip
 dbeaver_url_32: "{{ dbeaver_server }}/{{ dbeaver_path }}/{{ dbeaver_file_32 }}"
 dbeaver_url_64: "{{ dbeaver_server }}/{{ dbeaver_path }}/{{ dbeaver_file_64 }}"
 
-dbeaver_installation_directory: /opt
-dbeaver_home_directory: "{{ dbeaver_installation_directory }}/dbeaver"
+dbeaver_installation_directory: /opt/dbeaver
+dbeaver_zip_directory: "{{ dbeaver_installation_directory }}/dbeaver"
+dbeaver_home_directory: "{{ dbeaver_installation_directory }}/{{ dbeaver_version }}"
