@@ -7,30 +7,30 @@
     - firefox-de
 
 - name: download latest version of Firefox Developer Edition (64-bit)
-  uri: url=https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux64&lang=en-US
-       dest=~/firefox-de.en-US.linux.tar.bz2
-       creates=~/firefox-de.en-US.linux.tar.bz2
+  uri: url={{ firefox_de_url_64 }}
+       dest=~/{{ firefox_de_file_64 }}
+       creates=~/{{ firefox_de_file_64 }}
   when: ansible_architecture == "x86_64"
   tags:
     - firefox-de
 
 - name: download latest version of Firefox Developer Edition (32-bit)
-  uri: url=https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux&lang=en-US
-       dest=~/firefox-de.en-US.linux.tar.bz2
-       creates=~/firefox-de.en-US.linux.tar.bz2
+  uri: url={{ firefox_de_url_32 }}
+       dest=~/{{ firefox_de_file_32 }}
+       creates=~/{{ firefox_de_file_32 }}
   when: ansible_architecture == "i386"
   tags:
     - firefox-de
 
-- name: install the latest version of Firefox Developer Edition
-  shell: tar -C /opt/firefox-de -xjf ~/firefox-de.en-US.linux.tar.bz2
-         creates=/opt/firefox-de/firefox
-  tags:
-    - firefox-de
-
-- name: add a launcher to the development, network, etc menus
-  copy: src=../files/firefox-de.desktop
-        dest=/usr/share/applications
-  tags:
-    - firefox-de
+#- name: install the latest version of Firefox Developer Edition
+#  shell: tar -C /opt/firefox-de -xjf ~/firefox-de.en-US.linux.tar.bz2
+#         creates=/opt/firefox-de/firefox
+#  tags:
+#    - firefox-de
+#
+#- name: add a launcher to the development, network, etc menus
+#  copy: src=../files/firefox-de.desktop
+#        dest=/usr/share/applications
+#  tags:
+#    - firefox-de
 
