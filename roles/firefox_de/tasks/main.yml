@@ -22,15 +22,42 @@
   tags:
     - firefox-de
 
-#- name: install the latest version of Firefox Developer Edition
-#  shell: tar -C /opt/firefox-de -xjf ~/firefox-de.en-US.linux.tar.bz2
-#         creates=/opt/firefox-de/firefox
-#  tags:
-#    - firefox-de
-#
-#- name: add a launcher to the development, network, etc menus
-#  copy: src=../files/firefox-de.desktop
-#        dest=/usr/share/applications
-#  tags:
-#    - firefox-de
+- name: untar the FireFox Developer Edition archive (64-bit)
+  unarchive: copy=no
+             src=~/{{ firefox_de_file_64 }}
+             dest={{ firefox_de_installation_directory }}
+             creates={{ firefox_de_home_directory }}
+  when: ansible_architecture == "x86_64"
+  register: unarchive_result_64
+  tags:
+    - firefox-de
 
+- name: untar the FireFox Developer Edition archive (32-bit)
+  unarchive: copy=no
+             src=~/{{ firefox_de_file_32 }}
+             dest={{ firefox_de_installation_directory }}
+             creates={{ firefox_de_home_directory }}
+  when: ansible_architecture == "i386"
+  register: unarchive_result_32
+  tags:
+    - firefox-de
+
+- name: move the tar file's base directory somewhere maintainable
+  command: mv {{ firefox_de_tar_directory }}
+           {{ firefox_de_home_directory }}
+  when: (unarchive_result_64 | changed) or (unarchive_result_32 | changed)
+  tags:
+    - firefox-de
+
+- name: create a pretty symlink to the latest version
+  file: src={{ firefox_de_home_directory }}
+        path={{ firefox_de_installation_directory }}/latest
+        state=link
+  tags:
+    - firefox-de
+
+- name: add a launcher for Firefox Developer Edition
+  copy: src=../files/firefox-de.desktop
+        dest=/usr/share/applications
+  tags:
+    - firefox-de

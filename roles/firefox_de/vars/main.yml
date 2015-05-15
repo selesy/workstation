@@ -13,5 +13,5 @@ firefox_de_url_32: "{{ firefox_de_host }}/{{ firefox_de_path }}/{{ firefox_de_fi
 firefox_de_url_64: "{{ firefox_de_host }}/{{ firefox_de_path }}/{{ firefox_de_file_64 }}"
 
 firefox_de_installation_directory: /opt/firefox-de
-firefox_de_tar_directory:
-firefox_de_home_directory:
+firefox_de_tar_directory: "{{ firefox_de_installation_directory }}/firefox"
+firefox_de_home_directory: "{{ firefox_de_installation_directory }}/{{ firefox_de_version }}"

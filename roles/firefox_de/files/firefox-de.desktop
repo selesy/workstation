@@ -2,8 +2,8 @@
 Version=1.0
 Type=Application
 Encoding=UTF-8
-Exec=/opt/firefox-de/firefox/firefox
-Icon=/opt/firefox-de/firefox/browser/chrome/icons/default/default48.png
+Exec=/opt/firefox-de/latest/firefox
+Icon=/opt/firefox-de/latest/browser/chrome/icons/default/default48.png
 StartupNotify=false
 Categories=Development;GNOME;GTK;Network;WebBrowser;
 Name=Firefox Developer Edition
