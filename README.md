@@ -148,3 +148,7 @@ Example
 ./workstation.sh --tags=networking
 ```
 
+```
+./workstation.sh --skip-tags=eclipse
+```
+
