@@ -144,11 +144,37 @@ compromised.
 
 Example
 -------
+
+The workstation script copies all passed parameters to the ansible-playbook
+command.  The most useful reason is to allow the inclusion and exclusion
+of roles (or tagged components) based the user's preference.
+
+By default, Ansible completely ignores tags.  If you specify a tag (as in
+the example below), ansible will only run tasks with the specified tags.
+You can include as many tags as you like, but I find excluding a few tags
+to be much more common.
+
+This example runs any tasks that are tagged with the word "networking".
+
 ```
 ./workstation.sh --tags=networking
 ```
 
+The next example shows how to exclude tasks with specific tags.  If the user
+is an Oracle fan-boi, they probably never want to use OpenJDK or Eclipse.
+
+This command will still install the Oracle JDKs and Netbeans but eliminates
+that pesky open-source software.
+
 ```
-./workstation.sh --skip-tags=eclipse
+./workstation.sh --skip-tags=eclipse,openjdk
+```
+
+While every effort is made to keep this document up-to-date, you can always
+view the list of available tags using Ansible.  In the root of the workstation
+project, simply run the following command:
+
+```
+ansible-playbook --list-tags workstation.yml
 ```
 
