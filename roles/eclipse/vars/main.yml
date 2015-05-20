@@ -1,0 +1,18 @@
+---
+# File: /roles/eclipse/vars/main.yml
+
+eclipse_version: luna
+eclipse_sr: SR2
+eclipse_release: "{{ eclipse_version }}-{{ eclipse_sr }}"
+
+eclipse_host: http://carroll.aset.psu.edu
+eclipse_path: pub/eclipse/technology/epp/downloads/release/luna/SR1
+eclipse_file_32: eclipse-reporting-{{ eclipse_release }}-linux-gtk.tar.gz
+eclipse_file_64: eclipse-reporting-{{ eclipse_release }}-linux-gtk-x86_64.tar.gz
+
+eclipse_url_32: "{{ eclipse_host }}/{{ eclipse_path }}/{{ eclipse_file_32 }}"
+eclipse_url_64: "{{ eclipse_host }}/{{ eclipse_path }}/{{ eclipse_file_64 }}"
+
+eclipse_installation_directory: /opt/eclipse
+eclipse_tar_directory: "{{ eclipse_installation_directory }}/eclipse"
+eclipse_home_directory: "{{ eclipse_installation_directory }}/{{ eclipse_release }}"
