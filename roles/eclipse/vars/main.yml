@@ -6,7 +6,7 @@ eclipse_sr: SR2
 eclipse_release: "{{ eclipse_version }}-{{ eclipse_sr }}"
 
 eclipse_host: http://carroll.aset.psu.edu
-eclipse_path: pub/eclipse/technology/epp/downloads/release/luna/SR1
+eclipse_path: pub/eclipse/technology/epp/downloads/release/{{ eclipse_version }}/{{ eclipse_sr }}
 eclipse_file_32: eclipse-reporting-{{ eclipse_release }}-linux-gtk.tar.gz
 eclipse_file_64: eclipse-reporting-{{ eclipse_release }}-linux-gtk-x86_64.tar.gz
 

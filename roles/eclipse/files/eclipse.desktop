@@ -2,8 +2,8 @@
 Version=1.0
 Type=Application
 Encoding=UTF-8
-Exec=/opt/eclipse/luna/eclipse
-Icon=/opt/eclipse/luna/icon.xpm
+Exec=/opt/eclipse/latest/eclipse
+Icon=/opt/eclipse/latest/icon.xpm
 StartupNotify=false
 Categories=Development;
 Name=Eclipse IDE

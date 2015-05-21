@@ -11,41 +11,58 @@
 #
 
 - name: create a directory for optional Eclipse software
-  file: name=/opt/eclipse state=directory
+  file: name={{ eclipse_installation_directory }}
+        state=directory
   tags:
     - eclipse
 
-- name: download latest version of Eclipse JEE/BIRT (Luna, 64-bit)
-  uri: url=http://carroll.aset.psu.edu/pub/eclipse/technology/epp/downloads/release/luna/SR1/eclipse-reporting-luna-SR1-linux-gtk-x86_64.tar.gz
-       dest=~/eclipse-reporting-luna-SR1-linux-gtk.tar.gz
-       creates=~/eclipse-reporting-luna-SR1-linux-gtk.tar.gz
+- name: download latest version of Eclipse JEE/BIRT (64-bit)
+  uri: url={{ eclipse_url_64 }}
+       dest=~/{{ eclipse_file_64 }}
+       creates=~/{{ eclipse_file_64 }}
   when: ansible_architecture == "x86_64"
   tags:
     - eclipse
 
-- name: download latest version of Eclipse JEE/BIRT (Luna, 32-bit)
-  uri: url=http://carroll.aset.psu.edu/pub/eclipse/technology/epp/downloads/release/luna/SR1/eclipse-reporting-luna-SR1-linux-gtk.tar.gz
-       dest=~/eclipse-reporting-luna-SR1-linux-gtk.tar.gz
-       creates=~/eclipse-reporting-luna-SR1-linux-gtk.tar.gz
+- name: download latest version of Eclipse JEE/BIRT (32-bit)
+  uri: url={{ eclipse_url_32 }}
+       dest=~/{{ eclipse_file_32 }}
+       creates=~/{{ eclipse_file_32 }}
   when: ansible_architecture == "i386"
   tags:
     - eclipse
 
-- name: install the latest version of Eclipse JEE/BIRT (Luna)
-  shell: tar -C /opt/eclipse -xzf ~/eclipse-reporting-luna-SR1-linux-gtk.tar.gz
-         creates=/opt/eclipse/eclipse-reporting-luna-SR1
+- name: untar the Eclipse JEE/BIRT archive (64-bit)
+  unarchive: copy=no
+             src=~/{{ eclipse_file_64 }}
+             dest={{ eclipse_installation_directory }}
+             creates={{ eclipse_home_directory }}
+  when: ansible_architecture == "x86_64"
+  register: unarchive_result
   tags:
     - eclipse
 
-- name: move the unpacked archive to a more correct location
-  shell: mv /opt/eclipse/eclipse /opt/eclipse/eclipse-reporting-luna-SR1
-         creates=/opt/eclipse/eclipse-reporting-luna-SR1
+- name: untar the Eclipse JEE/BIRT archive (32-bit)
+  unarchive: copy=no
+             src=~/{{ eclipse_file_32 }}
+             dest={{ eclipse_installation_directory }}
+             creates={{ eclipse_home_directory }}
+  when: ansible_architecture == "i386"
+  register: unarchive_result
   tags:
     - eclipse
 
-- name: make a prettier symlink to the Eclipse installation
-  file: src=/opt/eclipse/eclipse-reporting-luna-SR1
-        path=/opt/eclipse/luna state=link
+- name: move the tar file's base directory somewhere maintainable
+  command: mv {{ eclipse_tar_directory }}
+           {{ eclipse_home_directory }}
+  when: unarchive_result | changed
+  tags:
+    - eclipse
+
+- name: create a pretty symlink to the latest version
+  file: src={{ eclipse_home_directory }}
+        path={{ eclipse_installation_directory }}/latest
+        state=link
   tags:
     - eclipse
 
@@ -57,7 +74,7 @@
     
 - name: set JVM arguments in eclipse.ini
   shell: >
-         /opt/eclipse/luna/eclipse
+         /opt/eclipse/latest/eclipse
          -noSplash
          -application org.eclipse.equinox.p2.director
          -vmargs -Xms12M -Xmx2048M -XX:PermSize=128M -XX:MaxPermSize=512M
@@ -68,130 +85,130 @@
 # SCM Plugin installation 
 #
 
-- name: add the EGit plugin (force a newer version of EGit core)
-  shell: >
-         /opt/eclipse/luna/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -repository http://download.eclipse.org/egit/updates
-         -profileProperties org.eclipse.update.install.features=true
-         -installIUs {{ item }}
-  with_items:
-    - org.eclipse.egit.core/3.5.2.201411120430-r
-    - org.eclipse.egit.feature.group
-    - org.eclipse.jgit.feature.group
-  tags:
-    - git
-
-- name: add the EGit - Mylyn interface
-  shell: >
-         /opt/eclipse/luna/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -repository http://download.eclipse.org/releases/luna
-         -profileProperties org.eclipse.update.install.features=true
-         -installIUs {{ item }}
-  with_items:
-    - org.eclipse.emf.sdk.feature.group
-    - org.eclipse.mylyn_feature.feature.group
-  tags:
-    - git
-
-- name: add the Subclipse plugin
-  shell: >
-         /opt/eclipse/luna/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -repository http://subclipse.tigris.org/update_1.10.x
-         -profileProperties org.eclipse.update.install.features=true
-         -installIUs {{ item }}
-  with_items:
-    - com.collabnet.subversion.merge.feature.feature.group
-    - org.tigris.subversion.subclipse.feature.group
-    - org.tigris.subversion.subclipse.mylyn.feature.group
-    - org.tigris.subversion.clientadapter.feature.feature.group
-    - org.tigris.subversion.clientadapter.javahl.feature.feature.group
-    - org.tigris.subversion.subclipse.graph.feature.feature.group
-    - org.tigris.subversion.clientadapter.svnkit.feature.feature.group
-  tags:
-    - subversion
+#- name: add the EGit plugin (force a newer version of EGit core)
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://download.eclipse.org/egit/updates
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - org.eclipse.egit.core/3.5.2.201411120430-r
+#    - org.eclipse.egit.feature.group
+#    - org.eclipse.jgit.feature.group
+#  tags:
+#    - git
+#
+#- name: add the EGit - Mylyn interface
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://download.eclipse.org/releases/luna
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - org.eclipse.emf.sdk.feature.group
+#    - org.eclipse.mylyn_feature.feature.group
+#  tags:
+#    - git
+#
+#- name: add the Subclipse plugin
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://subclipse.tigris.org/update_1.10.x
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - com.collabnet.subversion.merge.feature.feature.group
+#    - org.tigris.subversion.subclipse.feature.group
+#    - org.tigris.subversion.subclipse.mylyn.feature.group
+#    - org.tigris.subversion.clientadapter.feature.feature.group
+#    - org.tigris.subversion.clientadapter.javahl.feature.feature.group
+#    - org.tigris.subversion.subclipse.graph.feature.feature.group
+#    - org.tigris.subversion.clientadapter.svnkit.feature.feature.group
+#  tags:
+#    - subversion
 
 #
 # Maven plugin installation
 #
 
-- name: M2Eclipse requires additional Eclipse logging plugins (bundles)
-  shell: >
-         /opt/eclipse/luna/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -repository http://download.eclipse.org/releases/luna
-         -profileProperties org.eclipse.update.install.features=true
-         -installIUs {{ item }}
-  with_items:
-    - org.slf4j.api
-    - ch.qos.logback.classic
-    - ch.qos.logback.slf4j
-  tags:
-    - maven
-
-- name: add the M2Eclipse plugin
-  shell: >
-         /opt/eclipse/luna/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -repository http://download.eclipse.org/technology/m2e/releases
-         -profileProperties org.eclipse.update.install.features=true
-         -installIUs {{ item }}
-  with_items:
-    - org.eclipse.m2e.feature.feature.group
-    - org.eclipse.m2e.logback.feature.feature.group
-  tags:
-    - maven
+#- name: M2Eclipse requires additional Eclipse logging plugins (bundles)
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://download.eclipse.org/releases/luna
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - org.slf4j.api
+#    - ch.qos.logback.classic
+#    - ch.qos.logback.slf4j
+#  tags:
+#    - maven
+#
+#- name: add the M2Eclipse plugin
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://download.eclipse.org/technology/m2e/releases
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - org.eclipse.m2e.feature.feature.group
+#    - org.eclipse.m2e.logback.feature.feature.group
+#  tags:
+#    - maven
 
 #
 # Code quality and test coverage
 #
 
-- name: add the Checkstyle plugin
-  shell: >
-         /opt/eclipse/luna/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -repository http://eclipse-cs.sourceforge.net/update
-         -profileProperties org.eclipse.update.install.features=true
-         -installIUs {{ item }}
-  with_items:
-    - net.sf.eclipsecs.feature.group
-    - com.github.sevntu.checkstyle.checks.feature.feature.group
-  tags:
-    - quality
-
-- name: add the Findbugs plugin
-  shell: >
-         /opt/eclipse/luna/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -repository http://findbugs.cs.umd.edu/eclipse
-         -profileProperties org.eclipse.update.install.features=true
-         -installIUs {{ item }}
-  with_items:
-    - edu.umd.cs.findbugs.plugin.eclipse.feature.group
-  tags:
-    - quality
-
-- name: add the EclEmma plugin
-  shell: >
-         /opt/eclipse/luna/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -repository http://update.eclemma.org
-         -profileProperties org.eclipse.update.install.features=true
-         -installIUs {{ item }}
-  with_items:
-    - com.mountainminds.eclemma.feature.feature.group
-  tags:
-    - ldap
+#- name: add the Checkstyle plugin
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://eclipse-cs.sourceforge.net/update
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - net.sf.eclipsecs.feature.group
+#    - com.github.sevntu.checkstyle.checks.feature.feature.group
+#  tags:
+#    - quality
+#
+#- name: add the Findbugs plugin
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://findbugs.cs.umd.edu/eclipse
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - edu.umd.cs.findbugs.plugin.eclipse.feature.group
+#  tags:
+#    - quality
+#
+#- name: add the EclEmma plugin
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://update.eclemma.org
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - com.mountainminds.eclemma.feature.feature.group
+#  tags:
+#    - ldap
 
 # TODO (smoyer1) - Add the Sonar plugin
 
@@ -227,78 +244,78 @@
 # Extra text editors
 #
 
-- name: add the YAML Editor plugin
-  shell: >
-         /opt/eclipse/luna/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -repository http://dadacoalition.org/yedit
-         -profileProperties org.eclipse.update.install.features=true
-         -installIUs {{ item }}
-  with_items:
-    - org.dadacoalition.yedit.feature.group
-  tags:
-    - editors
+#- name: add the YAML Editor plugin
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://dadacoalition.org/yedit
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - org.dadacoalition.yedit.feature.group
+#  tags:
+#    - editors
 
 # TODO (smoyer1) - There are a lot of other cool tools in this repository
-- name: add JSON and Markdown Editor plugins
-  shell: >
-         /opt/eclipse/luna/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -repository http://www.nodeclipse.org/updates
-         -profileProperties org.eclipse.update.install.features=true
-         -installIUs {{ item }}
-  with_items:
-    - markdown.editor.feature.feature.group
-    - jsonedit-feature.feature.group
-    - org.sweetlemonade.eclipse.json.feature.feature.group
-  tags:
-    - editors
+#- name: add JSON and Markdown Editor plugins
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://www.nodeclipse.org/updates
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - markdown.editor.feature.feature.group
+#    - jsonedit-feature.feature.group
+#    - org.sweetlemonade.eclipse.json.feature.feature.group
+#  tags:
+#    - editors
     
 #
 # Issue tracking connectors
 #
 
-- name: Atlassian - Mylyn connector requires additional Eclipse plugins (bundles)
-  shell: >
-         /opt/eclipse/luna/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -repository http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository
-         -profileProperties org.eclipse.update.install.features=true
-         -installIUs {{ item }}
-  with_items:
-    - javax.xml.soap
-    - org.apache.commons.io/2.0.1.v201105210651
-  tags:
-    - issues
-    
-- name: add Atlassian - Mylyn connector
-  shell: >
-         /opt/eclipse/luna/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -repository http://update.atlassian.com/atlassian-eclipse-plugin/rest/e3.7
-         -profileProperties org.eclipse.update.install.features=true
-         -installIUs {{ item }}
-  with_items:
-    - com.atlassian.connector.eclipse.feature.group
-  tags:
-    - issues
-    
-- name: add Github - Mylyn connector (requires egit-core > 3.5.x)
-  shell: >
-         /opt/eclipse/luna/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -repository http://download.eclipse.org/egit/github/updates
-         -profileProperties org.eclipse.update.install.features=true
-         -installIUs {{ item }}
-  with_items:
-    - org.eclipse.mylyn.github.feature.feature.group
-  tags:
-    - issues
+#- name: Atlassian - Mylyn connector requires additional Eclipse plugins (bundles)
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - javax.xml.soap
+#    - org.apache.commons.io/2.0.1.v201105210651
+#  tags:
+#    - issues
+#    
+#- name: add Atlassian - Mylyn connector
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://update.atlassian.com/atlassian-eclipse-plugin/rest/e3.7
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - com.atlassian.connector.eclipse.feature.group
+#  tags:
+#    - issues
+#    
+#- name: add Github - Mylyn connector (requires egit-core > 3.5.x)
+#  shell: >
+#         /opt/eclipse/luna/eclipse
+#         -noSplash
+#         -application org.eclipse.equinox.p2.director
+#         -repository http://download.eclipse.org/egit/github/updates
+#         -profileProperties org.eclipse.update.install.features=true
+#         -installIUs {{ item }}
+#  with_items:
+#    - org.eclipse.mylyn.github.feature.feature.group
+#  tags:
+#    - issues
 
 #
 # Modeling and Diagraming plugins
