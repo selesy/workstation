@@ -102,7 +102,7 @@
 # SCM Plugin installation 
 #
 
-- name: add the EGit plugin (force a newer version of EGit core)
+- name: add the EGit plugin
   shell: >
          /opt/eclipse/latest/eclipse
          -noSplash
@@ -117,39 +117,38 @@
   tags:
     - git
 
-#- name: add the EGit - Mylyn interface
-#  shell: >
-#         /opt/eclipse/luna/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://download.eclipse.org/releases/luna
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
-#    - org.eclipse.emf.sdk.feature.group
-#    - org.eclipse.mylyn_feature.feature.group
-#
-#  tags:
-#    - git
+- name: add the EGit - Mylyn interface
+  shell: >
+         /opt/eclipse/latest/eclipse
+         -noSplash
+         -application org.eclipse.equinox.p2.director
+         -repository http://download.eclipse.org/releases/luna
+         -profileProperties org.eclipse.update.install.features=true
+         -installIUs {{ item }}
+  with_items:
+    - org.eclipse.emf.sdk.feature.group
+    - org.eclipse.mylyn_feature.feature.group
+  tags:
+    - git
 
-#- name: add the Subclipse plugin
-#  shell: >
-#         /opt/eclipse/luna/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://subclipse.tigris.org/update_1.10.x
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
-#    - com.collabnet.subversion.merge.feature.feature.group
-#    - org.tigris.subversion.subclipse.feature.group
-#    - org.tigris.subversion.subclipse.mylyn.feature.group
-#    - org.tigris.subversion.clientadapter.feature.feature.group
-#    - org.tigris.subversion.clientadapter.javahl.feature.feature.group
-#    - org.tigris.subversion.subclipse.graph.feature.feature.group
-#    - org.tigris.subversion.clientadapter.svnkit.feature.feature.group
-#  tags:
-#    - subversion
+- name: add the Subclipse plugin
+  shell: >
+         /opt/eclipse/latest/eclipse
+         -noSplash
+         -application org.eclipse.equinox.p2.director
+         -repository http://subclipse.tigris.org/update_1.10.x
+         -profileProperties org.eclipse.update.install.features=true
+         -installIUs {{ item }}
+  with_items:
+    - com.collabnet.subversion.merge.feature.feature.group
+    - org.tigris.subversion.subclipse.feature.group
+    - org.tigris.subversion.subclipse.mylyn.feature.group
+    - org.tigris.subversion.clientadapter.feature.feature.group
+    - org.tigris.subversion.clientadapter.javahl.feature.feature.group
+    - org.tigris.subversion.subclipse.graph.feature.feature.group
+    - org.tigris.subversion.clientadapter.svnkit.feature.feature.group
+  tags:
+    - subversion
 
 #
 # Maven plugin installation
