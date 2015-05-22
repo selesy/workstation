@@ -230,34 +230,6 @@
 # TODO (smoyer1) - Add the Sonar plugin
 
 #
-# LDAP plugins
-#
-
-#- name: add the Apache Directory Studio plugins
-#  shell: >
-#         /opt/eclipse/luna/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://directory.apache.org/studio/update/2.x
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
-#    - org.apache.directory.studio.ldapbrowser.feature.feature.group
-#    - org.apache.directory.studio.ldifeditor.feature.feature.group
-#    - org.apache.directory.studio.schemaeditor.feature.feature.group
-#  tags:
-#    - coverage
-
-# NOTE (smoyer1) - The update site includes these 7 features
-#    - org.apache.directory.studio.apacheds.configuration.feature.feature.group
-#    - org.apache.directory.studio.apacheds.configuration.v2.feature.feature.group
-#    - org.apache.directory.studio.ldapbrowser.feature.feature.group
-#    - org.apache.directory.studio.ldapservers.feature.feature.group
-#    - org.apache.directory.studio.ldifeditor.feature.feature.group
-#    - org.apache.directory.studio.rcp.feature.feature.group
-#    - org.apache.directory.studio.schemaeditor.feature.feature.group
-
-#
 # Extra text editors
 #
 
