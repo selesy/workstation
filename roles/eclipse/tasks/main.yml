@@ -187,45 +187,45 @@
 # Code quality and test coverage
 #
 
-#- name: add the Checkstyle plugin
-#  shell: >
-#         /opt/eclipse/luna/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://eclipse-cs.sourceforge.net/update
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
-#    - net.sf.eclipsecs.feature.group
-#    - com.github.sevntu.checkstyle.checks.feature.feature.group
-#  tags:
-#    - quality
-#
-#- name: add the Findbugs plugin
-#  shell: >
-#         /opt/eclipse/luna/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://findbugs.cs.umd.edu/eclipse
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
-#    - edu.umd.cs.findbugs.plugin.eclipse.feature.group
-#  tags:
-#    - quality
-#
-#- name: add the EclEmma plugin
-#  shell: >
-#         /opt/eclipse/luna/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://update.eclemma.org
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
-#    - com.mountainminds.eclemma.feature.feature.group
-#  tags:
-#    - ldap
+- name: add the Checkstyle plugin
+  shell: >
+         /opt/eclipse/latest/eclipse
+         -noSplash
+         -application org.eclipse.equinox.p2.director
+         -repository http://eclipse-cs.sourceforge.net/update
+         -profileProperties org.eclipse.update.install.features=true
+         -installIUs {{ item }}
+  with_items:
+    - net.sf.eclipsecs.feature.group
+    - com.github.sevntu.checkstyle.checks.feature.feature.group
+  tags:
+    - quality
+
+- name: add the Findbugs plugin
+  shell: >
+         /opt/eclipse/latest/eclipse
+         -noSplash
+         -application org.eclipse.equinox.p2.director
+         -repository http://findbugs.cs.umd.edu/eclipse
+         -profileProperties org.eclipse.update.install.features=true
+         -installIUs {{ item }}
+  with_items:
+    - edu.umd.cs.findbugs.plugin.eclipse.feature.group
+  tags:
+    - quality
+
+- name: add the EclEmma plugin
+  shell: >
+         /opt/eclipse/latest/eclipse
+         -noSplash
+         -application org.eclipse.equinox.p2.director
+         -repository http://update.eclemma.org
+         -profileProperties org.eclipse.update.install.features=true
+         -installIUs {{ item }}
+  with_items:
+    - com.mountainminds.eclemma.feature.feature.group
+  tags:
+    - ldap
 
 # TODO (smoyer1) - Add the Sonar plugin
 
