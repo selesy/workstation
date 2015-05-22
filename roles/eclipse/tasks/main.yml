@@ -233,34 +233,34 @@
 # Extra text editors
 #
 
-#- name: add the YAML Editor plugin
-#  shell: >
-#         /opt/eclipse/luna/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://dadacoalition.org/yedit
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
-#    - org.dadacoalition.yedit.feature.group
-#  tags:
-#    - editors
+- name: add the YAML Editor plugin
+  shell: >
+         /opt/eclipse/latest/eclipse
+         -noSplash
+         -application org.eclipse.equinox.p2.director
+         -repository http://dadacoalition.org/yedit
+         -profileProperties org.eclipse.update.install.features=true
+         -installIUs {{ item }}
+  with_items:
+    - org.dadacoalition.yedit.feature.group
+  tags:
+    - editors
 
 # TODO (smoyer1) - There are a lot of other cool tools in this repository
-#- name: add JSON and Markdown Editor plugins
-#  shell: >
-#         /opt/eclipse/luna/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://www.nodeclipse.org/updates
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
+- name: add JSON and Markdown Editor plugins
+  shell: >
+         /opt/eclipse/latest/eclipse
+         -noSplash
+         -application org.eclipse.equinox.p2.director
+         -repository http://www.nodeclipse.org/updates
+         -profileProperties org.eclipse.update.install.features=true
+         -installIUs {{ item }}
+  with_items:
 #    - markdown.editor.feature.feature.group
-#    - jsonedit-feature.feature.group
-#    - org.sweetlemonade.eclipse.json.feature.feature.group
-#  tags:
-#    - editors
+    - jsonedit-feature.feature.group
+    - org.sweetlemonade.eclipse.json.feature.feature.group
+  tags:
+    - editors
     
 #
 # Issue tracking connectors
