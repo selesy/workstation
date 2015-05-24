@@ -178,3 +178,15 @@ project, simply run the following command:
 ansible-playbook --list-tags workstation.yml
 ```
 
+References
+----------
+
+[Ansible](http://www.ansible.com)
+[Apache Directory Studio](http://directory.apache.org/studio)
+[DBeaver](http://dbeaver.jkiss.org)
+[Eclipse](http://eclipse.org)
+[Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/developer/)
+[JMeter](http://jmeter.apache.org/)
+[NetBeans](https://netbeans.org/)
+[UMLet](http://www.umlet.com)
+[Zed Attack Proxy](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project)
