@@ -3,7 +3,7 @@
 
 zaproxy_version: 2.4.0
 
-zaproxy_host: ttp://sourceforge.net
+zaproxy_host: http://sourceforge.net
 zaproxy_path: projects/zaproxy/files/{{ zaproxy_version }}
 zaproxy_file: ZAP_{{ zaproxy_version }}_Linux.tar.gz
 
