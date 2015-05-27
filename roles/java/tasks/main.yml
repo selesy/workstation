@@ -16,6 +16,29 @@
     - java
 
 #
+# OpenJDK 8
+#
+
+- name: install the PPA containing OpenJDK 8 binaries
+  apt_repository: repo='deb http://ppa.launchpad.net/openjdk-r/ppa/ubuntu trusty main'
+
+- name: install the PPA containing the OpenJDK 8 source
+  apt_repository: repo='deb-src http://ppa.launchpad.net/openjdk-r/ppa/ubuntu trusty main'
+
+- name: install the key for the OpenJDK PPA
+  apt_key: keyserver=keyserver.ubuntu.com id=86F44E2A
+  
+- name: install the latest OpenJDK 8
+  apt: name={{ item }} state=latest
+  with_items:
+    - openjdk-8-jdk
+    - openjdk-8-demo
+    - openjdk-8-source
+    - openjdk-8-doc
+  tags:
+    - java
+
+#
 # Oracle Java (all versions)
 #
 
