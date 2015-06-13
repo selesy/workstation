@@ -37,11 +37,8 @@
   tags:
     - soapui
 
-- name: extract the SoapUI desktop icon from the program JAR
-  command: jar -xf soapui-{{ soapui_version }}.jar {{ soapui_icon }}
-
 - name: add a launcher for SoapUI to the development menu
   copy: src=../files/soapui.desktop
-        dest=/usr/shar/applications
+        dest=/usr/share/applications
   tags:
     - soapui
