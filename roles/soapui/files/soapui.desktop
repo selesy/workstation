@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Exec=/opt/soapui/latest/bin/soapui.sh
+Icon=/opt/soapui/latest/bin/favicon.png
+StartupNotify=false
+Categories=Development;
+Name=SoapUI
+Comment=Functional testing tool for SOAP interfaces
+Terminal=false
+Path=~/soapui
