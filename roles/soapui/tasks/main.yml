@@ -1,0 +1,64 @@
+---
+# File: roles/soapui/tasks/main.yml
+
+- name: create a directory for the SoapUI software
+  file: name={{ soapui_installation_directory }}
+        state=directory
+  tags:
+    - soapui
+
+- name: download the latest version of SoapUI
+  uri: url={{ soapui_url }}
+       dest=~/{{ soapui_file }}
+       creates=~/{{ soapui_file }}
+  tags:
+    - soapui
+
+- name: untar the SoapUI archive
+  unarchive: copy=no
+             src=~/{{ soapui_file }}
+             dest={{ soapui_installation_directory }}
+             creates={{ soapui_home_directory }}
+  register: unarchive_result
+  tags:
+    - soapui
+
+- name: move the SoapUi archive somewhere maintainable
+  command: mv {{ soapui_tar_directory }}
+           {{ soapui_home_directory }}
+  when: unarchive_result | changed
+  tags:
+    - soapui
+
+- name: create a pretty symlink to the latest version
+  file: src={{ soapui_home_directory }}
+        path={{ soapui_installation_directory }}/latest
+        state=link
+  tags:
+    - soapui
+
+- name: extract the SoapUI desktop icon from the program JAR
+  command: jar -xf {{ soapui_bin_archive }} {{ soapui_icon_path }}/{{ soapui_icon_file }}
+           chdir={{ soapui_bin_directory }}
+           creates={{ soapui_icon_file }}
+  register: icon_extract_result
+  tags:
+    - soapui
+
+- name: move the extracted icon into the SoapUI bin directory
+  command: mv {{ soapui_icon_path }}/{{ soapui_icon_file }} ./{{ soapui_icon_file }}
+           chdir={{ soapui_bin_directory }}
+  when: icon_extract_result | changed
+  tags:
+    - soapui
+
+- name: get rid of the (now empty) directory tree extracted with the icon
+  file: path={{ soapui_bin_directory }}/com state=absent
+  tags:
+    - soapui
+
+- name: add a launcher for SoapUI to the development menu
+  copy: src=../files/soapui.desktop
+        dest=/usr/share/applications
+  tags:
+    - soapui

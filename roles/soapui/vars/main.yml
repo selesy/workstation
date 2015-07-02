@@ -1,0 +1,24 @@
+---
+# File: roles/soapui/vars/main.yml
+
+soapui_version: 5.1.3
+
+soapui_host: http://sourceforge.net
+soapui_path: projects/soapui/files/soapui/{{ soapui_version }}
+soapui_file: SoapUI-{{ soapui_version }}-linux-bin.tar.gz
+
+#soapui_file_32: SoapUI-x32-{{ soapui_version }}.sh
+#soapui_file_64: SoapUI-x64-{{ soapui_version }}.sh
+
+soapui_url: "{{ soapui_host }}/{{ soapui_path }}/{{ soapui_file }}"
+#soapui_url_32: "{{ soapui_host }}/{{ soapui_path }}/{{ soapui_file_32 }}"
+#soapui_url_64: "{{ soapui_host }}/{{ soapui_path }}/{{ soapui_file_64 }}"
+
+soapui_installation_directory: /opt/soapui
+soapui_tar_directory: "{{ soapui_installation_directory }}/SoapUI-{{ soapui_version }}"
+soapui_home_directory: "{{ soapui_installation_directory }}/{{ soapui_version }}"
+soapui_bin_directory: "{{ soapui_home_directory }}/bin"
+
+soapui_bin_archive: soapui-{{ soapui_version }}.jar
+soapui_icon_path: com/eviware/soapui/resources/images
+soapui_icon_file: favicon.png
