@@ -314,7 +314,7 @@
 
 #- name: install the JBoss Tools plugin
 #  shell: >
-#         /opt/eclipse/luna/eclipse
+#         /opt/eclipse/latest/eclipse
 #         -noSplash
 #         -application org.eclipse.equinox.p2.director
 #         -repository http://download.jboss.org/jbosstools/updates/stable/luna
