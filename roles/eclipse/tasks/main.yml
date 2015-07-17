@@ -88,15 +88,21 @@
 - name: check to see if the old directory structure still exists
   stat: path=/opt/eclipse/eclipse-reporting-luna-SR1
   register: luna_sr1_stat
+  tags:
+    - eclipse
 
 - name: move the luna-SR1 directory to a strict version / R(SR) number
   command: mv /opt/eclipse/eclipse-reporting-luna-SR1
               /opt/eclipse/luna-SR1
   when: luna_sr1_stat.stat.exists
+  tags:
+    - eclipse
 
 - name: remove the old sym-link to the luna SR1 version
   file: path=/opt/eclipse/luna
         state=absent
+  tags:
+    - eclipse
 
 #
 # SCM Plugin installation 
@@ -115,6 +121,7 @@
     - org.eclipse.jgit.feature.group
     - org.eclipse.jgit.java7.feature.group
   tags:
+    - eclipse
     - git
 
 - name: add the EGit - Mylyn interface
@@ -129,6 +136,7 @@
     - org.eclipse.emf.sdk.feature.group
     - org.eclipse.mylyn_feature.feature.group
   tags:
+    - eclipse
     - git
 
 - name: add the Subclipse plugin
@@ -148,6 +156,7 @@
     - org.tigris.subversion.subclipse.graph.feature.feature.group
     - org.tigris.subversion.clientadapter.svnkit.feature.feature.group
   tags:
+    - eclipse
     - subversion
 
 #
@@ -167,6 +176,7 @@
     - ch.qos.logback.classic
     - ch.qos.logback.slf4j
   tags:
+    - eclipse
     - maven
 
 - name: add the M2Eclipse plugin
@@ -181,6 +191,7 @@
     - org.eclipse.m2e.feature.feature.group
     - org.eclipse.m2e.logback.feature.feature.group
   tags:
+    - eclipse
     - maven
 
 #
@@ -199,6 +210,7 @@
     - net.sf.eclipsecs.feature.group
     - com.github.sevntu.checkstyle.checks.feature.feature.group
   tags:
+    - eclipse
     - quality
 
 - name: add the Findbugs plugin
@@ -212,6 +224,7 @@
   with_items:
     - edu.umd.cs.findbugs.plugin.eclipse.feature.group
   tags:
+    - eclipse
     - quality
 
 - name: add the EclEmma plugin
@@ -225,7 +238,7 @@
   with_items:
     - com.mountainminds.eclemma.feature.feature.group
   tags:
-    - ldap
+    - eclipse
 
 # TODO (smoyer1) - Add the Sonar plugin
 
@@ -244,6 +257,7 @@
   with_items:
     - org.dadacoalition.yedit.feature.group
   tags:
+    - eclipse
     - editors
 
 # TODO (smoyer1) - There are a lot of other cool tools in this repository
@@ -260,6 +274,7 @@
     - jsonedit-feature.feature.group
     - org.sweetlemonade.eclipse.json.feature.feature.group
   tags:
+    - eclipse
     - editors
     
 #
@@ -274,6 +289,8 @@
 #         -repository http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository
 #         -profileProperties org.eclipse.update.install.features=true
 #         -installIUs {{ item }}
+#         > /dev/null 2>&1 && echo $?
+#         > /dev/null 2>&1 ; echo $?
 #  with_items:
 #    - javax.xml.soap
 #    - org.apache.commons.io/2.0.1.v201105210651
