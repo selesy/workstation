@@ -1,7 +1,7 @@
 ---
 # File: roles/firefox_de/vars/main.yml
 
-firefox_de_version: 40.0a2
+firefox_de_version: 46.0a2
 firefox_de_language: en-US
 
 firefox_de_host: https://download-installer.cdn.mozilla.net
