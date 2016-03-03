@@ -7,6 +7,6 @@ Icon=/opt/eclipse/latest/icon.xpm
 StartupNotify=false
 Categories=Development;
 Name=Eclipse IDE
-Comment=Eclipse IDE - Luna JEE/BIRT
+Comment=Eclipse IDE - Mars JEE/BIRT
 Terminal=false
 Path=

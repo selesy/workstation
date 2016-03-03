@@ -1,8 +1,8 @@
 ---
 # File: /roles/eclipse/vars/main.yml
 
-eclipse_version: luna
-eclipse_sr: SR2
+eclipse_version: mars
+eclipse_sr: 1
 eclipse_release: "{{ eclipse_version }}-{{ eclipse_sr }}"
 
 eclipse_host: http://carroll.aset.psu.edu
