@@ -68,3 +68,13 @@
   tags:
     - networking
 
+#
+# Graphics
+#
+
+- name: add packages that are useful for designing UIs
+  apt: name={{ item }} state=latest
+  with_items:
+    - screenruler
+  tags:
+    - graphics
