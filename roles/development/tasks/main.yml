@@ -75,6 +75,7 @@
 - name: add packages that are useful for designing UIs
   apt: name={{ item }} state=latest
   with_items:
+    - gcolor2
     - screenruler
   tags:
     - graphics
