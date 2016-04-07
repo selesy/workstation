@@ -17,3 +17,6 @@
           dest=/etc/sudoers.d/ansible
           mode=0440 owner=root group=root
 
+  - name: install aptitude
+    apt: name=aptitude state=latest
+
