@@ -5,15 +5,17 @@
   apt: update_cache=yes
   
 - name: upgrade existing apt packages
-  apt: upgrade=safe
+  apt: upgrade=yes state=latest
 
 - name: install basic Linux tools
   apt: name={{ item }} state=latest
   with_items:
     - curl
     - npm
+    - seahorse
     - traceroute
     - tree
+    - vlc
     - whois
     
 - name: install the NTP daemon (on Mint ... it's not installed by default)
