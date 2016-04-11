@@ -1,17 +1,17 @@
 ---
 # File: roles/dbeaver/vars/main.yml
 
-dbeaver_version: 3.3.2
+dbeaver_version: 3.6.4
 
 dbeaver_server: http://dbeaver.jkiss.org
-dbeaver_path: files
-dbeaver_file_32: dbeaver-{{ dbeaver_version }}-ee-linux.gtk.x86.zip
-dbeaver_file_64: dbeaver-{{ dbeaver_version }}-ee-linux.gtk.x86_64.zip
-dbeaver_file: dbeaver-{{ dbeaver_version }}-ee-linux.gtk.zip
+dbeaver_path: files/{{ dbeaver_version }}
+dbeaver_file_32: dbeaver-ee-{{ dbeaver_version }}-linux.gtk.x86.tar.gz
+dbeaver_file_64: dbeaver-ee-{{ dbeaver_version }}-linux.gtk.x86_64.tar.gz
+dbeaver_file: dbeaver-{{ dbeaver_version }}-ee-linux.gtk.tar.gz
 
 dbeaver_url_32: "{{ dbeaver_server }}/{{ dbeaver_path }}/{{ dbeaver_file_32 }}"
 dbeaver_url_64: "{{ dbeaver_server }}/{{ dbeaver_path }}/{{ dbeaver_file_64 }}"
 
 dbeaver_installation_directory: /opt/dbeaver
-dbeaver_zip_directory: "{{ dbeaver_installation_directory }}/dbeaver"
+dbeaver_tar_directory: "{{ dbeaver_installation_directory }}/dbeaver"
 dbeaver_home_directory: "{{ dbeaver_installation_directory }}/{{ dbeaver_version }}"

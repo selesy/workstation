@@ -7,6 +7,12 @@
   tags:
     - dbeaver
 
+- name: create the directory where dbeaver will be untarred
+  file: path={{ dbeaver_tar_directory }}
+        state=directory
+  tags:
+    - dbeaver
+
 - name: download latest version of DBeaver (64-bit)
   uri: url={{ dbeaver_url_64 }}
        dest=~/{{ dbeaver_file }}
@@ -23,17 +29,17 @@
   tags:
     - dbeaver
     
-- name: unzip the downloaded DBeaver archive
+- name: untar the downloaded DBeaver archive
   unarchive: copy=no
              src=~/{{ dbeaver_file }}
-             dest={{ dbeaver_installation_directory }}
+             dest={{ dbeaver_tar_directory }}
              creates={{ dbeaver_home_directory }}
   register: unarchive_result
   tags:
     - dbeaver
 
-- name: move the unzipped files to the standard location
-  command: mv {{ dbeaver_zip_directory }}
+- name: move the untarred files to the standard location
+  command: mv {{ dbeaver_tar_directory }}
            {{ dbeaver_home_directory }}
   when: unarchive_result | changed
   tags:
