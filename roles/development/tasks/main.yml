@@ -15,6 +15,13 @@
     - virtualization
 
 #
+# Containerization
+#
+
+- name: install docker for container execution environment
+  apt: name=docker.io state=latest
+
+#
 # Source Code Management
 #
 
