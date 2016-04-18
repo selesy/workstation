@@ -21,6 +21,9 @@
 - name: install docker for container execution environment
   apt: name=docker.io state=latest
 
+- name: create the installation directory for Kubernetes
+  file: name="/opt/kubernetes" state="directory"
+
 #
 # Source Code Management
 #
