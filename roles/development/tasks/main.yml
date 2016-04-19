@@ -56,6 +56,15 @@
     - maven
 
 #
+# File formating tools
+#
+
+- name: install file formating tools
+  apt: name={{ item }} state=latest
+  with_items:
+    - python-demjson
+
+#
 # LDAP tools
 #
 
