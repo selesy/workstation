@@ -10,7 +10,10 @@
 - name: install basic Linux tools
   apt: name={{ item }} state=latest
   with_items:
+    - audacity
     - curl
+    - freemind
+    - freemind-plugins-svg
     - npm
     - seahorse
     - traceroute
