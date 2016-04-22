@@ -1,20 +1,20 @@
 ---
 # File: roles/apache_directory_studio/vars/main.yml
+# http://ftp.wayne.edu/apache/directory/studio/2.0.0.v20151221-M10/ApacheDirectoryStudio-2.0.0.v20151221-M10-linux.gtk.x86_64.tar.gz
 
 studio_version: 2.0.0
-studio_build: 20130628
+studio_build: 20151221-M10
 
-studio_server: http://carroll.cac.psu.edu
-studio_path: pub/apache/directory/studio/dist/{{ studio_version }}.v{{ studio_build }}
-studio_file_32: ApacheDirectoryStudio-linux-x86-{{ studio_version }}.v{{ studio_build }}.tar.gz
-studio_file_64: ApacheDirectoryStudio-linux-x86_64-{{ studio_version }}.v{{ studio_build }}.tar.gz
-studio_file: ApacheDirectoryStudio-linux-{{ studio_version }}.v{{ studio_build }}.tar.gz
+studio_server: http://ftp.wayne.edu
+studio_path: apache/directory/studio/{{ studio_version }}.v{{ studio_build }}
+studio_file_32: ApacheDirectoryStudio-{{ studio_version }}.v{{ studio_build }}-linux.gtk.x86.tar.gz
+studio_file_64: ApacheDirectoryStudio-{{ studio_version }}.v{{ studio_build }}-linux.gtk.x86_64.tar.gz
+studio_file: ApacheDirectoryStudio-{{ studio_version }}.v{{ studio_build }}-linux.gtk.tar.gz
 
 studio_url_32: "{{ studio_server }}/{{ studio_path }}/{{ studio_file_32 }}"
 studio_url_64: "{{ studio_server }}/{{ studio_path }}/{{ studio_file_64 }}"
 
-studio_tar_directory_32: ApacheDirectoryStudio-linux-x86-{{ studio_version }}.v{{ studio_build }}
-studio_tar_directory_64: ApacheDirectoryStudio-linux-x86_64-{{ studio_version }}.v{{ studio_build }}
+studio_tar_directory: ApacheDirectoryStudio
 
 studio_installation_directory: /opt/apache-directory-studio
 studio_home_directory: "{{ studio_installation_directory }}/{{ studio_version }}.v{{ studio_build }}"

@@ -36,17 +36,9 @@
     - ldap
 
 - name: move the tar's base directory somewhere maintainable (64-bit)
-  command: mv {{ studio_installation_directory }}/{{ studio_tar_directory_64 }}
+  command: mv {{ studio_installation_directory }}/{{ studio_tar_directory }}
            {{ studio_installation_directory }}/{{ studio_version }}.v{{ studio_build }}
-  when: ansible_architecture == "x86_64" and unarchive_result | changed
-  tags:
-    - apache_directory_studio
-    - ldap
-           
-- name: move the tar's base directory somewhere maintainable (32-bit)
-  command: mv {{ studio_installation_directory }}/{{ studio_tar_directory_32 }}
-           {{ studio_installation_directory }}/{{ studio_version }}.v{{ studio_build }}
-  when: ansible_architecture == "i386" and unarchive_result | changed
+  when: unarchive_result | changed
   tags:
     - apache_directory_studio
     - ldap
