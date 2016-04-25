@@ -53,6 +53,7 @@
   apt: name={{ item }} state=latest
   with_items:
     - ant
+    - gradle
     - maven
 
 #
