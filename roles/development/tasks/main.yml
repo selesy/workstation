@@ -96,6 +96,7 @@
   apt: name={{ item }} state=latest
   with_items:
     - gcolor2
+    - inkscape
     - screenruler
   tags:
     - graphics
