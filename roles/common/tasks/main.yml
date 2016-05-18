@@ -12,10 +12,11 @@
   with_items:
     - audacity
     - curl
-    - freemind
-    - freemind-plugins-svg
+    # - freemind
+    # - freemind-plugins-svg
     - npm
     - seahorse
+    - sshfs
     - traceroute
     - tree
     - vlc
