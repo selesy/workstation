@@ -85,6 +85,8 @@
   file: src={{ eclipse_installation_directory }}/latest/eclipse
         path=/usr/bin/eclipse
         state=link
+  tags:
+    - eclipse
 
 #
 # Clean up the directory structure of previous installs

@@ -2,31 +2,8 @@
 # File: roles/java/tasks/main.yml
 
 #
-# OpenJDK 7
-#
-
-- name: install the latest OpenJDK 7
-  apt: name={{ item }} state=latest
-  with_items:
-    - openjdk-7-jdk
-    - openjdk-7-demo
-    - openjdk-7-source
-    - openjdk-7-doc
-  tags:
-    - java
-
-#
 # OpenJDK 8
 #
-
-- name: install the PPA containing OpenJDK 8 binaries
-  apt_repository: repo='deb http://ppa.launchpad.net/openjdk-r/ppa/ubuntu trusty main'
-
-- name: install the PPA containing the OpenJDK 8 source
-  apt_repository: repo='deb-src http://ppa.launchpad.net/openjdk-r/ppa/ubuntu trusty main'
-
-- name: install the key for the OpenJDK PPA
-  apt_key: keyserver=keyserver.ubuntu.com id=86F44E2A
   
 - name: install the latest OpenJDK 8
   apt: name={{ item }} state=latest
@@ -35,71 +12,6 @@
     - openjdk-8-demo
     - openjdk-8-source
     - openjdk-8-doc
-  tags:
-    - java
-
-#
-# Oracle Java (all versions)
-#
-
-- name: create a directory for optional Oracle software
-  file: name=/opt/oracle state=directory
-  tags:
-    - java
-
-#
-# Oracle Java 7
-#
-
-- name: get the Oracle JDK 7 download (64-bit)
-  uri: url=http://download.oracle.com/otn-pub/java/jdk/7u71-b14/jdk-7u71-linux-x64.tar.gz
-       dest=~/jdk-7u71-linux.tar.gz
-       creates=~/jdk-7u71-linux.tar.gz
-       HEADER_Cookie="oraclelicense=accept-securebackup-cookie"
-  when: ansible_architecture == "x86_64"
-  tags:
-    - java
-
-- name: get the Oracle JDK 7 download (32-bit)
-  uri: url=http://download.oracle.com/otn-pub/java/jdk/7u71-b14/jdk-7u71-linux-i586.tar.gz
-       dest=~/jdk-7u71-linux.tar.gz
-       creates=~/jdk-7u71-linux.tar.gz
-       HEADER_Cookie="oraclelicense=accept-securebackup-cookie"
-  when: ansible_architecture == "i386"
-  tags:
-    - java
-
-- name: install Oracle JDK 7
-  shell: tar -C /opt/oracle -xzf ~/jdk-7u71-linux.tar.gz
-         creates=/opt/oracle/jdk1.7.0_71
-  tags:
-    - java
-
-#
-# Oracle Java 8
-#
-
-- name: get the Oracle JDK 8 downloads (64-bit)
-  uri: url=http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u25-linux-x64.tar.gz
-       dest=~/jdk-8u25-linux.tar.gz
-       creates=~/jdk-8u25-linux.tar.gz
-       HEADER_Cookie="oraclelicense=accept-securebackup-cookie"
-  when: ansible_architecture == "x86_64"
-  tags:
-    - java
-
-- name: get the Oracle JDK 8 downloads (32-bit)
-  uri: url=http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u25-linux-i586.tar.gz
-       dest=~/jdk-8u25-linux.tar.gz
-       creates=~/jdk-8u25-linux.tar.gz
-       HEADER_Cookie="oraclelicense=accept-securebackup-cookie"
-  when: ansible_architecture == "i386"
-  tags:
-    - java
-
-- name: install Oracle JDK 8
-  shell: tar -C /opt/oracle -xzf ~/jdk-8u25-linux.tar.gz
-         creates=/opt/oracle/jdk1.8.0_25
   tags:
     - java
 

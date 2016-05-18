@@ -8,7 +8,7 @@
 - name: install virtualization tools
   apt: name={{ item }} state=latest
   with_items:
-    - ansible
+#    - ansible
     - vagrant
     - virtualbox
   tags:
