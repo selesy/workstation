@@ -41,5 +41,5 @@
 - name: update the apt repositories to include the new f.lux packages
   apt: upgrade=safe
   
-- name: install f.lux
-  apt: name=fluxgui state=present
+# - name: install f.lux
+#   apt: name=fluxgui state=present
