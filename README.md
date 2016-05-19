@@ -117,7 +117,8 @@ make sure your system stays up-to-date.  These three scripts are as follows:
     only localhost, then uses Ansible to execute the playbook provided by
     bootstrap.yml.  This playbook creates the ansible system user, adds the
     user's public key and then configures passwordless sudo.  Run this script
-    once, or perform the equivalent steps manually.
+    once, or perform the equivalent steps manually.  The boostrap.sh script 
+    requires a host argumet, i.e. - ./boostrap.sh 127.0.0.1
                    
 *   workstation.sh - This script actually runs the Ansible playbook that builds
     and maintains the development environment.  It can be run frequently and at
