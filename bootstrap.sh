@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get -y install openssh-server
+sudo apt-get -y install openssh-server sshpass
 
 if [ $# -gt 0 ] && [ -n $1 ] ; then
   echo "Target host: $1"
