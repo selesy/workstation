@@ -2,7 +2,8 @@
 # File: bootstrap.yml
 
 - hosts: all
-  sudo: yes
+  remote_user: ansible
+  become: yes
   tasks:
 
   - name: create the ansible user
