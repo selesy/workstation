@@ -89,34 +89,13 @@
     - eclipse
 
 #
-# Clean up the directory structure of previous installs
-#
-
-- name: check to see if the old directory structure still exists
-  stat: path=/opt/eclipse/eclipse-reporting-luna-SR1
-  register: luna_sr1_stat
-  tags:
-    - eclipse
-
-- name: move the luna-SR1 directory to a strict version / R(SR) number
-  command: mv /opt/eclipse/eclipse-reporting-luna-SR1
-              /opt/eclipse/luna-SR1
-  when: luna_sr1_stat.stat.exists
-  tags:
-    - eclipse
-
-- name: remove the old sym-link to the luna SR1 version
-  file: path=/opt/eclipse/luna
-        state=absent
-  tags:
-    - eclipse
-    
-#
 # Make it easier to deal with Eclipse Marketplace plugins
 #
 
 - name: install the Nodeclipse CLI Installer
   npm: name=nodeclipse global=yes state=present
+  tags:
+    - eclipse-plugin
 
 #
 # SCM Plugin installation 

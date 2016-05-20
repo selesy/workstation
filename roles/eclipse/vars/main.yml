@@ -1,12 +1,13 @@
 ---
 # File: /roles/eclipse/vars/main.yml
+# http://developer.eclipsesource.com/technology/epp/mars/eclipse-reporting-mars-2-linux-gtk-x86_64.tar.gz
 
 eclipse_version: mars
-eclipse_sr: 1
+eclipse_sr: 2
 eclipse_release: "{{ eclipse_version }}-{{ eclipse_sr }}"
 
-eclipse_host: http://carroll.aset.psu.edu
-eclipse_path: pub/eclipse/technology/epp/downloads/release/{{ eclipse_version }}/{{ eclipse_sr }}
+eclipse_host: http://developer.eclipsesource.com
+eclipse_path: technology/epp/{{ eclipse_version }}
 eclipse_file_32: eclipse-reporting-{{ eclipse_release }}-linux-gtk.tar.gz
 eclipse_file_64: eclipse-reporting-{{ eclipse_release }}-linux-gtk-x86_64.tar.gz
 
