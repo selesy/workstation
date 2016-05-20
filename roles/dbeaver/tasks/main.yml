@@ -52,6 +52,11 @@
   tags:
     - dbeaver
 
+- name: remove the extra directory created when expanding the archive
+  file: path={{ dbeaver_tar_directory }} state=absent
+  tags:
+    - dbeaver
+
 - name: add a launcher to the development menu for DBeaver
   copy: src=../files/dbeaver.desktop
         dest=/usr/share/applications
