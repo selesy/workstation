@@ -55,6 +55,7 @@
     - ant
     - gradle
     - maven
+    - nodejs-legacy
 
 #
 # File formating tools
