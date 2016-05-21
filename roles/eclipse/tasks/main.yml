@@ -143,26 +143,6 @@
 #  tags:
 #    - eclipse
 #    - git
-#
-#- name: add the Subclipse plugin
-#  shell: >
-#         /opt/eclipse/latest/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://subclipse.tigris.org/update_1.10.x
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
-#    - com.collabnet.subversion.merge.feature.feature.group
-#    - org.tigris.subversion.subclipse.feature.group
-#    - org.tigris.subversion.subclipse.mylyn.feature.group
-#    - org.tigris.subversion.clientadapter.feature.feature.group
-#    - org.tigris.subversion.clientadapter.javahl.feature.feature.group
-#    - org.tigris.subversion.subclipse.graph.feature.feature.group
-#    - org.tigris.subversion.clientadapter.svnkit.feature.feature.group
-#  tags:
-#    - eclipse
-#    - subversion
 
 #
 # Maven plugin installation
@@ -251,37 +231,40 @@
 # Extra text editors
 #
 
-#- name: add the YAML Editor plugin
-#  shell: >
-#         /opt/eclipse/latest/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://dadacoalition.org/yedit
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
-#    - org.dadacoalition.yedit.feature.group
-#  tags:
-#    - eclipse
-#    - editors
+- name: add the YAML Editor plugin
+  command: nci install yaml
+           chdir=/opt/eclipse/latest
+           creates=/opt/eclipse/latest/plugins/org.dadacoalition.yedit*
+  tags:
+    - eclipse
+    - eclipse-plugin
+    - editors
+    - yaml
+
+- name: add the Markdown Editor plugin
+  command: nci install markdown
+           chdir=/opt/eclipse/latest
+           creates=/opt/eclipse/latest/plugins/winterwell.markdown*
+  tags:
+    - eclipse
+    - eclipse-plugin
+    - editors
+    - markdown
 
 # TODO (smoyer1) - There are a lot of other cool tools in this repository
-#- name: add JSON and Markdown Editor plugins
-#  shell: >
-#         /opt/eclipse/latest/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://www.nodeclipse.org/updates
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
-##    - markdown.editor.feature.feature.group
-#    - jsonedit-feature.feature.group
-#    - org.sweetlemonade.eclipse.json.feature.feature.group
-#  tags:
-#    - eclipse
-#    - editors
-    
+- name: add the JSON Editor plugin
+  command: nci install from http://www.nodeclipse.org/updates {{ item }}
+           chdir=/opt/eclipse/latest
+           creates=/opt/eclipse/latest/plugins/org.sweetlemonade.eclipse.json*
+  with_items:
+    - jsonedit-feature.feature.group
+    - org.sweetlemonade.eclipse.json.feature.feature.group
+  tags:
+    - eclipse
+    - eclipse-plugin
+    - editors
+    - json
+  
 #
 # Issue tracking connectors
 #
