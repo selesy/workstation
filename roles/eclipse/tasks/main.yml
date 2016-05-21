@@ -95,6 +95,7 @@
 - name: install the Nodeclipse CLI Installer
   npm: name=nodeclipse global=yes state=present
   tags:
+    - eclipse
     - eclipse-plugin
 
 #
@@ -148,12 +149,10 @@
 #
 
 - name: add the M2Eclipse plugin
-  command: nci install from http://download.eclipse.org/technology/m2e/releases {{ item }}
+  command: nci install from http://download.eclipse.org/technology/m2e/releases
+                       org.eclipse.m2e.feature.feature.group
            chdir=/opt/eclipse/latest
            creates=/opt/eclipse/latest/plugins/org.eclipse.m2e*
-  with_items:
-    - org.eclipse.m2e.feature.feature.group
-    - org.eclipse.m2e.logback.feature.feature.group
   tags:
     - eclipse
     - eclipse-plugin
@@ -164,12 +163,12 @@
 #
 
 - name: add the Checkstyle plugin
-  command: nci install from http://eclipse-cs.sourceforge.net/update {{ item }}
+  command: nci install from http://eclipse-cs.sourceforge.net/update net.sf.eclipsecs.feature.group
            chdir=/opt/eclipse/latest
            creates=/opt/eclipse/latest/plugins/net.sf.eclipsecs*
-  with_items:
-    - net.sf.eclipsecs.feature.group
-    - com.github.sevntu.checkstyle.checks.feature.feature.group
+#  with_items:
+#    - 
+#    - com.github.sevntu.checkstyle.checks.feature.feature.group
   tags:
     - eclipse
     - eclipse-plugin
@@ -230,12 +229,10 @@
 
 # TODO (smoyer1) - There are a lot of other cool tools in this repository
 - name: add the JSON Editor plugin
-  command: nci install from http://www.nodeclipse.org/updates {{ item }}
+  command: nci install from http://www.nodeclipse.org/updates
+                       org.sweetlemonade.eclipse.json.feature.feature.group
            chdir=/opt/eclipse/latest
            creates=/opt/eclipse/latest/plugins/org.sweetlemonade.eclipse.json*
-  with_items:
-    - jsonedit-feature.feature.group
-    - org.sweetlemonade.eclipse.json.feature.feature.group
   tags:
     - eclipse
     - eclipse-plugin
