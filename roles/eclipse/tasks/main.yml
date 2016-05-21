@@ -7,7 +7,7 @@
 #
 
 #
-# Install Eclipse Luna JEE/BIRT (SR1)
+# Install Eclipse JEE/BIRT (version and release from variables)
 #
 
 - name: create a directory for optional Eclipse software
@@ -128,7 +128,6 @@
     - eclipse-plugin
     - subversion
 
-
 #- name: add the EGit - Mylyn interface
 #  shell: >
 #         /opt/eclipse/latest/eclipse
@@ -148,33 +147,10 @@
 # Maven plugin installation
 #
 
-#- name: M2Eclipse requires additional Eclipse logging plugins (bundles)
-#  shell: >
-#         /opt/eclipse/latest/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://download.eclipse.org/releases/luna
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
-#    - org.slf4j.api
-#    - ch.qos.logback.classic
-#    - ch.qos.logback.slf4j
-#  tags:
-#    - eclipse
-#    - maven
-#
 - name: add the M2Eclipse plugin
   command: nci install from http://download.eclipse.org/technology/m2e/releases {{ item }}
            chdir=/opt/eclipse/latest
            creates=/opt/eclipse/latest/plugins/org.eclipse.m2e*
-#  shell: >
-#         /opt/eclipse/latest/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://download.eclipse.org/technology/m2e/releases
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
   with_items:
     - org.eclipse.m2e.feature.feature.group
     - org.eclipse.m2e.logback.feature.feature.group
@@ -187,21 +163,18 @@
 # Code quality and test coverage
 #
 
-#- name: add the Checkstyle plugin
-#  shell: >
-#         /opt/eclipse/latest/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://eclipse-cs.sourceforge.net/update
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
-#    - net.sf.eclipsecs.feature.group
-#    - com.github.sevntu.checkstyle.checks.feature.feature.group
-#  tags:
-#    - eclipse
-#    - quality
-#
+- name: add the Checkstyle plugin
+  command: nci install from http://eclipse-cs.sourceforge.net/update {{ item }}
+           chdir=/opt/eclipse/latest
+           creates=/opt/eclipse/latest/plugins/net.sf.eclipsecs*
+  with_items:
+    - net.sf.eclipsecs.feature.group
+    - com.github.sevntu.checkstyle.checks.feature.feature.group
+  tags:
+    - eclipse
+    - eclipse-plugin
+    - quality
+
 #- name: add the Findbugs plugin
 #  shell: >
 #         /opt/eclipse/latest/eclipse
