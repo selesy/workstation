@@ -187,8 +187,12 @@
 #  tags:
 #    - eclipse
 #    - quality
-#
-#- name: add the EclEmma plugin
+
+- name: add the EclEmma plugin
+  command: nci install from http://update.eclemma.org
+                       com.mountainminds.eclemma.feature.feature.group
+           chdir=/opt/eclipse/latest
+           creates=/opt/eclipse/latest/plugins/com.mountainminds.*
 #  shell: >
 #         /opt/eclipse/latest/eclipse
 #         -noSplash
@@ -198,8 +202,10 @@
 #         -installIUs {{ item }}
 #  with_items:
 #    - com.mountainminds.eclemma.feature.feature.group
-#  tags:
-#    - eclipse
+  tags:
+    - eclipse
+    - eclipse-plugin
+    - coverage
 
 # TODO (smoyer1) - Add the Sonar plugin
 
