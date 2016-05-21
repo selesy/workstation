@@ -163,12 +163,12 @@
 #
 
 - name: add the Checkstyle plugin
-  command: nci install from http://eclipse-cs.sourceforge.net/update net.sf.eclipsecs.feature.group
+  command: nci install from http://eclipse-cs.sourceforge.net/update {{ item }}
            chdir=/opt/eclipse/latest
-           creates=/opt/eclipse/latest/plugins/net.sf.eclipsecs*
-#  with_items:
-#    - 
-#    - com.github.sevntu.checkstyle.checks.feature.feature.group
+           creates=/opt/eclipse/latest/plugins/eclipsecs-sevntu*
+  with_items:
+    - net.sf.eclipsecs.feature.group
+    - com.github.sevntu.checkstyle.checks.feature.feature.group
   tags:
     - eclipse
     - eclipse-plugin
