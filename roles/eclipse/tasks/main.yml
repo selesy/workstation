@@ -164,7 +164,10 @@
 #    - eclipse
 #    - maven
 #
-#- name: add the M2Eclipse plugin
+- name: add the M2Eclipse plugin
+  command: nci install from http://download.eclipse.org/technology/m2e/releases {{ item }}
+           chdir=/opt/eclipse/latest
+           creates=/opt/eclipse/latest/plugins/org.eclipse.m2e*
 #  shell: >
 #         /opt/eclipse/latest/eclipse
 #         -noSplash
@@ -172,12 +175,13 @@
 #         -repository http://download.eclipse.org/technology/m2e/releases
 #         -profileProperties org.eclipse.update.install.features=true
 #         -installIUs {{ item }}
-#  with_items:
-#    - org.eclipse.m2e.feature.feature.group
-#    - org.eclipse.m2e.logback.feature.feature.group
-#  tags:
-#    - eclipse
-#    - maven
+  with_items:
+    - org.eclipse.m2e.feature.feature.group
+    - org.eclipse.m2e.logback.feature.feature.group
+  tags:
+    - eclipse
+    - eclipse-plugin
+    - maven
 
 #
 # Code quality and test coverage
