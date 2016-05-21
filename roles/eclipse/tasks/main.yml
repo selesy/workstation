@@ -174,34 +174,21 @@
     - eclipse-plugin
     - quality
 
-#- name: add the Findbugs plugin
-#  shell: >
-#         /opt/eclipse/latest/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://findbugs.cs.umd.edu/eclipse
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
-#    - edu.umd.cs.findbugs.plugin.eclipse.feature.group
-#  tags:
-#    - eclipse
-#    - quality
+- name: add the Findbugs plugin
+  command: nci install from http://findbugs.cs.umd.edu/eclipse
+                       edu.umd.cs.findbugs.plugin.eclipse.feature.group
+           chdir=/opt/eclipse/latest
+           creates=/opt/eclipse/latest/plugins/edu.umd.cs.findbugs*
+  tags:
+    - eclipse
+    - eclipse-plugin
+    - quality
 
 - name: add the EclEmma plugin
   command: nci install from http://update.eclemma.org
                        com.mountainminds.eclemma.feature.feature.group
            chdir=/opt/eclipse/latest
            creates=/opt/eclipse/latest/plugins/com.mountainminds.*
-#  shell: >
-#         /opt/eclipse/latest/eclipse
-#         -noSplash
-#         -application org.eclipse.equinox.p2.director
-#         -repository http://update.eclemma.org
-#         -profileProperties org.eclipse.update.install.features=true
-#         -installIUs {{ item }}
-#  with_items:
-#    - com.mountainminds.eclemma.feature.feature.group
   tags:
     - eclipse
     - eclipse-plugin
