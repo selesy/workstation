@@ -17,3 +17,15 @@ eclipse_url_64: "{{ eclipse_host }}/{{ eclipse_path }}/{{ eclipse_file_64 }}"
 eclipse_installation_directory: /opt/eclipse
 eclipse_tar_directory: "{{ eclipse_installation_directory }}/eclipse"
 eclipse_home_directory: "{{ eclipse_installation_directory }}/{{ eclipse_release }}"
+
+
+
+
+lombok_version: 1.16.8
+
+lombok_host: https://repo.maven.apache.org
+lombok_path: maven2/org/projectlombok/lombok/{{ lombok_version }}
+lombok_file: lombok-{{ lombok_version }}.jar
+
+lombok_url: "{{ lombok_host }}/{{ lombok_path }}/{{ lombok_file }}"
+

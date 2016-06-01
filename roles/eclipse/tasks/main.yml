@@ -88,6 +88,31 @@
     - eclipse
 
 #
+# Install Lombok
+#
+
+- name: download latest version of Lombok
+  uri: url={{ lombok_url }}
+       dest=~/{{ lombok_file }}
+       creates=~/{{ lombok_file }}
+  tags:
+    - eclipse
+
+- name: copy lombok into the Eclipse installation directory
+  shell: cp ~/{{ lombok_file }} {{ eclipse_installation_directory }}/latest
+         creates={{ eclipse_installation_directory }}/latest/{{ lombok_file }}
+  tags:
+    - eclipse
+
+- name: add lombok as an Eclipse javaagent
+  lineinfile: dest={{ eclipse_installation_directory }}/latest/eclipse.ini
+              regexp="-javaagent:{{ eclipse_installation_directory }}/latest/lombok.*$"
+              line="-javaagent:{{ eclipse_installation_directory }}/latest/{{ lombok_file }}"
+              state=present
+  tags:
+    - eclipse
+
+#
 # Make it easier to deal with Eclipse Marketplace plugins
 #
 
