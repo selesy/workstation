@@ -72,15 +72,14 @@
   tags:
     - eclipse
     
-- name: set JVM arguments in eclipse.ini
-  shell: >
-         /opt/eclipse/latest/eclipse
-         -noSplash
-         -application org.eclipse.equinox.p2.director
-         -vmargs -Xms12M -Xmx2048M -XX:PermSize=128M -XX:MaxPermSize=512M
+- name: set the JVM arguments in eclipse.ini
+  lineinfile: dest=/opt/eclipse/latest/eclipse.ini regexp={{ item.regexp }} line={{ item.line }} state=present
+  with_items:
+    - { "regexp":"^-Xms[0-9]+m$", "line":"-Xms256m" }
+    - { "regexp":"^-Xmx[0-9]+m$", "line":"-Xmx2048m"}
   tags:
     - eclipse
-    
+
 - name: create a symlink for the latest version of eclipse
   file: src={{ eclipse_installation_directory }}/latest/eclipse
         path=/usr/bin/eclipse
