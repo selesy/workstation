@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Exec=java -jar /opt/burpsuite/latest/burpsuite_free_latest.jar
+Icon=/opt/burpsuite/latest/resources/Media/icon64.png
+StartupNotify=false
+Categories=Development
+Name=BurpSuite Community Edition
+Comment=Burp Suite, the leading toolkit for web application security testing
+Terminal=false
+Path=

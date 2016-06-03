@@ -11,6 +11,7 @@
     - netbeans
     - jmeter
     - zaproxy
+    - burp_suite
     - firefox_de
     - google_chrome
     - dbeaver
