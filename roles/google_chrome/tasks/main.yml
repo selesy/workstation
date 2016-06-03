@@ -1,0 +1,18 @@
+---
+# roles/google_chrome/tasks/main.yml
+
+- name: download the latest Google Chrome package
+  uri: url={{ chrome_url }}
+       dest=~/{{ chrome_file }}
+       creates=~/{{ chrome_file }}
+  when: ansible_architecture == "x86_64"
+  tags:
+    - chrome
+
+# TODO - Replace /root/ with ~ when it's supported
+- name: install the current stable version of Google Chrome
+  apt: deb="/root/{{ chrome_file }}"
+  when: ansible_architecture == "x86_64"
+  tags:
+    - chrome
+  

@@ -1,0 +1,12 @@
+---
+# roles/google_chrome/vars/main.yml
+# https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+chrome_version: stable_current
+chrome_architecture: amd64
+
+chrome_host: https://dl.google.com
+chrome_path: linux/direct
+chrome_file: google-chrome-{{ chrome_version }}_{{ chrome_architecture }}.deb
+
+chrome_url: "{{ chrome_host }}/{{ chrome_path }}/{{ chrome_file }}"

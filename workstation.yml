@@ -12,6 +12,7 @@
     - jmeter
     - zaproxy
     - firefox_de
+    - google_chrome
     - dbeaver
     - apache_directory_studio
     - eclipse
