@@ -7,17 +7,12 @@
   tags:
     - dbeaver
 
-- name: create the directory where dbeaver will be untarred
-  file: path={{ dbeaver_tar_directory }}
-        state=directory
-  tags:
-    - dbeaver
-
 - name: download latest version of DBeaver (64-bit)
   uri: url={{ dbeaver_url_64 }}
        dest=~/{{ dbeaver_file }}
        creates=~/{{ dbeaver_file }}
   when: ansible_architecture == "x86_64"
+  register: download_result
   tags:
     - dbeaver
 
@@ -26,9 +21,17 @@
        dest=~/{{ dbeaver_file }}
        creates=~/{{ dbeaver_file }}
   when: ansible_architecture == "i386"
+  register: download_result
   tags:
     - dbeaver
     
+- name: create the directory where dbeaver will be untarred
+  file: path={{ dbeaver_tar_directory }}
+        state=directory
+  when: download_result | changed
+  tags:
+    - dbeaver
+
 - name: untar the downloaded DBeaver archive
   unarchive: copy=no
              src=~/{{ dbeaver_file }}
@@ -49,11 +52,6 @@
   file: src={{ dbeaver_home_directory }}
         path={{ dbeaver_installation_directory }}/latest
         state=link
-  tags:
-    - dbeaver
-
-- name: remove the extra directory created when expanding the archive
-  file: path={{ dbeaver_tar_directory }} state=absent
   tags:
     - dbeaver
 
