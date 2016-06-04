@@ -15,4 +15,10 @@
   when: ansible_architecture == "x86_64"
   tags:
     - chrome
-  
+
+- name: install the chrome driver to allow Selenium testing with Google Chrome
+  apt: pkg=chromium-chromedriver state=latest
+  when: ansible_architecture == "x86_64"
+  tags:
+    - chrome
+    - selenium
