@@ -12,6 +12,7 @@
     - jmeter
     - zaproxy
     - burp_suite
+    - sqlmap
     - firefox_de
     - google_chrome
     - dbeaver

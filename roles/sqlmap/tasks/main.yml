@@ -1,0 +1,41 @@
+---
+# File: roles/zaproxy/tasks/main.yml
+
+- name: create a directory for the SQL Map software
+  file: name={{ sqlmap_installation_directory }} state=directory
+  tags:
+    - sqlmap
+    - security
+
+- name: download the latest version of SQL Map
+  uri: url={{ sqlmap_url }}
+       dest=~/{{ sqlmap_file }}
+       creates=~/{{ sqlmap_file }}
+  tags:
+    - sqlmap
+    - security
+
+- name: untar the SQL Map software
+  unarchive: copy=no
+             src=~/{{ sqlmap_file }}
+             dest={{ sqlmap_installation_directory }}
+             creates={{ sqlmap_installation_directory }}/{{ sqlmap_version }}
+  register: unarchive_result
+  tags:
+    - sqlmap
+    - security
+
+- name: move the archive's base directory somewhere maintainable
+  command: mv {{ sqlmap_tar_directory }} {{ sqlmap_installation_directory }}/{{ sqlmap_version }}
+  when: unarchive_result | changed
+  tags:
+    - sqlmap
+    - security
+
+- name: create a pretty symlink to the latest version
+  file: src={{ sqlmap_installation_directory }}/{{ sqlmap_version }}
+        path={{ sqlmap_installation_directory }}/latest
+        state=link
+  tags:
+    - sqlmap
+    - security
