@@ -6,19 +6,19 @@
        dest=~/{{ chrome_file }}
        creates=~/{{ chrome_file }}
   when: ansible_architecture == "x86_64"
+  register: download_result
   tags:
     - chrome
 
 # TODO - Replace /root/ with ~ when it's supported
 - name: install the current stable version of Google Chrome
   apt: deb="/root/{{ chrome_file }}"
-  when: ansible_architecture == "x86_64"
+  when: download_result | changed and ansible_architecture == "x86_64"
   tags:
     - chrome
 
 - name: install the chrome driver to allow Selenium testing with Google Chrome
   apt: pkg=chromium-chromedriver state=latest
-  when: ansible_architecture == "x86_64"
   tags:
     - chrome
     - selenium
