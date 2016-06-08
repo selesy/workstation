@@ -97,6 +97,7 @@
   apt: name={{ item }} state=latest
   with_items:
     - gcolor2
+    - gimp
     - inkscape
     - screenruler
   tags:
