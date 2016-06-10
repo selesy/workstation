@@ -10,8 +10,10 @@
   tags:
     - chrome
 
+# TODO - Replace /root/ with ~ when this issue is resolved
 - name: install the current stable version of Google Chrome
-  apt: deb="~/{{ chrome_file }}"
+#  apt: deb="~/{{ chrome_file }}"
+  apt: deb="/root/{{ chrome_file }}"
   when: download_result | changed and ansible_architecture == "x86_64"
   tags:
     - chrome
