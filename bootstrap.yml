@@ -2,7 +2,6 @@
 # File: bootstrap.yml
 
 - hosts: all
-  remote_user: ansible
   become: yes
   tasks:
 
