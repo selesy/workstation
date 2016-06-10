@@ -12,7 +12,7 @@
        dest=~/{{ dbeaver_file }}
        creates=~/{{ dbeaver_file }}
   when: ansible_architecture == "x86_64"
-  register: download_result
+  register: download_result_64
   tags:
     - dbeaver
 
@@ -21,14 +21,14 @@
        dest=~/{{ dbeaver_file }}
        creates=~/{{ dbeaver_file }}
   when: ansible_architecture == "i386"
-  register: download_result
+  register: download_result_32
   tags:
     - dbeaver
     
 - name: create the directory where dbeaver will be untarred
   file: path={{ dbeaver_tar_directory }}
         state=directory
-  when: download_result | changed
+  when: download_result_64 | changed or download_result_32 | changed
   tags:
     - dbeaver
 
