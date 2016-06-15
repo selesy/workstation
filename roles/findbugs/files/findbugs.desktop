@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Exec=/opt/findbugs/latest/bin/findbugs
+Icon=/opt/findbugs/latest/doc/buggy-sm.png
+StartupNotify=false
+Categories=Development;
+Name=FindBugs
+Comment=Java static code analysis tool
+Terminal=false
+Path=~

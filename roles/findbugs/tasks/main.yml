@@ -1,0 +1,47 @@
+---
+# roles/findbugs/tasks/main.yml
+
+- name: create the installation directory for FindBugs
+  file: path={{ findbugs_installation_directory }}
+        state=directory
+  tags:
+    - findbugs
+
+- name: download the latest version of FindBugs
+  uri: url={{ findbugs_url }}
+       dest=~/{{ findbugs_file }}
+       creates=~/{{ findbugs_file }}
+  register: download_result
+  tags:
+    - findbugs
+
+- name: unarchive the latest version of FindBugs
+  unarchive: copy=no
+             src=~/{{ findbugs_file }}
+             dest={{ findbugs_installation_directory }}
+             creates={{ findbugs_home_directory }}
+             owner=root
+             group=root
+  register: unarchive_result
+  tags:
+    - findbugs
+
+- name: move the tar file's base directory somewhere maintainable
+  command: mv {{ findbugs_tar_directory }}
+           {{ findbugs_home_directory }}
+  when: unarchive_result | changed
+  tags:
+    - findbugs
+
+- name: create a pretty symlink to the latest version
+  file: src={{ findbugs_home_directory }}
+        path={{ findbugs_installation_directory }}/latest
+        state=link
+  tags:
+    - findbugs
+
+- name: add a launcher for FindBugs to the development menu
+  copy: src=../files/findbugs.desktop
+        dest=/usr/share/applications
+  tags:
+    - findbugs
