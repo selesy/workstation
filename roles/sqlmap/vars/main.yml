@@ -1,19 +1,17 @@
 ---
 # File: roles/zaproxy/vars/main.yml
 # https://codeload.github.com/sqlmapproject/sqlmap/legacy.tar.gz/master
+# https://github.com/sqlmapproject/sqlmap/archive/1.0.6.tar.gz
 
-sqlmap_version: 1.0.6-42
-sqlmap_fingerprint: 30be875
+sqlmap_version: 1.0.6
+sqlmap_suffix: .tar.gz
 
-sqlmap_host: https://codeload.github.com
-sqlmap_path: sqlmapproject/sqlmap/legacy.tar.gz/master
+sqlmap_host: https://github.com
+sqlmap_path: sqlmapproject/sqlmap/archive
+sqlmap_file: sqlmap-{{ sqlmap_version }}{{ sqlmap_suffix }}
 
-sqlmap_url: "{{ sqlmap_host }}/{{ sqlmap_path }}"
-
-sqlmap_prefix: sqlmapproject-sqlmap
-sqlmap_suffix: tar.gz
-sqlmap_file: "{{ sqlmap_prefix }}-{{ sqlmap_version }}-g{{ sqlmap_fingerprint }}.{{ sqlmap_suffix }}"
+sqlmap_url: "{{ sqlmap_host }}/{{ sqlmap_path }}/{{ sqlmap_version }}{{ sqlmap_suffix }}"
 
 sqlmap_installation_directory: /opt/sqlmap
-sqlmap_tar_directory: "{{ sqlmap_installation_directory }}/{{ sqlmap_prefix }}-{{ sqlmap_fingerprint }}"
+sqlmap_tar_directory: "{{ sqlmap_installation_directory }}/sqlmap-{{ sqlmap_version }}"
 
