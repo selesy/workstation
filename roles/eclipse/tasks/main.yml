@@ -169,7 +169,7 @@
 #    - git
 
 #
-# Maven plugin installation
+# Build plugin installation
 #
 
 - name: add the M2Eclipse plugin
@@ -181,6 +181,15 @@
     - eclipse
     - eclipse-plugin
     - maven
+
+- name: add the Gradle plugin
+  command: nci install org.springsource.ide.eclipse.gradle.feature.feature.group
+           chdir=/opt/eclipse/latest
+           creates=/opt/eclipse/latest/features/org.springsource.ide.eclipse.gradle*
+  tags:
+    - eclipse
+    - eclipse-plugin
+    - gradle
 
 #
 # Code quality and test coverage
