@@ -14,6 +14,7 @@
     - curl
     # - freemind
     # - freemind-plugins-svg
+    - lynx
     - npm
     - seahorse
     - sshfs
