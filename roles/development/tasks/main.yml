@@ -22,7 +22,14 @@
   apt: name=docker.io state=latest
 
 - name: create the installation directory for Kubernetes
-  file: name="/opt/kubernetes" state="directory"
+  file: name="/opt/kubernetes/latest" state="directory"
+  
+- name: copy the Kubernetes convenience scripts
+  copy: src={{ item }}
+        dest=/opt/kubernetes/latest
+  with_items:
+    - ../files/kube-up.sh
+    - ../files/kube-down.sh
 
 #
 # Source Code Management
