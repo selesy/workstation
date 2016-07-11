@@ -28,19 +28,32 @@
 
 # Add f.lux (see https://justgetflux.com/linux.html)
 
-# - name: add the f.lux repository
-#   apt_repository: repo='deb http://ppa.launchpad.net/kilian/f.lux/ubuntu trusty main '
-#                   state=present
-  
-# - name: add the f.lux source repository
-#   apt_repository: repo='deb-src http://ppa.launchpad.net/kilian/f.lux/ubuntu trusty main '
-#                   state=present
+- name: add the f.lux repository
+  apt_repository: repo='deb http://ppa.launchpad.net/kilian/f.lux/ubuntu trusty main'
+                  state=absent
+
+- name: add the f.lux source repository
+  apt_repository: repo='deb-src http://ppa.launchpad.net/kilian/f.lux/ubuntu trusty main'
+                  state=absent
                   
-# - name: add the f.lux signing key
-#   apt_key: keyserver=keyserver.ubuntu.com id=e602b5ddea4951fb628e7bd4faeb83059bd4ed25
-  
-# - name: update the apt repositories to include the new f.lux packages
-#   apt: upgrade=safe
-  
-# - name: install f.lux
-#   apt: name=fluxgui state=present
+- name: add the f.lux signing key
+  apt_key: keyserver=keyserver.ubuntu.com id=e602b5ddea4951fb628e7bd4faeb83059bd4ed25
+           state=absent
+
+- name: add the f.lux repository
+  apt_repository: repo='deb http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu xenial main'
+                   state=present
+
+- name: add the f.lux source repository
+  apt_repository: repo='deb-src http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu xenial main'
+                  state=present
+
+- name: add the f.lux signing key
+  apt_key: keyserver=keyserver.ubuntu.com id=428926204FE30238F00B98224CDB129629A4B41A
+           state=present
+
+- name: update the apt repositories to include the new f.lux packages
+  apt: upgrade=safe
+
+- name: install f.lux
+  apt: name=fluxgui state=present
