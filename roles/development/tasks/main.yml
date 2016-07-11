@@ -20,16 +20,80 @@
 
 - name: install docker for container execution environment
   apt: name=docker.io state=latest
+  tags:
+    - containerization
+    - docker
 
 - name: create the installation directory for Kubernetes
-  file: name="/opt/kubernetes/latest" state="directory"
-  
+  file: name={{ k8s_installation_directory }} state="directory"
+  tags:
+    - containerization
+    - kubernetes
+
+- name: download the Kubernetes release package
+  uri: url={{ k8s_url }}
+       dest=~/{{ k8s_tar_file }}
+       creates=~/{{ k8s_tar_file }}
+  register: download_result
+  tags:
+    - containerization
+    - kubernetes
+
+- name: unarchive the Kubernetes release
+  unarchive: copy=no
+             src=~/{{ k8s_tar_file }}
+             dest={{ k8s_installation_directory }}
+             creates={{ k8s_home_directory }}
+  when: download_result | changed
+  register: unarchive_result
+  tags:
+    - containerization
+    - kubernetes
+
+- name: move the unarchived files to the standard location
+  command: mv {{ k8s_tar_directory }} {{ k8s_home_directory }}
+  when: unarchive_result | changed
+  tags:
+    - containerization
+    - kubernetes
+
+- name: create a pretty symlink to the latest Kubernetes version
+  file: src={{ k8s_home_directory }}
+        path={{ k8s_installation_directory }}/latest
+        state=link
+  when: unarchive_result | changed
+  tags:
+    - containerization
+    - kubernetes
+
+- name: create a directory for the convenience scripts
+  file: name={{ k8s_installation_directory }}/scripts state=directory
+  tags:
+    - containerization
+    - kubernetes
+
 - name: copy the Kubernetes convenience scripts
   copy: src={{ item }}
-        dest=/opt/kubernetes/latest
+        dest={{ k8s_installation_directory }}/scripts
+        mode=755
   with_items:
     - ../files/kube-up.sh
     - ../files/kube-down.sh
+  tags:
+    - containerization
+    - kubernetes
+
+- name: put scripts on the user's path
+  file: src={{ item.src }}
+        path={{ item.path }}
+        state=link
+  with_items:
+    - { src: "/opt/kubernetes/latest/platforms/linux/amd64/kubectl", path: "/usr/bin/kubectl" }
+    - { src: "/opt/kubernetes/scripts/kube-up.sh", path: "/usr/bin/kube-up" }
+    - { src: "/opt/kubernetes/scripts/kube-down.sh", path: "/usr/bin/kube-down" }
+  tags:
+    - containerization
+    - kubernetes
 
 #
 # Source Code Management

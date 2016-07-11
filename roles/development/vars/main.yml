@@ -1,0 +1,24 @@
+---
+# File: roles/development/vars/main.yml
+
+#
+# Kubernetes
+#
+
+# https://github.com/kubernetes/kubernetes/releases/download/v1.3.0/kubernetes.tar.gz
+
+k8s_name: kubernetes
+k8s_version: 1.3.0
+k8s_archive: tar.gz
+
+k8s_host: https://github.com
+k8s_path: kubernetes/kubernetes/releases/download/v{{ k8s_version }}
+k8s_file: "{{ k8s_name }}.{{ k8s_archive }}"
+
+k8s_url: "{{ k8s_host }}/{{ k8s_path }}/{{ k8s_file }}"
+
+k8s_installation_directory: /opt/{{ k8s_name }}
+k8s_tar_directory: "{{ k8s_installation_directory }}/{{ k8s_name }}"
+k8s_tar_file: "{{ k8s_name }}-{{ k8s_version }}.{{ k8s_archive }}"
+k8s_home_directory: "{{ k8s_installation_directory }}/{{ k8s_version }}"
+ 
