@@ -10,12 +10,14 @@
 - name: install basic Linux tools
   apt: name={{ item }} state=latest
   with_items:
+    - asciinema
     - audacity
     - curl
     # - freemind
     # - freemind-plugins-svg
     - lynx
     - npm
+    - recordmydesktop
     - seahorse
     - sshfs
     - traceroute
