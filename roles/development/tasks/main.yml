@@ -95,6 +95,43 @@
     - containerization
     - kubernetes
 
+- name: create the installation directory for MiniKube
+  file: name={{ minikube_home_directory }} state=directory
+  tags:
+    - containerization
+    - kubernetes
+    - minikube
+
+- name: download the MiniKube executable
+  uri: url={{ minikube_url }}
+       dest="{{ minikube_home_directory }}/{{ minikube_file }}"
+       creates="{{ minikube_home_directory }}/{{ minikube_file }}"
+       mode=755
+  register: download_result
+  tags:
+    - containerization
+    - kubernetes
+    - minikube
+
+- name: create a pretty symlink to the latest MiniKube version
+  file: src={{ minikube_home_directory }}
+        path={{ minikube_installation_directory }}/latest
+        state=link
+  when: download_result | changed
+  tags:
+    - containerization
+    - kubernetes
+    - minikube
+
+- name: put minikube on the user's path
+  file: src={{ minikube_installation_directory }}/latest/{{ minikube_file }}
+        path=/usr/bin/minikube
+        state=link
+  tags:
+    - containerization
+    - kubernetes
+    - minikube
+
 #
 # Source Code Management
 #

@@ -21,4 +21,17 @@ k8s_installation_directory: /opt/{{ k8s_name }}
 k8s_tar_directory: "{{ k8s_installation_directory }}/{{ k8s_name }}"
 k8s_tar_file: "{{ k8s_name }}-{{ k8s_version }}.{{ k8s_archive }}"
 k8s_home_directory: "{{ k8s_installation_directory }}/{{ k8s_version }}"
+
+# https://storage.googleapis.com/minikube/releases/v0.6.0/minikube-linux-amd64
+
+minikube_version: 0.6.0
+
+minikube_host: https://storage.googleapis.com
+minikube_path: minikube/releases/v{{ minikube_version }}
+minikube_file: minikube-linux-amd64
+
+minikube_url: "{{ minikube_host }}/{{ minikube_path }}/{{ minikube_file }}"
+
+minikube_installation_directory: /opt/minikube
+minikube_home_directory: "{{ minikube_installation_directory }}/{{ minikube_version }}"
  
