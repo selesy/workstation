@@ -3,7 +3,7 @@
 # http://developer.eclipsesource.com/technology/epp/mars/eclipse-reporting-mars-2-linux-gtk-x86_64.tar.gz
 
 eclipse_version: neon
-eclipse_sr: RC2
+eclipse_sr: R
 eclipse_release: "{{ eclipse_version }}-{{ eclipse_sr }}"
 
 eclipse_host: http://mirror.cc.columbia.edu
