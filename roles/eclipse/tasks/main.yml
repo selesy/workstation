@@ -227,6 +227,17 @@
     - eclipse-plugin
     - coverage
 
+- name: add the Pitclipse (Pitest) plugin
+  command: nci install from http://eclipse.pitest.org/release/
+                       org.pitest.pitclipse.feature.feature.group
+           chdir=/opt/eclipse/latest
+           creates=/opt/eclipse/latest/features/org.pitest.*
+  tags:
+    - eclipse
+    - eclipse-plugin
+    - coverage
+    - quality
+
 # TODO (smoyer1) - Add the Sonar plugin
 
 #
