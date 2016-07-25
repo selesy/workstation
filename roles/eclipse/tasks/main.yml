@@ -182,10 +182,10 @@
     - eclipse-plugin
     - maven
 
-- name: add the Gradle plugin
-  command: nci install org.springsource.ide.eclipse.gradle.feature.feature.group
+- name: add the BuildShip Gradle plugin
+  command: nci install org.eclipse.buildship.stsmigration
            chdir=/opt/eclipse/latest
-           creates=/opt/eclipse/latest/features/org.springsource.ide.eclipse.gradle*
+           creates=/opt/eclipse/latest/plugins/org.eclipse.buildship.stsmigration*
   tags:
     - eclipse
     - eclipse-plugin
