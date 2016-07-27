@@ -1,7 +1,7 @@
 ---
 # File: roles/dbeaver/vars/main.yml
 
-dbeaver_version: 3.6.8
+dbeaver_version: 3.7.2
 
 dbeaver_server: http://dbeaver.jkiss.org
 dbeaver_path: files/{{ dbeaver_version }}
