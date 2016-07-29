@@ -4,6 +4,9 @@
 - name: create the installation directory for UMLet
   file: path={{ umlet_installation_directory }}
         state=directory
+  tags:
+    - uml
+    - modeling
 
 - name: download the UMLet application
   uri: url={{ umlet_url }}
@@ -42,6 +45,9 @@
 - name: make the UMLet shell script executable
   file: path={{ umlet_home_directory }}/umlet.sh
         mode=755
+  tags:
+    - uml
+    - modeling
 
 - name: add a launcher to the development menu for UMLet
   copy: src=../files/umlet.desktop
