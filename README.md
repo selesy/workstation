@@ -18,15 +18,20 @@ Applications
 This project installs the following applications:
 
 -   Apache Directory Studio - LDAP client (apache_directory_studio)
+-   BurpSuite
 -   DBeaver - Database client (dbeaver)
 -   Eclipse IDE with selected plugins (eclipse)
+-   Findbugs
 -   Firefox Developer Edition (firefox-de)
 -   Git source code management (git)
 -   Java JDK - the most recent two versions (java)
 -   JMeter - Load testing (jmeter)
+-   Kubernetes
 -   Maven build system (maven)
+-   MiniKube
 -   Netbeans IDE (netbeans)
 -   SoapUI (soapui)
+-   SQLMap
 -   Subversion source code management (subversion)
 -   UMLet - UML Diagraming (umlet)
 -   Zed Attack Proxy - Security testing (zaproxy)
