@@ -12,6 +12,7 @@
     - openjdk-8-demo
     - openjdk-8-source
     - openjdk-8-doc
+    - icedtea-8-plugin
   tags:
     - java
 
