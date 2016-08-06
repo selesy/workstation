@@ -16,6 +16,7 @@
     # - freemind
     # - freemind-plugins-svg
     - lynx
+    - minicom
     - npm
     - recordmydesktop
     - seahorse
