@@ -3,7 +3,7 @@
 # https://codeload.github.com/sqlmapproject/sqlmap/legacy.tar.gz/master
 # https://github.com/sqlmapproject/sqlmap/archive/1.0.6.tar.gz
 
-sqlmap_version: 1.0.7
+sqlmap_version: 1.0.8
 sqlmap_suffix: .tar.gz
 
 sqlmap_host: https://github.com
