@@ -15,6 +15,7 @@
     - curl
     # - freemind
     # - freemind-plugins-svg
+    - gparted
     - lynx
     - minicom
     - npm
