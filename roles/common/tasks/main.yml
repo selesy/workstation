@@ -21,6 +21,7 @@
     - recordmydesktop
     - seahorse
     - sshfs
+    - tftp
     - traceroute
     - tree
     - vlc
