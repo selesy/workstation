@@ -1,0 +1,15 @@
+---
+# File: roles/micro/vars/main.yml
+
+# https://github.com/zyedidia/micro/releases/download/v1.0/micro-1.0-linux64.tar.gz
+
+micro_version: 1.0
+
+micro_host: https://github.com
+micro_path: zyedidia/micro/releases/download/v{{ micro_version }}
+micro_file: micro-{{ micro_version }}-linux64.tar.gz
+
+micro_url: "{{ micro_host }}/{{ micro_path }}/{{ micro_file }}"
+
+micro_installation_directory: /opt/micro
+micro_tar_directory: "{{ micro_installation_directory }}/micro-{{ micro_version }}"

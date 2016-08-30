@@ -1,0 +1,31 @@
+---
+# File: roles/micro/tasks/main.yml
+
+- name: create a directory for the Micro editor
+  file: name={{ micro_installation_directory }} state=directory
+  tags:
+    - editors
+
+- name: download the latest version of the Micro editor
+  uri: url={{ micro_url }}
+       dest=~/{{ micro_file }}
+       creates=~/{{ micro_file }}
+  tags:
+    - editors
+
+- name: untar the Micro editor
+  unarchive: copy=no
+             src=~/{{ micro_file }}
+             dest={{ micro_installation_directory }}
+             creates={{ micro_installation_directory }}/{{ micro_version }}
+  register: unarchive_result
+  tags:
+    - editors
+
+- name: move the archive's base directory somewhere maintainable
+  command: mv {{ micro_tar_directory }} {{ micro_installation_directory }}/{{ micro_version }}
+  when: unarchive_result | changed
+  tags:
+    - editors
+
+ 
