@@ -2,6 +2,33 @@
 # File: roles/development/tasks/main.yml
 
 #
+# Editors
+#
+
+- name: add the typora signing key
+  apt_key: keyserver=keyserver.ubuntu.com id=BA300B7755AFCFAE
+           state=present
+  tags:
+    - editors
+
+- name: add the typora repository
+  apt_repository: repo='deb https://typora.io linux/'
+                  state=present
+                  mode=644
+  tags:
+    - editors
+
+- name: update the repository cache
+  apt: update_cache=yes
+  tags:
+    - editors
+
+- name: install typora
+  apt: pkg=typora state=present
+  tags:
+    - editors
+
+#
 # Virtualization
 #
 
