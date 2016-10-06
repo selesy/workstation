@@ -93,6 +93,15 @@
     - containerization
     - kubernetes
 
+- name: fix the group 
+  file: path={{ k8s_home_directory }}
+        recurse=yes
+        state=directory
+        group=docker
+  tags:
+    - containerization
+    - kubernetes
+
 - name: create a directory for the convenience scripts
   file: name={{ k8s_installation_directory }}/scripts state=directory
   tags:
