@@ -102,31 +102,31 @@
     - containerization
     - kubernetes
 
-- name: create a directory for the convenience scripts
-  file: name={{ k8s_installation_directory }}/scripts state=directory
-  tags:
-    - containerization
-    - kubernetes
-
-- name: copy the Kubernetes convenience scripts
-  copy: src={{ item }}
-        dest={{ k8s_installation_directory }}/scripts
-        mode=755
-  with_items:
-    - ../files/kube-up.sh
-    - ../files/kube-down.sh
-  tags:
-    - containerization
-    - kubernetes
-
-- name: put scripts on the user's path
-  file: src={{ item.src }}
-        path={{ item.path }}
+- name: put kubectl on the user's path
+  file: src=/opt/kubernetes/latest/platforms/linux/amd64/kubectl
+        path=/usr/bin/kubectl
         state=link
+  tags:
+    - containerization
+    - kubernetes
+
+#
+# HyperKube is now deprecated in favor of MiniKube
+#
+
+- name: remove the directory for the convenience scripts
+  file: name={{ k8s_installation_directory }}/scripts state=directory
+        state=absent
+  tags:
+    - containerization
+    - kubernetes
+
+- name: remove scripts from the user's path
+  file: path={{ item }}
+        state=absent
   with_items:
-    - { src: "/opt/kubernetes/latest/platforms/linux/amd64/kubectl", path: "/usr/bin/kubectl" }
-    - { src: "/opt/kubernetes/scripts/kube-up.sh", path: "/usr/bin/kube-up" }
-    - { src: "/opt/kubernetes/scripts/kube-down.sh", path: "/usr/bin/kube-down" }
+    - /usr/bin/kube-up
+    - /usr/bin/kube-down
   tags:
     - containerization
     - kubernetes
