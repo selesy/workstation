@@ -238,7 +238,16 @@
     - coverage
     - quality
 
-# TODO (smoyer1) - Add the Sonar plugin
+- name: add the SonarLint plugin
+  command: nci install from http://eclipse.sonarlint.org
+                       org.sonarlint.eclipse.feature.feature.group
+                       org.sonarlint.eclipse.jdt.feature.feature.group
+           chdir=/opt/eclipse/latest
+           creates=/opt/eclipse/latest/features/org.sonarlint.eclipse.*
+  tags:
+    - eclipse
+    - eclipse-plugin
+    - quality
 
 #
 # Extra text editors
