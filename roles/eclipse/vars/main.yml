@@ -1,9 +1,9 @@
 ---
 # File: /roles/eclipse/vars/main.yml
-# http://developer.eclipsesource.com/technology/epp/mars/eclipse-reporting-mars-2-linux-gtk-x86_64.tar.gz
+# http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/neon/1a/eclipse-reporting-neon-1a-linux-gtk-x86_64.tar.gz
 
 eclipse_version: neon
-eclipse_sr: R
+eclipse_sr: 1a
 eclipse_release: "{{ eclipse_version }}-{{ eclipse_sr }}"
 
 eclipse_host: http://mirror.cc.columbia.edu
@@ -21,7 +21,7 @@ eclipse_home_directory: "{{ eclipse_installation_directory }}/{{ eclipse_release
 
 
 
-lombok_version: 1.16.8
+lombok_version: 1.16.10
 
 lombok_host: https://repo.maven.apache.org
 lombok_path: maven2/org/projectlombok/lombok/{{ lombok_version }}
