@@ -183,9 +183,10 @@
     - maven
 
 - name: add the BuildShip Gradle plugin
-  command: nci install org.eclipse.buildship.stsmigration
+  command: nci install from http://download.eclipse.org/buildship/updates/e46/releases/1.0
+                       org.eclipse.buildship.feature.group
            chdir=/opt/eclipse/latest
-           creates=/opt/eclipse/latest/plugins/org.eclipse.buildship.stsmigration*
+           creates=/opt/eclipse/latest/plugins/org.eclipse.buildship.core*
   tags:
     - eclipse
     - eclipse-plugin
