@@ -1,8 +1,10 @@
 ---
 # File: roles/netbeans/vars/main.yml
+#
+# https://netbeans.org/downloads/zip.html - javascript: download_file('zip/netbeans-8.2-201609300101.zip')
 
-netbeans_version: 8.0.2
-netbeans_build: 201411181905
+netbeans_version: 8.2
+netbeans_build: 201609300101
 
 netbeans_server: http://download.netbeans.org
 netbeans_path: netbeans/{{ netbeans_version }}/final/zip
