@@ -2,6 +2,21 @@
 # File: roles/java/tasks/main.yml
 
 #
+# OpenJDK 9
+# TODO - Broken - see http://askubuntu.com/questions/769467/can-not-install-openjdk-9-jdk-because-it-tries-to-overwrite-file-aready-includ
+#
+  
+#- name: install the latest OpenJDK 9
+#  apt: name={{ item }} state=latest
+#  with_items:
+#    - openjdk-9-jdk
+#    - openjdk-9-demo
+#    - openjdk-9-source
+#    - openjdk-9-doc
+#  tags:
+#    - java
+
+#
 # OpenJDK 8
 #
   
