@@ -1,0 +1,13 @@
+---
+# File: roles/pencil/vars/main.yml
+
+# https://github.com/evolus/pencil/releases/download/v3.0.0-rc.1/Pencil-3.0.0-rc.1.deb
+
+pencil_version: 3.0.0-rc.1
+
+pencil_host: https://github.com
+pencil_path: evolus/pencil/releases/download/v{{ pencil_version }}
+pencil_file: Pencil-{{ pencil_version }}.deb
+
+pencil_url: "{{ pencil_host }}/{{ pencil_path }}/{{ pencil_file }}"
+

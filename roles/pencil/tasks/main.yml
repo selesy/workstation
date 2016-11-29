@@ -1,0 +1,22 @@
+---
+# File: roles/pencil/tasks/main.yml
+
+- name: download the latest version of Pencil
+  uri: url={{ pencil_url }}
+       dest=~/{{ pencil_file }}
+       creates=~/{{ pencil_file }}
+  register: download_result
+  tags:
+    - pencil
+
+- name: install the latest version of Pencil
+  apt: deb=/root/{{ pencil_file }}
+  tags:
+    - pencil
+
+- name: move Pencil's menu item to the Development menu
+  lineinfile: dest=/usr/share/applications/Pencil.desktop
+              regexp=^Categories.*
+              line=Categories=Development;
+  tags:
+    - pencil
