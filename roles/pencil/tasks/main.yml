@@ -17,6 +17,6 @@
 - name: move Pencil's menu item to the Development menu
   lineinfile: dest=/usr/share/applications/Pencil.desktop
               regexp=^Categories.*
-              line=Categories=Development;
+              line=Categories=Development;Graphics;
   tags:
     - pencil
