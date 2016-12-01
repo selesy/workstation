@@ -3,7 +3,7 @@
 # http://ftp.wayne.edu/apache/directory/studio/2.0.0.v20151221-M10/ApacheDirectoryStudio-2.0.0.v20151221-M10-linux.gtk.x86_64.tar.gz
 
 studio_version: 2.0.0
-studio_build: 20151221-M10
+studio_build: 20161101-M12
 
 studio_server: http://ftp.wayne.edu
 studio_path: apache/directory/studio/{{ studio_version }}.v{{ studio_build }}
