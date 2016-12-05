@@ -8,7 +8,7 @@
 # https://github.com/kubernetes/kubernetes/releases/download/v1.3.0/kubernetes.tar.gz
 
 k8s_name: kubernetes
-k8s_version: 1.4.0
+k8s_version: 1.4.6
 k8s_archive: tar.gz
 
 k8s_host: https://github.com
@@ -24,7 +24,7 @@ k8s_home_directory: "{{ k8s_installation_directory }}/{{ k8s_version }}"
 
 # https://storage.googleapis.com/minikube/releases/v0.6.0/minikube-linux-amd64
 
-minikube_version: 0.10.0
+minikube_version: 0.13.1
 
 minikube_host: https://storage.googleapis.com
 minikube_path: minikube/releases/v{{ minikube_version }}
