@@ -21,7 +21,7 @@ eclipse_home_directory: "{{ eclipse_installation_directory }}/{{ eclipse_release
 
 
 
-lombok_version: 1.16.12
+lombok_version: 1.16.14
 
 lombok_host: https://repo.maven.apache.org
 lombok_path: maven2/org/projectlombok/lombok/{{ lombok_version }}
