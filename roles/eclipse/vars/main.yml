@@ -1,9 +1,14 @@
 ---
 # File: /roles/eclipse/vars/main.yml
 # http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/neon/1a/eclipse-reporting-neon-1a-linux-gtk-x86_64.tar.gz
+# http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/oxygen/M5/eclipse-jee-oxygen-M5-linux-gtk-x86_64.tar.gz
 
-eclipse_version: neon
-eclipse_sr: 2
+#eclipse_version: neon
+#eclipse_sr: 2
+
+eclipse_version: oxygen
+eclipse_sr: M5
+
 eclipse_release: "{{ eclipse_version }}-{{ eclipse_sr }}"
 
 eclipse_host: http://mirror.cc.columbia.edu
