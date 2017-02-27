@@ -250,6 +250,16 @@
     - eclipse-plugin
     - quality
 
+- name: add the Infinitest plugin
+  command: nci install from http://infinitest.github.com
+                            org.infinitest.eclipse.feature.feature.group
+           chdir=/opt/eclipse/latest
+           creates=/opt/eclipse/latest/features/org.infinitest.eclipse.*
+  tags:
+    - eclipse
+    - eclipse-plugin
+    - testing
+
 #
 # Extra text editors
 #
