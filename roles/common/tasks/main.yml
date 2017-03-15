@@ -16,9 +16,11 @@
     # - freemind
     # - freemind-plugins-svg
     - gparted
+    - hopenpgp-tools
     - lynx
     - minicom
     - npm
+    - parcimonie
     - pass
     - qtpass
     - recordmydesktop
