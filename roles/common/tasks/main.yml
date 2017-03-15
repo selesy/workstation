@@ -19,6 +19,8 @@
     - lynx
     - minicom
     - npm
+    - pass
+    - qtpass
     - recordmydesktop
     - screen
     - seahorse
