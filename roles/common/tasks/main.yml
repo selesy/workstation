@@ -37,6 +37,11 @@
     
 - name: install the NTP daemon (on Mint ... it's not installed by default)
   apt: name=ntp state=latest
+  
+- name: install ratpoison and related packages
+  apt: name={{ item }} state=latest
+  with_items:
+    - ratpoison
 
 # Add f.lux (see https://justgetflux.com/linux.html)
 
