@@ -34,3 +34,14 @@ lombok_file: lombok-{{ lombok_version }}.jar
 
 lombok_url: "{{ lombok_host }}/{{ lombok_path }}/{{ lombok_file }}"
 
+
+
+
+eclim_version: 2.6.0
+
+eclim_host: https://github.com
+eclim_path: ervandew/eclim/releases/download/{{ eclim_version }}
+eclim_file: eclim_{{ eclim_version }}.jar
+
+eclim_url: "{{ eclim_host }}/{{ eclim_path }}/{{ eclim_file }}"
+

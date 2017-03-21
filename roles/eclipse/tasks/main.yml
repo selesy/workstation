@@ -410,3 +410,28 @@
 #  tags:
 #    - wildfly
 
+# GWT
+
+- name: add the GWT plugin
+  command: nci install from http://storage.googleapis.com/gwt-eclipse-plugin/v3/release {{ item }}
+           chdir=/opt/eclipse/latest
+#           creates=/opt/eclipse/latest/plugins/com.gwtplugins.*
+  with_items:
+    - com.gwtplugins.eclipse.sdkbundle.gwt28.feature.feature.group
+    - com.gwtplugins.eclipse.suite.v3.feature.feature.group
+    - com.github.sdbg.feature.feature.group
+  tags:
+    - eclipse
+    - eclipse-plugin
+    - gwt
+
+# Eclim (http://eclim.org)
+
+- name: download Eclim
+  uri: url={{ eclim_url }}
+       dest=~/{{ eclim_file }}
+       creates=~/{{ eclim_file }}
+  tags:
+    - eclipse
+    - vim
+  
