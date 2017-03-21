@@ -5,6 +5,14 @@
 # Editors
 #
 
+- name: add the full-featured version of vim
+  apt: name={{ item }} state=present
+  with_items:
+    - vim
+  tags:
+    - editors
+    - vim
+
 - name: add the typora signing key
   apt_key: keyserver=keyserver.ubuntu.com id=BA300B7755AFCFAE
            state=present
@@ -103,7 +111,7 @@
     - kubernetes
 
 - name: put kubectl on the user's path
-  file: src=/opt/kubernetes/latest/platforms/linux/amd64/kubectl
+  file: src=/opt/kubernetes/latest/cluster/kubectl.sh
         path=/usr/bin/kubectl
         state=link
   tags:
