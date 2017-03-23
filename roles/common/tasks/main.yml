@@ -42,6 +42,14 @@
   apt: name={{ item }} state=latest
   with_items:
     - ratpoison
+  tags:
+    - wm
+
+- name: add RatPoison to the session type menu in lightdm
+  copy: src=../files/ratpoison.desktop
+        dest=/usr/share/xsessions
+  tags:
+    - wm
 
 # Add f.lux (see https://justgetflux.com/linux.html)
 
