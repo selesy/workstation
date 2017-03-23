@@ -5,10 +5,11 @@
 # Editors
 #
 
-- name: add the full-featured version of vim
+- name: add the full-featured versions of vim
   apt: name={{ item }} state=present
   with_items:
     - vim
+    - vim-gnome
   tags:
     - editors
     - vim
