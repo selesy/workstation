@@ -80,7 +80,7 @@
              src=~/{{ k8s_tar_file }}
              dest={{ k8s_installation_directory }}
              creates={{ k8s_home_directory }}
-  when: download_result | changed
+#  when: download_result | changed
   register: unarchive_result
   tags:
     - containerization
@@ -111,8 +111,17 @@
     - containerization
     - kubernetes
 
+- name: install the Kubernetes binaries (server and client)
+  shell: export KUBERNETES_SKIP_CONFIRM=true && ./cluster/get-kube-binaries.sh
+         chdir={{ k8s_installation_directory }}/latest
+         creates=./client/bin/
+  tags:
+    - containerization
+    - kubernetes
+
+
 - name: put kubectl on the user's path
-  file: src=/opt/kubernetes/latest/cluster/kubectl.sh
+  file: src={{ k8s_installation_directory }}/latest/client/bin/kubectl
         path=/usr/bin/kubectl
         state=link
   tags:
