@@ -35,7 +35,7 @@
 - name: untar the downloaded DBeaver archive
   unarchive: copy=no
              src=~/{{ dbeaver_file }}
-             dest={{ dbeaver_tar_directory }}
+             dest={{ dbeaver_installation_directory }}
              creates={{ dbeaver_home_directory }}
   register: unarchive_result
   tags:
@@ -60,3 +60,9 @@
         dest=/usr/share/applications
   tags:
     - dbeaver
+
+- name: allow anyone to execute DBeaver
+  file: path={{ dbeaver_installation_directory }}/latest/dbeaver mode=755
+  tags:
+    - dbeaver
+
