@@ -7,7 +7,7 @@
 #eclipse_sr: 2
 
 eclipse_version: oxygen
-eclipse_sr: M5
+eclipse_sr: M7
 
 eclipse_release: "{{ eclipse_version }}-{{ eclipse_sr }}"
 
