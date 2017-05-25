@@ -5,8 +5,8 @@
 
 jmeter_version: 3.1
 
-jmeter_host: http://mirror.symnds.com
-jmeter_path: software/Apache/jmeter/binaries
+jmeter_host: https://archive.apache.org/dist
+jmeter_path: /jmeter/binaries
 jmeter_file: apache-jmeter-{{ jmeter_version }}.tgz
 
 jmeter_url: "{{ jmeter_host }}/{{ jmeter_path }}/{{ jmeter_file }}"
