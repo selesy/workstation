@@ -7,6 +7,6 @@ Icon=/opt/eclipse/latest/icon.xpm
 StartupNotify=false
 Categories=Development;
 Name=Eclipse IDE - Oxygen M5 JEE/BIRT
-Comment=Eclipse IDE - Oxygen M5 For Java EE and Report Developers
+Comment=Eclipse IDE - Oxygen M7 For Java EE and Report Developers
 Terminal=false
 Path=
