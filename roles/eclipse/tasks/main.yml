@@ -121,6 +121,20 @@
   tags:
     - eclipse
     - eclipse-plugin
+    
+#
+# Language support
+#
+
+- name: add Kotlin support
+  command: nci install from https://dl.bintray.com/jetbrains/kotlin/eclipse-plugin/last/
+                       org.jetbrains.kotlin.feature.feature.group
+           chdir=/opt/eclipse/latest
+           creates=/opt/eclipse/latest/plugins/org.jetbrains.kotlin*
+  tags:
+    - eclipse
+    - eclipse-plugin
+    - kotlin
 
 #
 # SCM Plugin installation 
