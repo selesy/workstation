@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Exec=/opt/postman/latest/Postman
+Icon=/opt/postman/latest/resources/app/assets/icon.png
+StartupNotify=false
+Categories=Development;
+Name=Postman 5.0.0
+Comment=REST service testing
+Terminal=false
+#Path=~/soapui

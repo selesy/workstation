@@ -1,0 +1,15 @@
+---
+# File: roles/postman/vars/main.yml
+# https://dl.pstmn.io/download/version/5.0.0/linux64
+
+postman_version: 5.0.0
+
+postman_host: https://dl.pstmn.io
+postman_path: download/version/{{ postman_version }}/linux64
+postman_file: Postman-linux-x86-{{ postman_version }}.tar.gz
+
+postman_url: "{{ postman_host }}/{{ postman_path }}"
+
+postman_installation_directory: /opt/postman
+postman_tar_directory: "{{ postman_installation_directory }}/Postman"
+postman_home_directory: "{{ postman_installation_directory }}/{{ postman_version }}"

@@ -1,0 +1,44 @@
+---
+# File: roles/postman/tasks/main.yml
+
+- name: create a directory for the Postman software
+  file: name={{ postman_installation_directory }}
+        state=directory
+  tags:
+    - postman
+
+- name: download the latest version of Postman
+  uri: url={{ postman_url }}
+       dest=~/{{ postman_file }}
+       creates=~/{{ postman_file }}
+  tags:
+    - postman
+
+- name: untar the Postman archive
+  unarchive: copy=no
+             src=~/{{ postman_file }}
+             dest={{ postman_installation_directory }}
+             creates={{ postman_home_directory }}
+  register: unarchive_result
+  tags:
+    - postman
+
+- name: move the Postman archive somewhere maintainable
+  command: mv {{ postman_tar_directory }}
+              {{ postman_home_directory }}
+  when: unarchive_result | changed
+  tags:
+    - postman
+
+- name: create a pretty symlink to the latest version
+  file: src={{ postman_home_directory }}
+        path={{ postman_installation_directory }}/latest
+        state=link
+  tags:
+    - postman
+
+- name: add a launcher for Postman to the development menu
+  copy: src=../files/postman.desktop
+        dest=/usr/share/applications
+  tags:
+    - postman
