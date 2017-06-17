@@ -255,3 +255,17 @@
     - screenruler
   tags:
     - graphics
+
+#
+# Inform
+#
+
+- name: add packages needed to develop and run IF games
+  apt: name={{ item }} state=latest
+  with_items:
+    - zoom-player
+    - inform
+    - inform-docs
+  tags:
+    - interactive-fiction
+    - inform
