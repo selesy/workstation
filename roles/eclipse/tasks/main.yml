@@ -129,6 +129,9 @@
 - name: add Kotlin support
   command: nci install from https://dl.bintray.com/jetbrains/kotlin/eclipse-plugin/last/
                        org.jetbrains.kotlin.feature.feature.group
+                       org.jetbrains.kotlin.policy.feature.group
+                       org.jetbrains.kotlin.weaving.feature.feature.group
+                       org.eclipse.equinox.weaving.sdk.feature.group
            chdir=/opt/eclipse/latest
            creates=/opt/eclipse/latest/plugins/org.jetbrains.kotlin*
   tags:
