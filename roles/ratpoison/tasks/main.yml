@@ -1,0 +1,23 @@
+---
+# File: roles/ratpoison/tasks/main.yml
+
+- name: install ratpoison and related packages
+  apt: name=ratpoison state=latest
+  tags:
+    - wm
+    - ratpoison
+
+- name: add RatPoison to the session type menu in lightdm
+  copy: src=../files/ratpoison.desktop
+        dest=/usr/share/xsessions
+  tags:
+    - wm
+    - ratpoison
+    
+- name: add RatPoison configuration
+  copy: src=../files/ratpoisonrc
+        dest=/etc/ratpoisonrc
+  tags:
+    - wm
+    - ratpoison
+    

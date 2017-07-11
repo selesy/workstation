@@ -1,0 +1,5 @@
+
+bind l exec /usr/bin/dm-tool lock
+
+alias eclipse exec /opt/eclipse/latest/eclipse
+alias firefox exec /opt/firefox-de/latest/firefox
