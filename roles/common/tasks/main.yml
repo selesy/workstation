@@ -38,19 +38,6 @@
 - name: install the NTP daemon (on Mint ... it's not installed by default)
   apt: name=ntp state=latest
   
-- name: install ratpoison and related packages
-  apt: name={{ item }} state=latest
-  with_items:
-    - ratpoison
-  tags:
-    - wm
-
-- name: add RatPoison to the session type menu in lightdm
-  copy: src=../files/ratpoison.desktop
-        dest=/usr/share/xsessions
-  tags:
-    - wm
-
 # Add f.lux (see https://justgetflux.com/linux.html)
 
 - name: remove the old f.lux repository
