@@ -2,8 +2,9 @@
 # File: roles/firefox_de/vars/main.yml
 # https://download-installer.cdn.mozilla.net/pub/devedition/releases/55.0b2/linux-x86_64/en-US/firefox-55.0b2.tar.bz2
 # https://download-installer.cdn.mozilla.net/pub/devedition/releases/55.0b3/linux-x86_64/en-US/firefox-55.0b3.tar.bz2
+# https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US
 
-firefox_de_version: 55.0b6
+firefox_de_version: 55.0b8
 firefox_de_language: en-US
 
 firefox_de_host: https://download-installer.cdn.mozilla.net
