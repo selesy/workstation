@@ -1,5 +1,7 @@
 
 bind l exec /usr/bin/dm-tool lock
 
+alias claws exec claws-mail
 alias eclipse exec /opt/eclipse/latest/eclipse
 alias firefox exec /opt/firefox-de/latest/firefox
+alias pidgin exec pidgin
