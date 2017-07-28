@@ -5,7 +5,7 @@
 
 
 eclipse_version: oxygen
-eclipse_sr: RC3
+eclipse_sr: R
 
 eclipse_release: "{{ eclipse_version }}-{{ eclipse_sr }}"
 
