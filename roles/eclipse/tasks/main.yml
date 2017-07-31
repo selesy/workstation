@@ -237,9 +237,9 @@
 
 - name: add the EclEmma plugin
   command: nci install from http://update.eclemma.org
-                       com.mountainminds.eclemma.feature.feature.group
+                       org.eclipse.eclemma.feature.feature.group
            chdir=/opt/eclipse/latest
-           creates=/opt/eclipse/latest/plugins/com.mountainminds.*
+           creates=/opt/eclipse/latest/plugins/org.eclipse.eclemma.*
   tags:
     - eclipse
     - eclipse-plugin
