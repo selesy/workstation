@@ -2,7 +2,7 @@
 # File: roles/postman/vars/main.yml
 # https://dl.pstmn.io/download/version/5.0.0/linux64
 
-postman_version: 5.0.0
+postman_version: 5.1.2
 
 postman_host: https://dl.pstmn.io
 postman_path: download/version/{{ postman_version }}/linux64
