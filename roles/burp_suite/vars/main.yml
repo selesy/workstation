@@ -2,8 +2,6 @@
 # roles/burp_suite/vars/main.yml
 # https://portswigger.net/DownloadUpdate.ashx?Product=Free
 
-burp_version: latest
-
 burp_url: https://portswigger.net/DownloadUpdate.ashx?Product=Free
 
 burp_file: burpsuite_free_{{ burp_version }}.jar

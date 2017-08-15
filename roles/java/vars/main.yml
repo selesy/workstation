@@ -1,8 +1,6 @@
 ---
 # File: roles/java/vars/main.yml
 
-java_version: 8
-
 #
 # This list was found by executing the following command in the terminal:
 #

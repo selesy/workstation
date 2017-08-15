@@ -3,8 +3,6 @@
 # https://github.com/zaproxy/zaproxy/releases/download/2.4.3/ZAP_2.4.3_Linux.tar.gz
 # https://github.com/zaproxy/zaproxy/releases/download/2.4.3/ZAP_2.4.3_Linux.tar.gz
 
-zaproxy_version: 2.5.0
-
 zaproxy_host: https://github.com
 zaproxy_path: /zaproxy/zaproxy/releases/download/{{ zaproxy_version }}
 zaproxy_file: ZAP_{{ zaproxy_version }}_Linux.tar.gz
