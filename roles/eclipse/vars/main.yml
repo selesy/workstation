@@ -4,9 +4,6 @@
 # http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/oxygen/M5/eclipse-jee-oxygen-M5-linux-gtk-x86_64.tar.gz
 
 
-eclipse_version: oxygen
-eclipse_sr: R
-
 eclipse_release: "{{ eclipse_version }}-{{ eclipse_sr }}"
 
 eclipse_host: http://mirror.cc.columbia.edu
@@ -22,20 +19,12 @@ eclipse_tar_directory: "{{ eclipse_installation_directory }}/eclipse"
 eclipse_home_directory: "{{ eclipse_installation_directory }}/{{ eclipse_release }}"
 
 
-
-
-lombok_version: 1.16.18
-
 lombok_host: https://repo.maven.apache.org
 lombok_path: maven2/org/projectlombok/lombok/{{ lombok_version }}
 lombok_file: lombok-{{ lombok_version }}.jar
 
 lombok_url: "{{ lombok_host }}/{{ lombok_path }}/{{ lombok_file }}"
 
-
-
-
-eclim_version: 2.7.0
 
 eclim_host: https://github.com
 eclim_path: ervandew/eclim/releases/download/{{ eclim_version }}

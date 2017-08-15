@@ -4,6 +4,8 @@
 - hosts: all
   remote_user: ansible
   become: yes
+  vars_files:
+    - workstation_versions.yml
   roles:
     - common
     - development

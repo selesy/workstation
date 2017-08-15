@@ -3,7 +3,6 @@
 
 # https://github.com/zyedidia/micro/releases/download/v1.0/micro-1.0-linux64.tar.gz
 
-micro_version: 1.0
 
 micro_host: https://github.com
 micro_path: zyedidia/micro/releases/download/v{{ micro_version }}

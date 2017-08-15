@@ -3,8 +3,6 @@
 
 # http://www.umlet.com/umlet_13_2/umlet_13.2.zip
 
-umlet_version: 14.2
-
 umlet_host: http://www.umlet.com
 umlet_path: umlet_14_2
 umlet_file: umlet-standalone-{{ umlet_version }}.zip

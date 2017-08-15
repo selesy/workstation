@@ -2,7 +2,6 @@
 # roles/google_chrome/vars/main.yml
 # https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
-chrome_version: stable_current
 chrome_architecture: amd64
 
 chrome_host: https://dl.google.com
