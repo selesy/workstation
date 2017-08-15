@@ -37,6 +37,7 @@ java_version: 8
 
 #JMeter
 jmeter_version: 3.1
+plugins_manager_version: 0.15
 
 #Micro
 micro_version: 1.0

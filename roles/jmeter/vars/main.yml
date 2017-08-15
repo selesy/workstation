@@ -12,3 +12,17 @@ jmeter_url: "{{ jmeter_host }}/{{ jmeter_path }}/{{ jmeter_file }}"
 jmeter_installation_directory: /opt/jmeter
 jmeter_tar_directory: "{{ jmeter_installation_directory }}/apache-jmeter-{{ jmeter_version }}"
 jmeter_home_directory: "{{ jmeter_installation_directory }}/{{ jmeter_version }}"
+
+# https://repo1.maven.org/maven2/kg/apc/jmeter-plugins-manager/0.15/jmeter-plugins-manager-0.15.jar
+
+plugins_manager_name: jmeter-plugins-manager
+
+plugins_manager_host: https://repo1.maven.org
+plugins_manager_path: maven2/kg/apc/jmeter-plugins-manager/{{ plugins_manager_version }}
+plugins_manager_file: "{{ plugins_manager_name }}-{{ plugins_manager_version }}.jar"
+
+plugins_manager_url: "{{ plugins_manager_host }}/{{ plugins_manager_path }}/{{ plugins_manager_file }}"
+
+plugins_manager_installation_directory: "{{ jmeter_installation_directory }}/latest/lib/ext"
+plugins_manager_installation_name: "{{ plugins_manager_name }}.jar" 
+

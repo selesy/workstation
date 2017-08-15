@@ -43,3 +43,21 @@
   tags:
     - jmeter
         
+- name: download the latest version of JMeter PluginsManager
+  uri: url={{ plugins_manager_url }}
+       dest=~/{{ plugins_manager_file }}
+       creates=~/{{ plugins_manager_file }}
+  register: download_result
+  tags:
+    - jmeter
+    - plugin-manager
+
+- name: copy the JMeter PluginsManager to the latest lib/ext folder
+  copy: remote_src=yes
+        src=~/{{ plugins_manager_file }}
+        dest={{ plugins_manager_installation_directory }}/{{ plugins_manager_installation_name }}
+  when: download_result | changed
+  tags:
+    - jmeter
+    - plugin-managerwnload_result | changed
+  
