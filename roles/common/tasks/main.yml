@@ -28,6 +28,7 @@
     - seahorse
     - secure-delete
     - sshfs
+    - sshuttle
     - tftp
     - traceroute
     - tree
