@@ -1,0 +1,70 @@
+---
+# File: roles/postman/vars/main.yml
+# https://dl.pstmn.io/download/version/5.0.0/linux64
+
+#Apache Studio
+studio_version: 2.0.0
+studio_build: 20161101-M12
+
+#BurpSuite
+burp_version: latest
+
+#dbeaver
+dbeaver_version: 4.0.5
+
+#Development
+k8s_version: 1.6.0
+minikube_version: 0.17.1
+
+#Eclipse
+eclipse_version: oxygen
+eclipse_sr: R
+lombok_version: 1.16.18
+eclim_version: 2.7.0
+
+#FindBugs
+findbugs_version: 3.0.1
+
+#FireFox
+firefox_de_version: 56.0b2
+firefox_de_language: en-US
+
+#Chrome
+chrome_version: stable_current
+
+#Java
+java_version: 8
+
+#JMeter
+jmeter_version: 3.1
+plugins_manager_version: 0.15
+
+#Micro
+micro_version: 1.0
+
+#Netbeans
+netbeans_version: 8.2
+netbeans_build: 201609300101
+
+#Pencil
+pencil_version: 3.0.0-rc.1
+
+#Postman
+postman_version: 5.1.3
+
+#RatPoison
+
+#SoapUI
+soapui_version: 5.3.0
+
+#SQLMap
+sqlmap_version: 1.1
+
+#Umlet
+umlet_version: 14.2
+
+#Zaproxy
+zaproxy_version: 2.5.0
+
+...
+

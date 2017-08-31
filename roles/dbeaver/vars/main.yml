@@ -1,8 +1,6 @@
 ---
 # File: roles/dbeaver/vars/main.yml
 
-dbeaver_version: 4.0.5
-
 dbeaver_server: http://dbeaver.jkiss.org
 dbeaver_path: files/{{ dbeaver_version }}
 dbeaver_file_32: dbeaver-ee-{{ dbeaver_version }}-linux.gtk.x86.tar.gz

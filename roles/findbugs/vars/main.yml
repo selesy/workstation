@@ -3,7 +3,6 @@
 # http://prdownloads.sourceforge.net/findbugs/findbugs-3.0.1.tar.gz?download
 # http://downloads.sourceforge.net/project/findbugs/findbugs/3.0.1/findbugs-3.0.1.tar.gz?r=http%3A%2F%2Ffindbugs.sourceforge.net%2Fdownloads.html&ts=1465999425&use_mirror=heanet
 
-findbugs_version: 3.0.1
 
 findbugs_host: http://downloads.sourceforge.net
 findbugs_path: project/findbugs/findbugs/{{ findbugs_version }}
