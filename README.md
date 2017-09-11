@@ -150,6 +150,12 @@ compromised.
 
 Example
 -------
+Initial setup is done as the regular user. Do *NOT* run the scripts as sudo.
+```
+./ansible.sh
+./bootstrap.sh 127.0.0.1
+./workstation.sh
+```
 
 The workstation script copies all passed parameters to the ansible-playbook
 command.  The most useful reason is to allow the inclusion and exclusion
