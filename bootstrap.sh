@@ -1,13 +1,14 @@
 #!/bin/bash
 
-sudo apt-get -y install openssh-server sshpass
-
 if [ $# -gt 0 ] && [ -n $1 ] ; then
   echo "Target host: $1"
 else
   echo "This script requires one argument that contains an IP address"
   echo "or hostname."
+  exit 1
 fi
+
+sudo apt-get -y install openssh-server sshpass
 
 echo "[targets]" > ansible_inventory.ini
 echo "" >> ansible_inventory.ini
