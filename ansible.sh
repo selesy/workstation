@@ -1,9 +1,9 @@
 #!/bin/bash
 
-sudo apt-get -y install git ansible
-
-# be sure to have most recent ssh dependencies
+# be sure to have most recent dependencies
 sudo apt-get update && sudo apt-get dist-upgrade 
+
+sudo apt-get -y install git ansible
 
 if [ ! -d ~/.ssh ] ; then
   mkdir ~/.ssh
