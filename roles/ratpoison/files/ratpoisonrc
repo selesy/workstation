@@ -1,7 +1,25 @@
 
 bind l exec /usr/bin/dm-tool lock
 
-alias claws exec claws-mail
-alias eclipse exec /opt/eclipse/latest/eclipse
-alias firefox exec /opt/firefox-de/latest/firefox
-alias pidgin exec pidgin
+alias browser exec /opt/firefox-de/latest/firefox
+alias chat exec pidgin
+alias files exec thunar
+alias mail exec claws-mail
+alias proxy exec sshuttle -r swm16@doune.ait.psu.edu:1022 0.0.0.0/0
+
+alias burp exec java -jar /opt/burpsuite/latest/burpsuite_free_latest.jar
+alias db exec /opt/dbeaver/latest/dbeaver
+alias dir exec /opt/apache-directory-studio/latest/ApacheDirectoryStudio
+alias findbugs exec /opt/findbugs/latest/bin/findbugs
+alias ide exec /opt/eclipse/latest/eclipse
+alias jmeter exec /opt/jmeter/latest/bin/jmeter.sh
+alias mockups exec /opt/Pencil/Pencil
+alias postman exec/opt/postman/latest/Postman
+alias soapui exec /opt/soapui/latest/bin/soapui.sh
+alias uml exec /opt/umlet/latest/umlet.sh
+alias zap exec /opt/zaproxy/latest/zap.sh
+
+alias display-settings exec xfce4-display-settings
+alias network-settings exec nm-connection-editor
+alias printer-settings exec system-config-printer
+alias sound-settings exec pavucontrol
