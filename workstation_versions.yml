@@ -10,7 +10,7 @@ studio_build: 20161101-M12
 burp_version: latest
 
 #dbeaver
-dbeaver_version: 4.0.5
+dbeaver_version: 4.2.6
 
 #Development
 k8s_version: 1.7.0
@@ -18,7 +18,7 @@ minikube_version: 0.22.1
 
 #Eclipse
 eclipse_version: oxygen
-eclipse_sr: 1a
+eclipse_sr: 2.RC2
 lombok_version: 1.16.18
 eclim_version: 2.7.0
 
@@ -36,7 +36,7 @@ chrome_version: stable_current
 java_version: 8
 
 #JMeter
-jmeter_version: 3.1
+jmeter_version: 3.3
 plugins_manager_version: 0.15
 
 #Micro
@@ -50,12 +50,12 @@ netbeans_build: 201609300101
 pencil_version: 3.0.0-rc.1
 
 #Postman
-postman_version: 5.3.0
+postman_version: 5.3.2
 
 #RatPoison
 
 #SoapUI
-soapui_version: 5.3.0
+soapui_version: 5.4.0
 
 #SQLMap
 sqlmap_version: 1.1
