@@ -35,7 +35,6 @@
     - vlc
     - whois
     - wipe
-    - python-boto
     
 - name: install the NTP daemon (on Mint ... it's not installed by default)
   apt: name=ntp state=latest
