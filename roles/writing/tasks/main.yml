@@ -1,0 +1,41 @@
+---
+# File: roles/firefox_de/tasks/main.yml
+
+- name: create a directory for the asciidocfx editor
+  file: name={{ asciidocfx_installation_directory }} state=directory
+  tags:
+    - asciidocfx
+
+- name: download latest version of the asciidocfx editor
+  uri: url={{ asciidocfx_url }}
+       dest=~/{{ asciidocfx_file }}
+       creates=~/{{ asciidocfx_file }}
+  tags:
+    - asciidocfx
+
+- name: untar asciidocfx editor
+  unarchive: copy=no
+             src=~/{{ asciidocfx_file }}
+             dest={{ asciidocfx_installation_directory }}
+             creates={{ asciidocfx_home_directory }}
+  register: unarchive_result
+  tags:
+    - asciidocfx
+    
+- name: move the tar file's base directory somewhere maintainable
+  command: mv {{ asciidocfx_tar_directory }} {{ asciidocfx_home_directory }}
+  when: unarchive_result | changed
+  tags:
+    - asciidocfx
+
+- name: create a pretty symlink to the latest version
+  file: src={{ asciidocfx_home_directory }}
+        path={{ asciidocfx_installation_directory }}/latest
+        state=link
+  tags:
+    - asciidocfx
+
+- name: create a directory for the program's logs
+  file: name={{ asciidocfx_installation_directory }}/latest/log state=directory
+  tags:
+    - asciidocfx

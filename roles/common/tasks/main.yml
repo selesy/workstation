@@ -13,8 +13,8 @@
     - asciinema
     - audacity
     - curl
-    # - freemind
-    # - freemind-plugins-svg
+    - freemind
+    - freemind-plugins-svg
     - gparted
     - hopenpgp-tools
     - lynx
