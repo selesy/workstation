@@ -36,6 +36,25 @@
   apt: pkg=typora state=present
   tags:
     - editors
+    
+#
+# NodeJS
+#
+
+- name: add the NodeJS signing key
+  apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+           state=present
+
+- name: add the NodeJS repositories
+  apt_repository: repo={{ item }}
+                  state=present
+                  mode=644
+  with_items:
+    - deb https://deb.nodesource.com/{{ nodejs_repo }} xenial main
+    - deb-src https://deb.nodesource.com/{{ nodejs_repo }} xenial main
+    
+- name: add NodeJS (and therefore NPM)
+  apt: name=nodejs state=latest update_cache=yes
 
 #
 # Virtualization
@@ -217,7 +236,6 @@
     - ant
     - gradle
     - maven
-    - nodejs-legacy
 
 #
 # File formating tools

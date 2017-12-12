@@ -46,6 +46,10 @@ micro_version: 1.0
 netbeans_version: 8.2
 netbeans_build: 201609300101
 
+# NodeJS
+nodejs_version: 8.x
+nodejs_repo: node_{{ nodejs_version }}
+
 #Pencil
 pencil_version: 3.0.0-rc.1
 
