@@ -11,4 +11,5 @@ if [ ! -f ~/.ssh/ansible-key ] ; then
 fi
 
 ssh-keyscan -H 127.0.0.1 >> ~/.ssh/known_hosts
+ssh-keyscan -H localhost >> ~/.ssh/known_hosts
 
