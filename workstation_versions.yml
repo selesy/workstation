@@ -13,8 +13,8 @@ burp_version: latest
 dbeaver_version: 4.0.5
 
 #Development
-k8s_version: 1.7.0
-minikube_version: 0.22.1
+k8s_version: 1.8.5
+minikube_version: 0.24.1
 
 #Eclipse
 eclipse_version: oxygen
