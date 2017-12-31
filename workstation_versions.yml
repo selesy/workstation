@@ -13,8 +13,8 @@ burp_version: latest
 dbeaver_version: 4.2.6
 
 #Development
-k8s_version: 1.7.0
-minikube_version: 0.22.1
+k8s_version: 1.8.5
+minikube_version: 0.24.1
 
 #Eclipse
 eclipse_version: oxygen
@@ -26,7 +26,7 @@ eclim_version: 2.7.0
 findbugs_version: 3.0.1
 
 #FireFox
-firefox_de_version: 58.0b4
+firefox_de_version: 58.0b11
 firefox_de_language: en-US
 
 #Chrome
@@ -45,6 +45,10 @@ micro_version: 1.0
 #Netbeans
 netbeans_version: 8.2
 netbeans_build: 201609300101
+
+# NodeJS
+nodejs_version: 8.x
+nodejs_repo: node_{{ nodejs_version }}
 
 #Pencil
 pencil_version: 3.0.0-rc.1

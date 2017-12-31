@@ -8,6 +8,8 @@ else
   exit 1
 fi
 
+ssh-keyscan -H $1 >> ~/.ssh/known_hosts
+
 sudo apt-get -y install openssh-server sshpass
 
 echo "[targets]" > ansible_inventory.ini

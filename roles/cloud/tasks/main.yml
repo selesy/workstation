@@ -1,0 +1,11 @@
+---
+# File: roles/cloud/tasks/main.yml
+
+- name: install cloud tools
+  apt: name={{ item }} state=latest
+  with_items:
+    - awscli
+    - python-boto
+  tags:
+    - cloud
+    - aws

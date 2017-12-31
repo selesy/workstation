@@ -13,13 +13,12 @@
     - asciinema
     - audacity
     - curl
-    # - freemind
-    # - freemind-plugins-svg
+#    - freemind
+#    - freemind-plugins-svg
     - gparted
     - hopenpgp-tools
     - lynx
     - minicom
-    - npm
     - parcimonie
     - pass
     - qtpass
@@ -35,7 +34,6 @@
     - vlc
     - whois
     - wipe
-    - python-boto
     
 - name: install the NTP daemon (on Mint ... it's not installed by default)
   apt: name=ntp state=latest

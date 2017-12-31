@@ -1,0 +1,30 @@
+---
+# File: roles/writing/vars/main.yml
+# https://github.com/asciidocfx/AsciidocFX/releases/download/v1.5.5/AsciidocFX_Linux_No_JRE.tar.gz
+
+asciidocfx_version: 1.5.5
+
+asciidocfx_host: https://github.com
+asciidocfx_path: asciidocfx/AsciidocFX/releases/download/v{{ asciidocfx_version }}
+asciidocfx_file: AsciidocFX_Linux.tar.gz
+
+asciidocfx_url: "{{ asciidocfx_host }}/{{ asciidocfx_path }}/{{ asciidocfx_file }}"
+
+asciidocfx_installation_directory: /opt/asciidocfx
+asciidocfx_tar_directory: "{{ asciidocfx_installation_directory }}/AsciidocFX"
+asciidocfx_home_directory: "{{ asciidocfx_installation_directory }}/{{ asciidocfx_version }}"
+
+#firefox_de_version: 54.0a2
+#firefox_de_language: en-US
+#
+#firefox_de_host: https://download-installer.cdn.mozilla.net
+#firefox_de_path: pub/firefox/nightly/latest-mozilla-aurora
+#firefox_de_file_32: firefox-{{ firefox_de_version }}.{{ firefox_de_language }}.linux-i686.tar.bz2
+#firefox_de_file_64: firefox-{{ firefox_de_version }}.{{ firefox_de_language }}.linux-x86_64.tar.bz2
+#
+#firefox_de_url_32: "{{ firefox_de_host }}/{{ firefox_de_path }}/{{ firefox_de_file_32 }}"
+#firefox_de_url_64: "{{ firefox_de_host }}/{{ firefox_de_path }}/{{ firefox_de_file_64 }}"
+#
+#firefox_de_installation_directory: /opt/firefox-de
+#firefox_de_tar_directory: "{{ firefox_de_installation_directory }}/firefox"
+#firefox_de_home_directory: "{{ firefox_de_installation_directory }}/{{ firefox_de_version }}"
