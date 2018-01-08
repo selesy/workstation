@@ -241,27 +241,6 @@
     - git
     - gitconfig
 
-- name: add git-completion
-  copy: src=../files/{{ item }}
-        dest= ~/
-  with_items:
-    - git-completion.bash
-    - git-prompt.sh
-  tags:
-    - gitconfig
-    
-- name: add gitcompletion to bashrc
-  lineinfile:
-      dest: ~/.bashrc
-      create: true
-      state: present
-      regexp: "source ~/git-completion.bash"
-      line: "source ~/git-completion.bash"
-  tags:
-    - git
-    - gitconfig
-
-
 - name: install meld
   apt: name=meld state=latest
   tags:
@@ -296,7 +275,6 @@
   tags:
     - subversion
  
-
 #
 # Build tools
 #
