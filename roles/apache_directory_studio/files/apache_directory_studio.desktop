@@ -9,4 +9,3 @@ Categories=Development;
 Name=Apache Directory Studio
 Comment=The RCP-based LDAP browser and directory client
 Terminal=false
-Path=~/
