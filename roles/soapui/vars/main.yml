@@ -2,8 +2,8 @@
 # File: roles/soapui/vars/main.yml
 # http://cdn01.downloads.smartbear.com/soapui/5.3.0/SoapUI-5.3.0-linux-bin.tar.gz
 
-soapui_host: http://cdn01.downloads.smartbear.com
-soapui_path: soapui/{{ soapui_version }}
+soapui_host: https://s3.amazonaws.com
+soapui_path: downloads.eviware/soapuios/{{ soapui_version }}
 soapui_file: SoapUI-{{ soapui_version }}-linux-bin.tar.gz
 
 soapui_url: "{{ soapui_host }}/{{ soapui_path }}/{{ soapui_file }}"
