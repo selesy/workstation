@@ -1,6 +1,8 @@
 #!/bin/bash
 
 sudo apt-get -y install git ansible
+sudo apt-get -y install openssh-client
+sudo apt-get -y install openssh-server
 
 if [ ! -d ~/.ssh ] ; then
   mkdir ~/.ssh
