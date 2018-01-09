@@ -219,74 +219,14 @@
     - git
 
 #
-# git configuration
+# Install Meld
 #
-- name: configure git
-  lineinfile:
-      dest: ~/.gitconfig
-      create: true
-      state: present
-      regexp: "{{ item.regexp }}"
-      line: "{{ item.line }}"
-      insertafter: "{{ item.insertafter }}"
-  with_items:
-    - { regexp: '[alias]', line: '[alias]'}
-    - { regexp: 'lol = ', insertafter: '[alias]', line: '  lol = log --graph --decorate --pretty=oneline --abbrev-commit'}
-    - { regexp: 'lola = ', insertafter: '[alias]', line: '  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all'}
-    - { regexp: '[push]', line: '[push]'}
-    - { regexp: 'default = ', insertafter: '[push]', line: '  default = simple'}
-    - { regexp: '[color]', line: '[color]'}
-    - { regexp: 'ui = ', insertafter: '[color]', line: '  ui = auto'}
-  tags:
-    - git
-    - gitconfig
-
-- name: add git-completion
-  copy: src=../files/{{ item }}
-        dest= ~/
-  with_items:
-    - git-completion.bash
-    - git-prompt.sh
-  tags:
-    - gitconfig
-    
-- name: add gitcompletion to bashrc
-  lineinfile:
-      dest: ~/.bashrc
-      create: true
-      state: present
-      regexp: "source ~/git-completion.bash"
-      line: "source ~/git-completion.bash"
-  tags:
-    - git
-    - gitconfig
-
-
 - name: install meld
   apt: name=meld state=latest
   tags:
     - git
     - meld
 
-- name: configure git
-  lineinfile:
-      dest: ~/.gitconfig
-      create: true
-      state: present
-      regexp: "{{ item.regexp }}"
-      line: "{{ item.line }}"
-      insertafter: "{{ item.insertafter }}"
-  with_items:
-    - { regexp: '[mergetool]', line: '[mergetool]'}
-    - { regexp: 'keepBackup = ', insertafter: '[mergetool]', line: '  keepBackup = false'}
-    - { regexp: '[difftool]', line: '[difftool]'}
-    - { regexp: 'tool = ', insertafter: '[difftool]', line: '  tool = meld'}
-    - { regexp: 'prompt = ', insertafter: '[difftool]', line: '  prompt = false'}
-    - { regexp: '[diff]', line: '[diff]'}
-    - { regexp: 'tool = ', insertafter: '[diff]', line: '  tool = meld'}
-  tags:
-    - git
-    - meld
 
 - name: install linux tools for Subversion
   apt: name={{ item }} state=latest
