@@ -13,8 +13,8 @@ burp_version: latest
 dbeaver_version: 4.0.5
 
 #Development
-k8s_version: 1.8.5
-minikube_version: 0.24.1
+k8s_version: 1.9.2
+minikube_version: 0.25.0
 
 #Eclipse
 eclipse_version: oxygen
@@ -68,7 +68,7 @@ sqlmap_version: 1.1
 umlet_version: 14.2
 
 #Zaproxy
-zaproxy_version: 2.5.0
+zaproxy_version: 2.7.0
 
 ...
 
