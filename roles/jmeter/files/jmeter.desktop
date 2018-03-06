@@ -9,4 +9,3 @@ Categories=Development;
 Name=JMeter
 Comment=Java load testing tool
 Terminal=false
-Path=~/jmeter
