@@ -1,0 +1,3 @@
+
+vs_key: https://packages.microsoft.com/keys/microsoft.asc
+vs_repository: 'deb https://packages.microsoft.com/repos/vscode stable main'
