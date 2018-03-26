@@ -1,3 +1,6 @@
 
 vs_key: https://packages.microsoft.com/keys/microsoft.asc
 vs_repository: 'deb https://packages.microsoft.com/repos/vscode stable main'
+
+vs_source_list_name_in: packages_microsoft_com_repos_vscode.list
+vs_source_list_name_out: vscode.list

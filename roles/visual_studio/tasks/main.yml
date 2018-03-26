@@ -10,10 +10,31 @@
   - ide
   - editor
 
+# This play can be eliminated in Ansible >= 2.1
+# Add filename to the play below and remove the when clause
+- name: check to see if the renamed repository exists
+  stat: path=/etc/apt/sources.list.d/{{ vs_source_list_name_out }}
+  register: stat_result
+  tags:
+  - visual_studio
+  - ide
+  - editor
+
 - name: add the visual studio repository
   apt_repository: repo={{ vs_repository }}
                   state=present
                   mode=644
+  when: not stat_result.stat.exists
+  tags:
+  - visual_studio
+  - ide
+  - editor
+
+# This play can be eliminated in Ansible >= 2.1
+# Add filename to the play above and remove the when clause
+- name: fix the name of the repository (to what vscode expects)
+  shell: mv /etc/apt/sources.list.d/{{ vs_source_list_name_in }} /etc/apt/sources.list.d/{{ vs_source_list_name_out }}
+  when: not stat_result.stat.exists
   tags:
   - visual_studio
   - ide
