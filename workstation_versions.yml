@@ -33,7 +33,7 @@ firefox_de_language: en-US
 chrome_version: stable_current
 
 #Java
-java_version: 8
+java_version: 9
 
 #JMeter
 jmeter_version: 3.3

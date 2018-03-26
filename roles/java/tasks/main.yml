@@ -3,18 +3,19 @@
 
 #
 # OpenJDK 9
-# TODO - Broken - see http://askubuntu.com/questions/769467/can-not-install-openjdk-9-jdk-because-it-tries-to-overwrite-file-aready-includ
+# This was originally broken by conflicting packages in Ubuntu - link below for reference
+# See http://askubuntu.com/questions/769467/can-not-install-openjdk-9-jdk-because-it-tries-to-overwrite-file-aready-includ
 #
   
-#- name: install the latest OpenJDK 9
-#  apt: name={{ item }} state=latest
-#  with_items:
-#    - openjdk-9-jdk
-#    - openjdk-9-demo
-#    - openjdk-9-source
-#    - openjdk-9-doc
-#  tags:
-#    - java
+- name: install the latest OpenJDK 9
+  apt: name={{ item }} state=latest
+  with_items:
+  - openjdk-9-jdk
+  - openjdk-9-demo
+  - openjdk-9-source
+  - openjdk-9-doc
+  tags:
+  - java
 
 #
 # OpenJDK 8
@@ -35,13 +36,17 @@
 # Set up the java alternatives to point to OpenJDK 8
 #
 
-- name: set up the java alternatives to point to OpenJDK 8 (64-bit)
+- name: set up the java alternatives to point to OpenJDK 9 (64-bit)
   alternatives: name={{ item.name }} path={{ item.path }}
   with_items: "{{ java_alternatives_64 }}"
   when: ansible_architecture == "x86_64"
+  tags:
+    - java
 
-- name: set up the java alternatives to point to OpenJDK 8 (32-bit)
+- name: set up the java alternatives to point to OpenJDK 9 (32-bit)
   alternatives: name={{ item.name }} path={{ item.path }}
   with_items: "{{ java_alternatives_32 }}"
   when: ansible_architecture == "i386"
-  
+  tags:
+    - java
+ 
