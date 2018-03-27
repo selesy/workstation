@@ -80,6 +80,14 @@
   tags:
     - eclipse
 
+- name: fix the module system for Java 9
+  lineinfile:
+    dest: /opt/eclipse/latest/eclipse.ini
+    insertafter: "^-Dosgi.requiredJavaVersion=1.8$"
+    line: --add-modules=ALL-SYSTEM
+  tags:
+  - eclipse
+
 - name: create a symlink for the latest version of eclipse
   file: src={{ eclipse_installation_directory }}/latest/eclipse
         path=/usr/bin/eclipse
