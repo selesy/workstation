@@ -18,8 +18,8 @@ minikube_version: 0.25.2
 
 #Eclipse
 eclipse_version: oxygen
-eclipse_sr: 2
-lombok_version: 1.16.18
+eclipse_sr: 3
+lombok_version: 1.16.20
 eclim_version: 2.7.0
 
 #FindBugs
