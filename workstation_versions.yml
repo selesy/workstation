@@ -10,23 +10,23 @@ studio_build: 20161101-M12
 burp_version: latest
 
 #dbeaver
-dbeaver_version: 4.2.6
+dbeaver_version: 5.0.0
 
 #Development
-k8s_version: 1.8.5
-minikube_version: 0.24.1
+k8s_version: 1.9.6
+minikube_version: 0.25.2
 
 #Eclipse
 eclipse_version: oxygen
-eclipse_sr: 2.RC2
-lombok_version: 1.16.18
+eclipse_sr: 3
+lombok_version: 1.16.20
 eclim_version: 2.7.0
 
 #FindBugs
 findbugs_version: 3.0.1
 
 #FireFox
-firefox_de_version: 59.0b4
+firefox_de_version: 60.0b10
 firefox_de_language: en-US
 
 #Chrome
@@ -54,7 +54,7 @@ nodejs_repo: node_{{ nodejs_version }}
 pencil_version: 3.0.0-rc.1
 
 #Postman
-postman_version: 5.3.2
+postman_version: 5.5.3
 
 #RatPoison
 
@@ -68,7 +68,7 @@ sqlmap_version: 1.1
 umlet_version: 14.2
 
 #Zaproxy
-zaproxy_version: 2.5.0
+zaproxy_version: 2.7.0
 
 ...
 

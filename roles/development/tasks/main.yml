@@ -66,6 +66,7 @@
 #    - ansible
     - vagrant
     - virtualbox
+    - virtualbox-qt
   tags:
     - virtualization
 
@@ -218,6 +219,16 @@
   tags:
     - git
 
+#
+# Install Meld
+#
+- name: install meld
+  apt: name=meld state=latest
+  tags:
+    - git
+    - meld
+
+
 - name: install linux tools for Subversion
   apt: name={{ item }} state=latest
   with_items:
@@ -225,7 +236,8 @@
     - libsvn-java
   tags:
     - subversion
-    
+ 
+
 #
 # Build tools
 #

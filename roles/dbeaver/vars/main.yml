@@ -3,9 +3,9 @@
 
 dbeaver_server: http://dbeaver.jkiss.org
 dbeaver_path: files/{{ dbeaver_version }}
-dbeaver_file_32: dbeaver-ee-{{ dbeaver_version }}-linux.gtk.x86.tar.gz
-dbeaver_file_64: dbeaver-ee-{{ dbeaver_version }}-linux.gtk.x86_64.tar.gz
-dbeaver_file: dbeaver-ee-{{ dbeaver_version }}-linux.gtk.tar.gz
+dbeaver_file_32: dbeaver-ce-{{ dbeaver_version }}-linux.gtk.x86.tar.gz
+dbeaver_file_64: dbeaver-ce-{{ dbeaver_version }}-linux.gtk.x86_64.tar.gz
+dbeaver_file: dbeaver-ce-{{ dbeaver_version }}-linux.gtk.tar.gz
 
 dbeaver_url_32: "{{ dbeaver_server }}/{{ dbeaver_path }}/{{ dbeaver_file_32 }}"
 dbeaver_url_64: "{{ dbeaver_server }}/{{ dbeaver_path }}/{{ dbeaver_file_64 }}"
