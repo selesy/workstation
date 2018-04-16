@@ -14,7 +14,7 @@ dbeaver_version: 5.0.0
 
 #Development
 k8s_version: 1.9.6
-minikube_version: 0.25.2
+minikube_version: 0.26.0
 
 #Eclipse
 eclipse_version: oxygen
