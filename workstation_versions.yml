@@ -14,7 +14,7 @@ dbeaver_version: 5.0.3
 
 #Development
 k8s_version: 1.9.6
-minikube_version: 0.25.2
+minikube_version: 0.26.0
 
 #Eclipse
 eclipse_version: oxygen
@@ -26,7 +26,7 @@ eclim_version: 2.7.0
 findbugs_version: 3.0.1
 
 #FireFox
-firefox_de_version: 60.0b10
+firefox_de_version: 60.0b13
 firefox_de_language: en-US
 
 #Chrome
