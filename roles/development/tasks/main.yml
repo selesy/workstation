@@ -2,6 +2,35 @@
 # File: roles/development/tasks/main.yml
 
 #
+# Languagges
+#
+
+- name: add languages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - golang-{{ go_version }}
+    - golang-golang-x-tools
+  tags:
+    - languages
+
+- name: set-up the go environment
+  copy: src=../files/go.sh
+        dest=/etc/profile.d
+  tags:
+    - languages
+    - go
+
+- name: add useful go packages
+  shell: /usr/lib/go-1.10/bin/go get -u {{ item }}
+  with_items:
+    - "github.com/uudashr/gopkgs/cmd/gopkgs"
+  tags:
+    - languages
+    - go
+
+#
 # Editors
 #
 
