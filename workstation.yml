@@ -9,6 +9,7 @@
   roles:
     - common
     - development
+    - containerization
     - java
     - netbeans
     - jmeter
