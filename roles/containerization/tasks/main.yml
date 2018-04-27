@@ -71,6 +71,10 @@
     - containerization
     - kubernetes
 
+#
+# Minikube
+#
+
 - name: create the installation directory for MiniKube
   file: name={{ minikube_home_directory }} state=directory
   tags:
@@ -107,4 +111,81 @@
     - containerization
     - kubernetes
     - minikube
+
+#
+# Kubectx
+#
+
+- name: "create the installation directory for kubectx"
+  file:
+    name: "{{ kubectx_installation_directory }}"
+    state: "directory"
+  tags:
+    - containerization
+    - kubernetes
+    - kubectx
+
+- name: "download the kubectx archive"
+  uri:
+    url: "{{ kubectx_url }}"
+    dest: "~/{{ kubectx_file }}"
+    creates: "~/{{ kubectx_file }}"
+    mode: "755"
+  register: "kubectx_download_result"
+  tags:
+    - containerization
+    - kubernetes
+    - kubectx
+
+- name: "expand the kubectx archive"
+  unarchive:
+    src: "~/{{ kubectx_file }}"
+    dest: "{{ kubectx_installation_directory }}"
+    copy: "no"
+    creates: "{{ kubectx_home_directory }}"
+  register: "kubectx_unarchive_result"
+  tags:
+    - containerization
+    - kubernetes
+    - kubectx
+
+- name: "rename the archive directory to the version number"
+  command: "mv {{ kubectx_installation_directory }}/kubectx-{{ kubectx_version }} {{ kubectx_home_directory }}"
+  when: "kubectx_unarchive_result | changed"
+  tags:
+    - containerization
+    - kubernetes
+    - kubectx
+
+- name: "make a pretty symlink to the new version"
+  file:
+    src: "{{ kubectx_home_directory }}"
+    path: "{{ kubectx_installation_directory }}/latest"
+    state: "link"
+  tags:
+    - containerization
+    - kubernetes
+    - kubectx
+
+- name: "create symlinks to the executables"
+  file:
+    src: "{{ kubectx_installation_directory }}/latest/{{ item }}"
+    dest: "/usr/bin/{{ item }}"
+    state: "link"
+  with_items: "{{ kubectx_executables }}"
+  tags:
+    - containerization
+    - kubernetes
+    - kubectx
+
+- name: "create symlinks for bash completion"
+  file:
+    src: "{{ kubectx_installation_directory }}/latest/completion/{{ item }}.bash"
+    dest: "/etc/bash_completion.d/{{ item }}.bash"
+    state: "link"
+  with_items: "{{ kubectx_executables }}"
+  tags:
+    - containerization
+    - kubernetes
+    - kubectx
 

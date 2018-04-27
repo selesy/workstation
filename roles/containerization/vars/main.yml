@@ -31,4 +31,19 @@ minikube_url: "{{ minikube_host }}/{{ minikube_path }}/{{ minikube_file }}"
 
 minikube_installation_directory: /opt/minikube
 minikube_home_directory: "{{ minikube_installation_directory }}/{{ minikube_version }}"
- 
+
+# https://github.com/ahmetb/kubectx/archive/v0.5.0.tar.gz
+
+kubectx_host: "https://github.com"
+kubectx_path: "ahmetb/kubectx/archive"
+kubectx_file: "v{{ kubectx_version }}.tar.gz"
+
+kubectx_url: "{{ kubectx_host }}/{{ kubectx_path }}/{{ kubectx_file }}"
+
+kubectx_installation_directory: "/opt/kubectx"
+kubectx_home_directory: "{{ kubectx_installation_directory }}/{{ kubectx_version }}"
+
+kubectx_executables:
+  - "kubectx"
+  - "kubens"
+  
