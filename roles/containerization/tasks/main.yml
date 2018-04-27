@@ -1,76 +1,51 @@
 ---
 # File: roles/containerization/tasks/main.yml
 
+#
+# Docker
+#
+
 - name: install docker for container execution environment
   apt: name=docker.io state=latest
   tags:
     - containerization
     - docker
 
-- name: create the installation directory for Kubernetes
-  file: name={{ k8s_installation_directory }} state="directory"
+#
+# Delete the full Kubernetes installation
+#
+
+- name: delele Kubernetes
+  file: name={{ k8s_installation_directory }} state="absent"
   tags:
     - containerization
     - kubernetes
 
-- name: download the Kubernetes release package
-  uri: url={{ k8s_url }}
-       dest=~/{{ k8s_tar_file }}
-       creates=~/{{ k8s_tar_file }}
-  register: download_result
+#
+# Install only kubectl
+#
+
+- name: "add the google apt key"
+  apt_key:
+    url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+    state: "present"
   tags:
     - containerization
     - kubernetes
 
-- name: unarchive the Kubernetes release
-  unarchive: copy=no
-             src=~/{{ k8s_tar_file }}
-             dest={{ k8s_installation_directory }}
-             creates={{ k8s_home_directory }}
-#  when: download_result | changed
-  register: unarchive_result
+- name: "add the Google repository"
+  apt_repository:
+    repo: "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+    state: "present"
   tags:
     - containerization
     - kubernetes
 
-- name: move the unarchived files to the standard location
-  command: mv {{ k8s_tar_directory }} {{ k8s_home_directory }}
-  when: unarchive_result | changed
-  tags:
-    - containerization
-    - kubernetes
-
-- name: create a pretty symlink to the latest Kubernetes version
-  file: src={{ k8s_home_directory }}
-        path={{ k8s_installation_directory }}/latest
-        state=link
-  when: unarchive_result | changed
-  tags:
-    - containerization
-    - kubernetes
-
-- name: fix the group 
-  file: path={{ k8s_home_directory }}
-        recurse=yes
-        state=directory
-        group=docker
-  tags:
-    - containerization
-    - kubernetes
-
-- name: install the Kubernetes binaries (server and client)
-  shell: export KUBERNETES_SKIP_CONFIRM=true && ./cluster/get-kube-binaries.sh
-         chdir={{ k8s_installation_directory }}/latest
-         creates=./client/bin/
-  tags:
-    - containerization
-    - kubernetes
-
-
-- name: put kubectl on the user's path
-  file: src={{ k8s_installation_directory }}/latest/client/bin/kubectl
-        path=/usr/bin/kubectl
-        state=link
+- name: "install kubectl"
+  apt:
+    name: "kubectl"
+    state: "present"
+    update_cache: "yes"
   tags:
     - containerization
     - kubernetes
