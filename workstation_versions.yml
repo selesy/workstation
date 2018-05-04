@@ -22,7 +22,7 @@ go_version: "1.10"
 
 #Eclipse
 eclipse_version: oxygen
-eclipse_sr: 3
+eclipse_sr: 3a
 lombok_version: 1.16.20
 eclim_version: 2.7.0
 
