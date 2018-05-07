@@ -24,7 +24,7 @@
 
 - name: move the archive's base directory somewhere maintainable
   command: mv {{ micro_tar_directory }} {{ micro_installation_directory }}/{{ micro_version }}
-  when: unarchive_result | changed
+  when: unarchive_result is changed
   tags:
     - editors
 

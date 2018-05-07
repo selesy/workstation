@@ -27,7 +27,7 @@
 
 - name: move the archive's base directory somewhere maintainable
   command: mv {{ sqlmap_tar_directory }} {{ sqlmap_installation_directory }}/{{ sqlmap_version }}
-  when: unarchive_result | changed
+  when: unarchive_result is changed
   tags:
     - sqlmap
     - security

@@ -97,7 +97,7 @@
   file: src={{ minikube_home_directory }}
         path={{ minikube_installation_directory }}/latest
         state=link
-  when: download_result | changed
+  when: download_result is changed
   tags:
     - containerization
     - kubernetes
@@ -151,7 +151,7 @@
 
 - name: "rename the archive directory to the version number"
   command: "mv {{ kubectx_installation_directory }}/kubectx-{{ kubectx_version }} {{ kubectx_home_directory }}"
-  when: "kubectx_unarchive_result | changed"
+  when: "kubectx_unarchive_result is changed"
   tags:
     - containerization
     - kubernetes

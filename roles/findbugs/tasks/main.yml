@@ -29,7 +29,7 @@
 - name: move the tar file's base directory somewhere maintainable
   command: mv {{ findbugs_tar_directory }}
            {{ findbugs_home_directory }}
-  when: unarchive_result | changed
+  when: unarchive_result is changed
   tags:
     - findbugs
 

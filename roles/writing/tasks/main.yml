@@ -24,7 +24,7 @@
     
 - name: move the tar file's base directory somewhere maintainable
   command: mv {{ asciidocfx_tar_directory }} {{ asciidocfx_home_directory }}
-  when: unarchive_result | changed
+  when: unarchive_result is changed
   tags:
     - asciidocfx
 

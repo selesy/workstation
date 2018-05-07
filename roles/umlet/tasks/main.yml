@@ -29,7 +29,7 @@
 - name: move the ZIP's base directory somewhere maintainable
   command: mv {{ umlet_zip_directory }}
            {{ umlet_home_directory }}
-  when: unarchive_result | changed
+  when: unarchive_result is changed
   tags:
     - uml
     - modeling

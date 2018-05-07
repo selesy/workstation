@@ -26,7 +26,7 @@
 - name: move the SoapUi archive somewhere maintainable
   command: mv {{ soapui_tar_directory }}
            {{ soapui_home_directory }}
-  when: unarchive_result | changed
+  when: unarchive_result is changed
   tags:
     - soapui
 
@@ -48,7 +48,7 @@
 - name: move the extracted icon into the SoapUI bin directory
   command: mv {{ soapui_icon_path }}/{{ soapui_icon_file }} ./{{ soapui_icon_file }}
            chdir={{ soapui_bin_directory }}
-  when: icon_extract_result | changed
+  when: icon_extract_result is changed
   tags:
     - soapui
 

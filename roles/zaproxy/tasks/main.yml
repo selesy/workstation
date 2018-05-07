@@ -25,7 +25,7 @@
 - name: move the tar file's base directory somewhere maintainable
   command: mv {{ zaproxy_tar_directory }}
            {{ zaproxy_home_directory }}
-  when: unarchive_result | changed
+  when: unarchive_result is changed
   tags:
     - zaproxy
 

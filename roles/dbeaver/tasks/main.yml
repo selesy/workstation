@@ -28,7 +28,7 @@
 - name: create the directory where dbeaver will be untarred
   file: path={{ dbeaver_tar_directory }}
         state=directory
-  when: download_result_64 | changed or download_result_32 | changed
+  when: download_result_64 is changed or download_result_32 is changed
   tags:
     - dbeaver
 
@@ -44,7 +44,7 @@
 - name: move the untarred files to the standard location
   command: mv {{ dbeaver_tar_directory }}
            {{ dbeaver_home_directory }}
-  when: unarchive_result | changed
+  when: unarchive_result is changed
   tags:
     - dbeaver
 

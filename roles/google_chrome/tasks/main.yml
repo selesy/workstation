@@ -14,7 +14,7 @@
 - name: install the current stable version of Google Chrome
 #  apt: deb="~/{{ chrome_file }}"
   apt: deb="/root/{{ chrome_file }}"
-  when: download_result | changed and ansible_architecture == "x86_64"
+  when: download_result is changed and ansible_architecture == "x86_64"
   tags:
     - chrome
 

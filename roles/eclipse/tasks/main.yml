@@ -55,7 +55,7 @@
 - name: move the tar file's base directory somewhere maintainable
   command: mv {{ eclipse_tar_directory }}
            {{ eclipse_home_directory }}
-  when: (unarchive_result_64 | changed) or (unarchive_result_32 | changed)
+  when: (unarchive_result_64 is changed) or (unarchive_result_32 is changed)
   tags:
     - eclipse
 

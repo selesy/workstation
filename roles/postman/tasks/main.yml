@@ -26,7 +26,7 @@
 - name: move the Postman archive somewhere maintainable
   command: mv {{ postman_tar_directory }}
               {{ postman_home_directory }}
-  when: unarchive_result | changed
+  when: unarchive_result is changed
   tags:
     - postman
 

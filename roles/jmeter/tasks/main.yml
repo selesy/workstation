@@ -26,7 +26,7 @@
 - name: move the tar file's base directory somewhere maintainable
   command: mv {{ jmeter_tar_directory }}
            {{ jmeter_home_directory }}
-  when: unarchive_result | changed
+  when: unarchive_result is changed
   tags:
     - jmeter
 
@@ -56,8 +56,8 @@
   copy: remote_src=yes
         src=~/{{ plugins_manager_file }}
         dest={{ plugins_manager_installation_directory }}/{{ plugins_manager_installation_name }}
-  when: download_result | changed
+  when: download_result is changed
   tags:
     - jmeter
-    - plugin-managerwnload_result | changed
+    - plugin-managerwnload_result is changed
   

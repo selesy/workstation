@@ -34,7 +34,7 @@
 - name: move the tar file's base directory somewhere maintainable
   command: mv {{ firefox_de_tar_directory }}
            {{ firefox_de_home_directory }}
-  when: unarchive_result | changed
+  when: unarchive_result is changed
   tags:
     - firefox-de
 
