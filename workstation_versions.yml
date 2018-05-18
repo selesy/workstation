@@ -10,11 +10,11 @@ studio_build: 20170904-M13
 burp_version: latest
 
 #dbeaver
-dbeaver_version: 5.0.3
+dbeaver_version: 5.0.5
 
 #Development
 k8s_version: 1.9.6
-minikube_version: 0.26.1
+minikube_version: 0.27.0
 kubectx_version: 0.5.0
 
 #Development
