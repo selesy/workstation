@@ -178,7 +178,7 @@
     - kubernetes
     - kubectx
 
-- name: "create symlinks for bash completion"
+- name: "create symlinks for Kubernete's bash completion"
   file:
     src: "{{ kubectx_installation_directory }}/latest/completion/{{ item }}.bash"
     dest: "/etc/bash_completion.d/{{ item }}.bash"
@@ -189,3 +189,89 @@
     - kubernetes
     - kubectx
 
+#
+# Helm
+#
+
+- name: "create the installation directory for helm"
+  file:
+    name: "{{ helm_installation_directory }}"
+    state: "directory"
+  tags:
+    - containerization
+    - kubernetes
+    - helm
+
+- name: "download the Helm release archive"
+  get_url:
+    url: "{{ helm_url }}"
+    dest: "~/{{ helm_file }}"
+    checksum: "{{ helm_checksum }}"
+    mode: "755"
+  register: "helm_download_result"
+  tags:
+    - containerization
+    - kubernetes
+    - helm
+
+- name: "expand the Helm archive"
+  unarchive:
+    src: "~/{{ helm_file }}"
+    dest: "{{ helm_installation_directory }}"
+    copy: "no"
+    creates: "{{ helm_home_directory }}"
+  register: "helm_unarchive_result"
+  tags:
+    - containerization
+    - kubernetes
+    - helm
+
+- name: "rename the Helm archive directory to the version number"
+  command: "mv {{ helm_installation_directory }}/linux-amd64 {{ helm_home_directory }}"
+  when: "helm_unarchive_result is changed"
+  tags:
+    - containerization
+    - kubernetes
+    - helm
+
+- name: "make a pretty symlink to the latest version"
+  file:
+    src: "{{ helm_home_directory }}"
+    dest: "{{ helm_installation_directory }}/latest"
+    state: "link"
+  tags:
+    - containerization
+    - kubernetes
+    - helm
+
+- name: "create a symlink to the executable"
+  file:
+    src: "{{ helm_installation_directory }}/latest/helm"
+    dest: "/usr/bin/helm"
+    state: "link"
+  tags:
+    - containerization
+    - kubernetes
+    - helm
+
+- name: "download Helm's bash completions"
+  get_url:
+    url: "{{ helm_bash_url }}"
+    dest: "{{ helm_installation_directory }}/latest"
+    mode: "755"
+  tags:
+    - containerization
+    - kubernetes
+    - helm
+
+- name: "create a symlink to Helm's bash completion"
+  file:
+    src: "{{ helm_installation_directory }}/latest/{{ helm_bash_file }}"
+    dest: "/etc/bash_completion.d/helm-{{ helm_bash_file }}"
+    state: "link"
+  tags:
+    - containerization
+    - kubernetes
+    - helm
+
+ 

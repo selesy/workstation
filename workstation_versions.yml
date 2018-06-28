@@ -15,6 +15,8 @@ dbeaver_version: 5.0.5
 #Development
 minikube_version: 0.27.0
 kubectx_version: 0.5.0
+helm_version: 2.9.1
+helm_checksum: "sha256:56ae2d5d08c68d6e7400d462d6ed10c929effac929fedce18d2636a9b4e166ba"
 
 #Development
 go_version: "1.10"
