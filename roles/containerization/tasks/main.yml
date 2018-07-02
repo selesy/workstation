@@ -274,4 +274,63 @@
     - kubernetes
     - helm
 
- 
+#
+# Kubeseal
+#
+
+- name: "create the home directory for kubeseal"
+  file:
+    path: "{{ kubeseal_home_directory }}"
+    state: "directory"
+  tags:
+    - containerization
+    - kubernetes
+    - kubeseal
+
+- name: "create the go_os variable"
+  command: "/usr/lib/go-1.10/bin/go env GOOS"
+  register: go_os
+  changed_when: false
+  tags:
+    - containerization
+    - kubernetes
+    - kubeseal
+
+- name: "create the go_arch variable"
+  command: "/usr/lib/go-1.10/bin/go env GOARCH"
+  register: go_arch
+  changed_when: false
+  tags:
+    - containerization
+    - kubernetes
+    - kubeseal
+
+- name: "downloadand install the appropriate kubeseal binary"
+  get_url:
+    url: "{{ kubeseal_url }}-{{ go_os.stdout }}-{{ go_arch.stdout }}"
+    dest: "{{ kubeseal_home_directory }}/{{ kubeseal_file }}"
+    mode: "755"
+  tags:
+    - containerization
+    - kubernetes
+    - kubeseal
+
+- name: "create a pretty symlink for kubeseal"
+  file:
+    src: "{{ kubeseal_home_directory }}"
+    path: "{{ kubeseal_installation_directory }}/latest"
+    state: "link"
+  tags:
+    - containerization
+    - kubernetes
+    - kubeseal
+
+- name: "create a symlink to the executable"
+  file:
+    src: "{{ kubeseal_installation_directory }}/latest/kubeseal"
+    path: "/usr/bin/kubeseal"
+    state: "link"
+  tags:
+    - containerization
+    - kubernetes
+    - kubeseal

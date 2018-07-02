@@ -53,3 +53,14 @@ helm_bash_path: "kubernetes/helm/v{{ helm_version }}/scripts"
 helm_bash_file: "completions.bash"
 
 helm_bash_url: "{{ helm_bash_host }}/{{ helm_bash_path }}/{{ helm_bash_file }}"
+
+# https://github.com/bitnami-labs/sealed-secrets/releases/download/$release/kubeseal-$GOOS-$GOARCH
+
+kubeseal_host: "https://github.com"
+kubeseal_path: "bitnami-labs/sealed-secrets/releases/download/v{{ kubeseal_version }}"
+kubeseal_file: "kubeseal"
+
+kubeseal_url: "{{ kubeseal_host }}/{{ kubeseal_path }}/{{ kubeseal_file }}"
+
+kubeseal_installation_directory: "/opt/kubeseal"
+kubeseal_home_directory: "{{kubeseal_installation_directory }}/{{ kubeseal_version }}"
