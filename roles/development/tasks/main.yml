@@ -2,7 +2,7 @@
 # File: roles/development/tasks/main.yml
 
 #
-# Languagges
+# Languages
 #
 
 - name: add languages
