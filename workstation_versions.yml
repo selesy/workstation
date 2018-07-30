@@ -25,7 +25,7 @@ go_version: "1.10"
 #Eclipse
 eclipse_version: oxygen
 eclipse_sr: 3a
-lombok_version: 1.16.20
+lombok_version: 1.18.2
 eclim_version: 2.7.0
 
 #FindBugs
