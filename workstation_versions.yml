@@ -10,7 +10,7 @@ studio_build: 20170904-M13
 burp_version: latest
 
 #dbeaver
-dbeaver_version: 5.0.5
+dbeaver_version: 5.1.4
 
 #Development
 minikube_version: 0.28.2
@@ -60,7 +60,7 @@ nodejs_repo: node_{{ nodejs_version }}
 pencil_version: 3.0.0-rc.1
 
 #Postman
-postman_version: 6.0.10
+postman_version: 6.1.4
 
 #RatPoison
 
