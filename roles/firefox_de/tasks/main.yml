@@ -6,19 +6,10 @@
   tags:
     - firefox-de
 
-- name: download latest version of Firefox Developer Edition (64-bit)
-  uri: url={{ firefox_de_url_64 }}
+- name: download latest version of Firefox Developer Edition
+  uri: url={{ firefox_de_url}}
        dest=~/{{ firefox_de_file }}
        creates=~/{{ firefox_de_file }}
-  when: ansible_architecture == "x86_64"
-  tags:
-    - firefox-de
-
-- name: download latest version of Firefox Developer Edition (32-bit)
-  uri: url={{ firefox_de_url_32 }}
-       dest=~/{{ firefox_de_file }}
-       creates=~/{{ firefox_de_file }}
-  when: ansible_architecture == "i386"
   tags:
     - firefox-de
 
