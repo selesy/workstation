@@ -71,7 +71,7 @@ soapui_version: 5.4.0
 sqlmap_version: 1.1
 
 #Umlet
-umlet_version: 14.2
+umlet_version: 14.3
 
 #Zaproxy
 zaproxy_version: 2.7.0
