@@ -68,7 +68,7 @@ postman_version: 6.2.5
 soapui_version: 5.4.0
 
 #SQLMap
-sqlmap_version: 1.1
+sqlmap_version: 1.2.8
 
 #Umlet
 umlet_version: 14.3
