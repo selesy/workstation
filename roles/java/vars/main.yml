@@ -7,53 +7,9 @@
 # update-alternatives --get-selections | grep jvm
 #
 
-java_alternatives_32:
-  - {"name":"appletviewer", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/appletviewer"}
-  - {"name":"extcheck", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/extcheck"}
-  - {"name":"idlj", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/idlj"}
-#  - {"name":"itweb-settings", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/jre/bin/itweb-settings"}
-  - {"name":"jar", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/jar"}
-  - {"name":"jarsigner", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/jarsigner"}
-  - {"name":"java", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/jre/bin/java"}
-  - {"name":"javac", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/javac"}
-  - {"name":"javadoc", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/javadoc"}
-  - {"name":"javah", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/javah"}
-  - {"name":"javap", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/javap"}
-#  - {"name":"javaws", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/jre/bin/javaws"}
-  - {"name":"jcmd", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/jcmd"}
-  - {"name":"jconsole", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/jconsole"}
-  - {"name":"jdb", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/jdb"}
-  - {"name":"jdeps", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/jdeps"}
-  - {"name":"jexec", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/jre/lib/jexec"}
-  - {"name":"jhat", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/jhat"}
-  - {"name":"jinfo", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/jinfo"}
-  - {"name":"jjs", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/jre/bin/jjs"}
-  - {"name":"jmap", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/jmap"}
-  - {"name":"jps", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/jps"}
-  - {"name":"jrunscript", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/jrunscript"}
-  - {"name":"jsadebugd", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/jsadebugd"}
-  - {"name":"jstack", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/jstack"}
-  - {"name":"jstat", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/jstat"}
-  - {"name":"jstatd", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/jstatd"}
-  - {"name":"keytool", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/jre/bin/keytool"}
-#  - {"name":"mozilla-javaplugin.so", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/jre/lib/i386/IcedTeaPlugin.so"}
-  - {"name":"native2ascii", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/native2ascii"}
-  - {"name":"orbd", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/jre/bin/orbd"}
-  - {"name":"pack200", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/jre/bin/pack200"}
-  - {"name":"policytool", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/jre/bin/policytool"}
-  - {"name":"rmic", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/rmic"}
-  - {"name":"rmid", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/jre/bin/rmid"}
-  - {"name":"rmiregistry", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/jre/bin/rmiregistry"}
-  - {"name":"schemagen", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/schemagen"}
-  - {"name":"serialver", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/serialver"}
-  - {"name":"servertool", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/jre/bin/servertool"}
-  - {"name":"tnameserv", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/jre/bin/tnameserv"}
-  - {"name":"unpack200", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/jre/bin/unpack200"}
-  - {"name":"wsgen", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/wsgen"}
-  - {"name":"wsimport", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/wsimport"}
-  - {"name":"xjc", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-i386/bin/xjc"}
 
-java_alternatives_64:
+
+java_alternatives:
   - {"name":"appletviewer", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-amd64/bin/appletviewer"}
   - {"name":"extcheck", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-amd64/bin/extcheck"}
   - {"name":"idlj", "path":"/usr/lib/jvm/java-{{ java_version }}-openjdk-amd64/bin/idlj"}
