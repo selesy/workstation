@@ -2,10 +2,11 @@
 # File: roles/pencil/vars/main.yml
 
 # https://github.com/evolus/pencil/releases/download/v3.0.0-rc.1/Pencil-3.0.0-rc.1.deb
+# http://pencil.evolus.vn/dl/V3.0.4/Pencil_3.0.4_amd64.deb
 
-pencil_host: https://github.com
-pencil_path: evolus/pencil/releases/download/v{{ pencil_version }}
-pencil_file: Pencil-{{ pencil_version }}.deb
+pencil_host: https://pencil.evolus.vn
+pencil_path: dl/V{{ pencil_version }}
+pencil_file: Pencil_{{ pencil_version }}_amd64.deb
 
 pencil_url: "{{ pencil_host }}/{{ pencil_path }}/{{ pencil_file }}"
 

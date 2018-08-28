@@ -57,7 +57,7 @@ nodejs_version: 8.x
 nodejs_repo: node_{{ nodejs_version }}
 
 #Pencil
-pencil_version: 3.0.0-rc.1
+pencil_version: 3.0.4
 
 #Postman
 postman_version: 6.2.5
