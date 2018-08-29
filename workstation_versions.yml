@@ -10,7 +10,7 @@ studio_build: 20170904-M13
 burp_version: latest
 
 #dbeaver
-dbeaver_version: 5.1.4
+dbeaver_version: 5.1.6
 
 #Development
 minikube_version: 0.28.2
