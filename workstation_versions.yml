@@ -10,7 +10,7 @@ studio_build: 20170904-M13
 burp_version: latest
 
 #dbeaver
-dbeaver_version: 5.1.4
+dbeaver_version: 5.1.6
 
 #Development
 minikube_version: 0.28.2
@@ -23,8 +23,8 @@ kubeseal_version: 0.7.0
 go_version: "1.10"
 
 #Eclipse
-eclipse_version: oxygen
-eclipse_sr: 3a
+eclipse_version: photon
+eclipse_sr: RC3
 lombok_version: 1.18.2
 eclim_version: 2.7.0
 
