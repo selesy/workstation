@@ -24,7 +24,7 @@ go_version: "1.10"
 
 #Eclipse
 eclipse_version: photon
-eclipse_sr: RC3
+eclipse_sr: R
 lombok_version: 1.18.2
 eclim_version: 2.7.0
 
