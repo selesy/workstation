@@ -32,7 +32,7 @@ eclim_version: 2.7.0
 findbugs_version: 3.0.1
 
 #FireFox
-firefox_de_version: 63.0b4
+firefox_de_version: 63.0b5
 firefox_de_language: en-US
 
 #Chrome
