@@ -80,8 +80,8 @@
                   state=present
                   mode=644
   with_items:
-    - deb https://deb.nodesource.com/{{ nodejs_repo }} xenial main
-    - deb-src https://deb.nodesource.com/{{ nodejs_repo }} xenial main
+    - deb https://deb.nodesource.com/{{ nodejs_repo }} bionic main
+    - deb-src https://deb.nodesource.com/{{ nodejs_repo }} bionic main
     
 - name: add NodeJS (and therefore NPM)
   apt: name=nodejs state=latest update_cache=yes
