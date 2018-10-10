@@ -7,6 +7,9 @@
 - name: upgrade existing apt packages
   apt: upgrade=yes state=latest
 
+- name: refresh the existing snap packages
+  command: snap refresh
+
 - name: install basic Linux tools
   apt: name={{ item }} state=latest
   with_items:
@@ -26,6 +29,7 @@
     - screen
     - seahorse
     - secure-delete
+    - snapd
     - sshfs
     - sshuttle
     - tftp

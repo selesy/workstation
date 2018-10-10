@@ -25,27 +25,27 @@
 # Install only kubectl
 #
 
-- name: "add the google apt key"
-  apt_key:
-    url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
-    state: "present"
-  tags:
-    - containerization
-    - kubernetes
-
-- name: "add the Google repository"
-  apt_repository:
-    repo: "deb http://apt.kubernetes.io/ kubernetes-xenial main"
-    state: "present"
-  tags:
-    - containerization
-    - kubernetes
-
-- name: "install kubectl"
+- name: "remove Debian kubectl"
   apt:
     name: "kubectl"
-    state: "present"
+    state: "absent"
     update_cache: "yes"
+  tags:
+    - containerization
+    - kubernetes
+
+- name: "remove the Google apt repository"
+  apt_repository:
+    repo: "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+    state: "absent"
+  tags:
+    - containerization
+    - kubernetes
+
+- name: install the snap-managed kubectl
+  command: snap install --classic kubectl
+  args:
+    creates: /snap/bin/kubectl
   tags:
     - containerization
     - kubernetes
