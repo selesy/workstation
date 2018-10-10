@@ -13,7 +13,7 @@ burp_version: latest
 dbeaver_version: 5.1.6
 
 #Development
-minikube_version: 0.28.2
+minikube_version: 0.30.0
 kubectx_version: 0.6.1
 helm_version: 2.10.0
 helm_checksum: "sha256:0fa2ed4983b1e4a3f90f776d08b88b0c73fd83f305b5b634175cb15e61342ffe"
