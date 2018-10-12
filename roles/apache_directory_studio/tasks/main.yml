@@ -52,8 +52,8 @@
     - ldap
 
 - name: add a launcher to the development menu for Apache Directory Studio
-  copy: src=../files/apache_directory_studio.desktop
-        dest=/usr/share/applications
+  template: src=../files/apache_directory_studio.desktop
+            dest=/usr/share/applications
   tags:
     - apache_directory_studio
     - ldap

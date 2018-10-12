@@ -1,11 +1,11 @@
 [Desktop Entry]
-Version=1.0
+Version={{ studio_version }}
 Type=Application
 Encoding=UTF-8
 Exec=/opt/apache-directory-studio/latest/ApacheDirectoryStudio
 Icon=/opt/apache-directory-studio/latest/icon.xpm
 StartupNotify=false
 Categories=Development;
-Name=Apache Directory Studio
+Name=Apache Directory Studio - {{ studio_version }}
 Comment=The RCP-based LDAP browser and directory client
 Terminal=false
