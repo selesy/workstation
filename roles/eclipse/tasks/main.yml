@@ -67,8 +67,8 @@
     - eclipse
 
 - name: add a launcher to the development menu
-  copy: src=../files/eclipse.desktop
-        dest=/usr/share/applications
+  template: src=../files/eclipse.desktop
+            dest=/usr/share/applications
   tags:
     - eclipse
     
