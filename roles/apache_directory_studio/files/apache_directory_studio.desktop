@@ -1,5 +1,5 @@
 [Desktop Entry]
-Version={{ studio_version }}
+Version=1.0
 Type=Application
 Encoding=UTF-8
 Exec=/opt/apache-directory-studio/latest/ApacheDirectoryStudio
