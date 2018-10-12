@@ -41,7 +41,7 @@
     - findbugs
 
 - name: add a launcher for FindBugs to the development menu
-  copy: src=../files/findbugs.desktop
-        dest=/usr/share/applications
+  template: src=../files/findbugs.desktop
+            dest=/usr/share/applications
   tags:
     - findbugs

@@ -37,7 +37,7 @@
     - firefox-de
 
 - name: add a launcher for Firefox Developer Edition
-  copy: src=../files/firefox-de.desktop
-        dest=/usr/share/applications
+  template: src=../files/firefox-de.desktop
+            dest=/usr/share/applications
   tags:
     - firefox-de
