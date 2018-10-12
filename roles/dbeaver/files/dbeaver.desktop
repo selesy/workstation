@@ -6,6 +6,6 @@ Exec=/opt/dbeaver/latest/dbeaver
 Icon=/opt/dbeaver/latest/icon.xpm
 StartupNotify=false
 Categories=Development;
-Name=DBeaver
+Name=DBeaver - {{ dbeaver_version }}
 Comment=Free Universal Database Manager 
 Terminal=false

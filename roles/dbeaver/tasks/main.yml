@@ -56,8 +56,8 @@
     - dbeaver
 
 - name: add a launcher to the development menu for DBeaver
-  copy: src=../files/dbeaver.desktop
-        dest=/usr/share/applications
+  template: src=../files/dbeaver.desktop
+            dest=/usr/share/applications
   tags:
     - dbeaver
 
