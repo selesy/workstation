@@ -6,6 +6,6 @@ Exec=/opt/jmeter/latest/bin/jmeter.sh
 Icon=/opt/jmeter/latest/docs/images/jmeter_square.png
 StartupNotify=false
 Categories=Development;
-Name=JMeter
+Name=JMeter - {{ jmeter_version }}
 Comment=Java load testing tool
 Terminal=false

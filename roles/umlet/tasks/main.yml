@@ -50,8 +50,8 @@
     - modeling
 
 - name: add a launcher to the development menu for UMLet
-  copy: src=../files/umlet.desktop
-        dest=/usr/share/applications
+  template: src=../files/umlet.desktop
+            dest=/usr/share/applications
   tags:
     - uml
     - modeling

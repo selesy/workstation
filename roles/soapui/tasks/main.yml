@@ -58,7 +58,7 @@
     - soapui
 
 - name: add a launcher for SoapUI to the development menu
-  copy: src=../files/soapui.desktop
-        dest=/usr/share/applications
+  template: src=../files/soapui.desktop
+            dest=/usr/share/applications
   tags:
     - soapui

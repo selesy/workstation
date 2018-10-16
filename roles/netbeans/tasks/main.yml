@@ -38,7 +38,7 @@
     - netbeans
 
 - name: add a launcher for Netbeans to the development menu
-  copy: src=../files/netbeans.desktop
-        dest=/usr/share/applications
+  template: src=../files/netbeans.desktop
+            dest=/usr/share/applications
   tags:
     - netbeans
