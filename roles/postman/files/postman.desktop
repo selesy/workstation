@@ -6,6 +6,6 @@ Exec=/opt/postman/latest/Postman
 Icon=/opt/postman/latest/resources/app/assets/icon.png
 StartupNotify=false
 Categories=Development;
-Name=Postman
+Name=Postman - {{ postman_version }}
 Comment=REST service testing
 Terminal=false
