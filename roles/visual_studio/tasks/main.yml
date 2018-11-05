@@ -48,7 +48,7 @@
   - editor
 
 - name: install selected visual studio extensions
-  shell: code --install-extension {{ item }} --user-data-dir /usr/share/code
+  shell: code --install-extension {{ item }} --user-data-dir /usr/share/code --force
   with_items:
   - vscodevim.vim
   - vscjava.vscode-java-pack
