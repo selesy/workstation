@@ -334,3 +334,89 @@
     - containerization
     - kubernetes
     - kubeseal
+
+#
+# Istio
+#
+
+- name: "create the installation directory for Istio"
+  file:
+    name: "{{ istio_installation_directory }}"
+    state: "directory"
+  tags:
+    - containerization
+    - kubernetes
+    - istio
+
+- name: "download the Istio release archive"
+  get_url:
+    url: "{{ istio_url }}"
+    dest: "~/{{ istio_file }}"
+    checksum: "{{ istio_checksum }}"
+    mode: "755"
+  register: "istio_download_result"
+  tags:
+    - containerization
+    - kubernetes
+    - istio
+
+- name: "expand the Istio archive"
+  unarchive:
+    src: "~/{{ istio_file }}"
+    dest: "{{ istio_installation_directory }}"
+    copy: "no"
+    creates: "{{ istio_home_directory }}"
+  when: "istio_download_result is changed"
+  register: "istio_unarchive_result"
+  tags:
+    - containerization
+    - kubernetes
+    - istio
+
+- name: "rename the Istio archive directory to the version number"
+  command: "mv {{ istio_installation_directory }}/istio-{{ istio_version }} {{ istio_home_directory }}"
+  when: "istio_unarchive_result is changed"
+  tags:
+    - containerization
+    - kubernetes
+    - istio
+
+- name: "make a pretty symlink to the latest version"
+  file:
+    src: "{{ istio_home_directory }}"
+    dest: "{{ istio_installation_directory }}/latest"
+    state: "link"
+  when: "istio_unarchive_result is changed"
+  tags:
+    - containerization
+    - kubernetes
+    - istio
+
+- name: "create a symlink to the istioctl executable"
+  file:
+    src: "{{ istio_installation_directory }}/latest/bin/istioctl"
+    dest: "/usr/bin/istioctl"
+    state: "link"
+  when: "istio_unarchive_result is changed"
+  tags:
+    - containerization
+    - kubernetes
+    - istio
+
+- name: "generate istioctl's bash completion"
+  command: "istioctl collateral --bash --outputDir {{ istio_installation_directory }}/latest/bin"
+  when: "istio_unarchive_result is changed"
+  tags:
+    - containerization
+    - kubernetes
+    - istio
+
+- name: "create a symlink to istioctl's bash completion"
+  file:
+    src: "{{ istio_installation_directory }}/latest/bin/istioctl.bash"
+    dest: "/etc/bash_completion.d/istioctl.bash"
+    state: "link"
+  tags:
+    - containerization
+    - kubernetes
+    - istio

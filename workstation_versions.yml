@@ -12,12 +12,14 @@ burp_version: latest
 #dbeaver
 dbeaver_version: 5.1.6
 
-#Development
+#Containerization
 minikube_version: 0.30.0
 kubectx_version: 0.6.1
 helm_version: 2.11.0
 helm_checksum: "sha256:02a4751586d6a80f6848b58e7f6bd6c973ffffadc52b4c06652db7def02773a1"
 kubeseal_version: 0.7.0
+istio_version: 1.0.3
+istio_checksum: "sha256:c55701a996890040872e73714a818decfd136fbb0df57b3aa21801655daac401"
 
 #Development
 go_version: "1.10"
