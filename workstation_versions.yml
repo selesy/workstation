@@ -20,6 +20,7 @@ helm_checksum: "sha256:02a4751586d6a80f6848b58e7f6bd6c973ffffadc52b4c06652db7def
 kubeseal_version: 0.7.0
 istio_version: 1.0.3
 istio_checksum: "sha256:c55701a996890040872e73714a818decfd136fbb0df57b3aa21801655daac401"
+terraform_version: 0.11.10
 
 #Development
 go_version: "1.10"
