@@ -12,3 +12,9 @@
   tags:
     - cloud
     - aws
+
+- name: install latest Azure CLI tools via SNAP
+  command: snap install --candidate azure-cli
+  tags:
+    - cloud
+    - azure
