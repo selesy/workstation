@@ -556,3 +556,47 @@
     - containerization
     - kubernetes
     - kail
+
+#
+# Stern
+#
+
+- name: "create the installation directory for stern"
+  file:
+    name: "{{ stern_home_directory }}"
+    state: "directory"
+  tags:
+    - containerization
+    - kubernetes
+    - stern
+
+- name: "download the stern release"
+  get_url:
+    url: "{{ stern_url }}"
+    dest: "{{ stern_home_directory }}/stern"
+    mode: "755"
+  register: "stern_download_result"
+  tags:
+    - containerization
+    - kubernetes
+    - stern
+
+- name: "make a pretty symlink to the latest version of stern"
+  file:
+    src: "{{ stern_home_directory }}"
+    dest: "{{ stern_installation_directory }}/latest"
+    state: "link"
+  tags:
+    - containerization
+    - kubernetes
+    - stern
+
+- name: "create a symlink to the stern executable"
+  file:
+    src: "{{ stern_installation_directory }}/latest/stern"
+    dest: "/usr/bin/stern"
+    state: "link"
+  tags:
+    - containerization
+    - kubernetes
+    - stern
