@@ -600,3 +600,47 @@
     - containerization
     - kubernetes
     - stern
+
+#
+# fluxctl
+#
+
+- name: "create the installation directory for fluxctl"
+  file:
+    name: "{{ fluxctl_home_directory }}"
+    state: "directory"
+  tags:
+    - containerization
+    - kubernetes
+    - fluxctl
+
+- name: "download the fluxctl release"
+  get_url:
+    url: "{{ fluxctl_url }}"
+    dest: "{{ fluxctl_home_directory }}/fluxctl"
+    mode: "755"
+  register: "fluxctl_download_result"
+  tags:
+    - containerization
+    - kubernetes
+    - fluxctl
+
+- name: "make a pretty symlink to the latest version of fluxctl"
+  file:
+    src: "{{ fluxctl_home_directory }}"
+    dest: "{{ fluxctl_installation_directory }}/latest"
+    state: "link"
+  tags:
+    - containerization
+    - kubernetes
+    - fluxctl
+
+- name: "create a symlink to the fluxctl executable"
+  file:
+    src: "{{ fluxctl_installation_directory }}/latest/fluxctl"
+    dest: "/usr/bin/fluxctl"
+    state: "link"
+  tags:
+    - containerization
+    - kubernetes
+    - fluxctl

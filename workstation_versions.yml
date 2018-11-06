@@ -24,6 +24,7 @@ terraform_version: 0.11.10
 kail_version: 0.7.0
 stern_version: 1.10.0
 stern_checksum: "sha256:a0335b298f6a7922c35804bffb32a68508077b2f35aaef44d9eb116f36bc7eda"
+fluxctl_version: "1.8.0"
 
 #Development
 go_version: "1.10"
