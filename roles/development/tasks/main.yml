@@ -160,6 +160,7 @@
   apt: name={{ item }} state=latest
   with_items:
     - ldap-utils
+    - ldapvi
   tags:
     - ldap
 
