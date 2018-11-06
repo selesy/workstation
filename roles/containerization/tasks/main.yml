@@ -500,3 +500,59 @@
     - kubernetes
     - aws
     - terraform
+
+#
+# Kail
+#
+
+- name: "create the installation directory for kail"
+  file:
+    name: "{{ kail_home_directory }}"
+    state: "directory"
+  tags:
+    - containerization
+    - kubernetes
+    - kail
+
+- name: "download the kail release archive"
+  get_url:
+    url: "{{ kail_url }}"
+    dest: "~/{{ kail_file }}"
+  register: "kail_download_result"
+  tags:
+    - containerization
+    - kubernetes
+    - kail
+
+- name: "expand the kail archive"
+  unarchive:
+    src: "~/{{ kail_file }}"
+    dest: "{{ kail_home_directory }}"
+    copy: "no"
+    creates: "{{ kail_home_directory }}/kail"
+  when: "kail_download_result is changed"
+  register: "kail_unarchive_result"
+  tags:
+    - containerization
+    - kubernetes
+    - kail
+
+- name: "make a pretty symlink to the latest version of kail"
+  file:
+    src: "{{ kail_home_directory }}"
+    dest: "{{ kail_installation_directory }}/latest"
+    state: "link"
+  tags:
+    - containerization
+    - kubernetes
+    - kail
+
+- name: "create a symlink to the kail executable"
+  file:
+    src: "{{ kail_installation_directory }}/latest/kail"
+    dest: "/usr/bin/kail"
+    state: "link"
+  tags:
+    - containerization
+    - kubernetes
+    - kail

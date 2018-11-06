@@ -86,3 +86,14 @@ terraform_url: "{{terraform_host }}/{{ terraform_path }}/{{ terraform_file }}"
 
 terraform_installation_directory: "/opt/terraform"
 terraform_home_directory: "{{ terraform_installation_directory }}/{{ terraform_version }}"
+
+# https://github.com/boz/kail/releases/download/v0.7.0/kail_0.7.0_linux_amd64.tar.gz
+
+kail_host: "https://github.com"
+kail_path: "boz/kail/releases/download/v{{ kail_version }}"
+kail_file: "kail_{{ kail_version }}_linux_amd64.tar.gz"
+
+kail_url: "{{ kail_host }}/{{ kail_path }}/{{ kail_file }}"
+
+kail_installation_directory: "/opt/kail"
+kail_home_directory: "{{ kail_installation_directory }}/{{ kail_version }}"

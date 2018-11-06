@@ -21,6 +21,7 @@ kubeseal_version: 0.7.0
 istio_version: 1.0.3
 istio_checksum: "sha256:c55701a996890040872e73714a818decfd136fbb0df57b3aa21801655daac401"
 terraform_version: 0.11.10
+kail_version: 0.7.0
 
 #Development
 go_version: "1.10"
