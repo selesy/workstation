@@ -30,7 +30,7 @@ fluxctl_version: "1.8.0"
 go_version: "1.10"
 
 #Eclipse
-eclipse_version: photon
+eclipse_version: 2018-09
 eclipse_sr: R
 lombok_version: 1.18.2
 eclim_version: 2.7.0
