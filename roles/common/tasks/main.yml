@@ -7,6 +7,10 @@
 - name: upgrade existing apt packages
   apt: upgrade=yes state=latest
 
+# Mint does not ship with snap
+- name: ensure snap is installed
+  apt: name=snapd state=latest
+
 - name: refresh the existing snap packages
   command: snap refresh
 
