@@ -20,8 +20,6 @@
     - asciinema
     - audacity
     - curl
-#    - freemind
-#    - freemind-plugins-svg
     - gparted
     - hopenpgp-tools
     - lynx
@@ -42,6 +40,25 @@
     - vlc
     - whois
     - wipe
+
+- name: install freemind via snap
+  command: snap install freemind
+  tags:
+    - freemind
+
+- name: copy the freemind icon
+  copy:
+    src: ../files/freemind.png
+    dest: /snap/bin
+  tags:
+    - freemind
+
+- name: add the freemind desktop item to the menu
+  copy:
+    src: ../files/freemind.desktop
+    dest: /usr/share/applications
+  tags:
+    - freemind
     
 - name: install the NTP daemon (on Mint ... it's not installed by default)
   apt: name=ntp state=latest
