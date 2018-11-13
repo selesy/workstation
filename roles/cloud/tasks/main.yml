@@ -7,8 +7,17 @@
     - cloud
     - aws
 
-- name: install latest AWS CLI tools via SNAP
+- name: remove AWS CLI tools installed via SNAP
   command: snap install --classic aws-cli
+  tags:
+    - cloud
+    - aws
+
+- name: install AWS CLI tools via PIP
+  pip:
+    name: awscli
+    extra_args: --upgrade
+    state: latest
   tags:
     - cloud
     - aws
