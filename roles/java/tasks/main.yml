@@ -2,42 +2,26 @@
 # File: roles/java/tasks/main.yml
 
 #
-# OpenJDK 9
-# TODO - Broken - see http://askubuntu.com/questions/769467/can-not-install-openjdk-9-jdk-because-it-tries-to-overwrite-file-aready-includ
+# OpenJDK
 #
   
-#- name: install the latest OpenJDK 9
-#  apt: name={{ item }} state=latest
-#  with_items:
-#    - openjdk-9-jdk
-#    - openjdk-9-demo
-#    - openjdk-9-source
-#    - openjdk-9-doc
-#  tags:
-#    - java
-
-#
-# OpenJDK 8
-#
-  
-- name: install the latest OpenJDK 8
+- name: install the latest OpenJDK
   apt: name={{ item }} state=latest
   with_items:
-    - openjdk-8-jdk
-    - openjdk-8-demo
-    - openjdk-8-source
-    - openjdk-8-doc
-    - icedtea-8-plugin
+    - openjdk-{{ java_version }}-jdk
+    - openjdk-{{ java_version }}-demo
+    - openjdk-{{ java_version }}-source
+    - openjdk-{{ java_version }}-doc
   tags:
     - java
 
 #
-# Set up the java alternatives to point to OpenJDK 8
+# Set up the java alternatives to point to OpenJDK
 #
 
-- name: set up the java alternatives to point to OpenJDK 8
-  alternatives: name={{ item.name }} path={{ item.path }}
-  with_items: "{{ java_alternatives }}"
-  tags:
-    - java
+      #- name: set up the java alternatives to point to OpenJDK 8
+      #alternatives: name={{ item.name }} path={{ item.path }}
+      #with_items: "{{ java_alternatives }}"
+      #tags:
+      #- java
   
