@@ -39,14 +39,14 @@ eclim_version: 2.7.0
 findbugs_version: 3.0.1
 
 #FireFox
-firefox_de_version: 64.0b8
+firefox_de_version: 64.0b9
 firefox_de_language: en-US
 
 #Chrome
 chrome_version: stable_current
 
 #Java
-java_version: 8
+java_version: 11
 
 #JMeter
 jmeter_version: 3.3

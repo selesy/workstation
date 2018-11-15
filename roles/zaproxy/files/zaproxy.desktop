@@ -9,4 +9,3 @@ Categories=Development;
 Name=Zed Attack Proxy - {{ zaproxy_version }}
 Comment=Test the security of web applications (by OWASP)
 Terminal=false
-Path=~/zaproxy
