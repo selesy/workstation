@@ -9,4 +9,3 @@ Categories=Development
 Name=BurpSuite Community Edition - {{ burp_version }}
 Comment=Burp Suite, the leading toolkit for web application security testing
 Terminal=false
-Path=

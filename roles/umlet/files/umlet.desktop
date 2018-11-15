@@ -9,4 +9,3 @@ Categories=Development;
 Name=UMLet - {{ umlet_version }}
 Comment=UML Diagramming
 Terminal=false
-Path=
