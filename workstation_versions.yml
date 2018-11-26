@@ -32,7 +32,7 @@ go_version: "1.10"
 #Eclipse
 eclipse_version: 2018-09
 eclipse_sr: R
-lombok_version: 1.18.2
+lombok_version: 1.18.4
 eclim_version: 2.7.0
 
 #FindBugs
