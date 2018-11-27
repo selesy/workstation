@@ -9,4 +9,3 @@ Categories=Development;
 Name=FindBugs - {{ findbugs_version }}
 Comment=Java static code analysis tool
 Terminal=false
-Path=~

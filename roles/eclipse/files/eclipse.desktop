@@ -9,4 +9,3 @@ Categories=Development;
 Name=Eclipse IDE - {{ eclipse_version }} {{ eclipse_sr }} JEE/BIRT
 Comment=Eclipse IDE - {{ eclipse_version }} {{ eclipse_sr }} For Java EE and Report Developers
 Terminal=false
-Path=
