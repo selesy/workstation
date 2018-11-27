@@ -35,6 +35,7 @@
     - pass
     - qtpass
     - recordmydesktop
+    - redshift
     - screen
     - seahorse
     - secure-delete
@@ -71,23 +72,23 @@
   apt: name=ntp state=latest
   
 # Add f.lux (see https://justgetflux.com/linux.html)
-
-- name: add the f.lux signing key
-  apt_key: keyserver=keyserver.ubuntu.com id=428926204FE30238F00B98224CDB129629A4B41A
-           state=present
-
-- name: add the f.lux repository
-  apt_repository: repo='deb http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main'
-                  state=present
-                  mode=644
-
-- name: add the f.lux source repository
-  apt_repository: repo='deb-src http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main'
-                  state=present
-                  mode=644
-
-- name: update the apt repositories to include the new f.lux packages
-  apt: update_cache=yes
-
-- name: install f.lux
-  apt: name=fluxgui state=present
+#
+#- name: add the f.lux signing key
+#  apt_key: keyserver=keyserver.ubuntu.com id=428926204FE30238F00B98224CDB129629A4B41A
+#           state=present
+#
+#- name: add the f.lux repository
+#  apt_repository: repo='deb http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main'
+#                  state=present
+#                  mode=644
+#
+#- name: add the f.lux source repository
+#  apt_repository: repo='deb-src http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main'
+#                  state=present
+#                  mode=644
+#
+#- name: update the apt repositories to include the new f.lux packages
+#  apt: update_cache=yes
+#
+#- name: install f.lux
+#  apt: name=fluxgui state=present
