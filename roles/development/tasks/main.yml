@@ -203,3 +203,36 @@
   tags:
     - interactive-fiction
     - inform
+
+# RFC CLI browser
+
+- name: "create the home directory for the RFC browser"
+  file:
+    name: "{{ rfc_home_directory }}"
+    state: "directory"
+  tags:
+  - rfc
+
+- name: "install the RFC browser"
+  get_url:
+    url: "{{ rfc_url }}"
+    dest: "{{ rfc_home_directory }}"
+    mode: "755"
+  tags:
+  - rfc
+
+- name: "create a pretty symlink to the latest version of the RFC browser"
+  file:
+    src: "{{ rfc_home_directory }}"
+    dest: "{{ rfc_installation_directory }}/latest"
+    state: "link"
+  tags:
+  - "rfc"
+
+- name: "create a symlink to the RFC browser executable"
+  file:
+    src: "{{ rfc_installation_directory }}/latest/{{ rfc_file }}"
+    dest: "/usr/bin/{{ rfc_file }}"
+    state: "link"
+  tags:
+  - "rfc"

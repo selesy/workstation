@@ -71,6 +71,9 @@ postman_version: 6.5.2
 
 #RatPoison
 
+# RFC CLI browser
+rfc_version: 0.2.5
+
 #SoapUI
 soapui_version: 5.4.0
 
