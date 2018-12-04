@@ -1,3 +1,19 @@
+# Go
+
+# https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
+
+go_host: "https://dl.google.com"
+go_path: "go"
+go_file: "go{{ go_version }}.linux-amd64.tar.gz"
+
+go_url: "{{ go_host }}/{{ go_path }}/{{ go_file }}"
+
+go_installation_directory: "/opt/go"
+go_archive_directory: "{{ go_installation_directory }}/go"
+go_home_directory: "{{ go_installation_directory }}/{{ go_version }}"
+
+# RFC
+
 # https://raw.githubusercontent.com/bfontaine/rfc/v0.2.5/rfc
 
 rfc_host: "https://raw.githubusercontent.com"
