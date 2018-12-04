@@ -32,14 +32,14 @@ go_version: "1.10"
 #Eclipse
 eclipse_version: 2018-09
 eclipse_sr: R
-lombok_version: 1.18.2
+lombok_version: 1.18.4
 eclim_version: 2.7.0
 
 #FindBugs
 findbugs_version: 3.0.1
 
 #FireFox
-firefox_de_version: 64.0b12
+firefox_de_version: 64.0b14
 firefox_de_language: en-US
 
 #Chrome
@@ -70,6 +70,9 @@ pencil_version: 3.0.4
 postman_version: 6.5.2
 
 #RatPoison
+
+# RFC CLI browser
+rfc_version: 0.2.5
 
 #SoapUI
 soapui_version: 5.4.0

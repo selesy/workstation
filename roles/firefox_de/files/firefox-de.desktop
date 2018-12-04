@@ -9,4 +9,3 @@ Categories=Development;GNOME;GTK;Network;WebBrowser;
 Name=Firefox Developer Edition - {{ firefox_de_version }}
 Comment=Debug, Profile, Optimize and Repair the World Wide Web
 Terminal=false
-Path=

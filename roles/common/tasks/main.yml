@@ -70,24 +70,58 @@
 - name: install the NTP daemon (on Mint ... it's not installed by default)
   apt: name=ntp state=latest
   
-# Add f.lux (see https://justgetflux.com/linux.html)
+# Remove f.lux (see https://justgetflux.com/linux.html) if installed
 
-- name: add the f.lux signing key
-  apt_key: keyserver=keyserver.ubuntu.com id=428926204FE30238F00B98224CDB129629A4B41A
-           state=present
+- name: remove f.lux
+  apt:
+    name: fluxgui
+    state: absent
+  register: fluxgui_was_installed
+  tags:
+  - ergonomics
 
-- name: add the f.lux repository
-  apt_repository: repo='deb http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main'
-                  state=present
-                  mode=644
+- name: remove the f.lux repository
+  apt_repository:
+    repo: 'deb http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main'
+    state: absent
+  when: fluxgui_was_installed is changed
+  tags:
+  - ergonomics
 
-- name: add the f.lux source repository
-  apt_repository: repo='deb-src http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main'
-                  state=present
-                  mode=644
+- name: remove the f.lux source repository
+  apt_repository:
+    repo: 'deb-src http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main'
+    state: absent
+  when: fluxgui_was_installed is changed
+  tags:
+  - ergonomics
 
-- name: update the apt repositories to include the new f.lux packages
-  apt: update_cache=yes
+- name: update the repository caches
+  apt:
+    update_cache: "yes"
+    upgrade: "yes"
+    state: "latest"
+  when: fluxgui_was_installed is changed
+  tags:
+  - ergonomics
 
-- name: install f.lux
-  apt: name=fluxgui state=present
+- name: remove the f.lux signing key
+  apt_key:
+    keyserver: keyserver.ubuntu.com id=428926204FE30238F00B98224CDB129629A4B41A
+    state: absent
+  when: fluxgui_was_installed is changed
+  tags:
+  - ergonomics
+
+# Install redshift (replaces flux)
+
+- name: add redshift
+  apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - redshift
+    - redshift-gtk
+  tags:
+  - ergonomics

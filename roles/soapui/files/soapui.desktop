@@ -9,4 +9,3 @@ Categories=Development;
 Name=SoapUI - {{ soapui_version }}
 Comment=Functional testing tool for SOAP interfaces
 Terminal=false
-Path=~/soapui
