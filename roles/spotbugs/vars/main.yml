@@ -1,0 +1,19 @@
+---
+
+# Findbugs
+
+findbugs_installation_directory: /opt/findbugs
+
+# Spotbugs
+
+# http://repo.maven.apache.org/maven2/com/github/spotbugs/spotbugs/3.1.9/spotbugs-3.1.9.tgz
+
+spotbugs_host: "http://repo.maven.apache.org"
+spotbugs_path: "maven2/com/github/spotbugs/spotbugs/{{ spotbugs_version }}"
+spotbugs_file: "spotbugs-{{ spotbugs_version }}.tgz"
+
+spotbugs_url: "{{ spotbugs_host }}/{{ spotbugs_path }}/{{ spotbugs_file }}"
+
+spotbugs_installation_directory: "/opt/spotbugs"
+spotbugs_tar_directory: "{{ spotbugs_installation_directory }}/spotbugs-{{ spotbugs_version }}"
+spotbugs_home_directory: "{{ spotbugs_installation_directory }}/{{ spotbugs_version }}"

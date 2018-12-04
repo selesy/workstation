@@ -1,0 +1,82 @@
+---
+# roles/spotbugs/tasks/main.yml
+
+- name: "remove the findbugs installation"
+  file:
+    path: "{{ findbugs_installation_directory }}"
+    state: "absent"
+  tags:
+  - "findbugs"
+  - "spotbugs"
+  - "static_analysis"
+
+- name: "remove the findbugs desktop menu item"
+  file:
+    path: "/usr/share/applications/findbugs.desktop"
+    state: "absent"
+  tags:
+  - "findbugs"
+  - "spotbugs"
+  - "static_analysis"
+
+- name: "create the installation directory for SpotBugs"
+  file:
+    path: "{{ spotbugs_installation_directory }}"
+    state: "directory"
+  tags:
+  - "findbugs"
+  - "spotbugs"
+  - "static_analysis"
+
+- name: "download the latest version of SpotBugs"
+  uri:
+    url: "{{ spotbugs_url }}"
+    dest: "~/{{ spotbugs_file }}"
+    creates: "~/{{ spotbugs_file }}"
+  register: "spotbugs_download_result"
+  tags:
+  - "findbugs"
+  - "spotbugs"
+  - "static_analysis"
+
+- name: "unarchive the latest version of SpotBugs"
+  unarchive:
+    copy: "no"
+    src: "~/{{ spotbugs_file }}"
+    dest: "{{ spotbugs_installation_directory }}"
+    creates: "{{ spotbugs_home_directory }}"
+    owner: "root"
+    group: "root"
+  when: "spotbugs_download_result is changed"
+  register: "spotbugs_unarchive_result"
+  tags:
+  - "findbugs"
+  - "spotbugs"
+  - "static_analysis"
+
+- name: "move the tar file's base directory somewhere maintainable"
+  command: "mv {{ spotbugs_tar_directory }} {{ spotbugs_home_directory }}"
+  when: "spotbugs_unarchive_result is changed"
+  tags:
+  - "findbugs"
+  - "spotbugs"
+  - "static_analysis"
+
+- name: "create a pretty symlink to the latest version"
+  file:
+    src: "{{ spotbugs_home_directory }}"
+    path: "{{ spotbugs_installation_directory }}/latest"
+    state: "link"
+  tags:
+  - "findbugs"
+  - "spotbugs"
+  - "static_analysis"
+
+- name: "add a launcher for SpotBugs to the development menu"
+  template:
+    src: "../files/spotbugs.desktop"
+    dest: "/usr/share/applications"
+  tags:
+  - "findbugs"
+  - "spotbugs"
+  - "static_analysis"

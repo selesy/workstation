@@ -17,7 +17,7 @@
     - zaproxy
     - burp_suite
     - sqlmap
-    - findbugs
+    - spotbugs
     - firefox_de
     - google_chrome
     - dbeaver
