@@ -1,4 +1,4 @@
 #!/bin/sh
 
-export GOROOT=/usr/lib/go-{{ go_version }}
+export GOROOT=/opt/go/latest
 export PATH=$PATH:$GOROOT/bin
