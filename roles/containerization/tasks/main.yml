@@ -288,7 +288,7 @@
     - kubeseal
 
 - name: "create the go_os variable"
-  command: "/usr/lib/go-{{ go_version }}/bin/go env GOOS"
+  command: "go env GOOS"
   register: go_os
   changed_when: false
   tags:
@@ -297,7 +297,7 @@
     - kubeseal
 
 - name: "create the go_arch variable"
-  command: "/usr/lib/go-{{ go_version }}/bin/go env GOARCH"
+  command: "go env GOARCH"
   register: go_arch
   changed_when: false
   tags:

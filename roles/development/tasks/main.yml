@@ -5,26 +5,77 @@
 # Languages
 #
 
-- name: add languages
+# Go
+
+- name: "remove the Debian Go language packages"
   apt:
     name: "{{ item }}"
-    state: present
+    state: "absent"
   with_items:
-    - golang-{{ go_version }}
-    - golang-golang-x-tools
+    - "golang-1.10-go"
+    - "golang-golang-x-tools"
   tags:
-    - languages
+    - "languages"
+    - "go"
+
+- name: "create the Go installation directory"
+  file:
+    name: "{{ go_installation_directory }}"
+    state: "directory"
+  tags:
+    - "languages"
+    - "go"
+
+- name: "download and unpack the Go archive"
+  unarchive:
+    remote_src: "yes"
+    src: "{{ go_url }}"
+    dest: "{{ go_installation_directory }}"
+    creates: "{{ go_home_directory }}"
+  register: "go_download_unarchive_result"
+  tags:
+    - "languages"
+    - "go"
+
+- name: "move the go installation to somewhere maintainable"
+  command: "mv {{ go_archive_directory }} {{ go_home_directory }}"
+  when: "go_download_unarchive_result is changed"
+  tags:
+    - "languages"
+    - "go"
+
+- name: "create a pretty symlink to the latest version"
+  file:
+    src: "{{ go_home_directory }}"
+    dest: "{{ go_installation_directory }}/latest"
+    state: "link"
+  tags:
+    - "languages"
+    - "go"
+
+- name: "create symlinks for the go executables"
+  file:
+    src: "{{ go_home_directory }}/bin/{{ item }}"
+    dest: "/usr/bin/{{ item }}"
+    state: "link"
+  with_items:
+    - "go"
+    - "godoc"
+    - "gofmt"
+  tags:
+    - "languages"
+    - "go"
 
 - name: set-up the go environment
   template:
-    src=../files/go.sh
-    dest=/etc/profile.d
+    src: "../files/go.sh"
+    dest: "/etc/profile.d"
   tags:
-    - languages
-    - go
+    - "languages"
+    - "go"
 
 - name: add useful go packages
-  shell: /usr/lib/go-{{ go_version }}/bin/go get -u {{ item }}
+  shell: go get -u {{ item }}
   with_items:
     - "github.com/uudashr/gopkgs/cmd/gopkgs"
   tags:
@@ -203,3 +254,36 @@
   tags:
     - interactive-fiction
     - inform
+
+# RFC CLI browser
+
+- name: "create the home directory for the RFC browser"
+  file:
+    name: "{{ rfc_home_directory }}"
+    state: "directory"
+  tags:
+  - rfc
+
+- name: "install the RFC browser"
+  get_url:
+    url: "{{ rfc_url }}"
+    dest: "{{ rfc_home_directory }}"
+    mode: "755"
+  tags:
+  - rfc
+
+- name: "create a pretty symlink to the latest version of the RFC browser"
+  file:
+    src: "{{ rfc_home_directory }}"
+    dest: "{{ rfc_installation_directory }}/latest"
+    state: "link"
+  tags:
+  - "rfc"
+
+- name: "create a symlink to the RFC browser executable"
+  file:
+    src: "{{ rfc_installation_directory }}/latest/{{ rfc_file }}"
+    dest: "/usr/bin/{{ rfc_file }}"
+    state: "link"
+  tags:
+  - "rfc"

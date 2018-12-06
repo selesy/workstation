@@ -2,10 +2,10 @@
 Version=1.0
 Type=Application
 Encoding=UTF-8
-Exec=/opt/findbugs/latest/bin/findbugs
-Icon=/opt/findbugs/latest/doc/buggy-sm.png
+Exec=/opt/spotbugs/latest/bin/spotbugs
+Icon=/opt/spotbugs/latest/bin/spotbugs.ico
 StartupNotify=false
 Categories=Development;
-Name=FindBugs - {{ findbugs_version }}
+Name=SpotBugs - {{ spotbugs_version }}
 Comment=Java static code analysis tool
 Terminal=false
