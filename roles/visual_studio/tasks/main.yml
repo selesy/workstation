@@ -18,7 +18,7 @@
   tags:
   - visual_studio
   - ide
-  - editor
+  - editors
 
 - name: add the visual studio repository
   apt_repository: repo={{ vs_repository }}
