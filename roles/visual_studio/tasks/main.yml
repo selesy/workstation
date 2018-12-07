@@ -8,7 +8,7 @@
   tags:
   - visual_studio
   - ide
-  - editor
+  - editors
 
 # This play can be eliminated in Ansible >= 2.1
 # Add filename to the play below and remove the when clause
@@ -18,7 +18,7 @@
   tags:
   - visual_studio
   - ide
-  - editor
+  - editors
 
 - name: add the visual studio repository
   apt_repository: repo={{ vs_repository }}
@@ -28,7 +28,7 @@
   tags:
   - visual_studio
   - ide
-  - editor
+  - editors
 
 # This play can be eliminated in Ansible >= 2.1
 # Add filename to the play above and remove the when clause
@@ -38,14 +38,14 @@
   tags:
   - visual_studio
   - ide
-  - editor
+  - editors
 
 - name: install visual studio
   apt: name=code state=present update_cache=yes
   tags:
   - visual_studio
   - ide
-  - editor
+  - editors
 
 - name: install selected visual studio extensions
   shell: code --install-extension {{ item }} --user-data-dir /usr/share/code --force
@@ -56,6 +56,6 @@
   tags:
   - visual_studio
   - ide
-  - editor
+  - editors
 
 ...
