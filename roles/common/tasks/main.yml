@@ -14,12 +14,16 @@
 - name: refresh the existing snap packages
   command: snap refresh
 
-- name: add the PIP package manager
+- name: "add the PIP package manager"
   apt:
-    name: python-pip
-    state: latest
+    name: "{{ packages }}"
+    state: "latest"
+  vars:
+    packages:
+    - "python-setuptools"
+    - "python-pip"
   tags:
-    - python
+    - "python"
 
 - name: install basic Linux tools
   apt: name={{ item }} state=latest
