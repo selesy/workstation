@@ -5,15 +5,18 @@
 # OpenJDK
 #
   
-- name: install the latest OpenJDK
-  apt: name={{ item }} state=latest
-  with_items:
-    - openjdk-{{ java_version }}-jdk
-    - openjdk-{{ java_version }}-demo
-    - openjdk-{{ java_version }}-source
-    - openjdk-{{ java_version }}-doc
+- name: "install the latest OpenJDK"
+  apt:
+    name: "{{ packages }}"
+    state: "latest"
+  vars:
+    packages:
+    - "openjdk-{{ java_version }}-jdk"
+    - "openjdk-{{ java_version }}-demo"
+    - "openjdk-{{ java_version }}-source"
+    - "openjdk-{{ java_version }}-doc"
   tags:
-    - java
+    - "java"
 
 #
 # Set up the java alternatives to point to OpenJDK
