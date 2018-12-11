@@ -254,7 +254,7 @@
 
 - name: "add packages that are useful for designing UIs"
   apt:
-    name: "{{ item }}"
+    name: "{{ packages }}"
     state: "latest"
   vars:
     packages:
