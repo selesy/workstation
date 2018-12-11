@@ -26,31 +26,34 @@
     - "python"
 
 - name: install basic Linux tools
-  apt: name={{ item }} state=latest
-  with_items:
-    - asciinema
-    - audacity
-    - curl
-    - gparted
-    - hopenpgp-tools
-    - lynx
-    - minicom
-    - parcimonie
-    - pass
-    - qtpass
-    - recordmydesktop
-    - screen
-    - seahorse
-    - secure-delete
-    - snapd
-    - sshfs
-    - sshuttle
-    - tftp
-    - traceroute
-    - tree
-    - vlc
-    - whois
-    - wipe
+  apt:
+    name: "{{ packages }}"
+    state: "latest"
+  vars:
+    packages:
+    - "asciinema"
+    - "audacity"
+    - "curl"
+    - "gparted"
+    - "hopenpgp-tools"
+    - "lynx"
+    - "minicom"
+    - "parcimonie"
+    - "pass"
+    - "qtpass"
+    - "recordmydesktop"
+    - "screen"
+    - "seahorse"
+    - "secure-delete"
+    - "snapd"
+    - "sshfs"
+    - "sshuttle"
+    - "tftp"
+    - "traceroute"
+    - "tree"
+    - "vlc"
+    - "whois"
+    - "wipe"
 
 - name: install freemind via snap
   command: snap install freemind
