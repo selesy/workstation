@@ -9,9 +9,10 @@
 
 - name: "remove the Debian Go language packages"
   apt:
-    name: "{{ item }}"
+    name: "{{ packages }}"
     state: "absent"
-  with_items:
+  vars:
+    packages:
     - "golang-1.10-go"
     - "golang-golang-x-tools"
   tags:
@@ -86,14 +87,17 @@
 # Editors
 #
 
-- name: add the full-featured versions of vim
-  apt: name={{ item }} state=present
-  with_items:
-    - vim
-    - vim-gnome
+- name: "add the full-featured versions of vim"
+  apt:
+    name: "{{ packages }}"
+    state: "present"
+  vars:
+    packages:
+    - "vim"
+    - "vim-gnome"
   tags:
-    - editors
-    - vim
+    - "editors"
+    - "vim"
 
 - name: add the typora signing key
   apt_key: keyserver=keyserver.ubuntu.com id=BA300B7755AFCFAE
@@ -141,23 +145,28 @@
 # Virtualization
 #
 
-- name: install virtualization tools
-  apt: name={{ item }} state=latest
-  with_items:
-#    - ansible
-    - vagrant
-    - virtualbox
-    - virtualbox-qt
+- name: "install virtualization tools"
+  apt:
+    name: "{{ packages }}"
+    state: "latest"
+  vars:
+    packages:
+    - "vagrant"
+    - "virtualbox"
+    - "virtualbox-qt"
   tags:
-    - virtualization
+    - "virtualization"
 
 #
 # Source Code Management
 #
 
 - name: install linux tools for git
-  apt: name={{ item }} state=latest
-  with_items:
+  apt:
+    name: "{{ packages }}"
+    state: "latest"
+  vars:
+    packages:
     - git
     - git-doc
     - git-svn
@@ -174,86 +183,104 @@
     - meld
 
 
-- name: install linux tools for Subversion
-  apt: name={{ item }} state=latest
-  with_items:
-    - subversion
-    - libsvn-java
+- name: "install linux tools for Subversion"
+  apt:
+    name: "{{ packages }}"
+    state: "latest"
+  vars:
+    packages:
+    - "subversion"
+    - "libsvn-java"
   tags:
-    - subversion
+    - "subversion"
  
 
 #
 # Build tools
 #
 
-- name: install Java build tools
-  apt: name={{ item }} state=latest
-  with_items:
-    - ant
-    - gradle
-    - maven
+- name: "install Java build tools"
+  apt:
+    name: "{{ packages }}"
+    state: "latest"
+  vars:
+    packages:
+    - "ant"
+    - "gradle"
+    - "maven"
 
 #
 # File formating tools
 #
 
 - name: install file formating tools
-  apt: name={{ item }} state=latest
-  with_items:
-    - python-demjson
+  apt:
+    name: "python-demjson"
+    state: "latest"
 
 #
 # LDAP tools
 #
 
-- name: install linux tools for LDAP
-  apt: name={{ item }} state=latest
-  with_items:
-    - ldap-utils
-    - ldapvi
+- name: "install linux tools for LDAP"
+  apt:
+    name: "{{ packages }}"
+    state: "latest"
+  vars:
+    packages:
+    - "ldap-utils"
+    - "ldapvi"
   tags:
-    - ldap
+    - "ldap"
 
 #
 # Networking
 #
 
-- name: add packages that are useful when developing networking software
-  apt: name={{ item }} state=latest
-  with_items:
-    - wireshark
-    - zenmap
+- name: "add packages that are useful when developing networking software"
+  apt:
+    name: "{{ packages }}"
+    state: "latest"
+  vars:
+    packages:
+    - "wireshark"
+    - "zenmap"
   tags:
-    - networking
+    - "networking"
 
 #
 # Graphics
 #
 
-- name: add packages that are useful for designing UIs
-  apt: name={{ item }} state=latest
-  with_items:
-    - gpick
-    - gimp
-    - inkscape
-    - screenruler
+- name: "add packages that are useful for designing UIs"
+  apt:
+    name: "{{ item }}"
+    state: "latest"
+  vars:
+    packages:
+    - "gpick"
+    - "gimp"
+    - "inkscape"
+    - "screenruler"
   tags:
-    - graphics
+    - "graphics"
 
 #
 # Inform
 #
 
-- name: add packages needed to develop and run IF games
-  apt: name={{ item }} state=latest
-  with_items:
-    - zoom-player
-    - inform
-    - inform-docs
+- name: "add packages needed to develop and run IF games"
+  apt:
+    name: "{{ packages }}"
+    state: "latest"
+  vars:
+    packages:
+    - "zoom-player"
+    - "inform"
+    - "inform-docs"
   tags:
-    - interactive-fiction
-    - inform
+    - "interactive-fiction"
+    - "inform"
 
 # RFC CLI browser
 
