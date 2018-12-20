@@ -46,8 +46,8 @@ chrome_version: stable_current
 java_version: 11
 
 #JMeter
-jmeter_version: 3.3
-plugins_manager_version: 0.15
+jmeter_version: 5.0
+plugins_manager_version: 1.3
 
 #Micro
 micro_version: 1.0
