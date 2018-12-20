@@ -1,63 +1,69 @@
 ---
 # File: roles/jmeter/tasks/main.yml
 
-- name: create a directory for optional JMeter software
-  file: name={{ jmeter_installation_directory }}
-        state=directory
+- name: "create a directory for optional JMeter software"
+  file:
+    name: "{{ jmeter_installation_directory }}"
+    state: "directory"
   tags:
-    - jmeter
+  - "jmeter"
     
-- name: download the latest version of JMeter
-  uri: url={{ jmeter_url }}
-       dest=~/{{ jmeter_file }}
-       creates=~/{{ jmeter_file }}
+- name: "download the latest version of JMeter"
+  uri:
+    url: "{{ jmeter_url }}"
+    dest: "~/{{ jmeter_file }}"
+    creates: "~/{{ jmeter_file }}"
   tags:
-    - jmeter
+  - "jmeter"
        
-- name: untar the JMeter archive
-  unarchive: copy=no
-             src=~/{{ jmeter_file }}
-             dest={{ jmeter_installation_directory }}
-             creates={{ jmeter_home_directory }}
-  register: unarchive_result
+- name: "untar the JMeter archive"
+  unarchive:
+    copy: "no"
+    src: "~/{{ jmeter_file }}"
+    dest: "{{ jmeter_installation_directory }}"
+    creates: "{{ jmeter_home_directory }}"
+  register: "unarchive_result"
   tags:
-    - jmeter
+  - "jmeter"
 
-- name: move the tar file's base directory somewhere maintainable
-  command: mv {{ jmeter_tar_directory }}
-           {{ jmeter_home_directory }}
-  when: unarchive_result is changed
+- name: "move the tar file's base directory somewhere maintainable"
+  command:
+    mv: "{{ jmeter_tar_directory }} {{ jmeter_home_directory }}"
+  when: "unarchive_result is changed"
   tags:
-    - jmeter
+  - "jmeter"
 
-- name: create a pretty symlink to the latest version
-  file: src={{ jmeter_home_directory }}
-        path={{ jmeter_installation_directory }}/latest
-        state=link
+- name: "create a pretty symlink to the latest version"
+  file:
+    src: "{{ jmeter_home_directory }}"
+    path: "{{ jmeter_installation_directory }}/latest"
+    state: "link"
   tags:
-    - jmeter
+  - "jmeter"
 
-- name: add a launcher for JMeter to the development menu
-  template: src=../files/jmeter.desktop
-            dest=/usr/share/applications
+- name: "add a launcher for JMeter to the development menu"
+  template:
+    src: "../files/jmeter.desktop"
+    dest: "/usr/share/applications"
   tags:
-    - jmeter
+  - "jmeter"
         
-- name: download the latest version of JMeter PluginsManager
-  uri: url={{ plugins_manager_url }}
-       dest=~/{{ plugins_manager_file }}
-       creates=~/{{ plugins_manager_file }}
-  register: download_result
+- name: "download the latest version of JMeter PluginsManager"
+  uri:
+    url: "{{ plugins_manager_url }}"
+    dest: "~/{{ plugins_manager_file }}"
+    creates: "~/{{ plugins_manager_file }}"
+  register: "download_result"
   tags:
-    - jmeter
-    - plugin-manager
+  - "jmeter"
+  - "plugin-manager"
 
-- name: copy the JMeter PluginsManager to the latest lib/ext folder
-  copy: remote_src=yes
-        src=~/{{ plugins_manager_file }}
-        dest={{ plugins_manager_installation_directory }}/{{ plugins_manager_installation_name }}
-  when: download_result is changed
+- name: "copy the JMeter PluginsManager to the latest lib/ext folder"
+  copy:
+    remote_src: "yes"
+    src: "~/{{ plugins_manager_file }}"
+    dest: "{{ plugins_manager_installation_directory }}/{{ plugins_manager_installation_name }}"
+  when: "download_result is changed"
   tags:
-    - jmeter
-    - plugin-managerwnload_result is changed
-  
+  - "jmeter"
+  - "plugin-manager"
