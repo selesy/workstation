@@ -28,7 +28,10 @@
 
 - name: "move the tar file's base directory somewhere maintainable"
   command:
-    mv "{{ jmeter_tar_directory }}" "{{ jmeter_home_directory }}"
+    argv:
+      - "mv"
+      - "{{ jmeter_tar_directory }}"
+      - "{{ jmeter_home_directory }}"
   when: "unarchive_result is changed"
   tags:
   - "jmeter"
