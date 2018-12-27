@@ -47,6 +47,7 @@ java_version: 11
 
 #JMeter
 jmeter_version: 5.0
+jmeter_checksum: "sha512:a5a3bdd84ec8f78b67cee1b12bd9f2f578f3e9334ef2dc85cebd37878e0cf69ea3385a9c4f531dae094c0a4df93f262f43c2d9a9dfb10d38565d17eec3f907f1"
 plugins_manager_version: 1.3
 
 #Micro

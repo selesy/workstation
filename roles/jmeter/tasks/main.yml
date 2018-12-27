@@ -9,10 +9,11 @@
   - "jmeter"
     
 - name: "download the latest version of JMeter"
-  uri:
+  get_url:
     url: "{{ jmeter_url }}"
     dest: "~/{{ jmeter_file }}"
-    creates: "~/{{ jmeter_file }}"
+    checksum: "{{ jmeter_checksum }}"
+    mode: "755"
   tags:
   - "jmeter"
        
