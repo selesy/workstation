@@ -2,8 +2,6 @@
 # File: workstation.yml
 
 - hosts: all
-  vars_files:
-    - workstation_versions.yml
   pre_tasks:
     - name: Fail if Ansible version is too old 
       fail: 
