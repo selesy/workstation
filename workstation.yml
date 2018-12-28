@@ -2,6 +2,13 @@
 # File: workstation.yml
 
 - hosts: all
+  vars_files:
+    - workstation_versions.yml
+  pre_tasks:
+    - name: Fail if Ansible version is too old 
+      fail: 
+        msg: "Workstation requires a minimum Ansible version of {{ ansible_minimum_version }}. Please update Ansible and run workstation.sh again."
+      when: ansible_version.full is version(ansible_minimum_version, operator='lt', strict=True)
   remote_user: ansible
   become: yes
   vars_files:
