@@ -53,6 +53,7 @@
   - vscodevim.vim
   - vscjava.vscode-java-pack
   - vscjava.vscode-maven
+  - vscoss.vscode-ansible
   tags:
   - visual_studio
   - ide
