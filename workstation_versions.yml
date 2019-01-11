@@ -39,7 +39,7 @@ lombok_version: 1.18.4
 eclim_version: 2.7.0
 
 #FireFox
-firefox_de_version: 65.0b9
+firefox_de_version: 65.0b10
 firefox_de_language: en-US
 
 #Chrome
