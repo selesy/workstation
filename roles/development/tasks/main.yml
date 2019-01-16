@@ -92,6 +92,7 @@
     - "github.com/uudashr/gopkgs/cmd/gopkgs"
     - "github.com/kisielk/errcheck"
     - "github.com/tsliwowicz/go-wrk"
+    - "github.com/uber/go-torch"
   tags:
     - "languages"
     - "go"
