@@ -11,6 +11,7 @@ go_url: "{{ go_host }}/{{ go_path }}/{{ go_file }}"
 go_installation_directory: "/opt/go"
 go_archive_directory: "{{ go_installation_directory }}/go"
 go_home_directory: "{{ go_installation_directory }}/{{ go_version }}"
+go_tools_directory: "/usr/share/go-tools"
 
 # RFC
 

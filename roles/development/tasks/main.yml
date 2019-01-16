@@ -67,7 +67,7 @@
     - "languages"
     - "go"
 
-- name: set-up the go environment
+- name: "set-up the go environment"
   template:
     src: "../files/go.sh"
     dest: "/etc/profile.d"
@@ -75,13 +75,25 @@
     - "languages"
     - "go"
 
+- name: "create a directory for go tools"
+  file:
+    path: "{{ go_tools_directory }}/src"
+    state: "directory"
+  tags:
+    - "languages"
+    - "go"
+    - "go-tools"
+
 - name: add useful go packages
   shell: go get -u {{ item }}
+  environment:
+    GOPATH: "{{ go_tools_directory }}"
   with_items:
     - "github.com/uudashr/gopkgs/cmd/gopkgs"
   tags:
-    - languages
-    - go
+    - "languages"
+    - "go"
+    - "go-tools"
 
 #
 # Editors
