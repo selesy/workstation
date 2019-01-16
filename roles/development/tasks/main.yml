@@ -91,6 +91,7 @@
   with_items:
     - "github.com/uudashr/gopkgs/cmd/gopkgs"
     - "github.com/kisielk/errcheck"
+    - "github.com/tsliwowicz/go-wrk"
   tags:
     - "languages"
     - "go"
