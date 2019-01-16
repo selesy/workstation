@@ -90,6 +90,7 @@
     GOPATH: "{{ go_tools_directory }}"
   with_items:
     - "github.com/uudashr/gopkgs/cmd/gopkgs"
+    - "github.com/kisielk/errcheck"
   tags:
     - "languages"
     - "go"
