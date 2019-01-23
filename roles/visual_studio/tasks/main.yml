@@ -54,6 +54,7 @@
   - vscjava.vscode-java-pack
   - vscjava.vscode-maven
   - vscoss.vscode-ansible
+  - gruntfuggly.todo-tree
   tags:
   - visual_studio
   - ide
