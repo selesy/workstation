@@ -135,3 +135,23 @@
     - redshift-gtk
   tags:
   - ergonomics
+
+# Install power management utilities
+
+- name: "install TLP and TLP-rdw"
+  apt:
+    name: "{{ packages }}"
+    state: "present"
+  vars:
+    packages:
+    - "tlp"
+    - "tlp-rdw"
+  register: "tlp_installed"
+  tags:
+  - "power-management"
+
+- name: "start up TLP"
+  command: "tlp start"
+  when: "tlp_installed is changed"
+  tags:
+  - "power-management"
