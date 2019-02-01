@@ -15,7 +15,7 @@
 # Delete the full Kubernetes installation
 #
 
-- name: delele Kubernetes
+- name: delete Kubernetes
   file: name={{ k8s_installation_directory }} state="absent"
   tags:
     - containerization
@@ -83,10 +83,11 @@
     - minikube
 
 - name: download the MiniKube executable
-  uri: url={{ minikube_url }}
-       dest="{{ minikube_home_directory }}/{{ minikube_file }}"
-       creates="{{ minikube_home_directory }}/{{ minikube_file }}"
-       mode=755
+  get_url:
+    url: "{{ minikube_url }}"
+    dest: "{{ minikube_home_directory }}/{{ minikube_file }}"
+    checksum: "{{ minikube_checksum }}"
+    mode: "755"
   register: download_result
   tags:
     - containerization
