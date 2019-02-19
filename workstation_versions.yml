@@ -19,8 +19,8 @@ dbeaver_version: 5.3.0
 minikube_version: 0.34.1
 minikube_checksum: "sha256:8db7e8a128de48ebeb1cb8cacb457f60b5420706e08c190e466f4e9b971fd8f3"
 kubectx_version: 0.6.3
-helm_version: 2.11.0
-helm_checksum: "sha256:02a4751586d6a80f6848b58e7f6bd6c973ffffadc52b4c06652db7def02773a1"
+helm_version: 2.12.3
+helm_checksum: "sha256:3425a1b37954dabdf2ba37d5d8a0bd24a225bb8454a06f12b115c55907809107"
 kubeseal_version: 0.7.0
 istio_version: 1.0.5
 istio_checksum: "sha256:2ab3c0c78a87522cd73e33476d821e1de2c74b47b47569232cdec829adeb6b24"
