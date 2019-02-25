@@ -93,6 +93,7 @@
     - "github.com/kisielk/errcheck"
     - "github.com/tsliwowicz/go-wrk"
     - "github.com/uber/go-torch"
+    - "github.com/google/pprof"
   tags:
     - "languages"
     - "go"
