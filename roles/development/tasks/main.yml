@@ -94,6 +94,7 @@
     - "github.com/tsliwowicz/go-wrk"
     - "github.com/uber/go-torch"
     - "github.com/google/pprof"
+    - "golang.org/x/tools/cmd/guru"
   tags:
     - "languages"
     - "go"
