@@ -95,6 +95,7 @@
     - "github.com/uber/go-torch"
     - "github.com/google/pprof"
     - "golang.org/x/tools/cmd/guru"
+    - "github.com/golangci/golangci-lint/cmd/golangci-lint"
   tags:
     - "languages"
     - "go"
