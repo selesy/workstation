@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Encoding=UTF-8
-Exec=/opt/firefox-de/latest/firefox
+Exec=/opt/firefox-de/latest/firefox -P dev-edition-default
 Icon=/opt/firefox-de/latest/browser/chrome/icons/default/default48.png
 StartupNotify=false
 Categories=Development;GNOME;GTK;Network;WebBrowser;
