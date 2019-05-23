@@ -80,7 +80,7 @@ rfc_version: 0.2.5
 soapui_version: 5.5.0
 
 #SpotBugs
-spotbugs_version: 3.1.9
+spotbugs_version: 3.1.12
 
 #SQLMap
 sqlmap_version: 1.2.8
