@@ -41,6 +41,7 @@
     - "hopenpgp-tools"
     - "lynx"
     - "minicom"
+    - "oathtool"
     - "parcimonie"
     - "pass"
     - "qtpass"
