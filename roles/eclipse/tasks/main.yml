@@ -110,6 +110,7 @@
               line="-javaagent:{{ eclipse_installation_directory }}/latest/{{ lombok_file }}"
               state=present
   tags:
+    - lombok
     - eclipse
 
 #
