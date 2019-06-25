@@ -34,7 +34,7 @@ fluxctl_version: "1.13.0"
 go_version: "1.12.6"
 
 #Eclipse
-eclipse_version: 2019-03
+eclipse_version: 2019-06
 eclipse_sr: R
 lombok_version: 1.18.4
 eclim_version: 2.7.0
