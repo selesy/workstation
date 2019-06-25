@@ -448,6 +448,7 @@
        dest=~/{{ eclim_file }}
        creates=~/{{ eclim_file }}
   tags:
+    - eclim
     - eclipse
     - vim
   
