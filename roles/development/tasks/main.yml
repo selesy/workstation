@@ -97,6 +97,7 @@
     - "golang.org/x/tools/cmd/guru"
     - "github.com/golangci/golangci-lint/cmd/golangci-lint"
     - "github.com/zimmski/go-mutesting/cmd/go-mutesting"
+    - "golang.org/x/tools/cmd/gopls"
   tags:
     - "languages"
     - "go"
