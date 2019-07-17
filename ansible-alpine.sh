@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 sudo apk add git ansible openssh
 
