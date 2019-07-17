@@ -4,12 +4,16 @@
 # https://download-installer.cdn.mozilla.net/pub/devedition/releases/55.0b3/linux-x86_64/en-US/firefox-55.0b3.tar.bz2
 # https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US
 
-firefox_de_host: https://download-installer.cdn.mozilla.net
-firefox_de_path: pub/devedition/releases/{{ firefox_de_version }}/linux-x86_64/en-US
-firefox_de_file: firefox-{{ firefox_de_version }}.tar.bz2
+key: "firefox-de"
+title: "Firefox Developer Edition"
+version: "{{ firefox_de_version }}"
 
-firefox_de_url: "{{ firefox_de_host }}/{{ firefox_de_path }}/{{ firefox_de_file }}"
+host: "https://download-installer.cdn.mozilla.net"
+path: "pub/devedition/releases/{{ firefox_de_version }}/linux-x86_64/en-US"
+file: "firefox-{{ firefox_de_version }}.tar.bz2"
 
-firefox_de_installation_directory: /opt/firefox-de
-firefox_de_tar_directory: "{{ firefox_de_installation_directory }}/firefox"
-firefox_de_home_directory: "{{ firefox_de_installation_directory }}/{{ firefox_de_version }}"
+url: "{{ host }}/{{ path }}/{{ file }}"
+
+archive_path: "firefox"
+
+desktop_file: "firefox-de.desktop"

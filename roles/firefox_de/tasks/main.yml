@@ -1,43 +1,8 @@
 ---
 # File: roles/firefox_de/tasks/main.yml
 
-- name: create a directory for optional firefox-de software
-  file: name=/opt/firefox-de state=directory
+- name: "download and install {{ name }}"
+  include: "../../install_from_archive.yml"
   tags:
     - firefox-de
-
-- name: download latest version of Firefox Developer Edition
-  uri: url={{ firefox_de_url}}
-       dest=~/{{ firefox_de_file }}
-       creates=~/{{ firefox_de_file }}
-  tags:
-    - firefox-de
-
-- name: untar the FireFox Developer Edition archive
-  unarchive: copy=no
-             src=~/{{ firefox_de_file }}
-             dest={{ firefox_de_installation_directory }}
-             creates={{ firefox_de_home_directory }}
-  register: unarchive_result
-  tags:
-    - firefox-de
-
-- name: move the tar file's base directory somewhere maintainable
-  command: mv {{ firefox_de_tar_directory }}
-           {{ firefox_de_home_directory }}
-  when: unarchive_result is changed
-  tags:
-    - firefox-de
-
-- name: create a pretty symlink to the latest version
-  file: src={{ firefox_de_home_directory }}
-        path={{ firefox_de_installation_directory }}/latest
-        state=link
-  tags:
-    - firefox-de
-
-- name: add a launcher for Firefox Developer Edition
-  template: src=../files/firefox-de.desktop
-            dest=/usr/share/applications
-  tags:
-    - firefox-de
+    
