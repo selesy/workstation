@@ -1,0 +1,74 @@
+---
+# File: install_from_archive.yml
+
+# These plays download and install an application distributed as an
+# archive.  Set the appropriate variables as follows:
+#
+# Required variables:
+# -------- ---------
+# 
+# key:          The application's key.  This value will determine the
+#               name of the directory (in /opt) where the application
+#               is finally installed.
+#
+# name:         The application's formal name.
+#
+# version:      This value indicates what version should be downloaded
+#               and is generally set in the "workstation_versions.yml"
+#               file and copied within the task's vars file.
+#
+# url:          The URL where the application's installation archive can
+#               be downloaded.
+#
+# Optional variables:
+# -------- ---------
+#
+# archive_path: If the archive includes a path prefix for each file, This
+#               value allows the archive to be "relocated" to a directory
+#               named by the version.  If this variable is empty, the
+#               archive path is assumed to be ".".
+#
+# desktop_file: If the application has a GUI, this variable should point
+#               to a template that will be completed and copied to
+#               /usr/share/applications.  If this variable is empty,
+#               no templating is performed.
+#
+
+- name: "calculate the installation and final directories for {{ title }}"
+  set_fact:
+    installation_directory: "/opt/{{ key }}"
+    final_directory: "/opt/{{ key }}/{{ version }}"
+
+- name: "calculate the archive's directory for {{ title }}"
+  set_fact:
+    archive_directory: "/opt/{{ key }}/{{ archive_path }}"
+  when: "archive_path != ''"
+
+- name: "create a directory for {{ title }}"
+  file:
+    name: "{{ installation_directory }}"
+    state: "directory"
+
+- name: "download and unarchive {{ title }}"
+  unarchive:
+    src: "{{ url }}"
+    dest: "{{ installation_directory }}"
+    remote_src: "yes"
+    creates: "{{ final_directory }}"
+  register: "unarchive_result"
+
+- name: "move the archive file's base directory somewhere maintainable"
+  command: "mv {{ archive_directory }} {{ final_directory }}"
+  when: "unarchive_result is changed"
+
+- name: "create a pretty symlink to the latest version"
+  file:
+    src: "{{ final_directory }}"
+    path: "{{ installation_directory }}/latest"
+    state: "link"
+
+- name: "add a desktop launcher for {{ title }}"
+  template:
+    src: "{{ desktop_file }}"
+    dest: "/usr/share/applications"
+  when: "desktop_file != ''"
