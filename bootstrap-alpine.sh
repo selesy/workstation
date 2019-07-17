@@ -10,7 +10,7 @@ fi
 
 ssh-keyscan -H $1 >> ~/.ssh/known_hosts
 
-sudo apt-get -y install openssh-server sshpass
+sudo apk add sshpass
 
 echo "[targets]" > ansible_inventory.ini
 echo "" >> ansible_inventory.ini
