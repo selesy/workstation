@@ -19,4 +19,4 @@
 
   - name: install aptitude
     apt: name=aptitude state=latest
-
+    when: "ansible_distribution == 'Ubuntu'"
