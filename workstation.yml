@@ -15,9 +15,9 @@
     - role: "alpine/common"
       tags:
       - "alpine"
-    - role: "alpine/xfce"
-      tags:
-      - "alpine"
+    # - role: "alpine/xfce"
+      # tags:
+      # - "alpine"
     - platform
     - common
     - development
