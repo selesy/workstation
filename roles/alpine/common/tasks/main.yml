@@ -1,18 +1,28 @@
 ---
 
-- name: enable additional apk repositories
+- name: enable apk community repository
   lineinfile:
     path: /etc/apk/repositories
-    regexp: "^#(http://.*/alpinelinux/)"
+    regexp: "^#(http://.*/alpinelinux/)v([0-9.]*)/{{ item }}"
+    backrefs: "yes"
+    line: "\\1v\\2/{{ item }}" 
+    state: "present"
+  with_items:
+  - "main"
+  - "community"
+  when: "ansible_distribution == 'Alpine'"
+
+- name: enable apk edge repositories
+  lineinfile:
+    path: /etc/apk/repositories
+    regexp: "^#(http://.*/alpinelinux/)edge/{{ item }}"
     backrefs: "yes"
     line: "\\1{{ item }}" 
     state: "present"
   with_items:
-  - "v3.10/main"
-  - "v3.10/community"
-  - "edge/main"
-  - "edge/community"
-  - "edge/testing"
+  - "main"
+  - "community"
+  - "testing"
   when: "ansible_distribution == 'Alpine'"
 
 ...
