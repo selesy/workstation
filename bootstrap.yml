@@ -20,7 +20,7 @@
   - name: allow SSH logins via publickey
     lineinfile:
       path: "/etc/ssh/sshd_config"
-      regexp: "^#(PubKeyAuthentication yes)$"
+      regexp: "^#(PubkeyAuthentication yes)$"
       backrefs: "yes"
       line: "\\1"
       state: "present"
