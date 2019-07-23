@@ -6,7 +6,7 @@
   tasks:
 
   - name: create the ansible user
-    user: name=ansible system=yes state=present
+    user: name=ansible system=yes shell=/bin/sh state=present
 
   - name: install the ansible user's authorized (public) key
     authorized_key: user=ansible key="{{ lookup('file', '~/.ssh/ansible-key.pub') }}"
