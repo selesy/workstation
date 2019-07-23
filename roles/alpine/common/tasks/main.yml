@@ -17,7 +17,7 @@
     path: /etc/apk/repositories
     regexp: "^#(http://.*/alpinelinux/)edge/{{ item }}"
     backrefs: "yes"
-    line: "\\1{{ item }}" 
+    line: "\\1edge/{{ item }}" 
     state: "present"
   with_items:
   - "main"
