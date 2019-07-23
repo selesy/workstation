@@ -1,0 +1,14 @@
+---
+
+- name: install XFCE windowing system
+  apk:
+    command:
+      argv:
+        - /sbin/setup-xorg-base
+        - xfce4
+        - xfce4-terminal
+        - lightdm-gtk-greeter
+        - xfce-polkit
+        - xfce4-screensaver
+        - consolekit2
+        - xf86-input-synaptics

@@ -14,10 +14,10 @@
   roles: # The Alpine roles must remain first in the role list
     - role: "alpine/common"
       tags:
-      - "alpine"
-    # - role: "alpine/xfce"
-      # tags:
-      # - "alpine"
+        - "alpine"
+    - role: "alpine/xfce"
+      tags:
+        - "alpine"
     - platform
     - common
     - development
