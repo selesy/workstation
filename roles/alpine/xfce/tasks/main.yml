@@ -1,14 +1,15 @@
 ---
 
-- name: install XFCE windowing system
+- name: "install XFCE windowing system"
   command:
     argv:
-      - /sbin/setup-xorg-base
-      - xfce4
-      - xfce4-terminal
-      - lightdm-gtk-greeter
-      - xfce-polkit
-      - xfce4-screensaver
-      - consolekit2
-      - xf86-input-synaptics
+      - "/sbin/setup-xorg-base"
+      - "xfce4"
+      - "xfce4-terminal"
+      - "lightdm-gtk-greeter"
+      - "xfce-polkit"
+      - "xfce4-screensaver"
+      - "consolekit2"
+      - "xf86-input-synaptics"
+      - "xf86-video-vesa"
   when: "ansible_distribution == 'Alpine'"
