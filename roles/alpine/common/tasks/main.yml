@@ -25,4 +25,11 @@
   - "testing"
   when: "ansible_distribution == 'Alpine'"
 
+# unarchive requires tar, unzip
+- name: "add Python libraries required by Ansible"
+  apk:
+    name: "tar,unzip"
+    state: "present"
+  when: "ansible_distribution == 'Alpine'"
+
 ...
