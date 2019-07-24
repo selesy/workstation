@@ -32,4 +32,10 @@
     state: "present"
   when: "ansible_distribution == 'Alpine'"
 
+- name: "add convenient OS packages"
+  apk:
+    name: "tzdata"
+    state: "present"
+  when: "ansible_distribution == 'Alpine'"
+
 ...
