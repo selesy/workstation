@@ -11,3 +11,4 @@
       - xfce4-screensaver
       - consolekit2
       - xf86-input-synaptics
+  when: "ansible_distribution == 'Alpine'"
