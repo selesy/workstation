@@ -13,3 +13,10 @@
       - "xf86-input-synaptics"
       - "xf86-video-vesa"
   when: "ansible_distribution == 'Alpine'"
+
+- name: "start lightdm on boot"
+  service:
+    name: "lightdm"
+    enabled: "yes"
+  when: "ansible_distribution == 'Alpine'"
+  
