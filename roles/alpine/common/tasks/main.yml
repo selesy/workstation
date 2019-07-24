@@ -27,7 +27,7 @@
 
 - name: "make Alpine compatible with glibc/gtk applications"
   apk:
-    name: "libc6-compat,gtk+"
+    name: "libc6-compat,gtk+3.0"
     state: "present"
   when: "ansible_distribution =='Alpine'"
 
