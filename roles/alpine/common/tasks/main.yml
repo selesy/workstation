@@ -25,9 +25,9 @@
   - "testing"
   when: "ansible_distribution == 'Alpine'"
 
-- name: "make Alpine compatible with glibc applications"
+- name: "make Alpine compatible with glibc/gtk applications"
   apk:
-    name: "libc6-compat"
+    name: "libc6-compat,gtk+"
     state: "present"
   when: "ansible_distribution =='Alpine'"
 
