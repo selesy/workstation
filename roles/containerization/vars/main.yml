@@ -112,7 +112,7 @@ stern_home_directory: "{{ stern_installation_directory }}/{{ stern_version }}"
 # https://github.com/weaveworks/flux/releases/download/1.8.0/fluxctl_linux_amd64
 
 fluxctl_host: "https://github.com"
-fluxctl_path: "weaveworks/flux/releases/download/{{ fluxctl_version }}"
+fluxctl_path: "fluxcd/flux/releases/download/{{ fluxctl_version }}"
 fluxctl_file: "fluxctl_linux_amd64"
 
 fluxctl_url: "{{ fluxctl_host }}/{{ fluxctl_path }}/{{ fluxctl_file }}"
