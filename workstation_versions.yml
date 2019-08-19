@@ -25,7 +25,7 @@ kubeseal_version: 0.8.1
 istio_version: 1.2.3
 istio_checksum: "sha256:ecf8a759a4c41bd7c0fb3515c61b13f6d1252552a235e147c75212566cf15691"
 terraform_version: 0.12.6
-kail_version: 0.10.1
+kail_version: 0.11.0
 stern_version: 1.11.0
 stern_checksum: "sha256:e0b39dc26f3a0c7596b2408e4fb8da533352b76aaffdc18c7ad28c833c9eb7db"
 fluxctl_version: "1.13.3"
