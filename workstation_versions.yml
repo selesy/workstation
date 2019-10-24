@@ -69,7 +69,7 @@ nodejs_repo: node_{{ nodejs_version }}
 pencil_version: 3.0.4
 
 #Postman
-postman_version: 7.8.0
+postman_version: 7.9.0
 
 #RatPoison
 
