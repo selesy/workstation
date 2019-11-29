@@ -114,6 +114,19 @@
     - minikube
 
 #
+# micro-k8s
+#
+
+- name: Install microk8s with option --classic
+  snap:
+    name: microk8s
+    classic: yes
+  tags:
+    - containerization
+    - kubernetes
+    - microk8s
+
+#
 # Kubectx
 #
 
