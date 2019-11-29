@@ -127,6 +127,26 @@
     - microk8s
 
 #
+# kind
+#
+
+- name: install kind
+  shell: go get -u sigs.k8s.io/kind
+  environment:
+    GOPATH: "{{ go_tools_directory }}"
+  tags:
+    - containerization
+    - Kubernetes
+    - kind
+
+- name: add kind's bash completion
+  shell: /usr/share/go-tools/bin/kind completion bash > /etc/bash_completion.d/kind
+  tags:
+    - containerization
+    - Kubernetes
+    - kind
+
+#
 # Kubectx
 #
 
