@@ -104,7 +104,7 @@
     - kubernetes
     - minikube
 
-- name: put minikube on the user's path
+- name: put Minikube on the user's path
   file: src={{ minikube_installation_directory }}/latest/{{ minikube_file }}
         path=/usr/bin/minikube
         state=link
@@ -112,6 +112,14 @@
     - containerization
     - kubernetes
     - minikube
+
+- name: generate Minikube bash completion
+  shell: minikube completion bash > /etc/bash_completion.d/minikube
+  tags:
+    - containerization
+    - kubernetes
+    - minikube
+
 
 #
 # micro-k8s
