@@ -84,7 +84,8 @@
     - "go-tools"
 
 - name: add useful go packages
-  shell: GO111MODULE=on go get -u {{ item }}
+  shell: 
+    cmd: "GO111MODULE=on go get -u {{ item }}"
   environment:
     GOPATH: "{{ go_tools_directory }}"
   with_items:
@@ -98,6 +99,8 @@
     - "github.com/zimmski/go-mutesting/cmd/go-mutesting"
     - "golang.org/x/tools/cmd/gopls"
     - "golang.org/x/tools/cmd/godoc"
+  register: go_packages
+  changed_when: "go_packages.stdout != '' and go_packages.stderr != ''"
   tags:
     - "languages"
     - "go"
