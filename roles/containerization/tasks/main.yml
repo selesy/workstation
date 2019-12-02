@@ -142,13 +142,11 @@
 # kind
 #
 
-- name: install kind
-  command:
-    cmd: "go get -u sigs.k8s.io/kind"
-  environment:
-    GOPATH: "{{ go_tools_directory }}"
-  register: kind_output
-  changed_when: "kind_output.stdout != '' and kind_output.stderr != ''"
+- include: "../../install_go_packages.yml"
+  vars:
+    name: "install kind"
+    packages:
+      - "sigs.k8s.io/kind"
   tags:
     - containerization
     - Kubernetes
@@ -156,7 +154,7 @@
 
 - name: add kind's bash completion
   shell: /usr/share/go-tools/bin/kind completion bash > /etc/bash_completion.d/kind
-  when: "kind_output.stdout != '' and kind_output.stderr != ''"
+  when: "go_get_result.changed"
   tags:
     - containerization
     - Kubernetes
