@@ -16,9 +16,6 @@
     name: "snapd"
     state: "latest"
 
-- name: refresh the existing snap packages
-  command: snap refresh
-
 - name: "add the PIP package manager"
   apt:
     name: "{{ packages }}"
