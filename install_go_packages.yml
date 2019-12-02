@@ -7,7 +7,7 @@
 
 - name: "{{ name }}"
   shell: 
-    cmd: "GO111MODULE=on go get -u {{ item }}"
+    cmd: "go get -u {{ item }}"
   environment:
     GOPATH: "{{ go_tools_directory }}"
   with_items: "{{ packages }}"

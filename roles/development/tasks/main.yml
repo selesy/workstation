@@ -102,6 +102,27 @@
     - "go"
     - "go-tools"
 
+- include: "../../install_go_packages.yml"
+  vars:
+    name: "install ko for Go-Kubernetes development"
+    packages:
+      - "github.com/google/ko/cmd/ko"
+  tags:
+    - containerization
+    - kubernetes
+    - ko
+
+
+- name: add ko's bash completion
+  shell:
+    cmd: "/usr/share/go-tools/bin/ko completion bash > /etc/bash_completion.d/ko"
+  when: "go_get_result.changed"
+  changed_when: "go_get_result.changed"
+  tags:
+    - containerization
+    - Kubernetes
+    - ko
+
 #
 # Editors
 #
