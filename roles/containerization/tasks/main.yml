@@ -33,6 +33,7 @@
   tags:
     - containerization
     - kubernetes
+    - kubectl
 
 - name: "remove the Google apt repository"
   apt_repository:
@@ -41,14 +42,17 @@
   tags:
     - containerization
     - kubernetes
+    - kubectl
 
 - name: install the snap-managed kubectl
-  command: snap install --classic kubectl
-  args:
-    creates: /snap/bin/kubectl
+  snap:
+    name: "kubectl"
+    state: "present"
+    classic: true
   tags:
     - containerization
     - kubernetes
+    - kubectl
 
 #
 # HyperKube is now deprecated in favor of MiniKube
