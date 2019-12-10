@@ -414,6 +414,7 @@
     dest: "{{ istio_installation_directory }}"
     copy: "no"
     creates: "{{ istio_home_directory }}"
+    mode: "755"
   when: "istio_download_result is changed"
   register: "istio_unarchive_result"
   tags:
