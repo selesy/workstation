@@ -16,7 +16,7 @@ burp_version: latest
 dbeaver_version: 6.2.3
 
 #Containerization
-minikube_version: 1.6.0
+minikube_version: 1.6.1
 minikube_checksum: "sha256:cbd526d64531266d42f02667339d3c53e5a399e3abebda63c96b0bbd6b7e935d"
 kubectx_version: 0.7.1
 helm_version: 3.0.1
