@@ -20,7 +20,7 @@ minikube_version: 1.6.1
 minikube_checksum: "sha256:cbd526d64531266d42f02667339d3c53e5a399e3abebda63c96b0bbd6b7e935d"
 kubectx_version: 0.7.1
 helm_version: 3.0.1
-helm_checksum: "sha256:6de3337bb7683fd62f915d156cfc13c1cf73dc183bd39f2fb4644498c7595805"
+helm_checksum: "sha256:c6b7aa7e4ffc66e8abb4be328f71d48c643cb8f398d95c74d075cfb348710e1d"
 kubeseal_version: 0.9.6
 istio_version: 1.4.1
 istio_checksum: "sha256:a2b0ae73c990492fe41fec02732a87a98aa000152ccb2d2ad3d6174e210f676b"
