@@ -92,11 +92,10 @@
       - "github.com/tsliwowicz/go-wrk"
       - "github.com/uber/go-torch"
       - "github.com/google/pprof"
-      - "golang.org/x/tools/cmd/guru"
       - "github.com/golangci/golangci-lint/cmd/golangci-lint"
       - "github.com/zimmski/go-mutesting/cmd/go-mutesting"
-      - "golang.org/x/tools/cmd/gopls"
-      - "golang.org/x/tools/cmd/godoc"
+      - "golang.org/x/tools/gopls"
+      - "golang.org/x/tools/godoc"
   tags:
     - "languages"
     - "go"
