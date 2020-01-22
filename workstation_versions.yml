@@ -13,7 +13,7 @@ studio_build: 20180908-M14
 burp_version: latest
 
 #dbeaver
-dbeaver_version: 6.2.3
+dbeaver_version: 6.3.3
 
 #Containerization
 minikube_version: 1.6.2
