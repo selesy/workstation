@@ -83,7 +83,7 @@ soapui_version: 5.5.0
 spotbugs_version: 4.0.0
 
 #SQLMap
-sqlmap_version: 1.4
+sqlmap_version: 1.4.2
 
 #Umlet
 umlet_major_version: 14
