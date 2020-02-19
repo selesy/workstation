@@ -39,3 +39,15 @@
   tags:
     - sqlmap
     - security
+
+- name: add symlinks to executables
+  file:
+    src: "{{ sqlmap_installation_directory }}/latest/{{ item }}"
+    path: "/usr/bin/{{ item }}"
+    state: "link"
+  with_items:
+  - "sqlmap.py"
+  - "sqlmapapi.py"
+  tags:
+    - sqlmap
+    - security
