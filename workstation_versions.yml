@@ -18,7 +18,7 @@ dbeaver_version: 6.3.3
 #Containerization
 minikube_version: 1.8.1
 minikube_checksum: "sha256:028bfb3aa0e5a1d1de49b13e4550d3d2885f2d0bb572f76a72372aba93fff22c"
-kubectx_version: 0.7.1
+kubectx_version: 0.8.0
 helm_version: 3.1.0
 helm_checksum: "sha256:f0fd9fe2b0e09dc9ed190239fce892a468cbb0a2a8fffb9fe846f893c8fd09de"
 kubeseal_version: 0.9.7
