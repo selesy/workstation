@@ -13,7 +13,7 @@ studio_build: 20180908-M14
 burp_version: latest
 
 #dbeaver
-dbeaver_version: 6.2.3
+dbeaver_version: 6.2.5
 
 #Containerization
 minikube_version: 1.5.2
@@ -34,8 +34,8 @@ fluxctl_version: "1.15.0"
 go_version: "1.13.4"
 
 #Eclipse
-eclipse_version: 2019-09
-eclipse_sr: R
+eclipse_version: 2019-12
+eclipse_sr: M2
 lombok_version: 1.18.10
 eclim_version: 2.8.0
 
