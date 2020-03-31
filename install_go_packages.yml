@@ -1,0 +1,15 @@
+---
+# File: install_go_packages.yml
+
+# - name: debug
+#   debug:
+#     var: "packages"
+
+- name: "{{ name }}"
+  shell: 
+    cmd: "go get -u {{ item }}"
+  environment:
+    GOPATH: "{{ go_tools_directory }}"
+  with_items: "{{ packages }}"
+  register: "go_get_result"
+  changed_when: "'downloading' in go_get_result.stderr"

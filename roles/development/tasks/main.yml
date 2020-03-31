@@ -83,24 +83,44 @@
     - "go"
     - "go-tools"
 
-- name: add useful go packages
-  shell: GO111MODULE=on go get -u {{ item }}
-  environment:
-    GOPATH: "{{ go_tools_directory }}"
-  with_items:
-    - "github.com/uudashr/gopkgs/cmd/gopkgs"
-    - "github.com/kisielk/errcheck"
-    - "github.com/tsliwowicz/go-wrk"
-    - "github.com/uber/go-torch"
-    - "github.com/google/pprof"
-    - "golang.org/x/tools/cmd/guru"
-    - "github.com/golangci/golangci-lint/cmd/golangci-lint"
-    - "github.com/zimmski/go-mutesting/cmd/go-mutesting"
-    - "golang.org/x/tools/cmd/gopls"
+- include: "../../install_go_packages.yml"
+  vars:
+    name: "add useful go packages"
+    packages:
+      - "github.com/uudashr/gopkgs/cmd/gopkgs"
+      - "github.com/kisielk/errcheck"
+      - "github.com/tsliwowicz/go-wrk"
+      - "github.com/uber/go-torch"
+      - "github.com/google/pprof"
+      - "github.com/golangci/golangci-lint/cmd/golangci-lint"
+      - "github.com/zimmski/go-mutesting/cmd/go-mutesting"
+      - "golang.org/x/tools/gopls"
+      - "golang.org/x/tools/godoc"
   tags:
     - "languages"
     - "go"
     - "go-tools"
+
+- include: "../../install_go_packages.yml"
+  vars:
+    name: "install ko for Go-Kubernetes development"
+    packages:
+      - "github.com/google/ko/cmd/ko"
+  tags:
+    - containerization
+    - kubernetes
+    - ko
+
+
+- name: add ko's bash completion
+  shell:
+    cmd: "/usr/share/go-tools/bin/ko completion bash > /etc/bash_completion.d/ko"
+  when: "go_get_result.changed"
+  changed_when: "go_get_result.changed"
+  tags:
+    - containerization
+    - Kubernetes
+    - ko
 
 #
 # Editors

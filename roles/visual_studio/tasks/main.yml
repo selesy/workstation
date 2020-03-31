@@ -41,20 +41,28 @@
   - editors
 
 - name: install visual studio
-  apt: name=code state=present update_cache=yes
+  apt:
+    name: "code"
+    state: "present"
+    update_cache: yes
   tags:
   - visual_studio
   - ide
   - editors
 
 - name: install selected visual studio extensions
-  shell: code --install-extension {{ item }} --user-data-dir /usr/share/code --force
+  command:
+    cmd: "code --install-extension {{ item }} --user-data-dir /usr/share/code --force"
   with_items:
-  - vscodevim.vim
-  - vscjava.vscode-java-pack
-  - vscjava.vscode-maven
-  - vscoss.vscode-ansible
-  - gruntfuggly.todo-tree
+  - "vscodevim.vim"
+  - "vscjava.vscode-java-pack"
+  - "vscjava.vscode-maven"
+  - "vscoss.vscode-ansible"
+  - "gruntfuggly.todo-tree"
+  - "ms-kubernetes-tools.vscode-kubernetes-tools"
+  - "ms-kubernetes-tools.kind-vscode"
+  register: vscode_extension
+  changed_when: "'already installed' not in vscode_extension.stdout"
   tags:
   - visual_studio
   - ide

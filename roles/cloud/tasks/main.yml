@@ -2,13 +2,18 @@
 # File: roles/cloud/tasks/main.yml
 
 - name: remove AWS CLI tools from Debian repositories
-  apt: name=awscli state=absent
+  apt: 
+    name: awscli
+    state: absent
   tags:
     - cloud
     - aws
 
 - name: remove AWS CLI tools installed via SNAP
-  command: snap install --classic aws-cli
+  snap:
+    name: "aws-cli"
+    state: "absent"
+    classic: true
   tags:
     - cloud
     - aws
@@ -23,7 +28,10 @@
     - aws
 
 - name: install latest Azure CLI tools via SNAP
-  command: snap install --candidate azure-cli
+  snap:
+    name: "azure-cli"
+    channel: "candidate"
+    state: "present"
   tags:
     - cloud
     - azure

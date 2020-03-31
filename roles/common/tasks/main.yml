@@ -12,10 +12,9 @@
 # Mint does not ship with snap
 
 - name: ensure snap is installed
-  apt: name=snapd state=latest
-
-- name: refresh the existing snap packages
-  command: snap refresh
+  apt:
+    name: "snapd"
+    state: "latest"
 
 - name: "add the PIP package manager"
   apt:
@@ -61,7 +60,10 @@
     - "wipe"
 
 - name: install freemind via snap
-  command: snap install freemind
+  snap:
+    name: "freemind"
+    state: "present"
+    classic: true
   tags:
     - freemind
 

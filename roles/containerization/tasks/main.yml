@@ -33,6 +33,7 @@
   tags:
     - containerization
     - kubernetes
+    - kubectl
 
 - name: "remove the Google apt repository"
   apt_repository:
@@ -41,14 +42,17 @@
   tags:
     - containerization
     - kubernetes
+    - kubectl
 
 - name: install the snap-managed kubectl
-  command: snap install --classic kubectl
-  args:
-    creates: /snap/bin/kubectl
+  snap:
+    name: "kubectl"
+    state: "present"
+    classic: true
   tags:
     - containerization
     - kubernetes
+    - kubectl
 
 #
 # HyperKube is now deprecated in favor of MiniKube
@@ -104,7 +108,7 @@
     - kubernetes
     - minikube
 
-- name: put minikube on the user's path
+- name: put Minikube on the user's path
   file: src={{ minikube_installation_directory }}/latest/{{ minikube_file }}
         path=/usr/bin/minikube
         state=link
@@ -112,6 +116,49 @@
     - containerization
     - kubernetes
     - minikube
+
+- name: generate Minikube bash completion
+  shell: minikube completion bash > /etc/bash_completion.d/minikube
+  tags:
+    - containerization
+    - kubernetes
+    - minikube
+
+
+#
+# micro-k8s
+#
+
+- name: Install microk8s with option --classic
+  snap:
+    name: microk8s
+    classic: yes
+  tags:
+    - containerization
+    - kubernetes
+    - microk8s
+
+#
+# kind
+#
+
+- include: "../../install_go_packages.yml"
+  vars:
+    name: "install kind"
+    packages:
+      - "sigs.k8s.io/kind"
+  tags:
+    - containerization
+    - Kubernetes
+    - kind
+
+- name: add kind's bash completion
+  shell: /usr/share/go-tools/bin/kind completion bash > /etc/bash_completion.d/kind
+  when: "go_get_result.changed"
+  tags:
+    - containerization
+    - Kubernetes
+    - kind
 
 #
 # Kubectx
@@ -367,6 +414,7 @@
     dest: "{{ istio_installation_directory }}"
     copy: "no"
     creates: "{{ istio_home_directory }}"
+    mode: "755"
   when: "istio_download_result is changed"
   register: "istio_unarchive_result"
   tags:

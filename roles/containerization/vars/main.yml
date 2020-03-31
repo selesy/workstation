@@ -35,15 +35,10 @@ kubectx_executables:
   - "kubectx"
   - "kubens"
 
-# https://storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz
-# https://storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz.sha256
-# https://raw.githubusercontent.com/kubernetes/helm/v2.9.1/scripts/completions.bash
-
-helm_host: "https://storage.googleapis.com"
-helm_path: "kubernetes-helm"
+helm_host: "https://get.helm.sh"
 helm_file: "helm-v{{ helm_version }}-linux-amd64.tar.gz"
 
-helm_url: "{{ helm_host }}/{{ helm_path }}/{{ helm_file }}"
+helm_url: "{{ helm_host }}/{{ helm_file }}"
 
 helm_installation_directory: "/opt/helm"
 helm_home_directory: "{{ helm_installation_directory }}/{{ helm_version }}"

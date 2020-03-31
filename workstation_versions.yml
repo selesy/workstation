@@ -13,34 +13,34 @@ studio_build: 20180908-M14
 burp_version: latest
 
 #dbeaver
-dbeaver_version: 6.2.5
+dbeaver_version: 6.3.3
 
 #Containerization
-minikube_version: 1.5.2
-minikube_checksum: "sha256:1972a9a96de85e480012f6d2c9b8a88fd29217b99b1a973ed5e199386659f7e9"
+minikube_version: 1.7.2
+minikube_checksum: "sha256:9f543f464b4d93a259f7d5a7578edff1316370d45b5a0679b86ed7a61b01634d"
 kubectx_version: 0.7.1
-helm_version: 2.16.1
-helm_checksum: "sha256:7eebaaa2da4734242bbcdced62cc32ba8c7164a18792c8acdf16c77abffce202"
-kubeseal_version: 0.9.4
-istio_version: 1.3.5
-istio_checksum: "sha256:f1cba70958c11eadbc1bd5ee0dc942a5e342cb89b10c3bfbc6bc2d2601e9e3bb"
-terraform_version: 0.12.13
-kail_version: 0.12.0
+helm_version: 3.1.0
+helm_checksum: "sha256:f0fd9fe2b0e09dc9ed190239fce892a468cbb0a2a8fffb9fe846f893c8fd09de"
+kubeseal_version: 0.9.7
+istio_version: 1.4.4
+istio_checksum: "sha256:105365208e6c5e2c24fbd74c34e6a63e0301d265b8b674387b6a8163c7579c27"
+terraform_version: 0.12.20
+kail_version: 0.14.2
 stern_version: 1.11.0
 stern_checksum: "sha256:e0b39dc26f3a0c7596b2408e4fb8da533352b76aaffdc18c7ad28c833c9eb7db"
-fluxctl_version: "1.15.0"
+fluxctl_version: "1.18.0"
 
 #Development
-go_version: "1.13.4"
+go_version: "1.13.8"
 
 #Eclipse
-eclipse_version: 2019-12
-eclipse_sr: M2
+eclipse_version: 2019-09
+eclipse_sr: R
 lombok_version: 1.18.10
 eclim_version: 2.8.0
 
 #FireFox
-firefox_de_version: 71.0b11
+firefox_de_version: 74.0b4
 firefox_de_language: en-US
 
 #Chrome
@@ -66,10 +66,10 @@ nodejs_version: 8.x
 nodejs_repo: node_{{ nodejs_version }}
 
 #Pencil
-pencil_version: 3.0.4
+pencil_version: 3.1.0.ga
 
 #Postman
-postman_version: 7.10.0
+postman_version: 7.18.0
 
 #RatPoison
 
@@ -80,10 +80,10 @@ rfc_version: 0.2.6
 soapui_version: 5.5.0
 
 #SpotBugs
-spotbugs_version: 3.1.12
+spotbugs_version: 4.0.0
 
 #SQLMap
-sqlmap_version: 1.3.10
+sqlmap_version: 1.4.2
 
 #Umlet
 umlet_major_version: 14
@@ -92,7 +92,7 @@ umlet_bug_version: 0
 umlet_version: "{{ umlet_major_version }}.{{ umlet_minor_version }}.{{ umlet_bug_version }}"
 
 #Zaproxy
-zaproxy_version: 2.8.1
+zaproxy_version: 2.9.0
 
 ...
 
