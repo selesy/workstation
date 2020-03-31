@@ -16,22 +16,22 @@ burp_version: latest
 dbeaver_version: 6.3.3
 
 #Containerization
-minikube_version: 1.7.2
-minikube_checksum: "sha256:9f543f464b4d93a259f7d5a7578edff1316370d45b5a0679b86ed7a61b01634d"
-kubectx_version: 0.7.1
-helm_version: 3.1.0
-helm_checksum: "sha256:f0fd9fe2b0e09dc9ed190239fce892a468cbb0a2a8fffb9fe846f893c8fd09de"
-kubeseal_version: 0.9.7
-istio_version: 1.4.4
-istio_checksum: "sha256:105365208e6c5e2c24fbd74c34e6a63e0301d265b8b674387b6a8163c7579c27"
-terraform_version: 0.12.20
-kail_version: 0.14.2
+minikube_version: 1.9.0
+minikube_checksum: "sha256:81d77d1babe63be393e0a3204aac7825eb35e0fdf58ffefd9f66508a43864866"
+kubectx_version: 0.8.0
+helm_version: 3.1.1
+helm_checksum: "sha256:cdd7ad304e2615c583dde0ffb0cb38fc1336cd7ce8ff3b5f237434dcadb28c98"
+kubeseal_version: 0.10.0
+istio_version: 1.5.0
+istio_checksum: "sha256:fba603390074b1b9da9b3bd1492a278740fe725ac8ff07b8ec54fb7d66e03c33"
+terraform_version: 0.12.23
+kail_version: 0.15.0
 stern_version: 1.11.0
 stern_checksum: "sha256:e0b39dc26f3a0c7596b2408e4fb8da533352b76aaffdc18c7ad28c833c9eb7db"
 fluxctl_version: "1.18.0"
 
 #Development
-go_version: "1.13.8"
+go_version: "1.14.1"
 
 #Eclipse
 eclipse_version: 2019-09
@@ -40,7 +40,7 @@ lombok_version: 1.18.10
 eclim_version: 2.8.0
 
 #FireFox
-firefox_de_version: 74.0b4
+firefox_de_version: 75.0b11
 firefox_de_language: en-US
 
 #Chrome
