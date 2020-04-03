@@ -13,7 +13,7 @@ studio_build: 20180908-M14
 burp_version: latest
 
 #dbeaver
-dbeaver_version: 6.3.3
+dbeaver_version: 7.0.1
 
 #Containerization
 minikube_version: 1.9.0
@@ -34,9 +34,9 @@ fluxctl_version: "1.18.0"
 go_version: "1.14.1"
 
 #Eclipse
-eclipse_version: 2019-09
-eclipse_sr: R
-lombok_version: 1.18.10
+eclipse_version: 2020-03
+eclipse_sr: RC1
+lombok_version: 1.18.12
 eclim_version: 2.8.0
 
 #FireFox
@@ -50,8 +50,8 @@ chrome_version: stable_current
 java_version: 11
 
 #JMeter
-jmeter_version: 5.1.1
-jmeter_checksum: "sha512:8eceafbcc3fdedd46f7357467f9ecd351f01e10e9c6c4f166895d535e1d08a6894f9eab1ddc6aa3a0335d53cab1738933e72fdb6aa92692afab54c0671886d4f"
+jmeter_version: 5.2.1
+jmeter_checksum: "sha512:3e67b2c5c5c2bbcfcc6adce8fe76a9a23153d52a92208e52548a3af02b18a6ee527e6a451ddb91f90f5e317db6bb298bdef5f31a1ab8b2452e56e5fe3af77d90"
 plugins_manager_version: 1.3
 
 #Micro
@@ -69,7 +69,7 @@ nodejs_repo: node_{{ nodejs_version }}
 pencil_version: 3.1.0.ga
 
 #Postman
-postman_version: 7.18.0
+postman_version: 7.21.1
 
 #RatPoison
 
