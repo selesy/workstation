@@ -31,7 +31,7 @@ stern_checksum: "sha256:e0b39dc26f3a0c7596b2408e4fb8da533352b76aaffdc18c7ad28c83
 fluxctl_version: "1.19.0"
 
 #Development
-go_version: "1.14.1"
+go_version: "1.14.2"
 
 #Eclipse
 eclipse_version: 2020-03
