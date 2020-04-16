@@ -140,25 +140,31 @@
     - "vim"
 
 - name: add the typora signing key
-  apt_key: keyserver=keyserver.ubuntu.com id=BA300B7755AFCFAE
-           state=present
+  apt_key: 
+    keyserver: "keyserver.ubuntu.com"
+    id: "BA300B7755AFCFAE"
+    state: "present"
   tags:
     - editors
 
 - name: add the typora repository
-  apt_repository: repo='deb https://typora.io linux/'
-                  state=present
-                  mode=644
+  apt_repository: 
+    repo: "deb https://typora.io linux/"
+    state: "present"
+    mode: "644"
   tags:
     - editors
 
 - name: update the repository cache
-  apt: update_cache=yes
+  apt:
+    update_cache: yes
   tags:
     - editors
 
 - name: install typora
-  apt: pkg=typora state=present
+  apt:
+    pkg: "typora"
+    state: "present"
   tags:
     - editors
     
@@ -167,19 +173,24 @@
 #
 
 - name: add the NodeJS signing key
-  apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
-           state=present
+  apt_key:
+    url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+    state: "present"
 
 - name: add the NodeJS repositories
-  apt_repository: repo={{ item }}
-                  state=present
-                  mode=644
+  apt_repository:
+    repo: "{{ item }}"
+    state: "present"
+    mode: "644"
   with_items:
     - deb https://deb.nodesource.com/{{ nodejs_repo }} bionic main
     - deb-src https://deb.nodesource.com/{{ nodejs_repo }} bionic main
     
 - name: add NodeJS (and therefore NPM)
-  apt: name=nodejs state=latest update_cache=yes
+  apt:
+    name: "python-demjson"
+    state: "latest"
+    update_cache: yes
 
 #
 # Virtualization
@@ -217,7 +228,9 @@
 # Install Meld
 #
 - name: install meld
-  apt: name=meld state=latest
+  apt:
+    name: "meld"
+    state: "latest"
   tags:
     - git
     - meld
