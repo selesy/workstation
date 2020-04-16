@@ -96,6 +96,7 @@
       - "github.com/zimmski/go-mutesting/cmd/go-mutesting"
       - "golang.org/x/tools/gopls"
       - "golang.org/x/tools/godoc"
+      - "github.com/go-delve/delve/cmd/dlv"
   tags:
     - "languages"
     - "go"
