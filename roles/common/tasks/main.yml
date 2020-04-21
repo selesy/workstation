@@ -82,7 +82,9 @@
     - freemind
     
 - name: install the NTP daemon (on Mint ... it's not installed by default)
-  apt: name=ntp state=latest
+  apt:
+    name: ntp
+    state: latest
   
 # Remove f.lux (see https://justgetflux.com/linux.html) if installed
 
