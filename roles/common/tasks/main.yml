@@ -110,15 +110,6 @@
   tags:
   - ergonomics
 
-- name: update the repository caches
-  apt:
-    update_cache: "yes"
-    upgrade: "yes"
-    state: "latest"
-  when: fluxgui_was_installed is changed
-  tags:
-  - ergonomics
-
 - name: remove the f.lux signing key
   apt_key:
     keyserver: keyserver.ubuntu.com id=428926204FE30238F00B98224CDB129629A4B41A

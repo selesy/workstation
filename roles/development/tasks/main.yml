@@ -155,12 +155,6 @@
   tags:
     - editors
 
-- name: update the repository cache
-  apt:
-    update_cache: yes
-  tags:
-    - editors
-
 - name: install typora
   apt:
     pkg: "typora"
