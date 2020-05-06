@@ -1,45 +1,86 @@
 ---
 # File: roles/dbeaver/tasks/main.yml
+#https://github.com/ansible/ansible/issues/49603
+
+- name: adjust dbeaver download path if version not 'latest'
+  set_fact: 
+    dbeaver_path: "{{dbeaver_path}}/{{dbeaver_version}}"
+  when: dbeaver_version != "latest"
+  tags:
+    - dbeaver
+    - latest
+
 
 - name: create the installation directory for DBeaver
   file: path={{ dbeaver_installation_directory }}
         state=directory
   tags:
     - dbeaver
+    - latest
 
+#64-bit version
 - name: download latest version of DBeaver (64-bit)
-  uri: url={{ dbeaver_url_64 }}
-       dest=~/{{ dbeaver_file }}
-       creates=~/{{ dbeaver_file }}
-  when: ansible_architecture == "x86_64"
+  get_url:
+    url: "{{ dbeaver_url_64 }}"
+    dest: ~/    
   register: download_result_64
+  when: ansible_architecture == "x86_64"
   tags:
     - dbeaver
+    - latest
 
+- name: extract version number (64-bit)
+  set_fact: 
+    dbeaver_version: "{{ download_result_64.dest | regex_search('\\d\\.\\d\\.\\d') }}"
+    dbeaver_file: "{{ download_result_64.dest }}"
+  when: ansible_architecture == "x86_64"
+  tags:
+    - dbeaver
+    - latest
+
+
+#32-bit version
 - name: download latest version of DBeaver (32-bit)
   uri: url={{ dbeaver_url_32 }}
        dest=~/{{ dbeaver_file }}
        creates=~/{{ dbeaver_file }}
-  when: ansible_architecture == "i386"
   register: download_result_32
+  when: ansible_architecture == "i386"
   tags:
     - dbeaver
-    
+    - latest
+
+- name: extract version number (32-bit)
+  set_fact: 
+    dbeaver_version: "{{ download_result_32.dest | regex_search('\\d\\.\\d\\.\\d') }}"
+    dbeaver_file: "{{ dbeaver_file_32 }}"
+  when: ansible_architecture == "i386"
+  tags:
+    - dbeaver
+    - latest
+
+- debug: msg="Installing dbeaver version {{ dbeaver_version }}."
+  tags: 
+  - dbeaver
+  - latest
+
 - name: create the directory where dbeaver will be untarred
   file: path={{ dbeaver_tar_directory }}
         state=directory
   when: download_result_64 is changed or download_result_32 is changed
   tags:
     - dbeaver
+    - latest
 
 - name: untar the downloaded DBeaver archive
   unarchive: copy=no
-             src=~/{{ dbeaver_file }}
+             src={{ dbeaver_file }}
              dest={{ dbeaver_installation_directory }}
              creates={{ dbeaver_home_directory }}
   register: unarchive_result
   tags:
     - dbeaver
+    - latest
 
 - name: move the untarred files to the standard location
   command: mv {{ dbeaver_tar_directory }}
@@ -47,6 +88,7 @@
   when: unarchive_result is changed
   tags:
     - dbeaver
+    - latest
 
 - name: create a pretty symlink pointing to the most recent version
   file: src={{ dbeaver_home_directory }}
@@ -54,15 +96,18 @@
         state=link
   tags:
     - dbeaver
+    - latest
 
 - name: add a launcher to the development menu for DBeaver
   template: src=../files/dbeaver.desktop
             dest=/usr/share/applications
   tags:
     - dbeaver
+    - latest
 
 - name: allow anyone to execute DBeaver
   file: path={{ dbeaver_installation_directory }}/latest/dbeaver mode=755
   tags:
     - dbeaver
+    - latest
 
