@@ -64,7 +64,7 @@ kubeseal_home_directory: "{{kubeseal_installation_directory }}/{{ kubeseal_versi
 
 istio_host: "https://github.com"
 istio_path: istio/istio/releases/download/{{ istio_version }}
-istio_file: istio-{{ istio_version }}-linux.tar.gz
+istio_file: istio-{{ istio_version }}-linux-amd64.tar.gz
 
 istio_url: "{{ istio_host }}/{{ istio_path }}/{{ istio_file }}"
 
