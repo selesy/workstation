@@ -6,7 +6,9 @@
 #
 
 - name: install docker for container execution environment
-  apt: name=docker.io state=latest
+  apt:
+    name: docker.io
+    state: latest
   tags:
     - containerization
     - docker
@@ -49,10 +51,31 @@
     name: "kubectl"
     state: "present"
     classic: true
+  register: "kubectl_result"
   tags:
     - containerization
     - kubernetes
     - kubectl
+
+- name: "determine whether kubectl bash completion exists"
+  stat:
+    path: "/etc/bash_completion.d/kubectl"
+  register: "kubectl_stat"
+  tags:
+    - containerization
+    - kubernetes
+    - kubectl
+
+- name: add bash completion for "kubectl"
+  shell:
+    cmd: "/snap/bin/kubectl completion bash > /etc/bash_completion.d/kubectl"
+    creates: "/etc/bash_completion.d/kubectl"
+  when: "kubectl_result.changed or not kubectl_stat.stat.exists"
+  changed_when: "kubectl_result.changed or not kubectl_stat.stat.exists"
+  tags:
+    - containerization
+    - Kubernetes
+    - kubectl  
 
 #
 # HyperKube is now deprecated in favor of MiniKube
