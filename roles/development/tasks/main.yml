@@ -97,6 +97,7 @@
       - "golang.org/x/tools/gopls"
       - "golang.org/x/tools/godoc"
       - "github.com/go-delve/delve/cmd/dlv"
+      - "github.com/fullstorydev/grpcurl/cmd/gprcurl"
   tags:
     - "languages"
     - "go"
