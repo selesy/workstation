@@ -98,6 +98,7 @@
       - "golang.org/x/tools/godoc"
       - "github.com/go-delve/delve/cmd/dlv"
       - "github.com/fullstorydev/grpcurl/cmd/grpcurl"
+      - "github.com/golang/protobuf/protoc-gen-go"
   tags:
     - "languages"
     - "go"
