@@ -99,6 +99,7 @@
       - "github.com/go-delve/delve/cmd/dlv"
       - "github.com/fullstorydev/grpcurl/cmd/grpcurl"
       - "github.com/golang/protobuf/protoc-gen-go"
+      - "github.com/sonatype-nexus-community/nancy"
   tags:
     - "languages"
     - "go"
