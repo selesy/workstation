@@ -259,6 +259,17 @@
     - "gradle"
     - "maven"
 
+- name: "install build tools"
+  apt:
+    name: "{{ packages }}"
+    state: "latest"
+  vars:
+    packages:
+    - "make"
+    - "remake"
+  tags:
+  - "build-tools"
+
 #
 # File formating tools
 #
