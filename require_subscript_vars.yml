@@ -1,0 +1,7 @@
+---
+
+- name: "verifies that the required subscript variables are set"
+  assert:
+    that: "not {{ item.required }} or {{ item.name }} != ''"
+    quiet: true
+  with_items: "{{ subscript_vars }}"

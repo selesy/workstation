@@ -1,0 +1,6 @@
+---
+
+- name: "clear the project's subscript variables"
+  set_fact:
+    "{{ item.name }}":
+  with_items: "{{ subscript_vars }}"

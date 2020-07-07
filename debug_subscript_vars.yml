@@ -1,0 +1,6 @@
+---
+
+- name: "debug the project's subscript variables"
+  debug:
+    var: "{{ item.name }}"
+  with_items: "{{ subscript_vars }}"

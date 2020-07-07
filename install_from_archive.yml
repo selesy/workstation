@@ -11,7 +11,7 @@
 #               name of the directory (in /opt) where the application
 #               is finally installed.
 #
-# name:         The application's formal name.
+# title:        The application's formal name.
 #
 # version:      This value indicates what version should be downloaded
 #               and is generally set in the "workstation_versions.yml"
@@ -23,6 +23,9 @@
 # Optional variables:
 # -------- ---------
 #
+# checksum:     The URL of the file containing a checksum for the archive
+#               which will be downloaded by this playbook.
+#
 # archive_path: If the archive includes a path prefix for each file, This
 #               value allows the archive to be "relocated" to a directory
 #               named by the version.  If this variable is empty, the
@@ -33,6 +36,26 @@
 #               /usr/share/applications.  If this variable is empty,
 #               no templating is performed.
 #
+
+- name: "defines the github variables above"
+  set_fact:
+    subscript_vars:
+    - name: "archive_path"
+      required: false
+    - name: "checksum"
+      required: false
+    - name: "desktop_file"
+      required: false
+    - name: "key"
+      required: true
+    - name: "title"
+      required: true
+    - name: "url"
+      required: true
+    - name: "version"
+      required: true
+
+- include: "./require_subscript_vars.yml"
 
 - name: "calculate the installation and final directories for {{ title }}"
   set_fact:
@@ -72,3 +95,5 @@
     src: "{{ desktop_file }}"
     dest: "/usr/share/applications"
   when: "desktop_file != ''"
+
+- include: "./clear_subscript_vars.yml"
