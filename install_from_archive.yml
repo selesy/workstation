@@ -36,26 +36,46 @@
 #               /usr/share/applications.  If this variable is empty,
 #               no templating is performed.
 #
+# executables:  A list of the executables that should have symlinks placed
+#               into /usr/bin.  If this variable is empty, no symlinks
+#               are created.
+#
 
-- name: "defines the github variables above"
-  set_fact:
-    subscript_vars:
-    - name: "archive_path"
-      required: false
-    - name: "checksum"
-      required: false
-    - name: "desktop_file"
-      required: false
-    - name: "key"
-      required: true
-    - name: "title"
-      required: true
-    - name: "url"
-      required: true
-    - name: "version"
-      required: true
+- name: "defines the archive variables above"
+  assert:
+    that:
+    - "key is defined"
+    - "title is defined"
+    - "url is defined"
+    - "version is defined"
 
-- include: "./require_subscript_vars.yml"
+# - name: "defines the github variables above"
+#   set_fact:
+#     subscript_vars:
+#     - name: "archive_path"
+#       required: false
+#     - name: "checksum"
+#       required: false
+#     - name: "desktop_file"
+#       required: false
+#     - name: "executables"
+#       required: false
+#     - name: "key"
+#       required: true
+#     - name: "title"
+#       required: true
+#     - name: "url"
+#       required: true
+#     - name: "version"
+#       required: true
+#     - name: "installation_directory"
+#       required: false
+#     - name: "final_directory"
+#       required: false
+#     - name: "archive_directory"
+#       required: false
+
+# - include: "./require_subscript_vars.yml"
 
 - name: "calculate the installation and final directories for {{ title }}"
   set_fact:
@@ -65,7 +85,7 @@
 - name: "calculate the archive's directory for {{ title }}"
   set_fact:
     archive_directory: "/opt/{{ key }}/{{ archive_path }}"
-  when: "archive_path != ''"
+  when: "archive_path is defined"
 
 - name: "create a directory for {{ title }}"
   file:
@@ -90,10 +110,30 @@
     path: "{{ installation_directory }}/latest"
     state: "link"
 
+- name: "create symlinks to the {{ title }} executables"
+  file:
+    src: "{{ installation_directory }}/latest/{{ item }}"
+    dest: "/usr/bin/{{ item }}"
+    state: "link"
+  with_items: "{{ executables }}"
+  when: "executables is defined"
+
 - name: "add a desktop launcher for {{ title }}"
   template:
     src: "{{ desktop_file }}"
     dest: "/usr/share/applications"
-  when: "desktop_file != ''"
+  when: "desktop_file is defined"
 
-- include: "./clear_subscript_vars.yml"
+- name: "clears the archive variables above"
+  set_fact:
+    archive_path:
+    checksum:
+    desktop_file:
+    executables:
+    key:
+    title:
+    url:
+    version:
+    installation_directory:
+    final_directory:
+    archive_directory:

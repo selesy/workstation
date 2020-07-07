@@ -1,0 +1,94 @@
+---
+# File: install_from_github.yml
+
+# These plays download and install an application distributed as an
+# archive.  Set the appropriate variables as follows:
+#
+# Required variables:
+# -------- ---------
+# 
+# key:          The application's key.  This value will determine the
+#               name of the directory (in /opt) where the application
+#               is finally installed.  Inherited from
+#               install_from_archive.yml.
+#
+# title:        The application's formal name.  Inherited from
+#               install_from_archive.yml.
+#
+# version:      This value indicates what version should be downloaded
+#               and is generally set in the "workstation_versions.yml"
+#               file and copied within the task's vars file.  Inherited
+#               from install_from_archive.yml.
+#
+# project:      This value should be the Github path to the project in
+#               the form <organization/project>.
+#
+# artifact:     The Jinja2 pattern that will resolve to the artifact's
+#               file name.
+#
+# Optional variables:
+# -------- ---------
+#
+# checksum:     The Jinja2 pattern that will resolve to the checksum's
+#               file name.  Inherited from install_from_archive.yml but
+#               the value is expanded into a full URL as required by
+#               that script.
+#
+# archive_path: If the archive includes a path prefix for each file, This
+#               value allows the archive to be "relocated" to a directory
+#               named by the version.  If this variable is empty, the
+#               archive path is assumed to be ".".  Inherited from
+#               install_from_archive.yml.
+#
+# desktop_file: If the application has a GUI, this variable should point
+#               to a template that will be completed and copied to
+#               /usr/share/applications.  If this variable is empty,
+#               no templating is performed.  Inherited from
+#               install_from_archive.yml.
+#
+# executables:  A list of the executables that should have symlinks placed
+#               into /usr/bin.  If this variable is empty, no symlinks
+#               are created.  Inherited from install_from_archive.yml.
+#
+
+- name: "defines the github variables above"
+  assert:
+    that:
+    - "artifact is defined"
+    - "project is defined"
+
+- name: "resolve the project's latest tag URL"
+  uri:
+    url: "https://github.com/{{ project }}/releases/latest"
+    method: GET
+    follow_redirects: none
+    status_code: 302
+  register: redirect_result
+  when: "version == 'latest'"
+
+- name: "extract the project's version number"
+  set_fact:
+    version: "{{ redirect_result.location | regex_replace('^.*/v', '') }}"
+  when: "version == 'latest'"
+
+- name: "update the projects artifact and artifact URL"
+  set_fact:
+    #artifact: "{{ artifact | regex_replace('latest', 'vlatest'"
+    artifact: "{{ artifact | regex_replace('latest', 'v' + version) }}"
+    #url: "{{ redirect_result.location }}/{{ artifact }}"
+    url: "https://github.com/{{ project }}/releases/download/v{{ version }}/{{artifact}}"
+    #https://github.com/ahmetb/kubectx/releases/download/v0.9.1/kubectx_v0.9.1_linux_x86_64.tar.gz
+
+- name: "expand checksum file into url if applicable"
+  set_fact:
+    checksum: "{{ redirect_result.location }}/{{ checksum }}"
+  when: "checksum is defined"
+
+- include: "./install_from_archive.yml"
+
+- name: "clears the github variables above"
+  set_fact:
+    artifact:
+    project:
+
+...
