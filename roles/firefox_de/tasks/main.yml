@@ -1,8 +1,14 @@
 ---
 # File: roles/firefox_de/tasks/main.yml
 
+- name: "load the kubectx installation's variables"
+  include_vars:
+    file: "firefox_de.yml"
+  tags:
+  - "firefox-de"
+
 - name: "download and install {{ name }}"
   include: "../../install_from_archive.yml"
   tags:
-    - firefox-de
+  - "firefox-de"
     
