@@ -1,0 +1,22 @@
+---
+
+# https://github.com/ahmetb/kubectx/archive/v0.5.0.tar.gz
+
+# kubectx_host: "https://github.com"
+# kubectx_path: "ahmetb/kubectx/archive"
+# kubectx_file: "v{{ kubectx_version }}.tar.gz"
+
+# kubectx_url: "{{ kubectx_host }}/{{ kubectx_path }}/{{ kubectx_file }}"
+
+key: "kubectx"
+title: "{{ key }}"
+project: "ahmetb/kubectx"
+version: "latest"
+artifact: "kubectx_{{ version }}_linux_x86_64.tar.gz"
+#checksum: "checksums.txt"
+
+executables:
+  - "kubectx"
+  - "kubens"
+
+...
