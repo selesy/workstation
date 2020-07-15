@@ -101,6 +101,7 @@
       - "github.com/golang/protobuf/protoc-gen-go"
       - "github.com/sonatype-nexus-community/nancy"
       - "github.com/golang-migrate/migrate/cmd/migrate"
+      - "github.com/swaggo/swag/cmd/swag"
   tags:
     - "languages"
     - "go"
