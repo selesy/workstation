@@ -16,8 +16,8 @@ burp_version: latest
 dbeaver_version: latest
 
 #Containerization
-minikube_version: 1.12.0
-minikube_checksum: "sha256:3501b6c2be48183affa9497e7db6d751d92e1536267268b73ad1a936a2977122"
+minikube_version: 1.12.1
+minikube_checksum: "sha256:a0d8f9d71623e8c66723547fede7df95c12e2a8827fef408b640a6f62bafd57b"
 kubectx_version: 0.9.0
 helm_version: 3.2.4
 helm_checksum: "sha256:8eb56cbb7d0da6b73cd8884c6607982d0be8087027b8ded01d6b2759a72e34b1"
@@ -40,7 +40,7 @@ lombok_version: 1.18.12
 eclim_version: 2.8.0
 
 #FireFox
-firefox_de_version: 79.0b8
+firefox_de_version: 79.0b9
 firefox_de_language: en-US
 
 #Chrome
