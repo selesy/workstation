@@ -187,7 +187,7 @@
     
 - name: add NodeJS (and therefore NPM)
   apt:
-    name: "python-demjson"
+    name: "python3-demjson"
     state: "latest"
     update_cache: yes
 
@@ -278,7 +278,7 @@
 
 - name: install file formating tools
   apt:
-    name: "python-demjson"
+    name: "python3-demjson"
     state: "latest"
 
 #
