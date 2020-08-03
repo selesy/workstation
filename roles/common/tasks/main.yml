@@ -23,7 +23,7 @@
   vars:
     packages:
     - "python-setuptools"
-    - "python-pip"
+    - "python-pip-whl"
   tags:
     - "python"
 
