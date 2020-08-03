@@ -139,7 +139,7 @@
   vars:
     packages:
     - "vim"
-    - "vim-gnome"
+    - "vim-gtk"
   tags:
     - "editors"
     - "vim"
