@@ -307,7 +307,7 @@
   vars:
     packages:
     - "wireshark"
-    - "zenmap"
+    - "nmapsi4"
   tags:
     - "networking"
 
