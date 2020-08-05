@@ -210,16 +210,16 @@
   - "kubernetes"
   - "kubectx"
 
-- name: "create symlinks for kubectl's bash completion"
-  file:
-    src: "/opt/kubectx/latest/completion/{{ item }}.bash"
-    dest: "/etc/bash_completion.d/{{ item }}.bash"
-    state: "link"
-  with_items: "{{ kubectx_executables }}"
-  tags:
-  - "containerization"
-  - "kubernetes"
-  - "kubectx"
+# - name: "create symlinks for kubectl's bash completion"
+#   file:
+#     src: "/opt/kubectx/latest/completion/{{ item }}.bash"
+#     dest: "/etc/bash_completion.d/{{ item }}.bash"
+#     state: "link"
+#   with_items: "{{ kubectx_executables }}"
+#   tags:
+#   - "containerization"
+#   - "kubernetes"
+#   - "kubectx"
 
 #
 # Helm
