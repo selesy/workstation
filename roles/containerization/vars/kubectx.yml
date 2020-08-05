@@ -12,11 +12,11 @@ key: "kubectx"
 title: "{{ key }}"
 project: "ahmetb/kubectx"
 version: "latest"
-artifact: "kubectx_{{ version }}_linux_x86_64.tar.gz"
+artifact: "kubectx_v{{ version }}_linux_x86_64.tar.gz"
+
 #checksum: "checksums.txt"
 
 executables:
   - "kubectx"
-  - "kubens"
 
 ...

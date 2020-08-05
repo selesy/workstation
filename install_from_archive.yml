@@ -81,21 +81,28 @@
   set_fact:
     installation_directory: "/opt/{{ key }}"
     final_directory: "/opt/{{ key }}/{{ version }}"
+    tar_directory: "/opt/{{ key }}" # this seems a bit kludgy
 
 - name: "calculate the archive's directory for {{ title }}"
   set_fact:
     archive_directory: "/opt/{{ key }}/{{ archive_path }}"
   when: "archive_path is defined"
 
+- name: "calculate the archive's directory for {{ title }}"
+  set_fact:
+    archive_directory: "/opt/{{ key }}/temp"
+    tar_directory: "/opt/{{ key }}/temp"
+  when: "archive_path is not defined"
+
 - name: "create a directory for {{ title }}"
   file:
-    name: "{{ installation_directory }}"
+    name: "{{ tar_directory }}"
     state: "directory"
 
 - name: "download and unarchive {{ title }}"
   unarchive:
     src: "{{ url }}"
-    dest: "{{ installation_directory }}"
+    dest: "{{ tar_directory }}"
     remote_src: "yes"
     creates: "{{ final_directory }}"
   register: "unarchive_result"
