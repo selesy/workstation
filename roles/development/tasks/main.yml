@@ -175,6 +175,8 @@
   apt_key:
     url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
     state: "present"
+  tags:
+  - "node"
 
 - name: add the NodeJS repositories
   apt_repository:
@@ -184,12 +186,17 @@
   with_items:
     - deb https://deb.nodesource.com/{{ nodejs_repo }} bionic main
     - deb-src https://deb.nodesource.com/{{ nodejs_repo }} bionic main
+  tags:
+  - "node"
     
-- name: add NodeJS (and therefore NPM)
+- name: add NodeJS and NPM
   apt:
-    name: "python3-demjson"
+    pkg: 
+    - "nodejs"
+    - "npm"
     state: "latest"
-    update_cache: yes
+  tags:
+  - "node"
 
 #
 # Virtualization
