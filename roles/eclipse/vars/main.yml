@@ -3,7 +3,7 @@
 # http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/neon/1a/eclipse-reporting-neon-1a-linux-gtk-x86_64.tar.gz
 # http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/oxygen/M5/eclipse-jee-oxygen-M5-linux-gtk-x86_64.tar.gz
 
-# http://www.gtlib.gatech.edu/pub/eclipse/technology/epp/downloads/release/oxygen/3a/eclipse-jee-oxygen-3a-linux-gtk-x86_64.tar.gz
+# http://www.gtlib.gatech.edu/pub/eclipse/technology/epp/downloads/release/2020-06/R/eclipse-jee-2020-06-R-linux-gtk-x86_64.tar.gz
 
 eclipse_release: "{{ eclipse_version }}-{{ eclipse_sr }}"
 
