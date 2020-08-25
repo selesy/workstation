@@ -185,7 +185,7 @@
     - kind
 
 #
-# Kubectx
+# Kubectx and kubens
 #
 
 - name: "load the kubectx installation's variables"
@@ -209,6 +209,28 @@
   - "containerization"
   - "kubernetes"
   - "kubectx"
+
+- name: "load the kubens installation's variables"
+  include_vars:
+    file: "kubens.yml"
+  tags:
+  - "containerization"
+  - "kubernetes"
+  - "kubens"
+
+- name: "stash the executable names"
+  set_fact:
+    kubectx_executables: "{{ executables }}"
+  tags:
+  - "containerization"
+  - "kubernetes"
+  - "kubens"
+
+- include: "../../../install_from_github.yml"
+  tags:
+  - "containerization"
+  - "kubernetes"
+  - "kubens"
 
 # - name: "create symlinks for kubectl's bash completion"
 #   file:
@@ -286,25 +308,25 @@
     - kubernetes
     - helm
 
-- name: "download Helm's bash completions"
-  get_url:
-    url: "{{ helm_bash_url }}"
-    dest: "{{ helm_installation_directory }}/latest"
-    mode: "755"
-  tags:
-    - containerization
-    - kubernetes
-    - helm
+# - name: "download Helm's bash completions"
+#   get_url:
+#     url: "{{ helm_bash_url }}"
+#     dest: "{{ helm_installation_directory }}/latest"
+#     mode: "755"
+#   tags:
+#     - containerization
+#     - kubernetes
+#     - helm
 
-- name: "create a symlink to Helm's bash completion"
-  file:
-    src: "{{ helm_installation_directory }}/latest/{{ helm_bash_file }}"
-    dest: "/etc/bash_completion.d/helm-{{ helm_bash_file }}"
-    state: "link"
-  tags:
-    - containerization
-    - kubernetes
-    - helm
+# - name: "create a symlink to Helm's bash completion"
+#   file:
+#     src: "{{ helm_installation_directory }}/latest/{{ helm_bash_file }}"
+#     dest: "/etc/bash_completion.d/helm-{{ helm_bash_file }}"
+#     state: "link"
+#   tags:
+#     - containerization
+#     - kubernetes
+#     - helm
 
 #
 # Kubeseal
