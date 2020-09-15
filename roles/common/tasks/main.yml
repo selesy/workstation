@@ -38,6 +38,7 @@
     - "asciidoc-doc"
     - "audacity"
     - "curl"
+    - "direnv"
     - "fonts-opendyslexic"
     - "gparted"
     - "hopenpgp-tools"
