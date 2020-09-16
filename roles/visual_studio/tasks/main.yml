@@ -66,6 +66,7 @@
   - "ms-kubernetes-tools.kind-vscode"
   - "golang.go"
   - "mtxr.sqltools"
+  - "mtxr.sqltools-driver-pg"
   register: vscode_extension
   changed_when: "'already installed' not in vscode_extension.stdout"
   tags:
