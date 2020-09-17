@@ -218,6 +218,31 @@
 # Source Code Management
 #
 
+- name: "install Github CLI key"
+  apt_key:
+    id: "C99B11DEB97541F0"
+    keyserver: "keyserver.ubuntu.com"
+    state: "present"
+  tags:
+  - "github"
+  - "git"
+
+- name: "install Github repository"
+  apt_repository:
+    repo: "deb https://cli.github.com/packages focal main"
+    state: "present"
+  tags:
+    - "github"
+    - "git"
+
+- name: "install Github CLI"
+  apt:
+    name: "gh"
+    state: "latest"
+  tags:
+    - "github"
+    - "git"
+      
 - name: install linux tools for git
   apt:
     name: "{{ packages }}"
