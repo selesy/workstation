@@ -99,3 +99,14 @@ fluxctl_url: "{{ fluxctl_host }}/{{ fluxctl_path }}/{{ fluxctl_file }}"
 
 fluxctl_installation_directory: "/opt/fluxctl"
 fluxctl_home_directory: "/opt/fluxctl/{{ fluxctl_version }}"
+
+# https://github.com/GoogleContainerTools/skaffold/releases/download/v1.16.0/skaffold-linux-amd64
+
+skaffold_host: "https://github.com"
+skaffold_path: "GoogleContainerTools/skaffold/releases/download/v{{ skaffold_version }}"
+skaffold_file: "skaffold-linux-amd64"
+
+skaffold_url: "{{ skaffold_host }}/{{ skaffold_path }}/{{ skaffold_file }}"
+
+skaffold_installation_directory: "/opt/skaffold"
+skaffold_home_directory: "{{ skaffold_installation_directory }}/{{ skaffold_version }}"
