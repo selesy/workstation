@@ -33,7 +33,7 @@ skaffold_version: "1.16.0"
 skaffold_checksum: "sha256:9041feb75a5fc15c1159f1e25d0dd781ecf0ff9fe37190174e61822a47c60b1d"
 
 #Development
-go_version: "1.15.3"
+go_version: "1.15.4"
 
 #Eclipse
 eclipse_version: 2020-06
