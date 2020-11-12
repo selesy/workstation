@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt-get install software-properties-common
-sudo apt-add-repository --yes 'ppa:ansible/ansible xenial'
+sudo apt-add-repository --yes 'deb http://ppa.launchpad.net/ansible/ansible/ubuntu xenial main'
 sudo apt-get update
 sudo apt-get -y install git ansible
 sudo apt-get -y install openssh-client
