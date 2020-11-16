@@ -154,7 +154,7 @@
     - git
 
 - name: add the Subclipse plugin
-  command: nci install from http://subclipse.tigris.org/update_1.10.x
+  command: nci install from https://dl.bintray.com/subclipse/releases/subclipse/4.3.x/
                        com.collabnet.subversion.merge.feature.feature.group
                        net.java.dev.jna.feature.group
                        org.tigris.subversion.subclipse.feature.group
