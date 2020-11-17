@@ -194,6 +194,7 @@
   apt:
     pkg: 
     - "nodejs"
+    - "npm"
     state: "latest"
   tags:
   - "node"
