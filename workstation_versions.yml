@@ -33,7 +33,7 @@ skaffold_version: "1.17.1"
 skaffold_checksum: "sha256:a44d548aea2ee67099f3f7ecf6dbaa0b309d120dee8862f02ff69f32b5f86821"
 
 #Development
-go_version: "1.15.5"
+go_version: "1.15.6"
 
 #Eclipse
 eclipse_version: 2020-09
@@ -42,7 +42,7 @@ lombok_version: 1.18.16
 eclim_version: 2.8.0
 
 #FireFox
-firefox_de_version: 84.0b8
+firefox_de_version: 85.0b3
 firefox_de_language: en-US
 
 #Chrome
