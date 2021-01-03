@@ -82,9 +82,9 @@ kail_home_directory: "{{ kail_installation_directory }}/{{ kail_version }}"
 
 stern_host: "https://github.com"
 stern_path: "stern/stern/releases/download/v{{ stern_version }}"
-stern_file: "stern_{{ stern_version }}_linux_amd64.tar.gz"
+stern_file: "stern_{{ stern_version }}_linux_amd64"
 
-stern_url: "{{ stern_host }}/{{ stern_path }}/{{ stern_file }}"
+stern_url: "{{ stern_host }}/{{ stern_path }}/{{ stern_file }}.tar.gz"
 
 stern_installation_directory: "/opt/stern"
 stern_home_directory: "{{ stern_installation_directory }}/{{ stern_version }}"

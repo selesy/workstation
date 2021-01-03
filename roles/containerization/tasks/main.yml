@@ -75,7 +75,7 @@
   tags:
     - containerization
     - Kubernetes
-    - kubectl  
+    - kubectl
 
 #
 # HyperKube is now deprecated in favor of MiniKube
@@ -83,14 +83,14 @@
 
 - name: remove the directory for the convenience scripts
   file: name={{ k8s_installation_directory }}/scripts state=directory
-        state=absent
+    state=absent
   tags:
     - containerization
     - kubernetes
 
 - name: remove scripts from the user's path
   file: path={{ item }}
-        state=absent
+    state=absent
   with_items:
     - /usr/bin/kube-up
     - /usr/bin/kube-down
@@ -123,8 +123,8 @@
 
 - name: create a pretty symlink to the latest MiniKube version
   file: src={{ minikube_home_directory }}
-        path={{ minikube_installation_directory }}/latest
-        state=link
+    path={{ minikube_installation_directory }}/latest
+    state=link
   when: download_result is changed
   tags:
     - containerization
@@ -133,8 +133,8 @@
 
 - name: put Minikube on the user's path
   file: src={{ minikube_installation_directory }}/latest/{{ minikube_file }}
-        path=/usr/bin/minikube
-        state=link
+    path=/usr/bin/minikube
+    state=link
   tags:
     - containerization
     - kubernetes
@@ -146,7 +146,6 @@
     - containerization
     - kubernetes
     - minikube
-
 
 #
 # micro-k8s
@@ -192,45 +191,45 @@
   include_vars:
     file: "kubectx.yml"
   tags:
-  - "containerization"
-  - "kubernetes"
-  - "kubectx"
+    - "containerization"
+    - "kubernetes"
+    - "kubectx"
 
 - name: "stash the executable names"
   set_fact:
     kubectx_executables: "{{ executables }}"
   tags:
-  - "containerization"
-  - "kubernetes"
-  - "kubectx"
+    - "containerization"
+    - "kubernetes"
+    - "kubectx"
 
 - include: "../../../install_from_github.yml"
   tags:
-  - "containerization"
-  - "kubernetes"
-  - "kubectx"
+    - "containerization"
+    - "kubernetes"
+    - "kubectx"
 
 - name: "load the kubens installation's variables"
   include_vars:
     file: "kubens.yml"
   tags:
-  - "containerization"
-  - "kubernetes"
-  - "kubens"
+    - "containerization"
+    - "kubernetes"
+    - "kubens"
 
 - name: "stash the executable names"
   set_fact:
     kubectx_executables: "{{ executables }}"
   tags:
-  - "containerization"
-  - "kubernetes"
-  - "kubens"
+    - "containerization"
+    - "kubernetes"
+    - "kubens"
 
 - include: "../../../install_from_github.yml"
   tags:
-  - "containerization"
-  - "kubernetes"
-  - "kubens"
+    - "containerization"
+    - "kubernetes"
+    - "kubens"
 
 # - name: "create symlinks for kubectl's bash completion"
 #   file:
@@ -619,7 +618,7 @@
 
 - name: "create the installation directory for stern"
   file:
-    name: "{{ stern_home_directory }}"
+    name: "{{ stern_installation_directory }}"
     state: "directory"
   tags:
     - containerization
@@ -629,9 +628,30 @@
 - name: "download the stern release"
   get_url:
     url: "{{ stern_url }}"
-    dest: "{{ stern_home_directory }}/stern"
+    dest: "~/{{ stern_file }}.tar.gz"
     mode: "755"
   register: "stern_download_result"
+  tags:
+    - containerization
+    - kubernetes
+    - stern
+
+- name: "unarchive the stern file"
+  unarchive:
+    src: "~/{{ stern_file }}.tar.gz"
+    dest: "{{ stern_installation_directory }}"
+    copy: "no"
+    creates: "{{ stern_installation_directory }}/{{ stern_version }}"
+  when: "stern_download_result is changed"
+  register: "stern_unarchive_result"
+  tags:
+    - containerization
+    - kubernetes
+    - stern
+
+- name: "rename the stern archive directory to the version number"
+  command: "mv {{ stern_installation_directory }}/{{ stern_file }} {{ stern_home_directory }}"
+  when: "stern_unarchive_result is changed"
   tags:
     - containerization
     - kubernetes
@@ -744,4 +764,3 @@
     - containerization
     - kubernetes
     - skaffold
-
