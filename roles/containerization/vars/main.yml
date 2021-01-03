@@ -78,11 +78,11 @@ kail_url: "{{ kail_host }}/{{ kail_path }}/{{ kail_file }}"
 kail_installation_directory: "/opt/kail"
 kail_home_directory: "{{ kail_installation_directory }}/{{ kail_version }}"
 
-# https://github.com/wercker/stern/releases/download/1.10.0/stern_linux_amd64
+# https://github.com/stern/stern/releases/download/v1.13.1/stern_1.13.1_linux_amd64.tar.gz
 
 stern_host: "https://github.com"
-stern_path: "wercker/stern/releases/download/{{ stern_version }}"
-stern_file: "stern_linux_amd64"
+stern_path: "stern/stern/releases/download/v{{ stern_version }}"
+stern_file: "stern_{{ stern_version }}_linux_amd64.tar.gz"
 
 stern_url: "{{ stern_host }}/{{ stern_path }}/{{ stern_file }}"
 
