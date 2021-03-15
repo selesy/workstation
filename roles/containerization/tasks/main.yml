@@ -187,49 +187,69 @@
 # Kubectx and kubens
 #
 
-- name: "load the kubectx installation's variables"
-  include_vars:
-    file: "kubectx.yml"
+- block:
+  - name: load the kubectx installation's variables
+    include_vars:
+      file: kubectx.yml
+  - include: ../../../install_from_github.yml
   tags:
     - "containerization"
     - "kubernetes"
     - "kubectx"
 
-- name: "stash the executable names"
-  set_fact:
-    kubectx_executables: "{{ executables }}"
-  tags:
-    - "containerization"
-    - "kubernetes"
-    - "kubectx"
+# - name: "load the kubectx installation's variables"
+#   include_vars:
+#     file: "kubectx.yml"
+#   tags:
+#     - "containerization"
+#     - "kubernetes"
+#     - "kubectx"
 
-- include: "../../../install_from_github.yml"
-  tags:
-    - "containerization"
-    - "kubernetes"
-    - "kubectx"
+# - name: "stash the executable names"
+#   set_fact:
+#     kubectx_executables: "{{ executables }}"
+#   tags:
+#     - "containerization"
+#     - "kubernetes"
+#     - "kubectx"
 
-- name: "load the kubens installation's variables"
-  include_vars:
-    file: "kubens.yml"
+# - include: "../../../install_from_github.yml"
+#   tags:
+#     - "containerization"
+#     - "kubernetes"
+#     - "kubectx"
+
+- block:
+  - name: load the kubens installation's variables
+    include_vars:
+      file: kubens.yml
+  - include: ../../../install_from_github.yml
   tags:
     - "containerization"
     - "kubernetes"
     - "kubens"
 
-- name: "stash the executable names"
-  set_fact:
-    kubectx_executables: "{{ executables }}"
-  tags:
-    - "containerization"
-    - "kubernetes"
-    - "kubens"
+# - name: "load the kubens installation's variables"
+#   include_vars:
+#     file: "kubens.yml"
+#   tags:
+#     - "containerization"
+#     - "kubernetes"
+#     - "kubens"
 
-- include: "../../../install_from_github.yml"
-  tags:
-    - "containerization"
-    - "kubernetes"
-    - "kubens"
+# - name: "stash the executable names"
+#   set_fact:
+#     kubectx_executables: "{{ executables }}"
+#   tags:
+#     - "containerization"
+#     - "kubernetes"
+#     - "kubens"
+
+# - include: "../../../install_from_github.yml"
+#   tags:
+#     - "containerization"
+#     - "kubernetes"
+#     - "kubens"
 
 # - name: "create symlinks for kubectl's bash completion"
 #   file:
@@ -764,3 +784,27 @@
     - containerization
     - kubernetes
     - skaffold
+
+- name: install kustomize
+  block:
+  - include_vars:
+      file: kustomize.yml
+  - file:
+      path: /opt/kustomize-{{ kustomize_version }}
+      state: directory
+  - unarchive:
+      remote_src: true
+      src: "{{ kustomize_url }}"
+      dest: /opt/kustomize-{{ kustomize_version }}
+  - file:
+      src: /opt/kustomize-{{ kustomize_version }}
+      dest: /opt/kustomize-latest
+      state: link
+  - file:
+      src: /opt/kustomize-latest/kustomize
+      dest: /usr/bin/kustomize
+      state: link
+  tags:
+  - containerization
+  - kubernetes
+  - kustomize
