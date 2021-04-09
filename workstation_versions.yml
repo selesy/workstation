@@ -37,13 +37,13 @@ kustomize_version: 4.0.5
 go_version: "1.16.3"
 
 #Eclipse
-eclipse_version: 2020-09
+eclipse_version: 2021.03
 eclipse_sr: R
 lombok_version: 1.18.16
 eclim_version: 2.8.0
 
 #FireFox
-firefox_de_version: 88.0b6
+firefox_de_version: 88.0b7
 firefox_de_language: en-US
 
 #Chrome
