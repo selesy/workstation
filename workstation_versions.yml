@@ -26,8 +26,8 @@ istio_version: 1.9.4
 istio_checksum: "sha256:9bbd5c5c3c5a2f08507020b47fd70480a23e6b5cb6c8226a8140ea22d0595063"
 terraform_version: 0.15.2
 kail_version: 0.15.0
-stern_version: 1.15.0
-stern_checksum: "sha256:766c153727259e2f718c95ba6d03696b424190e5e057d58fa433657f8cb99645"
+stern_version: 1.16.0
+stern_checksum: "sha256:afa8f9475b531770e0de49af08c5f98c7a26476a580bd091942433fd0e4750bd"
 fluxctl_version: "1.22.2"
 skaffold_version: "1.23.0"
 skaffold_checksum: "sha256:58e7462fc792d51f983feed346909f0a4ec32868d206ea733ff0a1d5b7fc775a"
