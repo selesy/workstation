@@ -34,7 +34,7 @@ skaffold_checksum: "sha256:58e7462fc792d51f983feed346909f0a4ec32868d206ea733ff0a
 kustomize_version: 4.1.2
 
 #Development
-go_version: "1.16.3"
+go_version: "1.16.4"
 
 #Eclipse
 eclipse_version: 2021.03
