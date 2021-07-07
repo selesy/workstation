@@ -80,7 +80,7 @@ postman_version: 8.7.0
 rfc_version: 0.2.6
 
 #SoapUI
-soapui_version: 5.5.0
+soapui_version: 5.6.0
 
 #SpotBugs
 spotbugs_version: 4.3.0
