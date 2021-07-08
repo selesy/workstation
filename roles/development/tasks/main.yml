@@ -164,7 +164,7 @@
 
 - name: add the typora repository
   apt_repository: 
-    repo: "deb https://typora.io linux/"
+    repo: "deb https://typora.io/linux ./"
     state: "present"
     mode: "644"
   tags:
