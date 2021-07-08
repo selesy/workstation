@@ -53,8 +53,8 @@ chrome_version: stable_current
 java_version: 16
 
 #JMeter
-jmeter_version: 5.2.1
-jmeter_checksum: "sha512:3e67b2c5c5c2bbcfcc6adce8fe76a9a23153d52a92208e52548a3af02b18a6ee527e6a451ddb91f90f5e317db6bb298bdef5f31a1ab8b2452e56e5fe3af77d90"
+jmeter_version: 5.4.1
+jmeter_checksum: "sha512:bfc0faa84769b58c1fd498417b3a5c65749f52226bd6e3533f08ca7ea4a3798bb8d2cbd7091b443dd6837f3cbea5565c3c18e6497b40bec95616bf44dfdf590d"
 plugins_manager_version: 1.3
 
 #Micro
