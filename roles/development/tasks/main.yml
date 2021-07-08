@@ -185,8 +185,8 @@
     state: "present"
     mode: "644"
   with_items:
-    - deb https://deb.nodesource.com/{{ nodejs_repo }} bionic main
-    - deb-src https://deb.nodesource.com/{{ nodejs_repo }} bionic main
+    - deb https://deb.nodesource.com/{{ nodejs_repo }} focal main
+    - deb-src https://deb.nodesource.com/{{ nodejs_repo }} focal main
   tags:
   - "node"
     

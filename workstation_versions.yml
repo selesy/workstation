@@ -65,7 +65,7 @@ netbeans_version: 8.2
 netbeans_build: 201609300101
 
 # NodeJS
-nodejs_version: 8.x
+nodejs_version: 14.x
 nodejs_repo: node_{{ nodejs_version }}
 
 #Pencil
