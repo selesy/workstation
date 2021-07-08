@@ -117,7 +117,7 @@
     - "go"
     - "go-tools"
 
-- include: "../../install_go_packages.yml"
+- include: "../../install_go_programs.yml"
   vars:
     name: "install ko for Go-Kubernetes development"
     packages:
