@@ -50,7 +50,7 @@ firefox_de_language: en-US
 chrome_version: stable_current
 
 #Java
-java_version: 14
+java_version: 16
 
 #JMeter
 jmeter_version: 5.2.1
