@@ -1,11 +1,11 @@
 ---
 # File: roles/netbeans/vars/main.yml
 #
-# https://netbeans.org/downloads/zip.html - javascript: download_file('zip/netbeans-8.2-201609300101.zip')
+# https://apache.osuosl.org/netbeans/netbeans/12.4/netbeans-12.4-bin.zip
 
-netbeans_server: http://download.netbeans.org
-netbeans_path: netbeans/{{ netbeans_version }}/final/zip
-netbeans_file: netbeans-{{ netbeans_version }}-{{ netbeans_build }}.zip
+netbeans_server: https://apache.osuosl.org
+netbeans_path: netbeans/netbeans//{{ netbeans_version }}
+netbeans_file: netbeans-{{ netbeans_version }}-bin.zip
 
 netbeans_url: "{{ netbeans_server }}/{{ netbeans_path }}/{{ netbeans_file }}"
 
