@@ -83,26 +83,35 @@
     - "go"
     - "go-tools"
 
+- include: "../../install_go_programs.yml"
+  vars:
+    name: "add useful go programs"
+    packages:
+      - "github.com/uudashr/gopkgs/v2/cmd/gopkgs@latest"
+      - "github.com/golangci/golangci-lint/cmd/golangci-lint@latest"
+      - "github.com/zimmski/go-mutesting/cmd/go-mutesting@latest"
+      - "github.com/go-delve/delve/cmd/dlv@latest"
+      - "google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest"
+      - "github.com/fullstorydev/grpcurl/cmd/grpcurl@latest"
+      - "github.com/golang-migrate/migrate/v4/cmd/migrate@latest"
+      - "github.com/swaggo/swag/cmd/swag@latest"
+  tags:
+    - "languages"
+    - "go"
+    - "go-tools"
+
 - include: "../../install_go_packages.yml"
   vars:
     name: "add useful go packages"
     packages:
-      - "github.com/uudashr/gopkgs/cmd/gopkgs"
       - "github.com/kisielk/errcheck"
       - "github.com/tsliwowicz/go-wrk"
       - "github.com/uber/go-torch"
       - "github.com/google/pprof"
-      # - "github.com/golangci/golangci-lint/cmd/golangci-lint@v1.27.0"
-      - "github.com/zimmski/go-mutesting/cmd/go-mutesting"
       - "golang.org/x/tools/gopls"
       - "golang.org/x/tools/godoc"
-      - "github.com/go-delve/delve/cmd/dlv"
-      - "github.com/fullstorydev/grpcurl/cmd/grpcurl"
       - "github.com/golang/protobuf/protoc-gen-go"
-      - "google.golang.org/grpc/cmd/protoc-gen-go-grpc"
       - "github.com/sonatype-nexus-community/nancy"
-      - "github.com/golang-migrate/migrate/cmd/migrate"
-      - "github.com/swaggo/swag/cmd/swag"
   tags:
     - "languages"
     - "go"
@@ -112,7 +121,7 @@
   vars:
     name: "install ko for Go-Kubernetes development"
     packages:
-      - "github.com/google/ko/cmd/ko"
+      - "github.com/google/ko/cmd/ko@latest"
   tags:
     - containerization
     - kubernetes
