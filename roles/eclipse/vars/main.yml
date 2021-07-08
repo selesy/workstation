@@ -1,15 +1,11 @@
 ---
 # File: /roles/eclipse/vars/main.yml
-# http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/neon/1a/eclipse-reporting-neon-1a-linux-gtk-x86_64.tar.gz
-# http://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/oxygen/M5/eclipse-jee-oxygen-M5-linux-gtk-x86_64.tar.gz
 
-# http://www.gtlib.gatech.edu/pub/eclipse/technology/epp/downloads/release/2020-06/R/eclipse-jee-2020-06-R-linux-gtk-x86_64.tar.gz
+# https://ftp.osuosl.org/pub/eclipse/technology/epp/downloads/release/2021-06/R/eclipse-java-2021-06-R-linux-gtk-x86_64.tar.gz
 
 eclipse_release: "{{ eclipse_version }}-{{ eclipse_sr }}"
 
-# eclipse_host: http://mirror.cc.columbia.edu
-# eclipse_path: pub/software/eclipse/technology/epp/downloads/release/{{ eclipse_version }}/{{ eclipse_sr }}
-eclipse_host: http://www.gtlib.gatech.edu
+eclipse_host: https://ftp.osuosl.org
 eclipse_path: pub/eclipse/technology/epp/downloads/release/{{ eclipse_version }}/{{ eclipse_sr }}
 eclipse_file_32: eclipse-jee-{{ eclipse_release }}-linux-gtk.tar.gz
 eclipse_file_64: eclipse-jee-{{ eclipse_release }}-linux-gtk-x86_64.tar.gz

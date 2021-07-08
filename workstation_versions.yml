@@ -37,7 +37,7 @@ kustomize_version: 4.2.0
 go_version: "1.16.5"
 
 #Eclipse
-eclipse_version: 2021.03
+eclipse_version: 2021-06
 eclipse_sr: R
 lombok_version: 1.18.16
 eclim_version: 2.8.0
