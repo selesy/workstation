@@ -126,7 +126,10 @@
     - "go"
     - "go-beta"
 
-- command: "/usr/share/go-tools/bin/gotip download"
+- name: update to latest Go beta
+  command: "/usr/share/go-tools/bin/gotip download"
+  register: "gotip_download_result"
+  changed_when: "'Previous HEAD' in gotip_download_result.stderr"
   tags:
     - "go"
     - "go-beta"
