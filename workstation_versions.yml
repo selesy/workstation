@@ -29,8 +29,8 @@ kail_version: 0.15.0
 stern_version: 1.19.0
 stern_checksum: "sha256:18a42e08c5f995ffabb6100f3a57fe3c2e2b074ec14356912667eeeca950e849"
 fluxctl_version: "1.23.1"
-skaffold_version: "1.28.0"
-skaffold_checksum: "sha256:af026788ff6b5fe111a12753dec724d2bdbfd301bb9fe2feafa518b4007f2faa"
+skaffold_version: "1.28.1"
+skaffold_checksum: "sha256:88b0fe2adf07c13a0b9e12e9875a4e41befe90d9b8237ebd8a9efb6cb7473348"
 kustomize_version: 4.2.0
 
 #Development
