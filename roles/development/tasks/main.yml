@@ -91,6 +91,7 @@
       - "github.com/golangci/golangci-lint/cmd/golangci-lint@latest"
       - "github.com/zimmski/go-mutesting/cmd/go-mutesting@latest"
       - "github.com/go-delve/delve/cmd/dlv@latest"
+      - "google.golang.org/protobuf/cmd/protoc-gen-go@latest"
       - "google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest"
       - "github.com/fullstorydev/grpcurl/cmd/grpcurl@latest"
       - "github.com/golang-migrate/migrate/v4/cmd/migrate@latest"
@@ -110,7 +111,6 @@
       - "github.com/google/pprof"
       - "golang.org/x/tools/gopls"
       - "golang.org/x/tools/godoc"
-      - "github.com/golang/protobuf/protoc-gen-go"
       - "github.com/sonatype-nexus-community/nancy"
   tags:
     - "languages"
