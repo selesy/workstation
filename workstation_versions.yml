@@ -58,7 +58,7 @@ jmeter_checksum: "sha512:bfc0faa84769b58c1fd498417b3a5c65749f52226bd6e3533f08ca7
 plugins_manager_version: 1.6
 
 #Micro
-micro_version: 2.0.9
+micro_version: 2.0.10
 
 #Netbeans
 netbeans_version: 12.4
