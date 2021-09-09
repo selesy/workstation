@@ -28,7 +28,7 @@ terraform_version: 1.0.6
 kail_version: 0.15.0
 stern_version: 1.20.0
 stern_checksum: "sha256:62544712ec8e4839f4c3ea0d2037a53e30b4f7cb8b5a4c8a3d95552f6619bd65"
-fluxctl_version: "1.24.0"
+fluxctl_version: "1.24.1"
 skaffold_version: "1.31.0"
 skaffold_checksum: "sha256:748bf3628ccdfb7ace310772b57fffd8a299bd880f288dc2148aa251bb6ad041"
 kustomize_version: 4.3.0
