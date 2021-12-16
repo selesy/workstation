@@ -22,8 +22,8 @@ kubectx_version: 0.9.4
 helm_version: 3.7.2
 helm_checksum: "sha256:4ae30e48966aba5f807a4e140dad6736ee1a392940101e4d79ffb4ee86200a9e"
 kubeseal_version: 0.17.0
-istio_version: 1.12.0
-istio_checksum: "sha256:7b219d9d0f48bd92901ef4cacb048c10c9f812dd4af120b0e3b353c006b3226e"
+istio_version: 1.12.1
+istio_checksum: "sha256:7b1279810a77590bd7af60d6d26074a89c32e6aff7512fdc37f38b093e34e382"
 terraform_version: 1.0.11
 kail_version: 0.15.0
 stern_version: 1.20.1
