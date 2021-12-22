@@ -60,7 +60,7 @@
   - "vscodevim.vim"
   - "vscjava.vscode-java-pack"
   - "vscjava.vscode-maven"
-  - "zbr.vscode-ansible"
+  - "redhat.ansible"
   - "gruntfuggly.todo-tree"
   - "ms-kubernetes-tools.vscode-kubernetes-tools"
   - "ms-kubernetes-tools.kind-vscode"
