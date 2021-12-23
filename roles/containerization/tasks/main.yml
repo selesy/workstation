@@ -653,7 +653,7 @@
 
 - name: "create the installation directory for stern"
   file:
-    name: "{{ stern_installation_directory }}"
+    name: "{{ stern_installation_directory }}/{{ stern_version }}"
     state: "directory"
   tags:
     - containerization
@@ -674,19 +674,11 @@
 - name: "unarchive the stern file"
   unarchive:
     src: "~/{{ stern_file }}.tar.gz"
-    dest: "{{ stern_installation_directory }}"
+    dest: "{{ stern_installation_directory }}/{{ stern_version }}"
     copy: "no"
-    creates: "{{ stern_installation_directory }}/{{ stern_version }}"
+    creates: "{{ stern_installation_directory }}/{{ stern_version }}/stern"
   when: "stern_download_result is changed"
   register: "stern_unarchive_result"
-  tags:
-    - containerization
-    - kubernetes
-    - stern
-
-- name: "rename the stern archive directory to the version number"
-  command: "mv {{ stern_installation_directory }}/{{ stern_file }} {{ stern_home_directory }}"
-  when: "stern_unarchive_result is changed"
   tags:
     - containerization
     - kubernetes
