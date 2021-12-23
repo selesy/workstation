@@ -35,10 +35,11 @@ helm_bash_file: "completions.bash"
 helm_bash_url: "{{ helm_bash_host }}/{{ helm_bash_path }}/{{ helm_bash_file }}"
 
 # https://github.com/bitnami-labs/sealed-secrets/releases/download/$release/kubeseal-$GOOS-$GOARCH
+# https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.17.1/kubeseal-0.17.1-linux-amd64.tar.gz
 
 kubeseal_host: "https://github.com"
 kubeseal_path: "bitnami-labs/sealed-secrets/releases/download/v{{ kubeseal_version }}"
-kubeseal_file: "kubeseal"
+kubeseal_file: "kubeseal-{{ kubeseal_version }}"
 
 kubeseal_url: "{{ kubeseal_host }}/{{ kubeseal_path }}/{{ kubeseal_file }}"
 

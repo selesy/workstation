@@ -378,11 +378,26 @@
     - kubernetes
     - kubeseal
 
-- name: "downloadand install the appropriate kubeseal binary"
+- name: "download and install the appropriate kubeseal binary"
   get_url:
-    url: "{{ kubeseal_url }}-{{ go_os.stdout }}-{{ go_arch.stdout }}"
-    dest: "{{ kubeseal_home_directory }}/{{ kubeseal_file }}"
+    url: "{{ kubeseal_url }}-{{ go_os.stdout }}-{{ go_arch.stdout }}.tar.gz"
+    dest: "~/{{ kubeseal_file }}-{{ go_os.stdout }}-{{ go_arch.stdout }}.tar.gz"
     mode: "755"
+  register: "kubeseal_download_result"
+  tags:
+    - containerization
+    - kubernetes
+    - kubeseal
+
+- name: "expand the kubeseal archive"
+  unarchive:
+    src: "~/{{ kubeseal_file }}-{{ go_os.stdout }}-{{ go_arch.stdout }}.tar.gz"
+    dest: "{{ kubeseal_home_directory }}"
+    copy: "no"
+    creates: "kubeseal"
+    mode: "755"
+  when: "kubeseal_download_result is changed"
+  register: "kubeseal_unarchive_result"
   tags:
     - containerization
     - kubernetes
