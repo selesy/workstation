@@ -79,7 +79,7 @@ postman_version: 9.11.0
 rfc_version: 0.2.6
 
 #SoapUI
-soapui_version: 5.6.0
+soapui_version: 5.7.0
 
 #SpotBugs
 spotbugs_version: 4.4.0
