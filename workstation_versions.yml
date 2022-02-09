@@ -61,7 +61,7 @@ plugins_manager_version: 1.7
 micro_version: 2.0.10
 
 #Netbeans
-netbeans_version: 12.4
+netbeans_version: 12.6
 
 # NodeJS
 nodejs_version: 16.x
