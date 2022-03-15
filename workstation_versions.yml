@@ -71,7 +71,7 @@ nodejs_repo: node_{{ nodejs_version }}
 pencil_version: 3.1.0.ga
 
 #Postman
-postman_version: 9.13.0
+postman_version: 9.14.0
 
 #RatPoison
 
