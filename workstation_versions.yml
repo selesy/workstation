@@ -31,7 +31,7 @@ stern_checksum: "sha256:18bb5afa0426d1ca2e975bee2a04037378d99ffdda6e3383a575ad28
 fluxctl_version: "1.24.3"
 skaffold_version: "1.37.0"
 skaffold_checksum: "sha256:a764386c6f18b678f2bb8782e4cdd62996be2cbce4cc81166dfc6d78569f0aa6"
-kustomize_version: 4.5.2
+kustomize_version: 4.5.4
 
 #Development
 go_version: "1.18"
