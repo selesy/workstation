@@ -1,0 +1,8 @@
+---
+
+- name: "install Zoom"
+  apt:
+    deb: "{{ zoom_url }}"
+  tags:
+  - "zoom"
+  - "communication"
