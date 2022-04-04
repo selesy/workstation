@@ -20,6 +20,7 @@
         - "alpine"
     - platform
     - common
+    - communication
     - development
     - containerization
     - java
