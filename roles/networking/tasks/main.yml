@@ -1,0 +1,26 @@
+---
+
+- name: "install OpenVPN client"
+  apt:
+    pkg:
+    - openvpn
+    - network-manager-openvpn
+    - network-manager-openvpn-gnome
+    state: present
+  tags:
+  - openvpn
+  - vpn
+  - networking
+
+- name: "install OpenConnect VPN client"
+  apt:
+    pkg:
+    - openconnect
+    - network-manager-openconnect
+    - network-manager-openconnect-gnome
+    - vpnc-scripts
+    state: present
+  tags:
+  - openconnect
+  - vpn
+  - networking
