@@ -97,22 +97,11 @@
       - "github.com/golang-migrate/migrate/v4/cmd/migrate@latest"
       - "github.com/swaggo/swag/cmd/swag@latest"
       - "github.com/praetorian-inc/gokart@latest"
-  tags:
-    - "languages"
-    - "go"
-    - "go-tools"
-
-- include: "../../install_go_packages.yml"
-  vars:
-    name: "add useful go packages"
-    packages:
-      - "github.com/kisielk/errcheck"
-      - "github.com/tsliwowicz/go-wrk"
-      - "github.com/uber/go-torch"
-      - "github.com/google/pprof"
-      - "golang.org/x/tools/gopls"
-      - "golang.org/x/tools/godoc"
-      - "github.com/sonatype-nexus-community/nancy"
+      - "github.com/kisielk/errcheck@latest"
+      - "github.com/tsliwowicz/go-wrk@0.9"
+      - "github.com/google/pprof@latest"
+      - "golang.org/x/tools/gopls@latest"
+      - "github.com/sonatype-nexus-community/nancy@latest"
   tags:
     - "languages"
     - "go"
