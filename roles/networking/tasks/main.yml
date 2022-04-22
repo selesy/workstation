@@ -1,5 +1,13 @@
 ---
 
+- name: "install useful networking tools"
+  apt:
+    pkg:
+    - net-tools
+    state: present
+  tags:
+  - networking
+
 - name: "install OpenVPN client"
   apt:
     pkg:
