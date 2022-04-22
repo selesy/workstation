@@ -7,7 +7,9 @@
 
 - name: install docker for container execution environment
   apt:
-    name: docker.io
+    pkg:
+      - docker.io
+      - docker-compose
     state: latest
   tags:
     - containerization
