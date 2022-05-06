@@ -1,10 +1,11 @@
 ---
 # roles/burp_suite/vars/main.yml
 # https://portswigger.net/DownloadUpdate.ashx?Product=Free
+# https://portswigger-cdn.net/burp/releases/download
 
-burp_url: https://portswigger.net/DownloadUpdate.ashx?Product=Free
+burp_url: https://portswigger-cdn.net/burp/releases/download
 
-burp_file: burpsuite_free_{{ burp_version }}.jar
+burp_file: burpsuite_community_{{ burp_version }}.jar
 
 burp_installation_directory: /opt/burpsuite/{{ burp_version }}
 
