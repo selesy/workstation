@@ -47,6 +47,7 @@
     - "oathtool"
     - "parcimonie"
     - "pass"
+    - "pass-extension-otp"
     - "qtpass"
     - "recordmydesktop"
     - "screen"
