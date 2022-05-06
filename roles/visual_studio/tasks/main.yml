@@ -71,6 +71,7 @@
   - "HashiCorp.terraform"
   - "nobuhito.printcode"
   - "ms-azuretools.vscode-docker"
+  - "ms-vscode-remote.remote-containers"
   register: vscode_extension
   changed_when: "'already installed' not in vscode_extension.stdout"
   tags:
