@@ -69,6 +69,7 @@
   - "mtxr.sqltools-driver-pg"
   - "zxh404.vscode-proto3"
   - "HashiCorp.terraform"
+  - "nobuhito.printcode"
   register: vscode_extension
   changed_when: "'already installed' not in vscode_extension.stdout"
   tags:
