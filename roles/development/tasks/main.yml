@@ -128,7 +128,7 @@
   vars:
     name: "install ko for Go-Kubernetes development"
     packages:
-      - "github.com/google/ko/cmd/ko@latest"
+      - "github.com/google/ko@latest"
   tags:
     - containerization
     - kubernetes
