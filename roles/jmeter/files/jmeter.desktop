@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Encoding=UTF-8
-Exec=/opt/jmeter/latest/bin/jmeter.sh
+Exec=/opt/jmeter/latest/bin/jmeter
 Icon=/opt/jmeter/latest/docs/images/jmeter_square.png
 StartupNotify=false
 Categories=Development;
