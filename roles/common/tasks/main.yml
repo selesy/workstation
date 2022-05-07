@@ -40,6 +40,7 @@
     - "curl"
     - "direnv"
     - "fonts-opendyslexic"
+    - "gdebi"
     - "gparted"
     - "hopenpgp-tools"
     - "lynx"
