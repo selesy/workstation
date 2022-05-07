@@ -388,18 +388,76 @@
 # Inform
 #
 
-- name: "add packages needed to develop and run IF games"
+- name: "add packages needed to develop IF games"
   apt:
-    name: "{{ packages }}"
+    pkg:
+    - "inform"
+    - "inform-docs"
     state: "latest"
   vars:
     packages:
-    - "zoom-player"
-    - "inform"
-    - "inform-docs"
+  when: ansible_distribution != "Debian"
   tags:
     - "interactive-fiction"
     - "inform"
+
+- name: "add stretch repositories needed for Inform7 dependencies"
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+  - "deb http://deb.debian.org/debian stretch main"
+  - "deb-src http://deb.debian.org/debian stretch main"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "interactive-fiction"
+  - "inform"
+
+- name: "add old dependencies needed for Inform7"
+  apt:
+    pkg:
+    - libgoocanvas3
+    - libgtkspell0
+    - libjavascriptcoregtk-1.0-0
+    - libwebkitgtk-1.0-0
+    - libgtksourceview2.0-0
+    state: present
+  when: ansible_distribution == "Debian"
+  tags:
+  - "interactive-fiction"
+  - "inform"
+
+- name: "install Inform7"
+  apt:
+    deb: http://inform7.com/apps/6M62/gnome-inform7_6M62-1_amd64.deb
+    state: "present"
+  when: ansible_distribution == "Debian"
+  tags:
+    - "interactive-fiction"
+    - "inform"
+
+- name: "remove stretch repositories needed for Inform7 dependencies"
+  apt_repository:
+    repo: "{{ item }}"
+    state: absent
+    update_cache: yes
+  with_items:
+  - "deb http://deb.debian.org/debian stretch main"
+  - "deb-src http://deb.debian.org/debian stretch main"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "interactive-fiction"
+  - "inform"
+
+- name: "add packages needed to play IF games"
+  apt:
+    pkg:
+    - "frotz"
+    - "zoom-player"
+    state: "latest"
+  tags:
+    - "interactive-fiction"
 
 # RFC CLI browser
 
