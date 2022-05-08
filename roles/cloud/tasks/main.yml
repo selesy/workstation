@@ -32,6 +32,35 @@
     name: "azure-cli"
     channel: "candidate"
     state: "present"
+  when: ansible_distribution == "Ubuntu"
   tags:
     - cloud
     - azure
+
+- name: "add the Azure CLI signing key"
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+  when: ansible_distribution == "Debian"
+  tags:
+  - cloud
+  - azure
+
+- name: "add the Azure CLI repository"
+  apt_repository:
+    repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main
+    state: present
+    update_cache: yes
+  when: ansible_distribution == "Debian"
+  tags:
+  - cloud
+  - azure
+
+- name: "install the Azure CLI"
+  apt:
+    pkg:
+    - azure-cli
+  when: ansible_distribution == "Debian"
+  tags:
+  - cloud
+  - azure
