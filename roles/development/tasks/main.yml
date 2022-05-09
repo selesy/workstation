@@ -218,17 +218,63 @@
 # Virtualization
 #
 
-- name: "install virtualization tools"
+- name: "install vagrant"
   apt:
-    name: "{{ packages }}"
-    state: "latest"
-  vars:
-    packages:
+    pkg:
     - "vagrant"
+    state: "latest"
+  tags:
+  - vagrant
+  - virtualization
+
+- name: "install virtualbox (Ubuntu)"
+  apt:
+    pkg:
     - "virtualbox"
     - "virtualbox-qt"
+    state: "latest"
+  when: ansible_distribution == "Ubuntu"
   tags:
-    - "virtualization"
+  - "virtualbox"
+  - "virtualization"
+
+- name: "install virtualbox repo key (Debian)"
+  apt_key:
+    url: "https://www.virtualbox.org/download/oracle_vbox_2016.asc"
+    state: "present"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "virtualbox"
+  - "virtualization"
+
+- name: "install virtualbox repo key (Debian)"
+  apt_key:
+    url: "https://www.virtualbox.org/download/oracle_vbox.asc"
+    state: "present"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "virtualbox"
+  - "virtualization"
+
+- name: "install virtualbox repo (Debian)"
+  apt_repository:
+    repo: "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+    state: "present"
+    update_cache: "yes"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "virtualbox"
+  - "virtualization"
+
+- name: "install virtualbox"
+  apt:
+    pkg:
+    - "virtualbox"
+    state: "present"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "virtualbox"
+  - "virtualization"
 
 #
 # Source Code Management
