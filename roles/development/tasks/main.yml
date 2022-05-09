@@ -238,27 +238,19 @@
   - "virtualbox"
   - "virtualization"
 
-- name: "install virtualbox repo key (Debian)"
-  apt_key:
-    url: "https://www.virtualbox.org/download/oracle_vbox_2016.asc"
+- name: "install fasttrack repo key (Debian)"
+  apt:
+    pkg:
+    - "fasttrack-archive-keyring"
     state: "present"
   when: ansible_distribution == "Debian"
   tags:
   - "virtualbox"
   - "virtualization"
 
-- name: "install virtualbox repo key (Debian)"
-  apt_key:
-    url: "https://www.virtualbox.org/download/oracle_vbox.asc"
-    state: "present"
-  when: ansible_distribution == "Debian"
-  tags:
-  - "virtualbox"
-  - "virtualization"
-
-- name: "install virtualbox repo (Debian)"
+- name: "install fastrack repo (Debian)"
   apt_repository:
-    repo: "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+    repo: "deb https://fasttrack.debian.net/debian-fasttrack/ {{ ansible_distribution_release }}-fasttrack main contrib"
     state: "present"
     update_cache: "yes"
   when: ansible_distribution == "Debian"
@@ -266,10 +258,21 @@
   - "virtualbox"
   - "virtualization"
 
-- name: "install virtualbox"
+- name: "install staging repo (Debian)"
+  apt_repository:
+    repo: "deb https://fasttrack.debian.net/debian-fasttrack/ {{ ansible_distribution_release }}-backports-staging main contrib"
+    state: "present"
+    update_cache: "yes"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "virtualbox"
+  - "virtualization"
+
+- name: "install virtualbox (Debian)"
   apt:
     pkg:
     - "virtualbox"
+    - "virtualbox-qt"
     state: "present"
   when: ansible_distribution == "Debian"
   tags:
