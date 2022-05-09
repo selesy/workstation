@@ -29,10 +29,7 @@
 
 - name: install basic Linux tools
   apt:
-    name: "{{ packages }}"
-    state: "latest"
-  vars:
-    packages:
+    pkg:
     - "asciinema"
     - "asciidoc"
     - "asciidoc-doc"
@@ -40,7 +37,6 @@
     - "curl"
     - "direnv"
     - "fonts-opendyslexic"
-    - "gdebi"
     - "gparted"
     - "hopenpgp-tools"
     - "lynx"
@@ -63,6 +59,15 @@
     - "vlc"
     - "whois"
     - "wipe"
+    state: "latest"
+
+- name: install basic Linux tools (Debian)
+  apt:
+    pkg:
+    - "gdebi"
+    - "libuvc0"
+    state: "latest"
+  when: ansible_distribution == "Debian"
 
 - name: install freemind via snap
   snap:
