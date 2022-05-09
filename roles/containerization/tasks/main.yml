@@ -360,6 +360,7 @@
   tags:
     - containerization
     - kubernetes
+    - secrets
     - kubeseal
 
 - name: "create the go_os variable"
@@ -369,6 +370,7 @@
   tags:
     - containerization
     - kubernetes
+    - secrets
     - kubeseal
 
 - name: "create the go_arch variable"
@@ -378,6 +380,7 @@
   tags:
     - containerization
     - kubernetes
+    - secrets
     - kubeseal
 
 - name: "download and install the appropriate kubeseal binary"
@@ -389,6 +392,7 @@
   tags:
     - containerization
     - kubernetes
+    - secrets
     - kubeseal
 
 - name: "expand the kubeseal archive"
@@ -403,6 +407,7 @@
   tags:
     - containerization
     - kubernetes
+    - secrets
     - kubeseal
 
 - name: "create a pretty symlink for kubeseal"
@@ -413,6 +418,7 @@
   tags:
     - containerization
     - kubernetes
+    - secrets
     - kubeseal
 
 - name: "create a symlink to the executable"
@@ -423,7 +429,23 @@
   tags:
     - containerization
     - kubernetes
+    - secrets
     - kubeseal
+
+#
+# SOPS
+#
+
+- include: "../../install_go_programs.yml"
+  vars:
+    name: "install Mozilla SOPS for secret management"
+    packages:
+    - "go.mozilla.org/sops/v3/cmd/sops@latest"
+  tags:
+  - "containerization"
+  - "kubernetes"
+  - "secrets"
+  - "sops"
 
 #
 # Istio
