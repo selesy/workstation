@@ -76,8 +76,17 @@
   changed_when: "kubectl_result.changed or not kubectl_stat.stat.exists"
   tags:
     - containerization
-    - Kubernetes
+    - kubernetes
     - kubectl
+
+- name: "install Kubernetes Lens"
+  apt:
+    deb: "{{ lens_url }}"
+    state: "present"
+  tags:
+  - containerization
+  - kubernetes
+  - lens
 
 #
 # HyperKube is now deprecated in favor of MiniKube
