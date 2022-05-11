@@ -249,6 +249,15 @@
     - "kubernetes"
     - "kubens"
 
+- name: "install kubens bash completion"
+  get_url:
+    url: "https://raw.githubusercontent.com/ahmetb/kubectx/v{{ kubectx_version }}/completion/kubens.bash"
+    dest: "/etc/bash_completion.d/kubens"
+  tags:
+    - "containerization"
+    - "kubernetes"
+    - "kubens"
+
 # - name: "load the kubens installation's variables"
 #   include_vars:
 #     file: "kubens.yml"
