@@ -73,6 +73,7 @@
   - "ms-azuretools.vscode-docker"
   - "ms-vscode-remote.remote-containers"
   - "rohinivsenthil.postcode"
+  - "tropicrpc.tropicrpc"
   register: vscode_extension
   changed_when: "'already installed' not in vscode_extension.stdout"
   tags:
