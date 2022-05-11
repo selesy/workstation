@@ -208,6 +208,15 @@
     - "kubernetes"
     - "kubectx"
 
+- name: "install kubectx bash completion"
+  get_url:
+    url: "https://raw.githubusercontent.com/ahmetb/kubectx/v{{ kubectx_version }}/completion/kubectx.bash"
+    dest: "/etc/bash_completion.d/kubectx"
+  tags:
+    - "containerization"
+    - "kubernetes"
+    - "kubectx"
+
 # - name: "load the kubectx installation's variables"
 #   include_vars:
 #     file: "kubectx.yml"
