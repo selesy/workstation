@@ -64,6 +64,7 @@
 - name: install basic Linux tools (Debian)
   apt:
     pkg:
+    - "bash-completion"
     - "gdebi"
     - "libuvc0"
     state: "latest"
