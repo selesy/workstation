@@ -376,6 +376,14 @@
 #     - kubernetes
 #     - helm
 
+- name: "generate and install Helm's bash completions"
+  shell:
+    cmd: "helm completion bash > /etc/bash_completion.d/helm"
+  tags:
+    - containerization
+    - kubernetes
+    - helm
+
 #
 # Kubeseal
 #
