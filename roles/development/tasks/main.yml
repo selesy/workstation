@@ -540,3 +540,16 @@
     state: "link"
   tags:
   - "rfc"
+
+#
+# Test tools
+#
+
+- name: "install siege for HTTP load testing"
+  apt:
+    pkg:
+    - "siege"
+    state: "latest"
+  tags:
+  - "testing"
+  - "siege"
