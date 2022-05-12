@@ -65,6 +65,7 @@
   apt:
     pkg:
     - "bash-completion"
+    - "byobu"
     - "gdebi"
     - "libuvc0"
     state: "latest"
