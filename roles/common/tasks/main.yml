@@ -54,6 +54,7 @@
     - "snapd"
     - "sshfs"
     - "sshuttle"
+    - "stacer"
     - "tftp"
     - "traceroute"
     - "tree"
