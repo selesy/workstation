@@ -35,6 +35,7 @@
     - "asciidoc-doc"
     - "audacity"
     - "curl"
+    - "deborphan"
     - "direnv"
     - "fonts-opendyslexic"
     - "gparted"
