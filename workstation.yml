@@ -9,7 +9,7 @@
       when: ansible_version.full is version(ansible_minimum_version, operator='lt', strict=True)
     - name: abort execution on 32-bit environments
       fail:
-        msg: These playbooks are now only available on 64-bit OSes
+        msg: "These playbooks are now only available on 64-bit OSes"
       when: ansible_architecture == "i386"
   remote_user: ansible
   become: yes
@@ -22,7 +22,6 @@
     - role: "alpine/xfce"
       tags:
         - "alpine"
-    - platform
     - common
     - communication
     - development
