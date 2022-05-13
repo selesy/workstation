@@ -368,6 +368,25 @@
     - "remake"
   tags:
   - "build-tools"
+  - "make"
+
+- include: "../../install_go_programs.yml"
+  vars:
+    name: "install bazel"
+    packages:
+    - "github.com/bazelbuild/bazelisk@latest"
+  tags:
+  - "build-tools"
+  - "bazel"
+
+- name: "add a pretty symlink for bazel"
+  file:
+    src: "/usr/share/go-tools/bin/bazelisk"
+    path: "/usr/bin/bazel"
+    state: "link"
+  tags:
+  - "build-tools"
+  - "bazel"
 
 - name: "install protobuf compiler"
   snap:
