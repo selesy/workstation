@@ -1,9 +1,0 @@
----
-# File: roles/platform/tasks/main.yml
-
-- name: abort execution on 32-bit environments
-  fail:
-    msg: These playbooks are now only available on 64-bit OSes
-  when: ansible_architecture == "i386"
-
-...
