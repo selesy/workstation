@@ -102,6 +102,7 @@
       - "github.com/google/pprof@latest"
       - "golang.org/x/tools/gopls@latest"
       - "github.com/sonatype-nexus-community/nancy@latest"
+      - "github.com/bradleyfalzon/revgrep/cmd/revgrep@latest"
   tags:
     - "languages"
     - "go"
