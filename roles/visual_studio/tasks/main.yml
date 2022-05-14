@@ -2,42 +2,31 @@
 
 # Add Visual Studio Code (see https://code.visualstudio.com/docs/setup/linux)
 
-- name: add the visual studio signing key
+- name: remove the visual studio signing key
   apt_key:
     url: "{{ vs_key }}"
-    state: present
+    id: "BC528686B50D79E339D3721CEB3E94ADBE1229CF"
+    state: absent
   tags:
   - visual_studio
   - ide
   - editors
 
-# This play can be eliminated in Ansible >= 2.1
-# Add filename to the play below and remove the when clause
-- name: check to see if the renamed repository exists
-  stat:
-    path: /etc/apt/sources.list.d/{{ vs_source_list_name_out }}
-  register: stat_result
-  tags:
-  - visual_studio
-  - ide
-  - editors
-
-- name: add the visual studio repository
+- name: remove the visual studio repository
   apt_repository:
     repo: "{{ vs_repository }}"
-    state: present
+    state: absent
     mode: "644"
-  when: not stat_result.stat.exists
   tags:
   - visual_studio
   - ide
   - editors
 
-# This play can be eliminated in Ansible >= 2.1
-# Add filename to the play above and remove the when clause
-- name: fix the name of the repository (to what vscode expects)
-  shell: mv /etc/apt/sources.list.d/{{ vs_source_list_name_in }} /etc/apt/sources.list.d/{{ vs_source_list_name_out }}
-  when: not stat_result.stat.exists
+- name: "download visual studio"
+  get_url:
+    url: "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+    dest: "~/"
+  register: vscode_download_result
   tags:
   - visual_studio
   - ide
@@ -45,9 +34,8 @@
 
 - name: install visual studio
   apt:
-    name: "code"
+    deb: "{{ vscode_download_result.dest }}"
     state: "present"
-    update_cache: yes
   tags:
   - visual_studio
   - ide
