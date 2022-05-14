@@ -580,7 +580,6 @@
   tags:
     - containerization
     - kubernetes
-    - aws
     - terraform
 
 - name: "download the Terraform release archive"
@@ -592,7 +591,6 @@
   tags:
     - containerization
     - kubernetes
-    - aws
     - terraform
 
 - name: "expand the Terraform archive"
@@ -606,7 +604,6 @@
   tags:
     - containerization
     - kubernetes
-    - aws
     - terraform
 
 - name: "rename the Terraform archive directory to the version number"
@@ -615,7 +612,6 @@
   tags:
     - containerization
     - kubernetes
-    - aws
     - terraform
 
 - name: "make a pretty symlink to the latest version of Terraform"
@@ -626,7 +622,6 @@
   tags:
     - containerization
     - kubernetes
-    - aws
     - terraform
 
 - name: "create a symlink to the terraform executable"
@@ -637,7 +632,6 @@
   tags:
     - containerization
     - kubernetes
-    - aws
     - terraform
 
 - name: "set-up Terraform's bash completion"
@@ -647,7 +641,6 @@
   tags:
     - containerization
     - kubernetes
-    - aws
     - terraform
 
 #
