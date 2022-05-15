@@ -103,6 +103,16 @@
       - "golang.org/x/tools/gopls@latest"
       - "github.com/sonatype-nexus-community/nancy@latest"
       - "github.com/bradleyfalzon/revgrep/cmd/revgrep@latest"
+      - "github.com/posener/complete/v2/gocomplete@latest"
+  tags:
+    - "languages"
+    - "go"
+    - "go-tools"
+
+- name: "install bash completion for Go"
+  copy:
+    src: ../files/go_completion.bash
+    dest: /etc/bash_completion.d/go
   tags:
     - "languages"
     - "go"
