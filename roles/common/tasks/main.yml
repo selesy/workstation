@@ -68,6 +68,7 @@
     pkg:
     - "bash-completion"
     - "byobu"
+    - "expect"
     - "gdebi"
     - "libuvc0"
     state: "latest"
