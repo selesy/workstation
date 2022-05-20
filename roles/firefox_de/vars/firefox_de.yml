@@ -16,4 +16,6 @@ url: "{{ host }}/{{ path }}/{{ file }}"
 
 archive_path: "firefox"
 
+executables: []
+
 desktop_file: "firefox-de.desktop"
