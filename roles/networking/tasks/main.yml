@@ -32,3 +32,14 @@
   - openconnect
   - vpn
   - networking
+
+- name: "install L2TP VPN client"
+  apt:
+    pkg:
+    - network-manager-l2tp
+    - network-manager-l2tp-gnome
+    state: present
+  tags:
+  - l2tp
+  - vpn
+  - networking
