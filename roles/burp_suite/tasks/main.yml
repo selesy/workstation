@@ -6,30 +6,30 @@
        dest=~/{{ burp_file }}
        creates=~/{{ burp_file }}
   tags:
-    - burp_suite
+    - burp-suite
 
 - name: create an installation directory
   file: dest={{ burp_installation_directory }} state=directory
   tags:
-    - burp_suite
+    - burp-suite
 
 - name: copy the jar file to the installation directory
   command: cp {{ burp_file }} {{ burp_installation_directory }}
            chdir=~
            creates={{ burp_installation_directory }}/{{ burp_file }}
   tags:
-    - burp_suite
+    - burp-suite
 
 - name: extract the application's icon from the archive
   command: unzip {{ burp_installation_directory }}/{{ burp_file }} {{ burp_icon_path }}/{{ burp_icon_file }}
            chdir={{ burp_installation_directory }}
            creates={{ burp_installation_directory }}/{{ burp_icon_path }}/{{ burp_icon_file }}
   tags:
-    - burp_suite
+    - burp-suite
 
 - name: add a launcher for Burp Suite
   template: src=../files/burp_suite.desktop
             dest=/usr/share/applications
   tags:
-    - burp_suite
+    - burp-suite
  
