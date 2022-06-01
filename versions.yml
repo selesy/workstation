@@ -33,7 +33,7 @@ fluxctl_version: "1.25.2"
 skaffold_version: "1.38.0"
 skaffold_checksum: "sha256:3c347c9478880f22ebf95807c13371844769c625cf3ea9c987cd85859067503c"
 kustomize_version: 4.5.5
-lens_version: 5.5.0-latest.20220525.1
+lens_version: 5.5.2-latest.20220530.1
 
 #Development
 go_version: "1.18.2"
