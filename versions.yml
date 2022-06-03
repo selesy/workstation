@@ -36,7 +36,7 @@ kustomize_version: 4.5.5
 lens_version: 5.5.2-latest.20220530.1
 
 #Development
-go_version: "1.18.2"
+go_version: "1.18.3"
 
 #Eclipse
 eclipse_version: 2022-03
