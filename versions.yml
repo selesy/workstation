@@ -21,7 +21,7 @@ minikube_checksum: "sha256:ef610fa83571920f1b6c8538bb31a8dc5e10ff7e1fcdca071b2a8
 kubectx_version: 0.9.4
 helm_version: 3.9.0
 helm_checksum: "sha256:1484ffb0c7a608d8069470f48b88d729e88c41a1b6602f145231e8ea7b43b50a"
-kubeseal_version: 0.17.5
+kubeseal_version: 0.18.0
 istio_version: 1.13.4
 istio_checksum: "sha256:a7066afc8ff91266f8903ce6c3c994aafc12da80175c5a3f9f7ab0ed7eaa020f"
 terraform_version: 1.2.1
