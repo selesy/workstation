@@ -17,7 +17,7 @@ Applications
 
 This project installs the following applications:
 
--   Apache Directory Studio - LDAP client (apache_directory_studio)
+-   Apache Directory Studio - LDAP client (apache-directory-studio)
 -   BurpSuite
 -   DBeaver - Database client (dbeaver)
 -   Eclipse IDE with selected plugins (eclipse)

@@ -7,7 +7,9 @@
 
 - name: install docker for container execution environment
   apt:
-    name: docker.io
+    pkg:
+      - docker.io
+      - docker-compose
     state: latest
   tags:
     - containerization
@@ -74,8 +76,17 @@
   changed_when: "kubectl_result.changed or not kubectl_stat.stat.exists"
   tags:
     - containerization
-    - Kubernetes
+    - kubernetes
     - kubectl
+
+- name: "install Kubernetes Lens"
+  apt:
+    deb: "{{ lens_url }}"
+    state: "present"
+  tags:
+  - containerization
+  - kubernetes
+  - lens
 
 #
 # HyperKube is now deprecated in favor of MiniKube
@@ -165,11 +176,11 @@
 # kind
 #
 
-- include: "../../install_go_packages.yml"
+- include: "../../install_go_programs.yml"
   vars:
     name: "install kind"
     packages:
-      - "sigs.k8s.io/kind"
+      - "sigs.k8s.io/kind@latest"
   tags:
     - containerization
     - Kubernetes
@@ -192,6 +203,15 @@
     include_vars:
       file: kubectx.yml
   - include: ../../../install_from_github.yml
+  tags:
+    - "containerization"
+    - "kubernetes"
+    - "kubectx"
+
+- name: "install kubectx bash completion"
+  get_url:
+    url: "https://raw.githubusercontent.com/ahmetb/kubectx/v{{ kubectx_version }}/completion/kubectx.bash"
+    dest: "/etc/bash_completion.d/kubectx"
   tags:
     - "containerization"
     - "kubernetes"
@@ -224,6 +244,15 @@
     include_vars:
       file: kubens.yml
   - include: ../../../install_from_github.yml
+  tags:
+    - "containerization"
+    - "kubernetes"
+    - "kubens"
+
+- name: "install kubens bash completion"
+  get_url:
+    url: "https://raw.githubusercontent.com/ahmetb/kubectx/v{{ kubectx_version }}/completion/kubens.bash"
+    dest: "/etc/bash_completion.d/kubens"
   tags:
     - "containerization"
     - "kubernetes"
@@ -347,6 +376,14 @@
 #     - kubernetes
 #     - helm
 
+- name: "generate and install Helm's bash completions"
+  shell:
+    cmd: "helm completion bash > /etc/bash_completion.d/helm"
+  tags:
+    - containerization
+    - kubernetes
+    - helm
+
 #
 # Kubeseal
 #
@@ -358,6 +395,7 @@
   tags:
     - containerization
     - kubernetes
+    - secrets
     - kubeseal
 
 - name: "create the go_os variable"
@@ -367,6 +405,7 @@
   tags:
     - containerization
     - kubernetes
+    - secrets
     - kubeseal
 
 - name: "create the go_arch variable"
@@ -376,6 +415,7 @@
   tags:
     - containerization
     - kubernetes
+    - secrets
     - kubeseal
 
 - name: "download and install the appropriate kubeseal binary"
@@ -387,6 +427,7 @@
   tags:
     - containerization
     - kubernetes
+    - secrets
     - kubeseal
 
 - name: "expand the kubeseal archive"
@@ -401,6 +442,7 @@
   tags:
     - containerization
     - kubernetes
+    - secrets
     - kubeseal
 
 - name: "create a pretty symlink for kubeseal"
@@ -411,6 +453,7 @@
   tags:
     - containerization
     - kubernetes
+    - secrets
     - kubeseal
 
 - name: "create a symlink to the executable"
@@ -421,7 +464,23 @@
   tags:
     - containerization
     - kubernetes
+    - secrets
     - kubeseal
+
+#
+# SOPS
+#
+
+- include: "../../install_go_programs.yml"
+  vars:
+    name: "install Mozilla SOPS for secret management"
+    packages:
+    - "go.mozilla.org/sops/v3/cmd/sops@latest"
+  tags:
+  - "containerization"
+  - "kubernetes"
+  - "secrets"
+  - "sops"
 
 #
 # Istio
@@ -521,7 +580,6 @@
   tags:
     - containerization
     - kubernetes
-    - aws
     - terraform
 
 - name: "download the Terraform release archive"
@@ -533,7 +591,6 @@
   tags:
     - containerization
     - kubernetes
-    - aws
     - terraform
 
 - name: "expand the Terraform archive"
@@ -547,7 +604,6 @@
   tags:
     - containerization
     - kubernetes
-    - aws
     - terraform
 
 - name: "rename the Terraform archive directory to the version number"
@@ -556,7 +612,6 @@
   tags:
     - containerization
     - kubernetes
-    - aws
     - terraform
 
 - name: "make a pretty symlink to the latest version of Terraform"
@@ -567,7 +622,6 @@
   tags:
     - containerization
     - kubernetes
-    - aws
     - terraform
 
 - name: "create a symlink to the terraform executable"
@@ -578,7 +632,6 @@
   tags:
     - containerization
     - kubernetes
-    - aws
     - terraform
 
 - name: "set-up Terraform's bash completion"
@@ -588,7 +641,6 @@
   tags:
     - containerization
     - kubernetes
-    - aws
     - terraform
 
 #

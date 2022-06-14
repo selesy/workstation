@@ -14,8 +14,8 @@
 # title:        The application's formal name.
 #
 # version:      This value indicates what version should be downloaded
-#               and is generally set in the "workstation_versions.yml"
-#               file and copied within the task's vars file.
+#               and is generally set in the "versions.yml" file and
+#               copied within the task's vars file.
 #
 # url:          The URL where the application's installation archive can
 #               be downloaded.

@@ -19,22 +19,24 @@ dbeaver_version: latest
 minikube_version: 1.25.2
 minikube_checksum: "sha256:ef610fa83571920f1b6c8538bb31a8dc5e10ff7e1fcdca071b2a8544c349c6fd"
 kubectx_version: 0.9.4
-helm_version: 3.8.1
-helm_checksum: "sha256:d643f48fe28eeb47ff68a1a7a26fc5142f348d02c8bc38d699674016716f61cd"
-kubeseal_version: 0.17.3
-istio_version: 1.13.2
-istio_checksum: "sha256:a1c30fe5c612fce80a19fe3d221ddac43f8fc6395e0f18d12bd34320f059dea7"
-terraform_version: 1.1.7
+helm_version: 3.9.0
+helm_checksum: "sha256:1484ffb0c7a608d8069470f48b88d729e88c41a1b6602f145231e8ea7b43b50a"
+kubeseal_version: 0.18.0
+istio_version: 1.14.1
+istio_checksum: "sha256:9b57bf3c475e0b2adaabbabb1d0deb20062dd176027c223cd5cfbb96d68744b7"
+terraform_version: 1.2.2
+terragrunt_version: 0.37.3
 kail_version: 0.15.0
 stern_version: 1.21.0
 stern_checksum: "sha256:18bb5afa0426d1ca2e975bee2a04037378d99ffdda6e3383a575ad28d5c2d04d"
-fluxctl_version: "1.24.3"
-skaffold_version: "1.37.0"
-skaffold_checksum: "sha256:a764386c6f18b678f2bb8782e4cdd62996be2cbce4cc81166dfc6d78569f0aa6"
-kustomize_version: 4.5.2
+fluxctl_version: "1.25.2"
+skaffold_version: "1.38.0"
+skaffold_checksum: "sha256:3c347c9478880f22ebf95807c13371844769c625cf3ea9c987cd85859067503c"
+kustomize_version: 4.5.5
+lens_version: 5.5.3-latest.20220602.2
 
 #Development
-go_version: "1.18"
+go_version: "1.18.3"
 
 #Eclipse
 eclipse_version: 2022-03
@@ -43,7 +45,7 @@ lombok_version: 1.18.22
 eclim_version: 2.21.0
 
 #FireFox
-firefox_de_version: 99.0b8
+firefox_de_version: 102.0b7
 firefox_de_language: en-US
 
 #Chrome
@@ -71,7 +73,7 @@ nodejs_repo: node_{{ nodejs_version }}
 pencil_version: 3.1.0.ga
 
 #Postman
-postman_version: 9.14.0
+postman_version: 9.16.0
 
 #RatPoison
 
@@ -85,7 +87,7 @@ soapui_version: 5.7.0
 spotbugs_version: 4.5.3
 
 #SQLMap
-sqlmap_version: 1.6.9
+sqlmap_version: 1.6.4
 
 #Umlet
 umlet_major_version: 14

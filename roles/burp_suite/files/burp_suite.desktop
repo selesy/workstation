@@ -2,8 +2,8 @@
 Version=1.0
 Type=Application
 Encoding=UTF-8
-Exec=java -jar /opt/burpsuite/latest/burpsuite_free_latest.jar
-Icon=/opt/burpsuite/latest/resources/Media/icon64.png
+Exec=java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED -jar /opt/burpsuite/latest/burpsuite_community_latest.jar
+Icon=/opt/burpsuite/latest/resources/Media/icon64community.png
 StartupNotify=false
 Categories=Development
 Name=BurpSuite Community Edition - {{ burp_version }}

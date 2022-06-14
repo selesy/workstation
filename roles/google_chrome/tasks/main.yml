@@ -18,8 +18,20 @@
   tags:
     - chrome
 
-- name: install the chrome driver to allow Selenium testing with Google Chrome
-  apt: pkg=chromium-chromedriver state=latest
+- name: install the chrome driver to allow Selenium testing with Google Chrome (Ubuntu)
+  apt:
+    pkg=chromium-chromedriver
+    state=latest
+  when: ansible_distribution == "Ubuntu"
+  tags:
+    - chrome
+    - selenium
+
+- name: install the chrome driver to allow Selenium testing with Google Chrome (Debian)
+  apt:
+    pkg=chromium-driver
+    state=latest
+  when: ansible_distribution == "Debian"
   tags:
     - chrome
     - selenium

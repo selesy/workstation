@@ -72,6 +72,15 @@
   - "spotbugs"
   - "static_analysis"
 
+- name: "make the binary executable"
+  file:
+    path: "/opt/spotbugs/latest/bin/spotbugs"
+    mode: "+x"
+  tags:
+  - "findbugs"
+  - "spotbugs"
+  - "static_analysis"
+
 - name: "add a launcher for SpotBugs to the development menu"
   template:
     src: "../files/spotbugs.desktop"

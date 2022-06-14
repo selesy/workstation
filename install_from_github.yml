@@ -16,9 +16,9 @@
 #               install_from_archive.yml.
 #
 # version:      This value indicates what version should be downloaded
-#               and is generally set in the "workstation_versions.yml"
-#               file and copied within the task's vars file.  Inherited
-#               from install_from_archive.yml.
+#               and is generally set in the "versions.yml" file and
+#               copied within the task's vars file.  Inherited from
+#               install_from_archive.yml.
 #
 # project:      This value should be the Github path to the project in
 #               the form <organization/project>.

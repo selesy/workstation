@@ -97,22 +97,22 @@
       - "github.com/golang-migrate/migrate/v4/cmd/migrate@latest"
       - "github.com/swaggo/swag/cmd/swag@latest"
       - "github.com/praetorian-inc/gokart@latest"
+      - "github.com/kisielk/errcheck@latest"
+      - "github.com/tsliwowicz/go-wrk@0.9"
+      - "github.com/google/pprof@latest"
+      - "golang.org/x/tools/gopls@latest"
+      - "github.com/sonatype-nexus-community/nancy@latest"
+      - "github.com/bradleyfalzon/revgrep/cmd/revgrep@latest"
+      - "github.com/posener/complete/v2/gocomplete@latest"
   tags:
     - "languages"
     - "go"
     - "go-tools"
 
-- include: "../../install_go_packages.yml"
-  vars:
-    name: "add useful go packages"
-    packages:
-      - "github.com/kisielk/errcheck"
-      - "github.com/tsliwowicz/go-wrk"
-      - "github.com/uber/go-torch"
-      - "github.com/google/pprof"
-      - "golang.org/x/tools/gopls"
-      - "golang.org/x/tools/godoc"
-      - "github.com/sonatype-nexus-community/nancy"
+- name: "install bash completion for Go"
+  copy:
+    src: ../files/go_completion.bash
+    dest: /etc/bash_completion.d/go
   tags:
     - "languages"
     - "go"
@@ -139,7 +139,7 @@
   vars:
     name: "install ko for Go-Kubernetes development"
     packages:
-      - "github.com/google/ko/cmd/ko@latest"
+      - "github.com/google/ko@latest"
   tags:
     - containerization
     - kubernetes
@@ -229,17 +229,66 @@
 # Virtualization
 #
 
-- name: "install virtualization tools"
+- name: "install vagrant"
   apt:
-    name: "{{ packages }}"
-    state: "latest"
-  vars:
-    packages:
+    pkg:
     - "vagrant"
+    state: "latest"
+  tags:
+  - vagrant
+  - virtualization
+
+- name: "install virtualbox (Ubuntu)"
+  apt:
+    pkg:
     - "virtualbox"
     - "virtualbox-qt"
+    state: "latest"
+  when: ansible_distribution == "Ubuntu"
   tags:
-    - "virtualization"
+  - "virtualbox"
+  - "virtualization"
+
+- name: "install fasttrack repo key (Debian)"
+  apt:
+    pkg:
+    - "fasttrack-archive-keyring"
+    state: "present"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "virtualbox"
+  - "virtualization"
+
+- name: "install fastrack repo (Debian)"
+  apt_repository:
+    repo: "deb https://fasttrack.debian.net/debian-fasttrack/ {{ ansible_distribution_release }}-fasttrack main contrib"
+    state: "present"
+    update_cache: "yes"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "virtualbox"
+  - "virtualization"
+
+- name: "install staging repo (Debian)"
+  apt_repository:
+    repo: "deb https://fasttrack.debian.net/debian-fasttrack/ {{ ansible_distribution_release }}-backports-staging main contrib"
+    state: "present"
+    update_cache: "yes"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "virtualbox"
+  - "virtualization"
+
+- name: "install virtualbox (Debian)"
+  apt:
+    pkg:
+    - "virtualbox"
+    - "virtualbox-qt"
+    state: "present"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "virtualbox"
+  - "virtualization"
 
 #
 # Source Code Management
@@ -305,6 +354,18 @@
   tags:
     - "subversion"
  
+#
+# Bug tracking
+#
+
+- include: "../../install_go_programs.yml"
+  vars:
+    name: "install git-bug"
+    packages:
+    - "github.com/MichaelMure/git-bug@v0.7.2"
+  tags:
+  - "bug-tracking"
+  - "git-bug"
 
 #
 # Build tools
@@ -330,6 +391,25 @@
     - "remake"
   tags:
   - "build-tools"
+  - "make"
+
+- include: "../../install_go_programs.yml"
+  vars:
+    name: "install bazel"
+    packages:
+    - "github.com/bazelbuild/bazelisk@latest"
+  tags:
+  - "build-tools"
+  - "bazel"
+
+- name: "add a pretty symlink for bazel"
+  file:
+    src: "/usr/share/go-tools/bin/bazelisk"
+    path: "/usr/bin/bazel"
+    state: "link"
+  tags:
+  - "build-tools"
+  - "bazel"
 
 - name: "install protobuf compiler"
   snap:
@@ -399,18 +479,76 @@
 # Inform
 #
 
-- name: "add packages needed to develop and run IF games"
+- name: "add packages needed to develop IF games"
   apt:
-    name: "{{ packages }}"
+    pkg:
+    - "inform"
+    - "inform-docs"
     state: "latest"
   vars:
     packages:
-    - "zoom-player"
-    - "inform"
-    - "inform-docs"
+  when: ansible_distribution != "Debian"
   tags:
     - "interactive-fiction"
     - "inform"
+
+- name: "add stretch repositories needed for Inform7 dependencies"
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+  - "deb http://deb.debian.org/debian stretch main"
+  - "deb-src http://deb.debian.org/debian stretch main"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "interactive-fiction"
+  - "inform"
+
+- name: "add old dependencies needed for Inform7"
+  apt:
+    pkg:
+    - libgoocanvas3
+    - libgtkspell0
+    - libjavascriptcoregtk-1.0-0
+    - libwebkitgtk-1.0-0
+    - libgtksourceview2.0-0
+    state: present
+  when: ansible_distribution == "Debian"
+  tags:
+  - "interactive-fiction"
+  - "inform"
+
+- name: "install Inform7"
+  apt:
+    deb: http://inform7.com/apps/6M62/gnome-inform7_6M62-1_amd64.deb
+    state: "present"
+  when: ansible_distribution == "Debian"
+  tags:
+    - "interactive-fiction"
+    - "inform"
+
+- name: "remove stretch repositories needed for Inform7 dependencies"
+  apt_repository:
+    repo: "{{ item }}"
+    state: absent
+    update_cache: yes
+  with_items:
+  - "deb http://deb.debian.org/debian stretch main"
+  - "deb-src http://deb.debian.org/debian stretch main"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "interactive-fiction"
+  - "inform"
+
+- name: "add packages needed to play IF games"
+  apt:
+    pkg:
+    - "frotz"
+    - "zoom-player"
+    state: "latest"
+  tags:
+    - "interactive-fiction"
 
 # RFC CLI browser
 
@@ -444,3 +582,16 @@
     state: "link"
   tags:
   - "rfc"
+
+#
+# Test tools
+#
+
+- name: "install siege for HTTP load testing"
+  apt:
+    pkg:
+    - "siege"
+    state: "latest"
+  tags:
+  - "testing"
+  - "siege"

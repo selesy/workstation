@@ -25,7 +25,3 @@
       line: "\\1"
       state: "present"
     when: "ansible_distribution == 'Alpine'"
-
-  - name: install aptitude
-    apt: name=aptitude state=latest
-    when: "ansible_distribution == 'Ubuntu'"

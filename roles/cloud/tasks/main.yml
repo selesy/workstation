@@ -18,11 +18,28 @@
     - cloud
     - aws
 
-- name: install AWS CLI tools via PIP
+- name: uninstall AWS CLI v1 via PIP
   pip:
     name: awscli
+    state: absent
+  tags:
+    - cloud
+    - aws
+
+- name: install AWS CLI tools via PIP
+  pip:
+    name: awscliv2
     extra_args: --upgrade
     state: latest
+  tags:
+    - cloud
+    - aws
+    
+- name: "add a symlink from awsv2 -> aws"
+  file:
+    src: "/usr/local/bin/awsv2"
+    dest: "/usr/local/bin/aws"
+    state: "link"
   tags:
     - cloud
     - aws
@@ -32,6 +49,35 @@
     name: "azure-cli"
     channel: "candidate"
     state: "present"
+  when: ansible_distribution == "Ubuntu"
   tags:
     - cloud
     - azure
+
+- name: "add the Azure CLI signing key"
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+  when: ansible_distribution == "Debian"
+  tags:
+  - cloud
+  - azure
+
+- name: "add the Azure CLI repository"
+  apt_repository:
+    repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main
+    state: present
+    update_cache: yes
+  when: ansible_distribution == "Debian"
+  tags:
+  - cloud
+  - azure
+
+- name: "install the Azure CLI"
+  apt:
+    pkg:
+    - azure-cli
+  when: ansible_distribution == "Debian"
+  tags:
+  - cloud
+  - azure

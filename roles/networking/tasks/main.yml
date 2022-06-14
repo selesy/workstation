@@ -1,0 +1,45 @@
+---
+
+- name: "install useful networking tools"
+  apt:
+    pkg:
+    - net-tools
+    state: present
+  tags:
+  - networking
+
+- name: "install OpenVPN client"
+  apt:
+    pkg:
+    - openvpn
+    - network-manager-openvpn
+    - network-manager-openvpn-gnome
+    state: present
+  tags:
+  - openvpn
+  - vpn
+  - networking
+
+- name: "install OpenConnect VPN client"
+  apt:
+    pkg:
+    - openconnect
+    - network-manager-openconnect
+    - network-manager-openconnect-gnome
+    - vpnc-scripts
+    state: present
+  tags:
+  - openconnect
+  - vpn
+  - networking
+
+- name: "install L2TP VPN client"
+  apt:
+    pkg:
+    - network-manager-l2tp
+    - network-manager-l2tp-gnome
+    state: present
+  tags:
+  - l2tp
+  - vpn
+  - networking

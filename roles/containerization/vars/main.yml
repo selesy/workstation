@@ -111,3 +111,7 @@ skaffold_url: "{{ skaffold_host }}/{{ skaffold_path }}/{{ skaffold_file }}"
 
 skaffold_installation_directory: "/opt/skaffold"
 skaffold_home_directory: "{{ skaffold_installation_directory }}/{{ skaffold_version }}"
+
+# https://lens-binaries.s3-eu-west-1.amazonaws.com/ide/Lens-5.4.6-latest.20220428.1.amd64.deb
+
+lens_url: https://lens-binaries.s3-eu-west-1.amazonaws.com/ide/Lens-{{ lens_version }}-latest.20220428.1.amd64.deb

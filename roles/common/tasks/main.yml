@@ -29,15 +29,13 @@
 
 - name: install basic Linux tools
   apt:
-    name: "{{ packages }}"
-    state: "latest"
-  vars:
-    packages:
+    pkg:
     - "asciinema"
     - "asciidoc"
     - "asciidoc-doc"
     - "audacity"
     - "curl"
+    - "deborphan"
     - "direnv"
     - "fonts-opendyslexic"
     - "gparted"
@@ -47,6 +45,7 @@
     - "oathtool"
     - "parcimonie"
     - "pass"
+    - "pass-extension-otp"
     - "qtpass"
     - "recordmydesktop"
     - "screen"
@@ -55,12 +54,25 @@
     - "snapd"
     - "sshfs"
     - "sshuttle"
+    - "stacer"
     - "tftp"
     - "traceroute"
     - "tree"
     - "vlc"
     - "whois"
     - "wipe"
+    state: "latest"
+
+- name: install basic Linux tools (Debian)
+  apt:
+    pkg:
+    - "bash-completion"
+    - "byobu"
+    - "expect"
+    - "gdebi"
+    - "libuvc0"
+    state: "latest"
+  when: ansible_distribution == "Debian"
 
 - name: install freemind via snap
   snap:
