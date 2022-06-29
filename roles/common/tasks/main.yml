@@ -16,6 +16,23 @@
     name: "snapd"
     state: "latest"
 
+- name: start the snapd service
+  service:
+    name: "snapd"
+    enabled: "yes"
+    state: "started"
+
+- name: install the snap core
+  snap:
+    name: "core"
+    state: "present"
+    classic: true
+
+- name: restart snapd
+  service: 
+    name: "snapd"
+    state: "restarted"
+
 - name: "add the PIP package manager"
   apt:
     name: "{{ packages }}"
