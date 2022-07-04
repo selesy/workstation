@@ -11,27 +11,15 @@
 
 # Mint does not ship with snap
 
-- name: ensure snap is installed
+- name: "remove all traces of snap"
   apt:
-    name: "snapd"
-    state: "latest"
-
-- name: start the snapd service
-  service:
-    name: "snapd"
-    enabled: "yes"
-    state: "started"
-
-- name: install the snap core
-  snap:
-    name: "core"
-    state: "present"
-    classic: true
-
-- name: restart snapd
-  service: 
-    name: "snapd"
-    state: "restarted"
+    name:
+    - "snapd"
+    - "gnome-software-plugin-snap"
+    state: "absent"
+    purge: "yes"
+  tags:
+  - "snap"
 
 - name: "add the PIP package manager"
   apt:
