@@ -37,7 +37,6 @@
     pkg:
     - "asciinema"
     - "asciidoc"
-    - "asciidoc-doc"
     - "audacity"
     - "curl"
     - "deborphan"
