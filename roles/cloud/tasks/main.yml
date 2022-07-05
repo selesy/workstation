@@ -1,48 +1,45 @@
 ---
 # File: roles/cloud/tasks/main.yml
 
-- name: remove AWS CLI tools from Debian repositories
-  apt: 
-    name: awscli
-    state: absent
-  tags:
-    - cloud
-    - aws
-
-- name: remove AWS CLI tools installed via SNAP
-  snap:
-    name: "aws-cli"
-    state: "absent"
-    classic: true
-  tags:
-    - cloud
-    - aws
-
 - name: uninstall AWS CLI v1 via PIP
   pip:
-    name: awscli
+    name:
+    - awscli
+    - awscliv2
     state: absent
   tags:
-    - cloud
-    - aws
+  - cloud
+  - aws
 
-- name: install AWS CLI tools via PIP
-  pip:
-    name: awscliv2
-    extra_args: --upgrade
-    state: latest
-  tags:
-    - cloud
-    - aws
-    
 - name: "add a symlink from awsv2 -> aws"
   file:
-    src: "/usr/local/bin/awsv2"
     dest: "/usr/local/bin/aws"
-    state: "link"
+    state: "absent"
   tags:
-    - cloud
-    - aws
+  - cloud
+  - aws
+
+- name: "download and unarchive AWS CLI tool"
+  unarchive:
+    src: "{{ awscli_url }}"
+    dest: "/tmp"
+    remote_src: "yes"
+  register: aws_unarchive_result
+  tags:
+  - cloud
+  - aws
+
+- debug:
+    msg: "{{ aws_unarchive_result }}"
+  tags:
+  - aws
+
+- name: "install AWS CLI tool"
+  command: "/tmp/aws/install"
+  when: aws_unarchive_result is changed
+  tags:
+  - "cloud"
+  - "aws"
 
 - name: install latest Azure CLI tools via SNAP
   snap:
