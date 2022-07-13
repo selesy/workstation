@@ -41,7 +41,7 @@ go_version: "1.18.4"
 #Eclipse
 eclipse_version: 2022-06
 eclipse_sr: R
-lombok_version: 1.18.22
+lombok_version: 1.18.24
 eclim_version: 2.21.0
 
 #FireFox
