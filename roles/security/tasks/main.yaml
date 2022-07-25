@@ -1,0 +1,44 @@
+---
+
+- name: "install 1Password desktop client"
+  apt:
+    deb: "{{ one_password_url }}"
+  tags:
+  - "1password"
+  - "security"
+
+- name: "create the 1Password CLI client directory"
+  file:
+    path: "{{ op_home_directory }}"
+    state: "directory"
+  tags:
+  - "1password"
+  - "security"
+
+- name: "install 1Password CLI client"
+  unarchive:
+    src: "{{ op_url }}"
+    dest: "{{ op_home_directory }}"
+    remote_src: "yes"
+    # creates: "{{ final_directory }}"
+  tags:
+  - "1password"
+  - "security"
+
+- name: "create a link to the latest version"
+  file:
+    src: "{{ op_home_directory }}"
+    dest: "{{ op_installation_directory }}/latest"
+    state: "link"
+  tags:
+  - "1password"
+  - "security"
+
+- name: "create a link to the binary"
+  file:
+    src: "{{ op_installation_directory }}/latest/op"
+    dest: "/usr/bin/op"
+    state: "link"
+  tags:
+  - "1password"
+  - "security"
