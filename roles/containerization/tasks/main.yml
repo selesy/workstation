@@ -88,6 +88,20 @@
   - kubernetes
   - lens
 
+- name: "disable Lens login screen"
+  lineinfile:
+    dest: "/etc/hosts"
+    # regexp: "^127.0.2.1\tapp.k8slens.dev$"
+    line: "127.0.2.1\tapp.k8slens.dev"
+    insertbefore: "^$"
+    firstmatch: "yes"
+    state: present
+  tags:
+  - containerization
+  - kubernetes
+  - lens
+  - stuff
+
 #
 # HyperKube is now deprecated in favor of MiniKube
 #
