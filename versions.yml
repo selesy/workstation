@@ -76,7 +76,7 @@ op_version: 2.6.0
 pencil_version: 3.1.0.ga
 
 #Postman
-postman_version: 9.16.0
+postman_version: 9.25.2
 
 #RatPoison
 
@@ -87,7 +87,7 @@ rfc_version: 0.2.6
 soapui_version: 5.7.0
 
 #SpotBugs
-spotbugs_version: 4.5.3
+spotbugs_version: 4.7.1
 
 #SQLMap
 sqlmap_version: 1.6.7
