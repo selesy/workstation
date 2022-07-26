@@ -93,8 +93,8 @@ spotbugs_version: 4.5.3
 sqlmap_version: 1.6.7
 
 #Umlet
-umlet_major_version: 14
-umlet_minor_version: 3
+umlet_major_version: 15
+umlet_minor_version: 0
 umlet_bug_version: 0
 umlet_version: "{{ umlet_major_version }}.{{ umlet_minor_version }}.{{ umlet_bug_version }}"
 
