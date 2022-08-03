@@ -32,7 +32,7 @@ stern_checksum: "sha256:18bb5afa0426d1ca2e975bee2a04037378d99ffdda6e3383a575ad28
 fluxctl_version: "1.25.3"
 skaffold_version: "1.39.1"
 skaffold_checksum: "sha256:0c2c221734d449e5e0db00b303d063be9bc733402bea0663c47dcafca8aa71d0"
-kustomize_version: 4.5.6
+kustomize_version: 4.5.7
 lens_version: 5.5.4-latest.20220609.2
 
 #Development
