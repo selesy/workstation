@@ -25,7 +25,7 @@ kubeseal_version: 0.18.1
 istio_version: 1.14.3
 istio_checksum: "sha256:f5e2fbd1b15433fbf9597ee2818e837d221c45714a24f3aa392a46e0e1384eb4"
 terraform_version: 1.2.6
-terragrunt_version: 0.38.6
+terragrunt_version: 0.38.7
 kail_version: 0.15.0
 stern_version: 1.21.0
 stern_checksum: "sha256:18bb5afa0426d1ca2e975bee2a04037378d99ffdda6e3383a575ad28d5c2d04d"
