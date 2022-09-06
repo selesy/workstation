@@ -173,12 +173,12 @@
     - "vim"
 
 - name: add the typora signing key
-  apt_key: 
-    keyserver: "keyserver.ubuntu.com"
-    id: "BA300B7755AFCFAE"
-    state: "present"
+  get_url:
+    url: http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xba300b7755afcfae
+    dest: /etc/apt/trusted.gpg.d/typora.asc
   tags:
     - editors
+    - typora
 
 - name: add the typora repository
   apt_repository: 
@@ -187,6 +187,7 @@
     mode: "644"
   tags:
     - editors
+    - typora
 
 - name: install typora
   apt:
@@ -194,15 +195,16 @@
     state: "present"
   tags:
     - editors
+    - typora
     
 #
 # NodeJS
 #
 
 - name: add the NodeJS signing key
-  apt_key:
-    url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
-    state: "present"
+  get_url:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    dest: /etc/apt/trusted.gpg.d/nodesource.asc
   tags:
   - "node"
 
@@ -295,10 +297,9 @@
 #
 
 - name: "install Github CLI key"
-  apt_key:
-    id: "C99B11DEB97541F0"
-    keyserver: "keyserver.ubuntu.com"
-    state: "present"
+  get_url:
+    url: http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x23f3d4ea75716059
+    dest: /etc/apt/trusted.gpg.d/github-cli.asc
   tags:
   - "github"
   - "git"
