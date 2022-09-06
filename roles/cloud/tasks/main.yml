@@ -29,13 +29,8 @@
   - cloud
   - aws
 
-- debug:
-    msg: "{{ aws_unarchive_result }}"
-  tags:
-  - aws
-
 - name: "install AWS CLI tool"
-  command: "/tmp/aws/install"
+  command: "/tmp/aws/install --update"
   when: aws_unarchive_result is changed
   tags:
   - "cloud"
