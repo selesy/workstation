@@ -29,7 +29,7 @@ terragrunt_version: 0.38.9
 kail_version: 0.15.0
 stern_version: 1.21.0
 stern_checksum: "sha256:18bb5afa0426d1ca2e975bee2a04037378d99ffdda6e3383a575ad28d5c2d04d"
-fluxctl_version: "1.25.3"
+fluxctl_version: "1.25.4"
 skaffold_version: "1.39.2"
 skaffold_checksum: "sha256:6ecdda952ce8e917dde9a362859952dd1d3ad8ae44b2c56696ec6a89c5d8ce4d"
 kustomize_version: 4.5.7
