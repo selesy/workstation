@@ -4,4 +4,5 @@
 versions:
 - { name: "direnv", version: "{{ direnv_version }}"}
 - { name: "k6", version: "{{ k6_version }}"}
+- { name: "krew", version: "{{ krew_version }}"}
 - { name: "kustomize", version: "{{ kustomize_version }}"}
