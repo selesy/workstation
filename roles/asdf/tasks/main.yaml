@@ -1,30 +1,30 @@
 ---
 #
 
-- name: "install asdf"
+- name: install asdf
   git:
-    repo: "https://github.com/asdf-vm/asdf.git"
-    dest: "~/.asdf"
+    repo: https://github.com/asdf-vm/asdf.git
+    dest: ~/.asdf
     version: "{{ asdf_version }}"
-    update: "no"
+    update: no
   tags:
-  - "asdf"
+  - asdf
 
-- name: "make bash version executable"
+- name: make bash version executable
   file:
-    path: "~/.asdf/asdf.sh"
-    mode: "0500"
+    path: ~/.asdf/asdf.sh
+    mode: 0500
   tags:
-  - "asdf"
+  - asdf
 
-- name: "symlink to the asdf bash executable"
+- name: symlink to the asdf bash executable
   file:
-    src: "~/.asdf/asdf.sh"
-    dest: "~/bin/asdf"
-    mode: "0500"
-    state: "link"
+    src: ~/.asdf/asdf.sh
+    dest: ~/bin/asdf
+    mode: 0500
+    state: link
   tags:
-  - "asdf"
+  - asdf
 
 - name: install asdf and associated completions
   blockinfile:
@@ -35,7 +35,7 @@
       . ~/.asdf/asdf.sh
       . ~/.asdf/completions/asdf.bash
   tags:
-  -  "asdf"
+  -  asdf
 
 # TODO: figure out how to make this pretty by adding a newline
 
@@ -44,6 +44,16 @@
   loop: "{{ tools }}"
   loop_control:
     loop_var: tool_item
+  tags:
+  - asdf
+
+- name: hook direnv into the bash shell
+  blockinfile:
+    path: ~/.bashrc
+    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR direnv"
+    block: |
+      # hook direnv into the bash shell
+      eval "$(direnv hook bash)"
   tags:
   - asdf
 
