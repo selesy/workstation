@@ -1,0 +1,25 @@
+---
+#
+
+- name: add the {{ item.name }} asdf plugin
+  shell: asdf plugin add {{ item.name }}
+  register: plugin_add_result
+  changed_when: "plugin_add_result.rc == 0"
+  failed_when: "plugin_add_result.rc == 1"
+  tags:
+  - asdf
+
+- name: install {{ item.name }} with version {{ item.version }}
+  shell: asdf install {{ item.name }} {{ item.version }}
+  register: tool_version_installed_result
+  changed_when: "'Downloading' in tool_version_installed_result.stdout"
+  tags:
+  - asdf
+
+- name: set the {{ item.name }} global version to {{ item.version }}
+  shell: asdf global {{ item.name }} {{ item.version }}
+  register: plugin_global_version_set_result
+  changed_when: "tool_version_installed_result is changed"
+  failed_when: "plugin_global_version_set_result.rc > 0"
+  tags:
+  - asdf

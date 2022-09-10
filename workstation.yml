@@ -64,3 +64,4 @@
   - versions.yml
   roles:
   - local
+  - asdf

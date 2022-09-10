@@ -38,3 +38,8 @@
   -  "asdf"
 
 # TODO: figure out how to make this pretty by adding a newline
+
+- include_tasks: tools.yml
+  loop: "{{ versions }}"
+  tags:
+  - asdf

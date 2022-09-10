@@ -858,25 +858,18 @@
     - kubernetes
     - skaffold
 
-- name: install kustomize
+- name: remove kustomize installed to /opt
   block:
-  - include_vars:
-      file: kustomize.yml
+  - find:
+      paths: /opt
+      file_type: any
+      patterns: "^kustomize-.*"
+      use_regex: true
+    register: directories_to_delete
   - file:
-      path: /opt/kustomize-{{ kustomize_version }}
-      state: directory
-  - unarchive:
-      remote_src: true
-      src: "{{ kustomize_url }}"
-      dest: /opt/kustomize-{{ kustomize_version }}
-  - file:
-      src: /opt/kustomize-{{ kustomize_version }}
-      dest: /opt/kustomize-latest
-      state: link
-  - file:
-      src: /opt/kustomize-latest/kustomize
-      dest: /usr/bin/kustomize
-      state: link
+      path: "{{ item.path }}"
+      state: absent
+    with_items: "{{ directories_to_delete.files }}"
   tags:
   - containerization
   - kubernetes

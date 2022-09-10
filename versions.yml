@@ -10,7 +10,8 @@ studio_version: 2.0.0
 studio_build: 20210717-M17
 
 #asdf managed tool versions
-asdf_version: "v0.10.2"
+asdf_version: v0.10.2
+kustomize_version: latest
 
 #BurpSuite
 burp_version: latest
@@ -35,7 +36,6 @@ stern_checksum: "sha256:18bb5afa0426d1ca2e975bee2a04037378d99ffdda6e3383a575ad28
 fluxctl_version: "1.25.4"
 skaffold_version: "1.39.2"
 skaffold_checksum: "sha256:6ecdda952ce8e917dde9a362859952dd1d3ad8ae44b2c56696ec6a89c5d8ce4d"
-kustomize_version: 4.5.7
 lens_version: 5.5.4-latest.20220609.2
 
 #Development

@@ -1,0 +1,5 @@
+---
+#
+
+versions:
+- { name: "kustomize", version: "{{ kustomize_version }}"}
