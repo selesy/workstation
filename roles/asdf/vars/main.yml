@@ -2,4 +2,5 @@
 #
 
 versions:
+- { name: "direnv", version: "{{ direnv_version }}"}
 - { name: "kustomize", version: "{{ kustomize_version }}"}

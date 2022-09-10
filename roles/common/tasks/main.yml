@@ -40,7 +40,6 @@
     - "audacity"
     - "curl"
     - "deborphan"
-    - "direnv"
     - "fonts-opendyslexic"
     - "gparted"
     - "hopenpgp-tools"
@@ -78,6 +77,12 @@
     - "libuvc0"
     state: "latest"
   when: ansible_distribution == "Debian"
+
+- name: remove basic Linux tools (now installed via asdf)
+  apt:
+    pkg:
+    - direnv
+    state: absent
 
 - name: install freemind via snap
   snap:

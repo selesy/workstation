@@ -11,6 +11,7 @@ studio_build: 20210717-M17
 
 #asdf managed tool versions
 asdf_version: v0.10.2
+direnv_version: latest
 kustomize_version: latest
 
 #BurpSuite
