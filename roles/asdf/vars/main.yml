@@ -1,7 +1,14 @@
 ---
 #
 
+cleans:
+- { path: "~/go/bin", pattern: "^go1\\..*$"}
+- { path: "~/", pattern: "^sdk$"}
+
 removes:
+- { path: "/opt", pattern: "^go$"}
+- { path: "/usr/bin", pattern: "^go(fmt)?$"}
+- { path: "/usr/share", pattern: "^go-tools$"}
 - { path: "/opt", pattern: "^kustomize-.*"}
 - { path: "/usr/bin", pattern: "^kustomize$"}
 - { path: "/opt", pattern: "^skaffold$"}
@@ -9,6 +16,7 @@ removes:
 
 tools:
 - { name: "direnv", version: "{{ direnv_version }}"}
+- { name: "golang", version: "{{ golang_version }}"}
 - { name: "k6", version: "{{ k6_version }}"}
 - { name: "krew", version: "{{ krew_version }}"}
 - { name: "kustomize", version: "{{ kustomize_version }}"}

@@ -57,12 +57,30 @@
   tags:
   - asdf
 
-- name: remove tools installed by deprecated Ansible plays
+- name: add Go programs to path
+  blockinfile:
+    path: ~/.bashrc
+    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR Go programs"
+    block: |
+      # add Go programs to path
+      export PATH=~/go/bin:$PATH
+  tags:
+  - asdf
+
+- name: remove global tools installed by deprecated Ansible plays
   include_tasks: removes.yml
   args:
     apply:
       become: yes
   loop: "{{ removes }}"
+  loop_control:
+    loop_var: remove_item
+  tags:
+  - asdf
+
+- name: remove local tools installed by deprecated Ansible plays
+  include_tasks: removes.yml
+  loop: "{{ cleans }}"
   loop_control:
     loop_var: remove_item
   tags:
