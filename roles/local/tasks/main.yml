@@ -1,0 +1,14 @@
+---
+#
+
+- name: add ~/bin to path
+  blockinfile:
+    path: "~/.bashrc"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR ~/bin"
+    block: |
+      # usermode programs will be installed here:
+      export PATH=~/bin:$PATH
+  tags:
+  - local
+
+# TODO: figure out how to make this pretty by adding a newline

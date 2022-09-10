@@ -48,3 +48,19 @@
     - cloud
     - visual_studio
     - security
+
+- hosts: 127.0.0.1
+  connection: local
+  pre_tasks:
+  - name: Fail if Ansible version is too old 
+    fail: 
+      msg: "Workstation requires a minimum Ansible version of {{ ansible_minimum_version }}. Please update Ansible and run workstation.sh again."
+    when: ansible_version.full is version(ansible_minimum_version, operator='lt', strict=True)
+  - name: abort execution on 32-bit environments
+    fail:
+      msg: "These playbooks are now only available on 64-bit OSes"
+    when: ansible_architecture == "i386"
+  vars_files:
+  - versions.yml
+  roles:
+  - local
