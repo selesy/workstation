@@ -1,5 +1,0 @@
----
-
-kustomize_url: https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v{{ kustomize_version }}/kustomize_v{{ kustomize_version }}_linux_amd64.tar.gz
-
-...
