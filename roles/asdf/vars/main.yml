@@ -1,7 +1,11 @@
 ---
 #
 
-versions:
+removes:
+- { path: "/opt", pattern: "^kustomize-.*"}
+- { path: "/usr/bin", pattern: "^kustomize$"}
+
+tools:
 - { name: "direnv", version: "{{ direnv_version }}"}
 - { name: "k6", version: "{{ k6_version }}"}
 - { name: "krew", version: "{{ krew_version }}"}

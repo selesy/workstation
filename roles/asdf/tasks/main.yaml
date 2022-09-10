@@ -39,7 +39,21 @@
 
 # TODO: figure out how to make this pretty by adding a newline
 
-- include_tasks: tools.yml
-  loop: "{{ versions }}"
+- name: install tools via asdf
+  include_tasks: tools.yml
+  loop: "{{ tools }}"
+  loop_control:
+    loop_var: tool_item
+  tags:
+  - asdf
+
+- name: remove tools installed by deprecated Ansible plays
+  include_tasks: removes.yml
+  args:
+    apply:
+      become: yes
+  loop: "{{ removes }}"
+  loop_control:
+    loop_var: remove_item
   tags:
   - asdf

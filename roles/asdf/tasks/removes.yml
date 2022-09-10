@@ -1,0 +1,20 @@
+---
+#
+
+- name: find inodes matching pattern {{ remove_item.pattern }} on path {{ remove_item.path }}
+  find:
+    paths: "{{ remove_item.path }}"
+    file_type: any
+    patterns: "{{ remove_item.pattern }}"
+    use_regex: true
+  register: items_to_delete
+  tags:
+  - asdf
+
+- name: remove items matching path/pattern
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ items_to_delete.files }}"
+  tags:
+  - asdf
