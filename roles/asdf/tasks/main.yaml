@@ -1,0 +1,40 @@
+---
+#
+
+- name: "install asdf"
+  git:
+    repo: "https://github.com/asdf-vm/asdf.git"
+    dest: "~/.asdf"
+    version: "{{ asdf_version }}"
+    update: "no"
+  tags:
+  - "asdf"
+
+- name: "make bash version executable"
+  file:
+    path: "~/.asdf/asdf.sh"
+    mode: "0500"
+  tags:
+  - "asdf"
+
+- name: "symlink to the asdf bash executable"
+  file:
+    src: "~/.asdf/asdf.sh"
+    dest: "~/bin/asdf"
+    mode: "0500"
+    state: "link"
+  tags:
+  - "asdf"
+
+- name: install asdf and associated completions
+  blockinfile:
+    path: ~/.bashrc
+    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR asdf"
+    block: |
+      # enable asdf hook and completions
+      . ~/.asdf/asdf.sh
+      . ~/.asdf/completions/asdf.bash
+  tags:
+  -  "asdf"
+
+# TODO: figure out how to make this pretty by adding a newline
