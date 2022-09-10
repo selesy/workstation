@@ -4,9 +4,12 @@
 removes:
 - { path: "/opt", pattern: "^kustomize-.*"}
 - { path: "/usr/bin", pattern: "^kustomize$"}
+- { path: "/opt", pattern: "^skaffold$"}
+- { path: "/usr/bin", pattern: "^skaffold$"}
 
 tools:
 - { name: "direnv", version: "{{ direnv_version }}"}
 - { name: "k6", version: "{{ k6_version }}"}
 - { name: "krew", version: "{{ krew_version }}"}
 - { name: "kustomize", version: "{{ kustomize_version }}"}
+- { name: "skaffold", version: "{{ skaffold_version }}"}
