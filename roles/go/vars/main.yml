@@ -1,0 +1,22 @@
+---
+#
+
+tools:
+- { name: "delve", url: "github.com/go-delve/delve/cmd/dlv@{{ delve_version }}"}
+- { name: "errcheck", url: "github.com/kisielk/errcheck@{{ errcheck_version }}"}
+- { name: "go-header", url: "github.com/denis-tingaikin/go-header/cmd/go-header@{{ go_header_version }}"}
+- { name: "go-mutesting", url: "github.com/zimmski/go-mutesting/cmd/go-mutesting@{{ go_mutesting_version }}"}
+- { name: "go-wrk", url: "github.com/tsliwowicz/go-wrk@{{ go_wrk_version }}"}
+- { name: "gocomplete", url: "github.com/posener/complete/v2/gocomplete@{{ gocomplete_version }}"}
+- { name: "gokart", url: "github.com/praetorian-inc/gokart@{{ gokart_version }}"}
+- { name: "gopkgs", url: "github.com/uudashr/gopkgs/v2/cmd/gopkgs@{{ gopkgs_version }}"}
+- { name: "gopls", url: "golang.org/x/tools/gopls@{{ gopls_version }}"}
+- { name: "govulncheck", url: "golang.org/x/vuln/cmd/govulncheck@{{ govulncheck_version }}"}
+- { name: "impl", url: "github.com/josharian/impl@{{ impl_version }}"}
+- { name: "lichen", url: "github.com/uw-labs/lichen@{{ lichen_version }}"}
+- { name: "pprof", url: "github.com/google/pprof@{{ pprof_version }}"}
+- { name: "protoc-gen", url: "google.golang.org/protobuf/cmd/protoc-gen-go@{{ protoc_gen_version }}"}
+- { name: "protoc-gen-grpc", url: "google.golang.org/grpc/cmd/protoc-gen-go-grpc@{{ protoc_gen_grpc_version }}"}
+- { name: "protolint", url: "github.com/yoheimuta/protolint/cmd/protolint@{{ protolint_version }}"}
+- { name: "revgrep", url: "github.com/bradleyfalzon/revgrep/cmd/revgrep@{{ revgrep_version }}"}
+- { name: "staticcheck", url: "honnef.co/go/tools/cmd/staticcheck@{{ staticcheck_version }}"}

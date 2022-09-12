@@ -1,0 +1,15 @@
+---
+#
+
+# TODO: set up Go environment
+# TODO: add Go's bash completion
+
+- name: install tools via go install
+  shell: 
+    cmd: go install {{ item.url }}
+  with_items: "{{ tools }}"
+  register: "go_install_result"
+  changed_when: "'downloading' in go_install_result.stderr"
+  tags:
+  - go
+  - go-tools

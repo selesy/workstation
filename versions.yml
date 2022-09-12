@@ -18,6 +18,26 @@ krew_version: latest
 kustomize_version: latest
 skaffold_version: latest
 
+#go manaaged tool versions
+delve_version: latest
+errcheck_version: latest
+go_header_version: latest
+go_mutesting_version: latest
+go_wrk_version: 0.9
+gocomplete_version: latest
+gokart_version: latest
+gopkgs_version: latest
+gopls_version: latest
+govulncheck_version: latest
+impl_version: latest
+lichen_version: latest
+pprof_version: latest
+protoc_gen_version: latest
+protoc_gen_grpc_version: latest
+protolint_version: latest
+revgrep_version: latest
+staticcheck_version: 2022.1
+
 #BurpSuite
 burp_version: latest
 
