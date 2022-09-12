@@ -15,3 +15,31 @@
     remove: yes
   tags:
   - clean-legacy
+
+#
+# kubectl
+#
+
+- name: "remove Debian kubectl"
+  apt:
+    name: "kubectl"
+    state: "absent"
+    update_cache: "yes"
+  tags:
+    - clean-legacy
+
+- name: "remove the Google apt repository"
+  apt_repository:
+    repo: "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+    state: "absent"
+  tags:
+    - clean-legacy
+
+- name: remove the snap-managed kubectl
+  snap:
+    name: kubectl
+    state: absent
+    classic: true
+  register: kubectl_result
+  tags:
+    - clean-legacy

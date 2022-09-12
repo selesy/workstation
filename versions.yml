@@ -16,6 +16,7 @@ direnv_version: latest
 golang_version: latest
 k6_version: latest
 krew_version: latest
+kubectl_version: latest
 kustomize_version: latest
 skaffold_version: latest
 swag_version: latest

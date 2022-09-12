@@ -20,6 +20,7 @@ tools:
 - { name: "golang", version: "{{ golang_version }}"}
 - { name: "k6", version: "{{ k6_version }}"}
 - { name: "krew", version: "{{ krew_version }}"}
+- { name: "kubectl", version: "{{ kubectl_version }}"}
 - { name: "kustomize", version: "{{ kustomize_version }}"}
 - { name: "skaffold", version: "{{ skaffold_version }}"}
 - { name: "swag", version: "{{ swag_version }}"}
