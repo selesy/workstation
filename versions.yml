@@ -18,6 +18,7 @@ k6_version: latest
 krew_version: latest
 kustomize_version: latest
 skaffold_version: latest
+swag_version: latest
 
 #go manaaged tool versions
 delve_version: latest

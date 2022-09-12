@@ -22,3 +22,4 @@ tools:
 - { name: "krew", version: "{{ krew_version }}"}
 - { name: "kustomize", version: "{{ kustomize_version }}"}
 - { name: "skaffold", version: "{{ skaffold_version }}"}
+- { name: "swag", version: "{{ swag_version }}"}
