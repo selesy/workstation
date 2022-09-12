@@ -1,0 +1,17 @@
+---
+#
+
+- name: remove the ansible user's privileges (sudo)
+  file:
+    path: /etc/sudoers.d/ansible
+    state: absent
+  tags:
+  - clean-legacy
+
+- name: remove the ansible user's account
+  user:
+    name: ansible
+    state: absent
+    remove: yes
+  tags:
+  - clean-legacy
