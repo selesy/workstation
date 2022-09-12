@@ -1,0 +1,26 @@
+---
+# 
+
+- hosts: localhost
+  connection: local
+  pre_tasks:
+    - name: Fail if Ansible version is too old 
+      fail: 
+        msg: "Workstation requires a minimum Ansible version of {{ ansible_minimum_version }}. Please update Ansible and run workstation.sh again."
+      when: ansible_version.full is version(ansible_minimum_version, operator='lt', strict=True)
+    - name: abort execution on 32-bit environments
+      fail:
+        msg: "These playbooks are now only available on 64-bit OSes"
+      when: ansible_architecture == "i386"
+  remote_user: ansible
+  become: yes
+  vars_files:
+    - versions.yml
+  roles: # The Alpine roles must remain first in the role list
+    - role: "alpine/common"
+      tags:
+        - "alpine"
+    - role: "alpine/xfce"
+      tags:
+        - "alpine"
+    - clean

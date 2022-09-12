@@ -1,7 +1,8 @@
 ---
 # File: workstation.yml
 
-- hosts: all
+- hosts: localhost
+  connection: local
   pre_tasks:
     - name: Fail if Ansible version is too old 
       fail: 
@@ -49,7 +50,7 @@
     - visual_studio
     - security
 
-- hosts: 127.0.0.1
+- hosts: localhost
   connection: local
   pre_tasks:
   - name: Fail if Ansible version is too old 
