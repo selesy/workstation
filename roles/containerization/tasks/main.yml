@@ -216,21 +216,6 @@
     - helm
 
 #
-# SOPS
-#
-
-- include: "../../install_go_programs.yml"
-  vars:
-    name: "install Mozilla SOPS for secret management"
-    packages:
-    - "go.mozilla.org/sops/v3/cmd/sops@latest"
-  tags:
-  - "containerization"
-  - "kubernetes"
-  - "secrets"
-  - "sops"
-
-#
 # Istio
 #
 
