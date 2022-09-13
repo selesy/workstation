@@ -22,7 +22,7 @@ ko_version: 0.12.0
 krew_version: latest
 kubectl_version: latest
 kubectx_version: latest
-kubeseal_version: latest
+kubeseal_version: 0.18.2
 kustomize_version: latest
 skaffold_version: latest
 sops_version: latest
