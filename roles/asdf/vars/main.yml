@@ -24,6 +24,7 @@ tools:
 - { name: "bazel", version: "{{ bazel_version }}"}
 - { name: "direnv", version: "{{ direnv_version }}"}
 - { name: "golang", version: "{{ golang_version }}"}
+- { name: "grpcurl", version: "{{ grpcurl_version }}"}
 - { name: "k6", version: "{{ k6_version }}"}
 - { name: "k9s", version: "{{ k9s_version }}"}
 - { name: "kind", version: "{{ kind_version }}"}
@@ -31,7 +32,7 @@ tools:
 - { name: "krew", version: "{{ krew_version }}"}
 - { name: "kubectl", version: "{{ kubectl_version }}"}
 - { name: "kubectx", version: "{{ kubectx_version }}"}
-# - { name: "kubeseal", version: "{{ kubeseal_version }}"}
+- { name: "kubeseal", version: "{{ kubeseal_version }}"}
 - { name: "kustomize", version: "{{ kustomize_version }}"}
 - { name: "skaffold", version: "{{ skaffold_version }}"}
 - { name: "sops", version: "{{ sops_version }}"}

@@ -48,6 +48,7 @@
   - asdf
 
   # TODO: add bash completion for bazel (from install)
+  # TODO: add bash completion for go
   # TODO: add bash completion for kind
   # TODO: add bash completion for ko
   # TODO: add bash completion for kubectx
