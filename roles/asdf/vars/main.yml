@@ -12,6 +12,8 @@ removes:
 - { path: "/opt", pattern: "^kube(ctx|ns)$"}
 - { path: "/usr/bin", pattern: "^kube(ctx|ns)$"}
 - { path: "/etc/bash_completion.d", pattern: "^kube(ctx|ns)$"}
+- { path: "/opt", pattern: "^kubeseal$"}
+- { path: "/usr/bin", pattern: "^kubeseal$"}
 - { path: "/opt", pattern: "^kustomize-.*"}
 - { path: "/usr/bin", pattern: "^kustomize$"}
 - { path: "/opt", pattern: "^skaffold$"}
@@ -28,6 +30,7 @@ tools:
 - { name: "krew", version: "{{ krew_version }}"}
 - { name: "kubectl", version: "{{ kubectl_version }}"}
 - { name: "kubectx", version: "{{ kubectx_version }}"}
+- { name: "kubeseal", version: "{{ kubeseal_version }}"}
 - { name: "kustomize", version: "{{ kustomize_version }}"}
 - { name: "skaffold", version: "{{ skaffold_version }}"}
 - { name: "swag", version: "{{ swag_version }}"}

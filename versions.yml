@@ -21,6 +21,7 @@ kind_version: latest
 krew_version: latest
 kubectl_version: latest
 kubectx_version: latest
+kubeseal_version: latest
 kustomize_version: latest
 skaffold_version: latest
 swag_version: latest
