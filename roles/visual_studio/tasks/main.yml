@@ -2,25 +2,25 @@
 
 # Add Visual Studio Code (see https://code.visualstudio.com/docs/setup/linux)
 
-- name: remove the visual studio signing key
-  apt_key:
-    url: "{{ vs_key }}"
-    id: "BC528686B50D79E339D3721CEB3E94ADBE1229CF"
-    state: absent
-  tags:
-  - visual_studio
-  - ide
-  - editors
+# - name: remove the visual studio signing key
+#   apt_key:
+#     url: "{{ vs_key }}"
+#     id: "BC528686B50D79E339D3721CEB3E94ADBE1229CF"
+#     state: absent
+#   tags:
+#   - visual_studio
+#   - ide
+#   - editors
 
-- name: remove the visual studio repository
-  apt_repository:
-    repo: "{{ vs_repository }}"
-    state: absent
-    mode: "644"
-  tags:
-  - visual_studio
-  - ide
-  - editors
+# - name: remove the visual studio repository
+#   apt_repository:
+#     repo: "{{ vs_repository }}"
+#     state: absent
+#     mode: "644"
+#   tags:
+#   - visual_studio
+#   - ide
+#   - editors
 
 - name: "download visual studio"
   get_url:
