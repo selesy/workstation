@@ -12,6 +12,7 @@ studio_build: 20210717-M17
 #asdf managed tool versions
 asdf_version: v0.10.2
 aws_vault_version: latest
+bazel_version: latest
 direnv_version: latest
 golang_version: latest
 k6_version: latest

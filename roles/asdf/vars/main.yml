@@ -19,6 +19,7 @@ removes:
 
 tools:
 - { name: "aws-vault", version: "{{ aws_vault_version }}"}
+- { name: "bazel", version: "{{ bazel_version }}"}
 - { name: "direnv", version: "{{ direnv_version }}"}
 - { name: "golang", version: "{{ golang_version }}"}
 - { name: "k6", version: "{{ k6_version }}"}
