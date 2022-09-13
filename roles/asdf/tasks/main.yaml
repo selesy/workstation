@@ -47,6 +47,11 @@
   tags:
   - asdf
 
+  # TODO: add bash completion for bazel
+  # TODO: add bash completion for kind
+  # TODO: add bash completion for kubectx
+  # TODO: add bash completion for kubens
+
 - name: hook direnv into the bash shell
   blockinfile:
     path: ~/.bashrc

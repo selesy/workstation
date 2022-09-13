@@ -24,6 +24,7 @@ tools:
 - { name: "golang", version: "{{ golang_version }}"}
 - { name: "k6", version: "{{ k6_version }}"}
 - { name: "k9s", version: "{{ k9s_version }}"}
+- { name: "kind", version: "{{ kind_version }}"}
 - { name: "krew", version: "{{ krew_version }}"}
 - { name: "kubectl", version: "{{ kubectl_version }}"}
 - { name: "kubectx", version: "{{ kubectx_version }}"}
