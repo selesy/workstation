@@ -24,6 +24,7 @@ tools:
 - { name: "bazel", version: "{{ bazel_version }}"}
 - { name: "direnv", version: "{{ direnv_version }}"}
 - { name: "golang", version: "{{ golang_version }}"}
+- { name: "golangci-lint", version: "{{ golangci_lint_version }}"}
 - { name: "grpcurl", version: "{{ grpcurl_version }}"}
 - { name: "k6", version: "{{ k6_version }}"}
 - { name: "k9s", version: "{{ k9s_version }}"}
