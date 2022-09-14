@@ -35,6 +35,7 @@ tools:
 - { name: "kubectx", version: "{{ kubectx_version }}"}
 - { name: "kubeseal", version: "{{ kubeseal_version }}"}
 - { name: "kustomize", version: "{{ kustomize_version }}"}
+# - { name: "linkerd", version: "{{ linkerd_version }}"}
 - { name: "skaffold", version: "{{ skaffold_version }}"}
 - { name: "sops", version: "{{ sops_version }}"}
 - { name: "swag", version: "{{ swag_version }}"}
