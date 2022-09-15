@@ -20,6 +20,7 @@ removes:
 - { path: "/usr/bin", pattern: "^skaffold$"}
 
 tools:
+- { name: "awscli", version: "{{ awscli_version }}"}
 - { name: "aws-vault", version: "{{ aws_vault_version }}"}
 - { name: "bazel", version: "{{ bazel_version }}"}
 - { name: "direnv", version: "{{ direnv_version }}"}
