@@ -233,7 +233,6 @@
     state: "latest"
   vars:
     packages:
-    - "make"
     - "remake"
   tags:
   - "build-tools"
