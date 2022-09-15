@@ -78,12 +78,6 @@
     state: "latest"
   when: ansible_distribution == "Debian"
 
-- name: remove basic Linux tools (now installed via asdf)
-  apt:
-    pkg:
-    - direnv
-    state: absent
-
 - name: install freemind via snap
   snap:
     name: "freemind"

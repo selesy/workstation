@@ -43,3 +43,12 @@
   register: kubectl_result
   tags:
     - clean-legacy
+
+- name: remove tools previously installed via apt (now installed via asdf)
+  apt:
+    pkg:
+    - direnv
+    - make
+    state: absent
+  tags:
+  - clean-legacy
