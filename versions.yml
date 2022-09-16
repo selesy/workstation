@@ -46,6 +46,7 @@ gopls_version: latest
 govulncheck_version: latest
 impl_version: latest
 lichen_version: latest
+oapi_codegen_version: latest
 pprof_version: latest
 protoc_gen_version: latest
 protoc_gen_grpc_version: latest

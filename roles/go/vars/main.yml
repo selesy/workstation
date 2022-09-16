@@ -14,6 +14,7 @@ tools:
 - { name: "govulncheck", url: "golang.org/x/vuln/cmd/govulncheck@{{ govulncheck_version }}"}
 - { name: "impl", url: "github.com/josharian/impl@{{ impl_version }}"}
 - { name: "lichen", url: "github.com/uw-labs/lichen@{{ lichen_version }}"}
+- { name: "oapi-codegen", url: "github.com/deepmap/oapi-codegen/cmd/oapi-codegen@{{ oapi_codegen_version }}"}
 - { name: "pprof", url: "github.com/google/pprof@{{ pprof_version }}"}
 - { name: "protoc-gen", url: "google.golang.org/protobuf/cmd/protoc-gen-go@{{ protoc_gen_version }}"}
 - { name: "protoc-gen-grpc", url: "google.golang.org/grpc/cmd/protoc-gen-go-grpc@{{ protoc_gen_grpc_version }}"}
