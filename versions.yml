@@ -29,6 +29,7 @@ kubeseal_version: 0.18.2
 kustomize_version: latest
 linkerd_version: 2.12.0
 make_version: latest
+minikube_version: latest
 skaffold_version: latest
 sops_version: latest
 swag_version: latest
@@ -61,8 +62,6 @@ burp_version: latest
 dbeaver_version: latest
 
 #Containerization
-minikube_version: 1.26.1
-minikube_checksum: "sha256:9acd25706661b932ee98063147e58080cb949b92fd0d97b3b96dc5f898dcad21"
 helm_version: 3.9.4
 helm_checksum: "sha256:31960ff2f76a7379d9bac526ddf889fb79241191f1dbe2a24f7864ddcb3f6560"
 istio_version: 1.14.3

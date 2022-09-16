@@ -16,6 +16,8 @@ removes:
 - { path: "/usr/bin", pattern: "^kubeseal$"}
 - { path: "/opt", pattern: "^kustomize-.*"}
 - { path: "/usr/bin", pattern: "^kustomize$"}
+- { path: "/opt", pattern: "^minikube$"}
+- { path: "/usr/bin", pattern: "^minikube$"}
 - { path: "/opt", pattern: "^skaffold$"}
 - { path: "/usr/bin", pattern: "^skaffold$"}
 
@@ -38,6 +40,7 @@ tools:
 - { name: "kustomize", version: "{{ kustomize_version }}"}
 # - { name: "linkerd", version: "{{ linkerd_version }}"}
 - { name: "make", version: "{{ make_version }}"}
+- { name: "minikube", version: "{{ minikube_version }}"}
 - { name: "skaffold", version: "{{ skaffold_version }}"}
 - { name: "sops", version: "{{ sops_version }}"}
 - { name: "swag", version: "{{ swag_version }}"}

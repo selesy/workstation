@@ -9,17 +9,6 @@
 k8s_name: kubernetes
 k8s_installation_directory: /opt/{{ k8s_name }}
 
-# https://storage.googleapis.com/minikube/releases/v0.6.0/minikube-linux-amd64
-
-minikube_host: https://storage.googleapis.com
-minikube_path: minikube/releases/v{{ minikube_version }}
-minikube_file: minikube-linux-amd64
-
-minikube_url: "{{ minikube_host }}/{{ minikube_path }}/{{ minikube_file }}"
-
-minikube_installation_directory: /opt/minikube
-minikube_home_directory: "{{ minikube_installation_directory }}/{{ minikube_version }}"
-
 helm_host: "https://get.helm.sh"
 helm_file: "helm-v{{ helm_version }}-linux-amd64.tar.gz"
 
