@@ -30,6 +30,8 @@ kustomize_version: latest
 linkerd_version: 2.12.0
 make_version: latest
 minikube_version: latest
+protoc_gen_version: latest
+protoc_gen_grpc_version: latest
 skaffold_version: latest
 sops_version: latest
 swag_version: latest
@@ -49,8 +51,6 @@ impl_version: latest
 lichen_version: latest
 oapi_codegen_version: latest
 pprof_version: latest
-protoc_gen_version: latest
-protoc_gen_grpc_version: latest
 protolint_version: latest
 revgrep_version: latest
 staticcheck_version: 2022.1

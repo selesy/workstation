@@ -3,7 +3,7 @@
 
 cleans:
 - { path: "~/go/bin", pattern: "^go1\\..*$"}
-- { path: "~/go/bin", pattern: "^protoc-gen-go$"}
+- { path: "~/go/bin", pattern: "^protoc-gen-go(-grpc)?$"}
 - { path: "~/", pattern: "^sdk$"}
 
 removes:
@@ -43,6 +43,7 @@ tools:
 - { name: "make", version: "{{ make_version }}"}
 - { name: "minikube", version: "{{ minikube_version }}"}
 - { name: "protoc-gen-go", version: "{{ protoc_gen_version }}"}
+- { name: "protoc-gen-go-grpc", version: "{{ protoc_gen_grpc_version }}"}
 - { name: "skaffold", version: "{{ skaffold_version }}"}
 - { name: "sops", version: "{{ sops_version }}"}
 - { name: "swag", version: "{{ swag_version }}"}
