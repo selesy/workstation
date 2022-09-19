@@ -35,6 +35,7 @@ tools:
 - { name: "direnv", version: "{{ direnv_version }}"}
 - { name: "golang", version: "{{ golang_version }}"}
 - { name: "golangci-lint", version: "{{ golangci_lint_version }}"}
+- { name: "gradle", version: "{{ gradle_version }}"}
 - { name: "grpcurl", version: "{{ grpcurl_version }}"}
 - { name: "jq", version: "{{ jq_version }}"}
 - { name: "k6", version: "{{ k6_version }}"}
