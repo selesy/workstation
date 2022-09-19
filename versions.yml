@@ -32,6 +32,7 @@ linkerd_version: 2.12.0
 make_version: latest
 minikube_version: latest
 nancy_version: latest
+op_cli_version: latest
 protoc_gen_version: latest
 protoc_gen_grpc_version: latest
 skaffold_version: latest

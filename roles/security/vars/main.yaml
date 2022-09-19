@@ -1,12 +1,3 @@
 ---
 
 one_password_url: https://downloads.1password.com/linux/debian/amd64/stable/1password-latest.deb
-
-op_host: https://cache.agilebits.com
-op_path: dist/1P/op2/pkg/v{{ op_version }}
-op_file: op_linux_amd64_v{{ op_version }}.zip
-
-op_url: "{{ op_host }}/{{ op_path }}/{{ op_file }}"
-
-op_installation_directory: "/opt/op"
-op_home_directory: "{{ op_installation_directory }}/{{ op_version }}"

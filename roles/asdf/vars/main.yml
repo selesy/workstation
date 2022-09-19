@@ -7,6 +7,8 @@ cleans:
 - { path: "~/", pattern: "^sdk$"}
 
 removes:
+- { path: "/opt", pattern: "^op$"}
+- { path: "/usr/bin", pattern: "^op$"}
 - { path: "/opt", pattern: "^go$"}
 - { path: "/usr/bin", pattern: "^go(fmt)?$"}
 - { path: "/usr/share", pattern: "^go-tools$"}
@@ -23,6 +25,7 @@ removes:
 - { path: "/usr/bin", pattern: "^skaffold$"}
 
 tools:
+- { name: "1password-cli", version: "{{ op_cli_version }}"}
 - { name: "awscli", version: "{{ awscli_version }}"}
 - { name: "aws-vault", version: "{{ aws_vault_version }}"}
 - { name: "bazel", version: "{{ bazel_version }}"}
