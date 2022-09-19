@@ -1,0 +1,102 @@
+---
+
+- name: get the latest version for codium
+  uri:
+    url: "{{ codium_latest_url }}"
+    follow_redirects: none
+    status_code: 302
+  register: codium_version_result
+  tags:
+  - codium
+
+- name: "extract the project's version number"
+  set_fact:
+    version: "{{ codium_version_result.location | regex_replace('^.*/', '') }}"
+  tags:
+  - codium
+
+- name: download codium version {{ version }}
+  get_url:
+    url: "{{ codium_download_url }}/{{ version }}/{{ codium_file_prefix }}{{ version }}{{ codium_file_suffix }}"
+    dest: ~/Downloads/{{ codium_file_prefix }}{{ version }}{{ codium_file_suffix }}
+    checksum: sha256:{{ codium_download_url }}/{{ version }}/{{ codium_file_prefix }}{{ version }}{{ codium_checksum_suffix }}
+  tags:
+  - codium
+
+- name: make an installation directory for codium
+  file:
+    path: "{{ codium_installation_directory }}/{{ version }}"
+    state: directory
+  tags:
+  - codium
+
+- name: untar the codium archive
+  unarchive:
+    src: ~/Downloads/{{ codium_file_prefix }}{{ version }}{{ codium_file_suffix }}
+    dest: "{{ codium_installation_directory }}/{{ version }}"
+    creates: "{{ codium_installation_directory }}/{{ version }}/codium"
+    remote_src: yes
+  tags:
+  - codium
+
+- name: create a convenient link to the latest version
+  file:
+    src: "{{ codium_installation_directory }}/{{ version }}"
+    dest: "{{ codium_installation_directory }}/latest"
+    state: link
+  tags:
+  - codium
+
+- name: create a link to the codium executable
+  file:
+    src: "{{ codium_installation_directory }}/latest/bin/codium"
+    dest: ~/bin/codium
+    state: link
+  tags:
+  - codium
+
+- name: make sure user's icon directory exists
+  file:
+    path: ~/.icons
+    state: directory
+  tags:
+  - codium
+
+- name: copy codium's icon
+  copy:
+    src: ~/bin/codiums/latest/resources/app/resources/linux/code.png
+    dest: ~/.icons/code.png
+  tags:
+  - codium
+
+- name: add codium's desktop file
+  template:
+    src: ../files/codium.desktop
+    dest: ~/.local/share/applications
+  tags:
+  - codium
+
+- name: install selected codium extensions
+  command:
+    cmd: "codium --install-extension {{ item }}"
+    # cmd: "codium --install-extension {{ item }} --user-data-dir /usr/share/code --force"
+  with_items:
+  - asciidoctor.asciidoctor-vscode
+  - golang.go
+  - gruntfuggly.todo-tree
+  - hashicorp.terraform
+  - ms-azuretools.vscode-docker
+  - ms-kubernetes-tools.vscode-kubernetes-tools
+  - mtxr.sqltools
+  - mtxr.sqltools-driver-pg
+  - redhat.ansible
+  - vscodevim.vim
+  - vscjava.vscode-java-pack
+  - vscjava.vscode-maven
+  - zxh404.vscode-proto3
+  register: codium_extension
+  changed_when: "'already installed' not in codium_extension.stdout"
+  tags:
+  - codium
+  - ide
+  - editors

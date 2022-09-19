@@ -1,0 +1,11 @@
+---
+
+codium_releases_url: https://github.com/vscodium/vscodium/releases
+codium_latest_url: "{{ codium_releases_url }}/latest"
+codium_download_url: "{{ codium_releases_url }}/download"
+
+codium_file_prefix: "VSCodium-linux-x64-"
+codium_file_suffix: ".tar.gz"
+codium_checksum_suffix: "{{ codium_file_suffix }}.sha256"
+
+codium_installation_directory: ~/bin/codiums
