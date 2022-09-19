@@ -43,6 +43,7 @@ tools:
 # - { name: "linkerd", version: "{{ linkerd_version }}"}
 - { name: "make", version: "{{ make_version }}"}
 - { name: "minikube", version: "{{ minikube_version }}"}
+- { name: "nancy", version: "{{ nancy_version }}"}
 - { name: "protoc-gen-go", version: "{{ protoc_gen_version }}"}
 - { name: "protoc-gen-go-grpc", version: "{{ protoc_gen_grpc_version }}"}
 - { name: "skaffold", version: "{{ skaffold_version }}"}
