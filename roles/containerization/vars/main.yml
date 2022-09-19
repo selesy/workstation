@@ -34,17 +34,6 @@ istio_url: "{{ istio_host }}/{{ istio_path }}/{{ istio_file }}"
 istio_installation_directory: "/opt/istio"
 istio_home_directory: "{{ istio_installation_directory }}/{{ istio_version }}"
 
-# https://releases.hashicorp.com/terraform/0.11.10/terraform_0.11.10_linux_amd64.zip
-
-terraform_host: "https://releases.hashicorp.com"
-terraform_path: "terraform/{{ terraform_version }}"
-terraform_file: "terraform_{{ terraform_version }}_linux_amd64.zip"
-
-terraform_url: "{{terraform_host }}/{{ terraform_path }}/{{ terraform_file }}"
-
-terraform_installation_directory: "/opt/terraform"
-terraform_home_directory: "{{ terraform_installation_directory }}/{{ terraform_version }}"
-
 # https://github.com/boz/kail/releases/download/v0.7.0/kail_0.7.0_linux_amd64.tar.gz
 
 kail_host: "https://github.com"

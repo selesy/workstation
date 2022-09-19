@@ -222,75 +222,14 @@
 # Terraform
 #
 
-- name: "create the installation directory for Terraform"
-  file:
-    name: "{{ terraform_installation_directory }}"
-    state: "directory"
-  tags:
-    - containerization
-    - kubernetes
-    - terraform
-
-- name: "download the Terraform release archive"
-  get_url:
-    url: "{{ terraform_url }}"
-    dest: "~/{{ terraform_file }}"
-    mode: "755"
-  register: "terraform_download_result"
-  tags:
-    - containerization
-    - kubernetes
-    - terraform
-
-- name: "expand the Terraform archive"
-  unarchive:
-    src: "~/{{ terraform_file }}"
-    dest: "{{ terraform_installation_directory }}"
-    copy: "no"
-    creates: "{{ terraform_home_directory }}"
-  when: "terraform_download_result is changed"
-  register: "terraform_unarchive_result"
-  tags:
-    - containerization
-    - kubernetes
-    - terraform
-
-- name: "rename the Terraform archive directory to the version number"
-  command: "mv {{ terraform_installation_directory }}/terraform {{ terraform_home_directory }}"
-  when: "terraform_unarchive_result is changed"
-  tags:
-    - containerization
-    - kubernetes
-    - terraform
-
-- name: "make a pretty symlink to the latest version of Terraform"
-  file:
-    src: "{{ terraform_home_directory }}"
-    dest: "{{ terraform_installation_directory }}/latest"
-    state: "link"
-  tags:
-    - containerization
-    - kubernetes
-    - terraform
-
-- name: "create a symlink to the terraform executable"
-  file:
-    src: "{{ terraform_installation_directory }}/latest"
-    dest: "/usr/bin/terraform"
-    state: "link"
-  tags:
-    - containerization
-    - kubernetes
-    - terraform
-
-- name: "set-up Terraform's bash completion"
-  template:
-    src: "../files/terraform.bash"
-    dest: "/etc/bash_completion.d/"
-  tags:
-    - containerization
-    - kubernetes
-    - terraform
+# - name: "set-up Terraform's bash completion"
+#   template:
+#     src: "../files/terraform.bash"
+#     dest: "/etc/bash_completion.d/"
+#   tags:
+#     - containerization
+#     - kubernetes
+#     - terraform
 
 #
 # Kail

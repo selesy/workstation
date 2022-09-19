@@ -54,6 +54,7 @@
   # TODO: add bash completion for kubectx
   # TODO: add bash completion for kubens
   # TODO: add bash completion for minikube
+  # TODO: add bash completion for terraform
 
 - name: hook direnv into the bash shell
   blockinfile:
