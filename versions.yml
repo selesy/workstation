@@ -32,6 +32,7 @@ linkerd_version: 2.12.0
 make_version: latest
 minikube_version: latest
 nancy_version: latest
+nodejs_version: latest
 op_cli_version: latest
 protoc_gen_version: latest
 protoc_gen_grpc_version: latest
@@ -110,8 +111,8 @@ micro_version: 2.0.10
 netbeans_version: 13
 
 # NodeJS
-nodejs_version: 16.x
-nodejs_repo: node_{{ nodejs_version }}
+nodejs_legacy_version: 16.x
+nodejs_legacy_repo: node_{{ nodejs_version }}
 
 #Pencil
 pencil_version: 3.1.0.ga

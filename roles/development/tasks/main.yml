@@ -46,31 +46,31 @@
 # NodeJS
 #
 
-- name: add the NodeJS signing key
-  get_url:
-    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
-    dest: /etc/apt/trusted.gpg.d/nodesource.asc
+- name: remove the NodeJS signing key
+  file:
+    path: /etc/apt/trusted.gpg.d/nodesource.asc
+    state: absent
   tags:
-  - "node"
+  - node
 
 - name: add the NodeJS repositories
   apt_repository:
     repo: "{{ item }}"
-    state: "present"
-    mode: "644"
+    state: absent
   with_items:
-    - deb https://deb.nodesource.com/{{ nodejs_repo }} focal main
-    - deb-src https://deb.nodesource.com/{{ nodejs_repo }} focal main
+    - deb https://deb.nodesource.com/{{ nodejs_legacy_repo }} focal main
+    - deb-src https://deb.nodesource.com/{{ nodejs_legacy_repo }} focal main
   tags:
-  - "node"
+  - node
     
 - name: add NodeJS and NPM
   apt:
     pkg: 
-    - "nodejs"
-    state: "latest"
+    - nodejs
+    state: absent
+    purge: yes
   tags:
-  - "node"
+  - node
 
 #
 # Virtualization
