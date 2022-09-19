@@ -1,0 +1,11 @@
+---
+
+- name: install useful kubectl plugins
+  command:
+    cmd: kubectl krew install {{ item }}
+  with_items: "{{ plugins }}"
+  register: krew_result
+  changed_when: "'WARNING: You installed plugin' in krew_result.stderr"
+  tags:
+  - krew
+  - kubectl

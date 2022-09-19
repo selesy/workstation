@@ -1,0 +1,8 @@
+---
+
+plugins:
+- ctx
+- ns
+- sniff
+- stern
+- tail
