@@ -23,6 +23,8 @@ removes:
 - { path: "/usr/bin", pattern: "^minikube$"}
 - { path: "/opt", pattern: "^skaffold$"}
 - { path: "/usr/bin", pattern: "^skaffold$"}
+- { path: "/opt", pattern: "^terragrunt$"}
+- { path: "/usr/bin", pattern: "^terragrunt$"}
 
 tools:
 - { name: "1password-cli", version: "{{ op_cli_version }}"}
@@ -54,4 +56,5 @@ tools:
 - { name: "skaffold", version: "{{ skaffold_version }}"}
 - { name: "sops", version: "{{ sops_version }}"}
 - { name: "swag", version: "{{ swag_version }}"}
+- { name: "terragrunt", version: "{{ terragrunt_version }}"}
 - { name: "yq", version: "{{ yq_version }}"}
