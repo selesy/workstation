@@ -217,17 +217,6 @@
 # Build tools
 #
 
-- name: "install Java build tools"
-  apt:
-    name: "{{ packages }}"
-    state: "latest"
-  vars:
-    packages:
-    - "maven"
-  tags:
-  - java
-  - build-tools
-
 - name: clean legacy Java build tools
   apt:
     name: "{{ packages }}"
@@ -236,6 +225,7 @@
     packages:
     - ant
     - gradle
+    - maven
   tags:
   - java
   - build-tools

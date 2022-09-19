@@ -49,6 +49,7 @@ tools:
 - { name: "kustomize", version: "{{ kustomize_version }}"}
 # - { name: "linkerd", version: "{{ linkerd_version }}"}
 - { name: "make", version: "{{ make_version }}"}
+- { name: "maven", version: "{{ maven_version }}"}
 - { name: "minikube", version: "{{ minikube_version }}"}
 - { name: "nancy", version: "{{ nancy_version }}"}
 - { name: "nodejs", version: "{{ nodejs_version }}"}
