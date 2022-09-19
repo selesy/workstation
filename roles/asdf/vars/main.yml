@@ -48,3 +48,4 @@ tools:
 - { name: "skaffold", version: "{{ skaffold_version }}"}
 - { name: "sops", version: "{{ sops_version }}"}
 - { name: "swag", version: "{{ swag_version }}"}
+- { name: "yq", version: "{{ yq_version }}"}

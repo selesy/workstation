@@ -36,6 +36,7 @@ protoc_gen_grpc_version: latest
 skaffold_version: latest
 sops_version: latest
 swag_version: latest
+yq_version: latest
 
 #go manaaged tool versions
 delve_version: latest
