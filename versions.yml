@@ -18,6 +18,7 @@ direnv_version: latest
 golang_version: latest
 golangci_lint_version: latest
 grpcurl_version: latest
+jq_version: latest
 k6_version: latest
 k9s_version: latest
 kind_version: latest
