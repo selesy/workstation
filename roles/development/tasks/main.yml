@@ -141,29 +141,32 @@
 # Source Code Management
 #
 
-- name: "install Github CLI key"
-  get_url:
-    url: http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x23f3d4ea75716059
-    dest: /etc/apt/trusted.gpg.d/github-cli.asc
+- name: remove Github CLI repository key
+  file:
+    path: /etc/apt/trusted.gpg.d/github-cli.asc
+    state: absent
   tags:
-  - "github"
-  - "git"
+  - github
+  - git
+  - clean-legacy
 
-- name: "install Github repository"
+- name: remmove the Github CLI repository
   apt_repository:
-    repo: "deb https://cli.github.com/packages focal main"
-    state: "present"
+    repo: deb https://cli.github.com/packages focal main"
+    state: absent
   tags:
-    - "github"
-    - "git"
+  - github
+  - git
+  - clean-legacy
 
-- name: "install Github CLI"
+- name: "remove the legacy install of Github CLI"
   apt:
-    name: "gh"
-    state: "latest"
+    name: gh
+    state: absent
   tags:
-    - "github"
-    - "git"
+  - github
+  - git
+  - clean-legacy
       
 - name: install linux tools for git
   apt:
