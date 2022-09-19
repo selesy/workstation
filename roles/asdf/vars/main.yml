@@ -49,6 +49,7 @@ tools:
 - { name: "nancy", version: "{{ nancy_version }}"}
 - { name: "protoc-gen-go", version: "{{ protoc_gen_version }}"}
 - { name: "protoc-gen-go-grpc", version: "{{ protoc_gen_grpc_version }}"}
+- { name: "semver", version: "{{ semver_version }}"}
 - { name: "skaffold", version: "{{ skaffold_version }}"}
 - { name: "sops", version: "{{ sops_version }}"}
 - { name: "swag", version: "{{ swag_version }}"}
