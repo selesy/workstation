@@ -37,6 +37,7 @@ tools:
 - { name: "golangci-lint", version: "{{ golangci_lint_version }}"}
 - { name: "gradle", version: "{{ gradle_version }}"}
 - { name: "grpcurl", version: "{{ grpcurl_version }}"}
+- { name: "java", version: "{{ java_version }}"}
 - { name: "jq", version: "{{ jq_version }}"}
 - { name: "k6", version: "{{ k6_version }}"}
 - { name: "k9s", version: "{{ k9s_version }}"}

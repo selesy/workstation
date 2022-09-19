@@ -20,6 +20,7 @@ golang_version: latest
 golangci_lint_version: latest
 gradle_version: latest
 grpcurl_version: latest
+java_version: openjdk-17.0.2
 jq_version: latest
 k6_version: latest
 k9s_version: latest
@@ -100,7 +101,7 @@ firefox_de_language: en-US
 chrome_version: stable_current
 
 #Java
-java_version: 17
+java_legacy_version: 17
 
 #JMeter
 jmeter_version: 5.4.3
