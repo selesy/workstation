@@ -223,9 +223,23 @@
     state: "latest"
   vars:
     packages:
-    - "ant"
     - "gradle"
     - "maven"
+  tags:
+  - java
+  - build-tools
+
+- name: install Java build tools
+  apt:
+    name: "{{ packages }}"
+    state: absent
+  vars:
+    packages:
+    - ant
+  tags:
+  - java
+  - build-tools
+  - clean-legacy
 
 - name: "install build tools"
   apt:
