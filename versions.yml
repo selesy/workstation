@@ -83,7 +83,6 @@ kail_version: 0.15.0
 stern_version: 1.21.0
 stern_checksum: "sha256:18bb5afa0426d1ca2e975bee2a04037378d99ffdda6e3383a575ad28d5c2d04d"
 fluxctl_version: "1.25.4"
-lens_version: 5.5.4-latest.20220609.2
 
 #Development
 go_version: "1.19.1"
