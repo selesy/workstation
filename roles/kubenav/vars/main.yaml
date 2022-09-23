@@ -1,0 +1,12 @@
+---
+
+# https://github.com/kubenav/kubenav/releases/download/3.9.0/kubenav-linux-amd64.zip
+
+kubenav_releases_url: https://github.com/kubenav/kubenav/releases
+kubenav_latest_url: "{{ kubenav_releases_url }}/latest"
+kubenav_download_url: "{{ kubenav_releases_url }}/download"
+kubenav_logo_url: https://github.com/kubenav/kubenav/raw/cd526cce41671a783bf979604e855e05a890f28f/cmd/electron/resources/icon.png
+
+kubenav_file: kubenav-linux-amd64.zip
+
+kubenav_installation_directory: ~/bin/kubenavs

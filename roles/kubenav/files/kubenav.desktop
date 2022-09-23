@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=kubenav - {{ version }}
+Version=1.0
+Comment=The navigator for your Kubernetes clusters
+Exec=kubenav
+Icon=kubenav
+Type=Application
+StartupNotify=false
+StartupWMClass=Code
+Categories=Network;Development;
+Keywords=kubenav,kubernetes,k8s;

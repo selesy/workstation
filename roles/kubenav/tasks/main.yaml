@@ -1,0 +1,63 @@
+---
+
+- name: get the latest version number for kubenav
+  uri:
+    url: "{{ kubenav_latest_url }}"
+    follow_redirects: none
+    status_code: 302
+  register: kubenav_version_result
+  tags:
+  - kubenav
+
+- name: extract the kubenav project's version number
+  set_fact:
+    version: "{{kubenav_version_result.location | regex_replace('^.*/', '') }}"
+  tags:
+  - kubenav
+
+- name: make an installation directory for kubenav
+  file:
+    path: "{{ kubenav_installation_directory }}/{{ version }}"
+    state: directory
+  tags:
+  - kubenav
+
+- name: download and unzip kubenav
+  unarchive:
+    src: "{{ kubenav_download_url }}/{{ version }}/{{ kubenav_file }}"
+    dest: "{{ kubenav_installation_directory }}/{{ version }}"
+    remote_src: yes
+    creates: "{{ kubenav_installation_directory }}/{{ version }}/kubenav"
+  tags:
+  - kubenav
+
+- name: create a symlink to the latest version
+  file:
+    src: "{{ kubenav_installation_directory }}/{{ version }}"
+    dest: "{{ kubenav_installation_directory }}/latest"
+    state: link
+  tags:
+  - kubenav
+
+- name: create a symlink to the binary
+  file:
+    src: "{{ kubenav_installation_directory }}/latest/kubenav"
+    dest: ~/bin/kubenav
+    state: link
+  tags:
+  - kubenav
+
+- name: download kubenav icon (to user's icon directory)
+  get_url:
+    url: "{{ kubenav_logo_url }}"
+    # dest: "{{ local_icons_directory }}/kubenav.png"
+    dest: ~/.local/share/applications/kubenav.png
+  tags:
+  - kubenav
+
+- name: add kubenav's desktop file
+  template:
+    src: ../files/kubenav.desktop
+    dest: ~/.local/share/applications
+  tags:
+  - kubenav

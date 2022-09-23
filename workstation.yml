@@ -62,6 +62,7 @@
       msg: "These playbooks are now only available on 64-bit OSes"
     when: ansible_architecture == "i386"
   vars_files:
+  - local.yaml
   - versions.yml
   roles:
   - local
@@ -69,3 +70,4 @@
   - go
   - codium
   - krew
+  - kubenav
