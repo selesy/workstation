@@ -152,14 +152,14 @@
 
 - name: remmove the Github CLI repository
   apt_repository:
-    repo: deb https://cli.github.com/packages focal main"
+    repo: deb https://cli.github.com/packages focal main
     state: absent
   tags:
   - github
   - git
   - clean-legacy
 
-- name: "remove the legacy install of Github CLI"
+- name: remove the legacy install of Github CLI
   apt:
     name: gh
     state: absent
@@ -171,7 +171,7 @@
 - name: install linux tools for git
   apt:
     name: "{{ packages }}"
-    state: "latest"
+    state: latest
   vars:
     packages:
     - git
