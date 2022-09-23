@@ -4,7 +4,7 @@ Version=1.0
 Comment=Code Editing. Redefined.
 GenericName=Text Editor
 Exec=codium --unity-launch %F
-Icon=code.png
+Icon=codium
 Type=Application
 StartupNotify=false
 StartupWMClass=Code
@@ -16,4 +16,4 @@ Keywords=codium;
 [Desktop Action new-empty-window]
 Name=New Empty Window
 Exec=codium --new-window %F
-Icon=code.png
+Icon=codium

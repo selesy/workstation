@@ -55,17 +55,10 @@
   tags:
   - codium
 
-- name: make sure user's icon directory exists
-  file:
-    path: ~/.icons
-    state: directory
-  tags:
-  - codium
-
 - name: copy codium's icon
   copy:
     src: ~/bin/codiums/latest/resources/app/resources/linux/code.png
-    dest: ~/.icons/code.png
+    dest: "{{ local_icons_directory }}/codium.png"
   tags:
   - codium
 
