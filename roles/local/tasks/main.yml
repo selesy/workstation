@@ -12,3 +12,10 @@
   - local
 
 # TODO: figure out how to make this pretty by adding a newline
+
+- name: make sure the user's local icons directory exists
+  file:
+    path: ~/.local/share/icons
+    state: directory
+  tags:
+  - local
