@@ -73,11 +73,8 @@
 
 - name: "update the projects artifact and artifact URL"
   set_fact:
-    #artifact: "{{ artifact | regex_replace('latest', 'vlatest'"
     artifact: "{{ artifact | regex_replace('latest', 'v' + version) }}"
-    #url: "{{ redirect_result.location }}/{{ artifact }}"
     url: "https://github.com/{{ project }}/releases/download/v{{ version }}/{{artifact}}"
-    #https://github.com/ahmetb/kubectx/releases/download/v0.9.1/kubectx_v0.9.1_linux_x86_64.tar.gz
 
 - name: "expand checksum file into url if applicable"
   set_fact:
