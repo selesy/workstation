@@ -1,0 +1,81 @@
+---
+#
+
+- name: get the latest version for codium
+  uri:
+    url: "{{ freemind_latest_url }}"
+    follow_redirects: none
+    status_code: 302
+  register: freemind_version_result
+  tags:
+  - freemind
+
+- debug:
+    msg: "{{ freemind_version_result }}"
+  tags:
+  - freemind
+
+- name: "extract the freemind project's version number"
+  set_fact:
+    version: "{{ freemind_version_result.location | regex_replace('^.*freemind/', '') | regex_replace('/.*$', '')}}"
+  register: freemind_extract_result
+  tags:
+  - freemind
+
+- debug:
+    msg: "{{ version }}"
+  tags:
+  - freemind
+
+- name: create a directory for the freemind installation
+  file:
+    path: ~/bin/freeminds/{{ version }}
+    state: directory
+  tags:
+  - freemind
+
+- name: download and unarchive freemind
+  unarchive:
+    src: "{{ freemind_url_prefix }}/{{ version }}/{{ freemind_file_prefix }}-{{ version }}.{{ freemind_file_extension }}"
+    dest: ~/bin/freeminds/{{ version }}
+    remote_src: yes
+    creates: ~/bin/freeminds/{{ version }}/freemind.sh
+  tags:
+  - freemind
+
+- name: make the application executable
+  file:
+    path: ~/bin/freeminds/{{ version }}/freemind.sh
+    mode: a+x
+  tags:
+  - freemind
+
+- name: make a link to the latest version
+  file:
+    src: ~/bin/freeminds/{{ version }}
+    dest: ~/bin/freeminds/latest
+    state: link
+  tags:
+  - freemind
+
+- name: make a link to the freemind executable
+  file:
+    src: ~/bin/freeminds/latest/freemind.sh
+    dest: ~/bin/freemind
+    state: link
+  tags:
+  - freemind
+
+- name: copy the freemind icon
+  copy:
+    src: ../files/freemind.png
+    dest: ~/.local/share/icons/
+  tags:
+  - freemind
+
+- name: add the freemind desktop item to the menu
+  copy:
+    src: ../files/freemind.desktop
+    dest: ~/.local/share/applications
+  tags:
+  - freemind

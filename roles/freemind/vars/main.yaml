@@ -1,0 +1,11 @@
+---
+#
+
+freemind_url: https://versaweb.dl.sourceforge.net/project/freemind/freemind/1.0.1/freemind-bin-max-1.0.1.zip
+freemind_latest_url: https://sourceforge.net/projects/freemind/files/latest/download
+
+freemind_url_prefix: https://versaweb.dl.sourceforge.net/project/freemind/freemind
+freemind_file_prefix: freemind-bin-max
+freemind_file_extension: zip
+
+freemind_patterns_url: https://raw.githubusercontent.com/zeroghj/FreeMind/master/patterns.xml

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Exec=freemind
+Icon=freemind
+StartupNotify=false
+Categories=Graphics;Office;
+Name=Freemind
+Comment=Freemind - Java Mind-Mapping tool
+Terminal=true

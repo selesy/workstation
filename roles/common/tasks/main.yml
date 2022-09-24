@@ -78,27 +78,30 @@
     state: "latest"
   when: ansible_distribution == "Debian"
 
-- name: install freemind via snap
+- name: remove the freemind installed by snap
   snap:
-    name: "freemind"
-    state: "present"
-    classic: true
+    name: freemind
+    state: absent
+    # classic: true
   tags:
-    - freemind
+  - freemind
+  - clean-legacy
 
 - name: copy the freemind icon
-  copy:
-    src: ../files/freemind.png
-    dest: /snap/bin
+  file:
+    path: /snap/bin/freemind.png
+    state: absent
   tags:
-    - freemind
+  - freemind
+  - clean-legacy
 
 - name: add the freemind desktop item to the menu
-  copy:
-    src: ../files/freemind.desktop
-    dest: /usr/share/applications
+  file:
+    path: /usr/share/applications/freemind.desktop
+    state: absent
   tags:
-    - freemind
+  - freemind
+  - clean-legacy
     
 - name: install the NTP daemon (on Mint ... it's not installed by default)
   apt:
