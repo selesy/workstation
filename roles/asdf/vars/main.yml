@@ -48,7 +48,6 @@ tools:
 - { name: "ko", version: "{{ ko_version }}"}
 - { name: "krew", version: "{{ krew_version }}"}
 - { name: "kubectl", version: "{{ kubectl_version }}"}
-- { name: "kubectx", version: "{{ kubectx_version }}"}
 - { name: "kubeseal", version: "{{ kubeseal_version }}"}
 - { name: "kustomize", version: "{{ kustomize_version }}"}
 # - { name: "linkerd", version: "{{ linkerd_version }}"}
