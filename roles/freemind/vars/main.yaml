@@ -9,3 +9,4 @@ freemind_file_prefix: freemind-bin-max
 freemind_file_extension: zip
 
 freemind_patterns_url: https://raw.githubusercontent.com/zeroghj/FreeMind/master/patterns.xml
+# https://github.com/sethjj/Freemind/blob/master/patterns.xml

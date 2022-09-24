@@ -87,3 +87,17 @@
     dest: ~/.local/share/applications
   tags:
   - freemind
+
+- name: add the freemind settings directory
+  file:
+    path: ~/.freemind
+    state: directory
+  tags:
+  - freemind
+
+- name: copy the user patterns to freemind settings
+  get_url:
+    url: "{{ freemind_patterns_url }}"
+    dest: ~/.freemind/patterns.xml
+  tags:
+  - freemind
