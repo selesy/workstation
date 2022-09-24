@@ -29,7 +29,6 @@ kind_version: latest
 ko_version: 0.12.0
 krew_version: latest
 kubectl_version: latest
-kubectx_version: latest
 kubeseal_version: 0.18.2
 kustomize_version: latest
 linkerd_version: 2.12.0
