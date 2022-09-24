@@ -58,11 +58,19 @@
   tags:
   - freemind
 
-- name: make a link to the freemind executable
-  file:
-    src: ~/bin/freeminds/latest/freemind.sh
-    dest: ~/bin/freemind
-    state: link
+# - name: make a link to the freemind executable
+#   file:
+#     src: ~/bin/freeminds/latest/freemind.sh
+#     dest: ~/bin/freemind
+#     state: link
+#   tags:
+#   - freemind
+
+- name: copy the launch script for freemind
+  copy:
+    src: ../files/freemind
+    dest: ~/bin/
+    mode: a+x
   tags:
   - freemind
 

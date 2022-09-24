@@ -1,0 +1,7 @@
+#!/bin/bash
+
+. ~/.asdf/asdf.sh
+. ~/.asdf/completions/asdf.bash
+
+asdf shell java openjdk-14.0.2
+~/bin/freeminds/latest/freemind.sh
