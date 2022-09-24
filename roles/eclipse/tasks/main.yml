@@ -117,11 +117,11 @@
 # Make it easier to deal with Eclipse Marketplace plugins
 #
 
-- name: install the Nodeclipse CLI Installer
-  npm: name=nodeclipse global=yes state=present
-  tags:
-    - eclipse
-    - eclipse-plugin
+# - name: install the Nodeclipse CLI Installer
+#   npm: name=nodeclipse global=yes state=present
+#   tags:
+#     - eclipse
+#     - eclipse-plugin
     
 #
 # Language support
