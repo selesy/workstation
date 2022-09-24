@@ -202,19 +202,6 @@
     - "libsvn-java"
   tags:
     - "subversion"
- 
-#
-# Bug tracking
-#
-
-- include: "../../install_go_programs.yml"
-  vars:
-    name: "install git-bug"
-    packages:
-    - "github.com/MichaelMure/git-bug@v0.7.2"
-  tags:
-  - "bug-tracking"
-  - "git-bug"
 
 #
 # Build tools

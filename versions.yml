@@ -51,6 +51,7 @@ yq_version: latest
 #go manaaged tool versions
 delve_version: latest
 errcheck_version: latest
+git_bug_version: latest
 go_header_version: latest
 go_mutesting_version: latest
 go_wrk_version: 0.9
