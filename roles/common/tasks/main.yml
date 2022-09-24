@@ -38,6 +38,7 @@
     - "asciinema"
     - "asciidoc"
     - "audacity"
+    - chromium-browser
     - "curl"
     - "deborphan"
     - "fonts-opendyslexic"
