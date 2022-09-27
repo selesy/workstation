@@ -17,7 +17,6 @@ tools:
 - { name: "lichen", url: "github.com/uw-labs/lichen@{{ lichen_version }}"}
 - { name: "oapi-codegen", url: "github.com/deepmap/oapi-codegen/cmd/oapi-codegen@{{ oapi_codegen_version }}"}
 - { name: "pprof", url: "github.com/google/pprof@{{ pprof_version }}"}
-- { name: "protoc-gen-grpc", url: "google.golang.org/grpc/cmd/protoc-gen-go-grpc@{{ protoc_gen_grpc_version }}"}
 - { name: "protolint", url: "github.com/yoheimuta/protolint/cmd/protolint@{{ protolint_version }}"}
 - { name: "revgrep", url: "github.com/bradleyfalzon/revgrep/cmd/revgrep@{{ revgrep_version }}"}
 - { name: "staticcheck", url: "honnef.co/go/tools/cmd/staticcheck@{{ staticcheck_version }}"}
