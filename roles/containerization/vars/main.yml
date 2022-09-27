@@ -9,20 +9,6 @@
 k8s_name: kubernetes
 k8s_installation_directory: /opt/{{ k8s_name }}
 
-helm_host: "https://get.helm.sh"
-helm_file: "helm-v{{ helm_version }}-linux-amd64.tar.gz"
-
-helm_url: "{{ helm_host }}/{{ helm_file }}"
-
-helm_installation_directory: "/opt/helm"
-helm_home_directory: "{{ helm_installation_directory }}/{{ helm_version }}"
-
-helm_bash_host: "https://raw.githubusercontent.com"
-helm_bash_path: "kubernetes/helm/v{{ helm_version }}/scripts"
-helm_bash_file: "completions.bash"
-
-helm_bash_url: "{{ helm_bash_host }}/{{ helm_bash_path }}/{{ helm_bash_file }}"
-
 # https://github.com/istio/istio/releases/download/1.0.3/istio-1.0.3-linux.tar.gz
 
 istio_host: "https://github.com"

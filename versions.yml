@@ -21,6 +21,7 @@ golang_version: latest
 golangci_lint_version: latest
 gradle_version: latest
 grpcurl_version: latest
+helm_version: latest
 java_version: openjdk-17.0.2
 jq_version: latest
 k6_version: latest
@@ -75,8 +76,6 @@ burp_version: latest
 dbeaver_version: latest
 
 #Containerization
-helm_version: 3.9.4
-helm_checksum: "sha256:31960ff2f76a7379d9bac526ddf889fb79241191f1dbe2a24f7864ddcb3f6560"
 istio_version: 1.14.3
 istio_checksum: "sha256:f5e2fbd1b15433fbf9597ee2818e837d221c45714a24f3aa392a46e0e1384eb4"
 kail_version: 0.15.0

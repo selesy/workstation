@@ -12,6 +12,8 @@ removes:
 - { path: "/opt", pattern: "^go$"}
 - { path: "/usr/bin", pattern: "^go(fmt)?$"}
 - { path: "/usr/share", pattern: "^go-tools$"}
+- { path: "/opt", pattern: "^helm$"}
+- { path: "/usr/bin", pattern: "^helm$"}
 - { path: "/opt", pattern: "^kube(ctx|ns)$"}
 - { path: "/usr/bin", pattern: "^kube(ctx|ns)$"}
 - { path: "/etc/bash_completion.d", pattern: "^kube(ctx|ns)$"}
@@ -40,6 +42,7 @@ tools:
 - { name: "golangci-lint", version: "{{ golangci_lint_version }}"}
 - { name: "gradle", version: "{{ gradle_version }}"}
 - { name: "grpcurl", version: "{{ grpcurl_version }}"}
+- { name: "helm", "version": "{{ helm_version }}"}
 - { name: "java", version: "{{ java_version }}"}
 - { name: "jq", version: "{{ jq_version }}"}
 - { name: "k6", version: "{{ k6_version }}"}
