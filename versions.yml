@@ -84,7 +84,7 @@ stern_checksum: "sha256:18bb5afa0426d1ca2e975bee2a04037378d99ffdda6e3383a575ad28
 fluxctl_version: "1.25.4"
 
 #Development
-go_version: "1.19.1"
+# go_version: "1.19.1"
 
 #Eclipse
 eclipse_version: 2022-06
@@ -93,7 +93,7 @@ lombok_version: 1.18.24
 eclim_version: 2.21.0
 
 #FireFox
-firefox_de_version: 106.0b9
+firefox_de_version: 107.0b1
 firefox_de_language: en-US
 
 #Chrome
