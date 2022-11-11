@@ -78,6 +78,7 @@
   - golang.go
   - gruntfuggly.todo-tree
   - hashicorp.terraform
+  - mkhl.direnv
   - ms-azuretools.vscode-docker
   - ms-kubernetes-tools.vscode-kubernetes-tools
   - mtxr.sqltools
