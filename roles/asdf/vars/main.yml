@@ -59,6 +59,7 @@ tools:
 - { name: "minikube", version: "{{ minikube_version }}"}
 - { name: "nancy", version: "{{ nancy_version }}"}
 - { name: "nodejs", version: "{{ nodejs_version }}"}
+- { name: "protoc", version: "{{ protoc_version }}"}
 - { name: "protoc-gen-go", version: "{{ protoc_gen_version }}"}
 - { name: "protoc-gen-go-grpc", version: "{{ protoc_gen_grpc_version }}"}
 - { name: "semver", version: "{{ semver_version }}"}

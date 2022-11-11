@@ -232,11 +232,10 @@
   - "build-tools"
   - "make"
 
-- name: "install protobuf compiler"
+- name: "remove protobuf compiler"
   snap:
     name: "protobuf"
-    classic: yes
-    state: "present"
+    state: "absent"
   tags:
   - "protobuf"
 

@@ -39,6 +39,7 @@ minikube_version: latest
 nancy_version: latest
 nodejs_version: latest
 op_cli_version: latest
+protoc_version: latest
 protoc_gen_version: latest
 protoc_gen_grpc_version: latest
 semver_version: latest
