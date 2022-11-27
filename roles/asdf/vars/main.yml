@@ -32,6 +32,7 @@ removes:
 
 tools:
 - { name: "1password-cli", version: "{{ op_cli_version }}"}
+- { name: "act", version: "{{ act_version }}"}
 - { name: "ant", version: "{{ ant_version }}"}
 - { name: "awscli", version: "{{ awscli_version }}"}
 - { name: "aws-vault", version: "{{ aws_vault_version }}"}

@@ -10,6 +10,7 @@ studio_version: 2.0.0
 studio_build: 20210717-M17
 
 #asdf managed tool versions
+act_version: latest
 ant_version: latest
 asdf_version: v0.10.2
 awscli_version: latest
