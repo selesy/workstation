@@ -49,6 +49,7 @@ sops_version: latest
 swag_version: latest
 terraform_version: latest
 terragrunt_version: latest
+tflint_version: latest
 yq_version: latest
 
 #go manaaged tool versions

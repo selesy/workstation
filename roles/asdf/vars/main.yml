@@ -69,4 +69,5 @@ tools:
 - { name: "swag", version: "{{ swag_version }}"}
 - { name: "terraform", version: "{{ terraform_version }}"}
 - { name: "terragrunt", version: "{{ terragrunt_version }}"}
+- { name: "tflint", version: "{{ tflint_version }}"}
 - { name: "yq", version: "{{ yq_version }}"}
