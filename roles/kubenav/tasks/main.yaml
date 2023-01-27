@@ -22,12 +22,20 @@
   tags:
   - kubenav
 
-- name: download and unzip kubenav
-  unarchive:
-    src: "{{ kubenav_download_url }}/{{ version }}/{{ kubenav_file }}"
+# - name: download and unzip kubenav
+#   unarchive:
+#     src: "{{ kubenav_download_url }}/{{ version }}/{{ kubenav_file }}"
+#     dest: "{{ kubenav_installation_directory }}/{{ version }}"
+#     remote_src: yes
+#     creates: "{{ kubenav_installation_directory }}/{{ version }}/kubenav"
+#   tags:
+#   - kubenav
+
+- name: download kubenav and make executable
+  get_url:
+    url: "{{ kubenav_download_url }}/{{ version }}/{{ kubenav_file }}"
     dest: "{{ kubenav_installation_directory }}/{{ version }}"
-    remote_src: yes
-    creates: "{{ kubenav_installation_directory }}/{{ version }}/kubenav"
+    mode: u+rwx
   tags:
   - kubenav
 
@@ -39,13 +47,21 @@
   tags:
   - kubenav
 
-- name: create a symlink to the binary
-  file:
-    src: "{{ kubenav_installation_directory }}/latest/kubenav"
+- name: copy the startup script
+  copy:
+    src: ../files/kubenav
     dest: ~/bin/kubenav
-    state: link
+    mode: a+x
   tags:
   - kubenav
+
+# - name: create a symlink to the binary
+#   file:
+#     src: "{{ kubenav_installation_directory }}/latest/kubenav"
+#     dest: ~/bin/kubenav
+#     state: link
+#   tags:
+#   - kubenav
 
 - name: download kubenav icon (to user's icon directory)
   get_url:

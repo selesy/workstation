@@ -1,0 +1,3 @@
+#!/bin/bash
+
+~/bin/kubenavs/latest/kubenav-x86_64.AppImage
