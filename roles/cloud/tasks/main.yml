@@ -11,7 +11,7 @@
   - cloud
   - aws
 
-- name: "add a symlink from awsv2 -> aws"
+- name: "remove aws symlink"
   file:
     dest: "/usr/local/bin/aws"
     state: "absent"
@@ -19,22 +19,21 @@
   - cloud
   - aws
 
-- name: "download and unarchive AWS CLI tool"
-  unarchive:
-    src: "{{ awscli_url }}"
-    dest: "/tmp"
-    remote_src: "yes"
-  register: aws_unarchive_result
+- name: "remove aws_completer symlink"
+  file:
+    dest: "/usr/local/bin/aws_completer"
+    state: "absent"
   tags:
   - cloud
   - aws
 
-- name: "install AWS CLI tool"
-  command: "/tmp/aws/install --update"
-  when: aws_unarchive_result is changed
+- name: "remove aws cli"
+  file:
+    dest: "/usr/local/aws-cli"
+    state: "absent"
   tags:
-  - "cloud"
-  - "aws"
+  - cloud
+  - aws
 
 - name: "add the Azure CLI signing key"
   get_url:
