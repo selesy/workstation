@@ -13,6 +13,7 @@ tools:
 - { name: "gopkgs", url: "github.com/uudashr/gopkgs/v2/cmd/gopkgs@{{ gopkgs_version }}"}
 - { name: "gopls", url: "golang.org/x/tools/gopls@{{ gopls_version }}"}
 - { name: "govulncheck", url: "golang.org/x/vuln/cmd/govulncheck@{{ govulncheck_version }}"}
+- { name: "gremlins", url: "github.com/go-gremlins/gremlins/cmd/gremlins@{{ gremlins_version }}"}
 - { name: "impl", url: "github.com/josharian/impl@{{ impl_version }}"}
 - { name: "lichen", url: "github.com/uw-labs/lichen@{{ lichen_version }}"}
 - { name: "oapi-codegen", url: "github.com/deepmap/oapi-codegen/cmd/oapi-codegen@{{ oapi_codegen_version }}"}

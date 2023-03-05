@@ -65,6 +65,7 @@ gokart_version: latest
 gopkgs_version: latest
 gopls_version: latest
 govulncheck_version: latest
+gremlins_version: latest
 impl_version: latest
 lichen_version: latest
 oapi_codegen_version: latest
