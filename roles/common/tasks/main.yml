@@ -175,3 +175,10 @@
   when: "tlp_installed is changed"
   tags:
   - "power-management"
+
+# install the AppImage-Launcher
+
+- name: "install the AppImage-Launcher"
+  apt:
+    deb: "{{ appimage_launcher_url }}"
+    state: present

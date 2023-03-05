@@ -1,0 +1,4 @@
+---
+
+appimage_launcher_url: https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.bionic_amd64.deb
+# appimage_launcher_url: https://objects.githubusercontent.com/github-production-release-asset-2e65be/125722945/cb195e80-02ac-11eb-9eaf-85284401714f?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230305%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230305T124646Z&X-Amz-Expires=300&X-Amz-Signature=43eb431356edf12e19b240214b572459ca617c0315aa0a95c9a6bc0610bdccd8&X-Amz-SignedHeaders=host&actor_id=328333&key_id=0&repo_id=125722945&response-content-disposition=attachment%3B%20filename%3Dappimagelauncher_2.2.0-travis995.0f91801.bionic_amd64.deb&response-content-type=application%2Foctet-stream
