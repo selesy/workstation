@@ -37,6 +37,7 @@ tools:
 - { name: "awscli", version: "{{ awscli_version }}"}
 - { name: "aws-vault", version: "{{ aws_vault_version }}"}
 - { name: "bazel", version: "{{ bazel_version }}"}
+- { name: "chezmoi", version: "{{ chezmoi_version }}"}
 - { name: "direnv", version: "{{ direnv_version }}"}
 - { name: "github-cli", version: "{{ github_cli_version }}"}
 - { name: "golang", version: "{{ golang_version }}"}
