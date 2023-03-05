@@ -41,6 +41,7 @@ tools:
 - { name: "github-cli", version: "{{ github_cli_version }}"}
 - { name: "golang", version: "{{ golang_version }}"}
 - { name: "golangci-lint", version: "{{ golangci_lint_version }}"}
+- { name: "gomigrate", version: "{{ gomigrate_version }}"}
 - { name: "gradle", version: "{{ gradle_version }}"}
 - { name: "grpcurl", version: "{{ grpcurl_version }}"}
 - { name: "helm", "version": "{{ helm_version }}"}

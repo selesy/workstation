@@ -20,6 +20,7 @@ direnv_version: latest
 github_cli_version: latest
 golang_version: latest
 golangci_lint_version: latest
+gomigrate_version: latest
 gradle_version: latest
 grpcurl_version: latest
 helm_version: latest
