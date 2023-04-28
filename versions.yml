@@ -48,7 +48,7 @@ protoc_gen_grpc_version: latest
 semver_version: latest
 skaffold_version: latest
 sops_version: latest
-swag_version: latest
+swag_version: 1.8.12
 terraform_version: latest
 terragrunt_version: latest
 tflint_version: latest
