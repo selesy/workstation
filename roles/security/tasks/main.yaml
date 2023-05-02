@@ -6,3 +6,10 @@
   tags:
   - "1password"
   - "security"
+
+- name: "install keybase"
+  apt:
+    deb: "{{ keybase_url }}"
+  tags:
+  - "keybase"
+  - "security"
