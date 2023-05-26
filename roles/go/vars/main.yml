@@ -6,7 +6,6 @@ tools:
 - { name: "errcheck", url: "github.com/kisielk/errcheck@{{ errcheck_version }}"}
 - { name: "git-bug", url: "github.com/MichaelMure/git-bug@{{ git_bug_version }}"}
 - { name: "go-header", url: "github.com/denis-tingaikin/go-header/cmd/go-header@{{ go_header_version }}"}
-- { name: "go-mutesting", url: "github.com/zimmski/go-mutesting/cmd/go-mutesting@{{ go_mutesting_version }}"}
 - { name: "go-wrk", url: "github.com/tsliwowicz/go-wrk@{{ go_wrk_version }}"}
 - { name: "gocomplete", url: "github.com/posener/complete/v2/gocomplete@{{ gocomplete_version }}"}
 - { name: "gokart", url: "github.com/praetorian-inc/gokart@{{ gokart_version }}"}
