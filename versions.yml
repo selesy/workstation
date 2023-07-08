@@ -96,7 +96,7 @@ lombok_version: 1.18.24
 eclim_version: 2.21.0
 
 #FireFox
-firefox_de_version: 115.0b9
+firefox_de_version: 116.0b2
 firefox_de_language: en-US
 
 #Chrome
