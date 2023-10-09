@@ -47,7 +47,7 @@ protoc_version: latest
 protoc_gen_version: latest
 protoc_gen_grpc_version: latest
 semver_version: latest
-skaffold_version: 2.5.0
+skaffold_version: latest
 sops_version: 3.7.3
 swag_version: 1.8.12
 terraform_version: latest
