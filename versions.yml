@@ -36,6 +36,7 @@ kubectl_version: latest
 kubeseal_version: 0.18.2
 kustomize_version: latest
 linkerd_version: 2.12.0
+mage_version: latest
 make_version: latest
 maven_version: latest
 minikube_version: latest
