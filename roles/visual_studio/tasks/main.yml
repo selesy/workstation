@@ -22,10 +22,29 @@
 #   - ide
 #   - editors
 
+- name: get the latest version for visual studio code
+  uri:
+    url: "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+    follow_redirects: none
+    status_code: 302
+  register: visual_studio_code_version_result
+  tags:
+  - visual_studio
+  - ide
+  - editors
+
+- name: "extract the project's version number"
+  set_fact:
+    visual_studio_code_file: "{{ visual_studio_code_version_result.location | regex_replace('^.*/', '') }}"
+  tags:
+  - visual_studio
+  - ide
+  - editors
+
 - name: "download visual studio"
   get_url:
-    url: "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
-    dest: "~/"
+    url: "{{ visual_studio_code_version_result.location }}"
+    dest: "~/{{ visual_studio_code_file }}"
   register: vscode_download_result
   tags:
   - visual_studio
