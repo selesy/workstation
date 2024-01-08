@@ -15,7 +15,7 @@ ant_version: latest
 asdf_version: v0.10.2
 awscli_version: latest
 aws_vault_version: latest
-bazel_version: latest
+bazel_version: 7.0.0
 chezmoi_version: latest
 direnv_version: latest
 github_cli_version: latest
