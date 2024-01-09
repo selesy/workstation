@@ -21,7 +21,7 @@ direnv_version: latest
 github_cli_version: 2.41.0
 golang_version: latest
 golangci_lint_version: 1.55.2
-gomigrate_version: latest
+gomigrate_version: 4.17.0
 gradle_version: latest
 grpcurl_version: latest
 helm_version: latest
