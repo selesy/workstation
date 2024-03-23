@@ -79,6 +79,116 @@
     state: "latest"
   when: ansible_distribution == "Debian"
 
+# Add support for Dell hardware - see: https://askubuntu.com/questions/1341912/goodix-fingerprint-driver-linux
+
+- name: add the Dell signing key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: F9FDA6BED73CDC22
+    state: present
+  when: ansible_system_vendor == "Dell Inc."
+  tags:
+  - dell
+
+- name: add the Dell repository
+  apt_repository: 
+    repo: "deb http://dell.archive.canonical.com/updates/ focal-dell public"
+    state: "present"
+    mode: "644"
+  when: ansible_system_vendor == "Dell Inc."
+  tags:
+    - dell
+
+# - name: add the Dell source repository
+#   apt_repository: 
+#     repo: "deb-src http://dell.archive.canonical.com/updates/ focal-dell public"
+#     state: "present"
+#     mode: "644"
+#   when: ansible_system_vendor == "Dell Inc."
+#   tags:
+#     - dell
+
+- name: add the Dell oem repository
+  apt_repository: 
+    repo: "deb http://dell.archive.canonical.com/updates/ focal-oem public"
+    state: "present"
+    mode: "644"
+  when: ansible_system_vendor == "Dell Inc."
+  tags:
+    - dell
+
+# - name: add the Dell oem source repository
+#   apt_repository: 
+#     repo: "deb-src http://dell.archive.canonical.com/updates/ focal-oem public"
+#     state: "present"
+#     mode: "644"
+#   when: ansible_system_vendor == "Dell Inc."
+#   tags:
+#     - dell
+
+- name: add the Dell somerville repository
+  apt_repository: 
+    repo: "deb http://dell.archive.canonical.com/updates/ focal-somerville public"
+    state: "present"
+    mode: "644"
+  when: ansible_system_vendor == "Dell Inc."
+  tags:
+    - dell
+
+# - name: add the Dell somerville source repository
+#   apt_repository: 
+#     repo: "deb-src http://dell.archive.canonical.com/updates/ focal-somerville public"
+#     state: "present"
+#     mode: "644"
+#   when: ansible_system_vendor == "Dell Inc."
+#   tags:
+#     - dell
+
+- name: add the Dell somerville-melisa repository
+  apt_repository: 
+    repo: "deb http://dell.archive.canonical.com/updates/ focal-somerville-melisa public"
+    state: "present"
+    mode: "644"
+  when: ansible_system_vendor == "Dell Inc."
+  tags:
+    - dell
+
+# - name: add the Dell somerville-melisa source repository
+#   apt_repository: 
+#     repo: "deb-src http://dell.archive.canonical.com/updates/ focal-somerville-melisa public"
+#     state: "present"
+#     mode: "644"
+#   when: ansible_system_vendor == "Dell Inc."
+#   tags:
+#     - dell
+
+# Add support for biometrics
+
+- name: install tools and libraries for biometrics
+  apt:
+    pkg:
+    - "libbiometric0"
+    - "libc6"
+    - "libfprint-2-2"
+    - "libglib2.0-0"
+    - "bio-drv-api-0.10"
+    - "biometric-utils"
+    - "libpam-fprintd"
+  tags:
+  - "biometrics"
+
+- name: install tools and libraries for biometrics on Dell
+  apt:
+    pkg:
+    - "oem-somerville-melisa-meta"
+    - "libfprint-2-tod1-goodix"
+    - "oem-somerville-meta"
+    - "tlp-config"
+  when: ansible_system_vendor == "Dell Inc."
+  tags:
+  - biometrics
+  - dell
+
 - name: remove the freemind installed by snap
   snap:
     name: freemind
