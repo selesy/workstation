@@ -35,7 +35,63 @@
       . ~/.asdf/asdf.sh
       . ~/.asdf/completions/asdf.bash
   tags:
-  -  asdf
+  - asdf
+
+- name: add the up-to-date ansible asdf plugin
+  shell: asdf plugin add ansible https://github.com/Bleacks/asdf-ansible-plugin.git
+  environment:
+    GITHUB_API_TOKEN: "{{ GITHUB_API_TOKEN }}"
+  register: ansible_plugin_add_result
+  changed_when: '"already added" not in ansible_plugin_add_result.stdout'
+  failed_when: "ansible_plugin_add_result.rc == 1"
+  tags:
+  - asdf
+  - new-ansible
+
+# - name: install an up-to-date ansible
+#   shell: asdf install ansible latest
+#   environment:
+#     GITHUB_API_TOKEN: "{{ GITHUB_API_TOKEN }}"
+#   register: ansible_version_installed_result
+#   changed_when: "'Downloading' in ansible_version_installed_result.stdout"
+#   tags:
+#   - asdf
+#   - new-ansible
+
+# - name: set the up-to-date ansible global version
+#   shell: asdf global ansible latest
+#   environment:
+#     GITHUB_API_TOKEN: "{{ GITHUB_API_TOKEN }}"
+#   register: ansible_global_version_set_result
+#   changed_when: "ansible_global_version_set_result is changed"
+#   failed_when: "ansible_global_version_set_result.rc > 0"
+#   tags:
+#   - asdf
+#   - new-ansible
+
+- name: get asdf version
+  shell: asdf version
+  register: asdf_version_result
+  changed_when: false
+  failed_when: "asdf_version_result.rc > 0"
+  tags:
+  - asdf
+
+- set_fact:
+    asdf_version: "{{ asdf_version_result.stdout | ansible.builtin.split('-') }}"
+  changed_when: false
+  tags:
+  - asdf
+
+- name: update installed asdf binary
+  shell: asdf update
+  register: asdf_update_result
+  changed_when:
+  - 'asdf_version[0] not in asdf_update_result.stderr'
+  - 'asdf_version[1] not in asdf_update_result.stderr'
+  failed_when: asdf_update_result.rc > 0
+  tags:
+  - asdf
 
 # TODO: figure out how to make this pretty by adding a newline
 
