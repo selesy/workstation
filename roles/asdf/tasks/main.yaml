@@ -48,27 +48,6 @@
   - asdf
   - new-ansible
 
-# - name: install an up-to-date ansible
-#   shell: asdf install ansible latest
-#   environment:
-#     GITHUB_API_TOKEN: "{{ GITHUB_API_TOKEN }}"
-#   register: ansible_version_installed_result
-#   changed_when: "'Downloading' in ansible_version_installed_result.stdout"
-#   tags:
-#   - asdf
-#   - new-ansible
-
-# - name: set the up-to-date ansible global version
-#   shell: asdf global ansible latest
-#   environment:
-#     GITHUB_API_TOKEN: "{{ GITHUB_API_TOKEN }}"
-#   register: ansible_global_version_set_result
-#   changed_when: "ansible_global_version_set_result is changed"
-#   failed_when: "ansible_global_version_set_result.rc > 0"
-#   tags:
-#   - asdf
-#   - new-ansible
-
 - name: get asdf version
   shell: asdf version
   register: asdf_version_result
@@ -90,6 +69,24 @@
   - 'asdf_version[0] not in asdf_update_result.stderr'
   - 'asdf_version[1] not in asdf_update_result.stderr'
   failed_when: asdf_update_result.rc > 0
+  tags:
+  - asdf
+
+# Make sure we're using a GITHUB_TOKEN for authenticated GitHub acccess
+
+- name: the GITHUB_TOKEN environment variable must be non-empty
+  assert:
+    that:
+    - lookup('env', 'GITHUB_TOKEN') | length > 0
+  tags:
+  - asdf
+
+
+- name: check that the GITHUB_TOKEN is authenticated
+  shell: gh auth status | sed -n -e '/GITHUB_TOKEN/p'
+  register: github_auth_status_result
+  changed_when: false
+  failed_when: '"ailed to log in to github.com using token" in github_auth_status_result.stdout'
   tags:
   - asdf
 
