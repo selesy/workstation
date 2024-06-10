@@ -11,7 +11,8 @@
 
 - name: extract the kubenav project's version number
   set_fact:
-    version: "{{kubenav_version_result.location | regex_replace('^.*/', '') }}"
+    # version: "{{kubenav_version_result.location | regex_replace('^.*/', '') }}"
+    version: v4.2.3 # kubenav discontinued desktop support with the release of version v5.0.0
   tags:
   - kubenav
 
