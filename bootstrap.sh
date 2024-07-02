@@ -4,6 +4,9 @@
 # Install ASDF
 #
 sudo apt install -y git curl python3-venv python3-pip
+pip3 install pip --upgrade
+pip3 install wheel --upgrade
+
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 echo '. "$HOME/.asdf/asdf.sh"' >> "$HOME/.bashrc"
 echo '. "$HOME/.asdf/completions/asdf.bash"' >> "$HOME/.bashrc"
@@ -12,12 +15,11 @@ reset
 #
 # Install Ansible
 #
-~/.asdf/bin/asdf plugin add ansible-base
-~/.asdf/bin/asdf install ansible-base latest
-~/.asdf/bin/asdf global ansible-base latest
+ASDF_PYAPP_INCLUDE_DEPS=1 asdf plugin add ansible https://github.com/amrox/asdf-pyapp.git
+asdf install ansible-base latest
+asdf global ansible-base latest
 
 #
 # Install Workstation
 #
 git clone https://github.com/selesy/workstation.git ~/.workstation --branch bookworm
-:
