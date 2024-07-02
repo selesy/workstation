@@ -3,7 +3,7 @@
 #
 # Install ASDF
 #
-sudo apt install git curl python3-pip
+sudo apt install -y git curl python3-pip
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 
 #
