@@ -16,8 +16,8 @@ reset
 # Install Ansible
 #
 ASDF_PYAPP_INCLUDE_DEPS=1 asdf plugin add ansible https://github.com/amrox/asdf-pyapp.git
-asdf install ansible-base latest
-asdf global ansible-base latest
+asdf install ansible latest
+asdf global ansible latest
 
 #
 # Install Workstation
