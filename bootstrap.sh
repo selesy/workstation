@@ -5,6 +5,9 @@
 #
 sudo apt install -y git curl python3-venv python3-pip
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+echo '. "$HOME/.asdf/asdf.sh"' >> "$HOME/.bashrc"
+echo '. "$HOME/.asdf/completions/asdf.bash"' >> "$HOME/.bashrc"
+reset
 
 #
 # Install Ansible
@@ -17,3 +20,4 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 # Install Workstation
 #
 git clone https://github.com/selesy/workstation.git ~/.workstation --branch bookworm
+:
