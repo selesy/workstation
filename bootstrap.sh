@@ -16,4 +16,4 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 #
 # Install Workstation
 #
-git clone https://github.com/selesy/workstation ~/.workstation --branch bookworm
+git clone https://github.com/selesy/workstation.git ~/.workstation --branch bookworm
