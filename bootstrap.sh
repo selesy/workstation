@@ -10,7 +10,8 @@ pip3 install wheel --upgrade
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 echo '. "$HOME/.asdf/asdf.sh"' >> "$HOME/.bashrc"
 echo '. "$HOME/.asdf/completions/asdf.bash"' >> "$HOME/.bashrc"
-reset
+. "$HOME/.asdf/asdf.sh"
+. "$HOME/.asdf/completions/asdf.bash"
 
 #
 # Install Ansible via asdf
@@ -24,7 +25,7 @@ asdf global ansible-base 2.10.17
 #
 mkdir -p "$HOME/bin"
 echo 'export "PATH=$HOME/bin:$PATH"' >> "$HOME/.bashrc"
-reset
+export "PATH=$HOME/bin:$PATH"
 
 #
 # Install Workstation
