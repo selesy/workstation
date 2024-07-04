@@ -13,13 +13,21 @@ echo '. "$HOME/.asdf/completions/asdf.bash"' >> "$HOME/.bashrc"
 reset
 
 #
-# Install Ansible
+# Install Ansible via asdf
 #
-ASDF_PYAPP_INCLUDE_DEPS=1 asdf plugin add ansible https://github.com/amrox/asdf-pyapp.git
-ASDF_PYAPP_INCLUDE_DEPS=1 asdf install ansible latest
-ASDF_PYAPP_INCLUDE_DEPS=1 asdf global ansible latest
+asdf plugin add ansile-base
+asdf install ansible-base 2.10.17
+asdf global ansible-base 2.10.17
+
+#
+# Make a bin directory in the user's home directory
+#
+mkdir -p "$HOME/bin"
+echo 'export "PATH=$HOME/bin:$PATH"' >> "$HOME/.bashrc"
+reset
 
 #
 # Install Workstation
 #
 git clone https://github.com/selesy/workstation.git ~/.workstation --branch bookworm
+ln -s "$HOME/.workstation/workstation.sh" "$HOME/bin/workstation"
