@@ -3,57 +3,57 @@
 # https://dl.pstmn.io/download/version/5.0.0/linux64
 
 #Ansible
-ansible_minimum_version: 2.6.0
+ansible_minimum_version: 2.10.17
 
 #Apache Studio
 studio_version: 2.0.0
 studio_build: 20210717-M17
 
 #asdf managed tool versions
-act_version: latest
-ant_version: latest
+# act_version: latest
+# ant_version: latest
 asdf_version: v0.10.2
 awscli_version: latest
 aws_vault_version: latest
-bazel_version: latest
+# bazel_version: latest
 chezmoi_version: latest
 direnv_version: latest
 github_cli_version: latest
-golang_version: latest
-golangci_lint_version: latest
-gomigrate_version: latest
-gradle_version: latest
-grpcurl_version: latest
-helm_version: latest
-java_version: openjdk-17.0.2
-jq_version: latest
-k6_version: latest
-k9s_version: latest
-kind_version: latest
-ko_version: 0.12.0
-krew_version: latest
-kubectl_version: latest
-kubeseal_version: 0.18.2
-kustomize_version: latest
-linkerd_version: 2.12.0
-mage_version: latest
-make_version: latest
-maven_version: latest
-minikube_version: latest
-nancy_version: latest
-nodejs_version: latest
+# golang_version: latest
+# golangci_lint_version: latest
+# gomigrate_version: latest
+# gradle_version: latest
+# grpcurl_version: latest
+# helm_version: latest
+# java_version: openjdk-17.0.2
+# jq_version: latest
+# k6_version: latest
+# k9s_version: latest
+# kind_version: latest
+# ko_version: 0.12.0
+# krew_version: latest
+# kubectl_version: latest
+# kubeseal_version: 0.18.2
+# kustomize_version: latest
+# linkerd_version: 2.12.0
+# mage_version: latest
+# make_version: latest
+# maven_version: latest
+# minikube_version: latest
+# nancy_version: latest
+# nodejs_version: latest
 op_cli_version: latest
-protoc_version: latest
-protoc_gen_version: latest
-protoc_gen_grpc_version: latest
-semver_version: latest
-skaffold_version: latest
-sops_version: latest
-swag_version: 1.16.2
-terraform_version: latest
-terragrunt_version: latest
-tflint_version: latest
-yq_version: latest
+# protoc_version: latest
+# protoc_gen_version: latest
+# protoc_gen_grpc_version: latest
+# semver_version: latest
+# skaffold_version: latest
+# sops_version: latest
+# swag_version: 1.16.2
+# terraform_version: latest
+# terragrunt_version: latest
+# tflint_version: latest
+# yq_version: latest
 
 #go manaaged tool versions
 delve_version: latest

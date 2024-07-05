@@ -16,32 +16,32 @@
   vars_files:
     - versions.yml
   roles:
-    - common
-    - communication
-    - development
-    - containerization
-    - networking
+    # - common
+    # - communication
+    # - development
+    # - containerization
+    # - networking
     - iac
-    - java
-    - jmeter
-    - zaproxy
-    - burp_suite
-    - sqlmap
-    - spotbugs
-    - firefox_de
-    - google_chrome
-    - dbeaver
-    - apache_directory_studio
-    - eclipse
-    - umlet
-    - soapui
-    - micro
-    - pencil
-    - postman
+    # - java
+    # - jmeter
+    # - zaproxy
+    # - burp_suite
+    # - sqlmap
+    # - spotbugs
+    # - firefox_de
+    # - google_chrome
+    # - dbeaver
+    # - apache_directory_studio
+    # - eclipse
+    # - umlet
+    # - soapui
+    # - micro
+    # - pencil
+    # - postman
     - ratpoison
-    - cloud
-    - visual_studio
-    - security
+    # - cloud
+    # - visual_studio
+    # - security
 
 - hosts: localhost
   connection: local
@@ -60,8 +60,8 @@
   roles:
   - local
   - asdf
-  - go
+  # - go
   - codium
-  - krew
+  # - krew
   - kubenav
-  - freemind
+  # - freemind
