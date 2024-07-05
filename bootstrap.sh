@@ -13,7 +13,7 @@ echo '. "$HOME/.asdf/completions/asdf.bash"' >> "$HOME/.bashrc"
 #
 # Install Ansible via asdf
 #
-"$HOME/.asdf/bin/asdf" plugin add ansile-base
+"$HOME/.asdf/bin/asdf" plugin add ansible-base
 "$HOME/.asdf/bin/asdf" install ansible-base 2.10.17
 "$HOME/.asdf/bin/asdf" global ansible-base 2.10.17
 
