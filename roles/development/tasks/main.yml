@@ -232,12 +232,6 @@
   - "build-tools"
   - "make"
 
-- name: "remove protobuf compiler"
-  snap:
-    name: "protobuf"
-    state: "absent"
-  tags:
-  - "protobuf"
 
 #
 # File formating tools

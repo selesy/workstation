@@ -35,15 +35,6 @@
   tags:
     - clean-legacy
 
-- name: remove the snap-managed kubectl
-  snap:
-    name: kubectl
-    state: absent
-    classic: true
-  register: kubectl_result
-  tags:
-    - clean-legacy
-
 - name: remove tools previously installed via apt (now installed via asdf)
   apt:
     pkg:

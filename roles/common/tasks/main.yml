@@ -9,18 +9,6 @@
     autoremove: "yes"
     state: "latest"
 
-# Mint does not ship with snap
-
-- name: "remove all traces of snap"
-  apt:
-    name:
-    - "snapd"
-    - "gnome-software-plugin-snap"
-    state: "absent"
-    purge: "yes"
-  tags:
-  - "snap"
-
 - name: "add the PIP package manager"
   apt:
     name: "{{ packages }}"
@@ -56,7 +44,6 @@
     - "screen"
     - "seahorse"
     - "secure-delete"
-    - "snapd"
     - "sshfs"
     - "sshuttle"
     - "stacer"
@@ -92,7 +79,7 @@
 
 - name: add the Dell repository
   apt_repository: 
-    repo: "deb http://dell.archive.canonical.com/updates/ focal-dell public"
+    repo: "deb http://dell.archive.canonical.com/updates/ jammy-dell public"
     state: "present"
     mode: "644"
   when: ansible_system_vendor == "Dell Inc."
@@ -101,7 +88,7 @@
 
 # - name: add the Dell source repository
 #   apt_repository: 
-#     repo: "deb-src http://dell.archive.canonical.com/updates/ focal-dell public"
+#     repo: "deb-src http://dell.archive.canonical.com/updates/ jammy-dell public"
 #     state: "present"
 #     mode: "644"
 #   when: ansible_system_vendor == "Dell Inc."
@@ -110,7 +97,7 @@
 
 - name: add the Dell oem repository
   apt_repository: 
-    repo: "deb http://dell.archive.canonical.com/updates/ focal-oem public"
+    repo: "deb http://dell.archive.canonical.com/updates/ jammy-oem public"
     state: "present"
     mode: "644"
   when: ansible_system_vendor == "Dell Inc."
@@ -119,7 +106,7 @@
 
 # - name: add the Dell oem source repository
 #   apt_repository: 
-#     repo: "deb-src http://dell.archive.canonical.com/updates/ focal-oem public"
+#     repo: "deb-src http://dell.archive.canonical.com/updates/ jammy-oem public"
 #     state: "present"
 #     mode: "644"
 #   when: ansible_system_vendor == "Dell Inc."
@@ -128,7 +115,7 @@
 
 - name: add the Dell somerville repository
   apt_repository: 
-    repo: "deb http://dell.archive.canonical.com/updates/ focal-somerville public"
+    repo: "deb http://dell.archive.canonical.com/updates/ jammy-somerville public"
     state: "present"
     mode: "644"
   when: ansible_system_vendor == "Dell Inc."
@@ -137,7 +124,7 @@
 
 # - name: add the Dell somerville source repository
 #   apt_repository: 
-#     repo: "deb-src http://dell.archive.canonical.com/updates/ focal-somerville public"
+#     repo: "deb-src http://dell.archive.canonical.com/updates/ jammy-somerville public"
 #     state: "present"
 #     mode: "644"
 #   when: ansible_system_vendor == "Dell Inc."
@@ -146,7 +133,7 @@
 
 - name: add the Dell somerville-melisa repository
   apt_repository: 
-    repo: "deb http://dell.archive.canonical.com/updates/ focal-somerville-melisa public"
+    repo: "deb http://dell.archive.canonical.com/updates/ jammy-somerville-melisa public"
     state: "present"
     mode: "644"
   when: ansible_system_vendor == "Dell Inc."
@@ -155,14 +142,14 @@
 
 # - name: add the Dell somerville-melisa source repository
 #   apt_repository: 
-#     repo: "deb-src http://dell.archive.canonical.com/updates/ focal-somerville-melisa public"
+#     repo: "deb-src http://dell.archive.canonical.com/updates/ jammy-somerville-melisa public"
 #     state: "present"
 #     mode: "644"
 #   when: ansible_system_vendor == "Dell Inc."
 #   tags:
 #     - dell
 
-# Add support for biometrics
+# Add support for biometrics - see: https://github.com/Am0rphous/Shenzhen-Goodix-Fingerprint-Reader-
 
 - name: install tools and libraries for biometrics
   apt:
@@ -189,22 +176,13 @@
   - biometrics
   - dell
 
-- name: remove the freemind installed by snap
-  snap:
-    name: freemind
-    state: absent
-    # classic: true
-  tags:
-  - freemind
-  - clean-legacy
-
-- name: copy the freemind icon
-  file:
-    path: /snap/bin/freemind.png
-    state: absent
-  tags:
-  - freemind
-  - clean-legacy
+# - name: copy the freemind icon
+#   file:
+#     path: /snap/bin/freemind.png
+#     state: absent
+#   tags:
+#   - freemind
+#   - clean-legacy
 
 - name: add the freemind desktop item to the menu
   file:
