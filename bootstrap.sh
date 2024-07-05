@@ -4,8 +4,6 @@
 # Install ASDF
 #
 sudo apt install -y git curl python3-venv python3-pip
-pip3 install pip --upgrade
-pip3 install wheel --upgrade
 
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 echo '. "$HOME/.asdf/asdf.sh"' >> "$HOME/.bashrc"
