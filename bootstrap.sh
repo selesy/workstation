@@ -8,7 +8,7 @@ sudo apt install -y git curl python3-venv python3-pip
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 echo '. "$HOME/.asdf/asdf.sh"' >> "$HOME/.bashrc"
 echo '. "$HOME/.asdf/completions/asdf.bash"' >> "$HOME/.bashrc"
-reset
+. "$HOME/.bashrc"
 
 #
 # Install Ansible via asdf
@@ -21,8 +21,8 @@ asdf global ansible-base 2.10.17
 # Make a bin directory in the user's home directory
 #
 # mkdir -p "$HOME/bin"
-# echo 'export "PATH=$HOME/bin:$PATH"' >> "$HOME/.bashrc"
-# reset
+echo 'export "PATH=$HOME/bin:$PATH"' >> "$HOME/.bashrc"
+. "$HOME?.bashrc"
 
 #
 # Install Workstation
