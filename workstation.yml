@@ -12,17 +12,10 @@
       fail:
         msg: "These playbooks are now only available on 64-bit OSes"
       when: ansible_architecture == "i386"
-  remote_user: ansible
   become: yes
   vars_files:
     - versions.yml
-  roles: # The Alpine roles must remain first in the role list
-    - role: "alpine/common"
-      tags:
-        - "alpine"
-    - role: "alpine/xfce"
-      tags:
-        - "alpine"
+  roles:
     - common
     - communication
     - development

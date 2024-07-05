@@ -15,11 +15,4 @@
   become: yes
   vars_files:
     - versions.yml
-  roles: # The Alpine roles must remain first in the role list
-    - role: "alpine/common"
-      tags:
-        - "alpine"
-    - role: "alpine/xfce"
-      tags:
-        - "alpine"
-    - clean
+
