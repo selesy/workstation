@@ -60,6 +60,7 @@
   roles:
   - local
   - asdf
+  - firefox_de
   # - go
   - codium
   # - krew
