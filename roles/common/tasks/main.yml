@@ -15,7 +15,7 @@
     state: "latest"
   vars:
     packages:
-    - "python-setuptools"
+    - "python3-setuptools"
     - "python3-pip"
   tags:
     - "python"
@@ -26,12 +26,13 @@
     - "asciinema"
     - "asciidoc"
     - "audacity"
-    # - chromium-browser
+    - chromium
     - "curl"
     - "deborphan"
     - "fonts-opendyslexic"
+    - "gnupg2"
     - "gparted"
-    - "hopenpgp-tools"
+    # - "hopenpgp-tools"
     - "lynx"
     - "minicom"
     - "oathtool"
@@ -175,6 +176,15 @@
   tags:
   - biometrics
   - dell
+
+- name: install tools and libraries for bluetooth devices
+  apt:
+    pkg:
+    - "btscanner"
+    - "bluez-tools"
+    - "blueman"
+  tags:
+  - "bluetooth"
 
 # - name: copy the freemind icon
 #   file:
