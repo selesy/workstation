@@ -1,0 +1,3 @@
+---
+
+mozilla_apt_keyring: "{{ apt_keyring_dir }}/mozilla-keyring.gpg"

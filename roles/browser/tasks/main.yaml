@@ -1,0 +1,29 @@
+---
+
+- name: "add the mozilla signing key"
+  apt_key:
+    url: "https://packages.mozilla.org/apt/repo-signing-key.gpg"
+    id: "35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3"
+    keyring: "{{ mozilla_apt_keyring }}"
+  tags:
+  - "mozilla"
+  - "browser"
+
+- name: "add the mozilla apt repository"
+  apt_repository: 
+    repo: "{{ item }}"
+  with_items:
+  - "deb [ signed-by={{ mozilla_apt_keyring }} ] https://packages.mozilla.org/apt mozilla main"
+  - "deb-src [ signed-by={{ mozilla_apt_keyring }} ] https://packages.mozilla.org/apt mozilla main"
+  tags:
+  - "mozilla"
+  - "browser"
+
+- name: "add browsers of choice"
+  apt:
+    pkg:
+    - "chromium"
+    - "firefox-devedition"
+    - "lynx"
+  tags:
+  - "browser"
