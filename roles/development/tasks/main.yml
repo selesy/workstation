@@ -1,411 +1,524 @@
----
-# File: roles/development/tasks/main.yml
+# ---
+# # File: roles/development/tasks/main.yml
 
-#
-# Editors
-#
+# - name: "install flatpak remotes (repositories)"
+#   flatpak_remote:
+#     name: "{{ item.id }}"
+#     flatpakrepo_url: "{{ item.url }}"
+#   with_items: "{{ repos }}"
+#   tags:
+#   - "flatpak"
+#   - "development"
 
-- name: "add the full-featured versions of vim"
-  apt:
-    name: "{{ packages }}"
-    state: "present"
-  vars:
-    packages:
-    - "vim"
-    - "vim-gtk"
+# TODO: this should be a set-up step
+# - name: "install DBUS messaging"
+#   apt:
+#     pkg:
+#     - "dbus-x11"
+#   tags:
+#   - "flatpak"
+#   - "development"  
+
+- name: "add the dbeaver signing key"
+  apt_key:
+    url: "https://dbeaver.io/debs/dbeaver.gpg.key"
+    id: "98F5A7CC1ABE72AC3852A007D33A1BD725ED047D"
+    keyring: "{{ dbeaver_apt_keyring }}"
   tags:
-    - "editors"
-    - "vim"
+  - "dbeaver"
+  - "database"
+  - "development"
 
-- name: add the typora signing key
-  get_url:
-    url: http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xba300b7755afcfae
-    dest: /etc/apt/trusted.gpg.d/typora.asc
-  tags:
-    - editors
-    - typora
-
-- name: add the typora repository
+- name: "add the dbeaver apt repository"
   apt_repository: 
-    repo: "deb https://typora.io/linux ./"
-    state: "present"
-    mode: "644"
+    repo: "{{ item }}"
+  with_items:
+  - "deb [ signed-by={{ dbeaver_apt_keyring }} ] https://dbeaver.io/debs/dbeaver-ce /"
+  - "deb-src [ signed-by={{ dbeaver_apt_keyring }} ] https://dbeaver.io/debs/dbeaver-ce /"
   tags:
-    - editors
-    - typora
+  - "dbeaver"
+  - "database"
+  - "development"
 
-- name: install typora
+- name: "install dbeaver apt"
   apt:
-    pkg: "typora"
-    state: "present"
+    pkg:
+    - "dbeaver-ce"
   tags:
-    - editors
-    - typora
+    - "dbeaver"
+    - "database"
+    - "development"
     
-#
-# NodeJS
-#
-
-- name: remove the NodeJS signing key
-  file:
-    path: /etc/apt/trusted.gpg.d/nodesource.asc
-    state: absent
+- name: "add the vscodium signing key"
+  apt_key:
+    url: "https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg"
+    id: "1302DE60231889FE1EBACADC54678CF75A278D9C"
+    keyring: "{{ vscodium_apt_keyring }}"
   tags:
-  - node
+  - "vscodium"
+  - "ide"
+  - "development"
 
-- name: add the NodeJS repositories
+- name: "add the vscodium apt repository"
   apt_repository:
     repo: "{{ item }}"
-    state: absent
   with_items:
-    - deb https://deb.nodesource.com/{{ nodejs_legacy_repo }} focal main
-    - deb-src https://deb.nodesource.com/{{ nodejs_legacy_repo }} focal main
+    - "deb [ signed-by={{ vscodium_apt_keyring }} ] https://download.vscodium.com/debs vscodium main"
+    - "deb-src [ signed-by={{ vscodium_apt_keyring }} ] https://download.vscodium.com/debs vscodium main"
   tags:
-  - node
+    - "vscodium"
+    - "ide"
+    - "development"
+
+- name: "install vscodium"
+  apt:
+    pkg:
+    - "codium"
+  tags:
+    - "vscodium"
+    - "ide"
+    - "development"
+
+- name: install selected codium extensions
+  command:
+    cmd: "codium --install-extension {{ item }} --user-data-dir /usr/share/code --force"
+  with_items:
+  - asciidoctor.asciidoctor-vscode
+  - golang.go
+  - gruntfuggly.todo-tree
+  - hashicorp.terraform
+  - mkhl.direnv
+  - ms-azuretools.vscode-docker
+  - ms-kubernetes-tools.vscode-kubernetes-tools
+  - mtxr.sqltools
+  - mtxr.sqltools-driver-pg
+  - redhat.ansible
+  - vscodevim.vim
+  - vscjava.vscode-java-pack
+  - vscjava.vscode-maven
+  - zxh404.vscode-proto3
+  register: codium_extension
+  changed_when: "'already installed' not in codium_extension.stdout"
+  tags:
+    - "vscodium"
+    - "ide"
+    - "development"
+
+- name: "update installed codium extensions"
+  command:
+    cmd: "codium --update-extensions --user-data-dir /usr/share/code --force"
+  register: update_codium_extensions_result
+  changed_when: "update_codium_extensions_result.stdout != 'No extension to update'"
+  tags:
+    - "vscodium"
+    - "ide"
+    - "development"
+
+# #
+# # Editors
+# #
+
+# - name: "add the full-featured versions of vim"
+#   apt:
+#     name: "{{ packages }}"
+#     state: "present"
+#   vars:
+#     packages:
+#     - "vim"
+#     - "vim-gtk"
+#   tags:
+#     - "editors"
+#     - "vim"
+
+# - name: add the typora signing key
+#   get_url:
+#     url: http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xba300b7755afcfae
+#     dest: /etc/apt/trusted.gpg.d/typora.asc
+#   tags:
+#     - editors
+#     - typora
+
+# - name: add the typora repository
+#   apt_repository: 
+#     repo: "deb https://typora.io/linux ./"
+#     state: "present"
+#     mode: "644"
+#   tags:
+#     - editors
+#     - typora
+
+# - name: install typora
+#   apt:
+#     pkg: "typora"
+#     state: "present"
+#   tags:
+#     - editors
+#     - typora
     
-- name: add NodeJS and NPM
-  apt:
-    pkg: 
-    - nodejs
-    state: absent
-    purge: yes
-  tags:
-  - node
+# #
+# # NodeJS
+# #
 
-#
-# Virtualization
-#
+# - name: remove the NodeJS signing key
+#   file:
+#     path: /etc/apt/trusted.gpg.d/nodesource.asc
+#     state: absent
+#   tags:
+#   - node
 
-- name: "install vagrant"
-  apt:
-    pkg:
-    - "vagrant"
-    state: "latest"
-  tags:
-  - vagrant
-  - virtualization
+# - name: add the NodeJS repositories
+#   apt_repository:
+#     repo: "{{ item }}"
+#     state: absent
+#   with_items:
+#     - deb https://deb.nodesource.com/{{ nodejs_legacy_repo }} focal main
+#     - deb-src https://deb.nodesource.com/{{ nodejs_legacy_repo }} focal main
+#   tags:
+#   - node
+    
+# - name: add NodeJS and NPM
+#   apt:
+#     pkg: 
+#     - nodejs
+#     state: absent
+#     purge: yes
+#   tags:
+#   - node
 
-- name: "install virtualbox (Ubuntu)"
-  apt:
-    pkg:
-    - "virtualbox"
-    - "virtualbox-qt"
-    state: "latest"
-  when: ansible_distribution == "Ubuntu"
-  tags:
-  - "virtualbox"
-  - "virtualization"
+# #
+# # Virtualization
+# #
 
-- name: "install fasttrack repo key (Debian)"
-  apt:
-    pkg:
-    - "fasttrack-archive-keyring"
-    state: "present"
-  when: ansible_distribution == "Debian"
-  tags:
-  - "virtualbox"
-  - "virtualization"
+# - name: "install vagrant"
+#   apt:
+#     pkg:
+#     - "vagrant"
+#     state: "latest"
+#   tags:
+#   - vagrant
+#   - virtualization
 
-- name: "install fastrack repo (Debian)"
-  apt_repository:
-    repo: "deb https://fasttrack.debian.net/debian-fasttrack/ {{ ansible_distribution_release }}-fasttrack main contrib"
-    state: "present"
-    update_cache: "yes"
-  when: ansible_distribution == "Debian"
-  tags:
-  - "virtualbox"
-  - "virtualization"
+# - name: "install virtualbox (Ubuntu)"
+#   apt:
+#     pkg:
+#     - "virtualbox"
+#     - "virtualbox-qt"
+#     state: "latest"
+#   when: ansible_distribution == "Ubuntu"
+#   tags:
+#   - "virtualbox"
+#   - "virtualization"
 
-- name: "install staging repo (Debian)"
-  apt_repository:
-    repo: "deb https://fasttrack.debian.net/debian-fasttrack/ {{ ansible_distribution_release }}-backports-staging main contrib"
-    state: "present"
-    update_cache: "yes"
-  when: ansible_distribution == "Debian"
-  tags:
-  - "virtualbox"
-  - "virtualization"
+# - name: "install fasttrack repo key (Debian)"
+#   apt:
+#     pkg:
+#     - "fasttrack-archive-keyring"
+#     state: "present"
+#   when: ansible_distribution == "Debian"
+#   tags:
+#   - "virtualbox"
+#   - "virtualization"
 
-- name: "install virtualbox (Debian)"
-  apt:
-    pkg:
-    - "virtualbox"
-    - "virtualbox-qt"
-    state: "present"
-  when: ansible_distribution == "Debian"
-  tags:
-  - "virtualbox"
-  - "virtualization"
+# - name: "install fastrack repo (Debian)"
+#   apt_repository:
+#     repo: "deb https://fasttrack.debian.net/debian-fasttrack/ {{ ansible_distribution_release }}-fasttrack main contrib"
+#     state: "present"
+#     update_cache: "yes"
+#   when: ansible_distribution == "Debian"
+#   tags:
+#   - "virtualbox"
+#   - "virtualization"
 
-#
-# Source Code Management
-#
+# - name: "install staging repo (Debian)"
+#   apt_repository:
+#     repo: "deb https://fasttrack.debian.net/debian-fasttrack/ {{ ansible_distribution_release }}-backports-staging main contrib"
+#     state: "present"
+#     update_cache: "yes"
+#   when: ansible_distribution == "Debian"
+#   tags:
+#   - "virtualbox"
+#   - "virtualization"
 
-- name: remove Github CLI repository key
-  file:
-    path: /etc/apt/trusted.gpg.d/github-cli.asc
-    state: absent
-  tags:
-  - github
-  - git
-  - clean-legacy
+# - name: "install virtualbox (Debian)"
+#   apt:
+#     pkg:
+#     - "virtualbox"
+#     - "virtualbox-qt"
+#     state: "present"
+#   when: ansible_distribution == "Debian"
+#   tags:
+#   - "virtualbox"
+#   - "virtualization"
 
-- name: remmove the Github CLI repository
-  apt_repository:
-    repo: deb https://cli.github.com/packages focal main
-    state: absent
-  tags:
-  - github
-  - git
-  - clean-legacy
+# #
+# # Source Code Management
+# #
 
-- name: remove the legacy install of Github CLI
-  apt:
-    name: gh
-    state: absent
-  tags:
-  - github
-  - git
-  - clean-legacy
+# - name: remove Github CLI repository key
+#   file:
+#     path: /etc/apt/trusted.gpg.d/github-cli.asc
+#     state: absent
+#   tags:
+#   - github
+#   - git
+#   - clean-legacy
+
+# - name: remmove the Github CLI repository
+#   apt_repository:
+#     repo: deb https://cli.github.com/packages focal main
+#     state: absent
+#   tags:
+#   - github
+#   - git
+#   - clean-legacy
+
+# - name: remove the legacy install of Github CLI
+#   apt:
+#     name: gh
+#     state: absent
+#   tags:
+#   - github
+#   - git
+#   - clean-legacy
       
-- name: install linux tools for git
-  apt:
-    name: "{{ packages }}"
-    state: latest
-  vars:
-    packages:
-    - git
-    - git-doc
-    - git-svn
-  tags:
-    - git
+# - name: install linux tools for git
+#   apt:
+#     name: "{{ packages }}"
+#     state: latest
+#   vars:
+#     packages:
+#     - git
+#     - git-doc
+#     - git-svn
+#   tags:
+#     - git
 
-#
-# Install Meld
-#
-- name: install meld
-  apt:
-    name: "meld"
-    state: "latest"
-  tags:
-    - git
-    - meld
-
-
-- name: "install linux tools for Subversion"
-  apt:
-    name: "{{ packages }}"
-    state: "latest"
-  vars:
-    packages:
-    - "subversion"
-    - "libsvn-java"
-  tags:
-    - "subversion"
-
-#
-# Build tools
-#
-
-- name: clean legacy Java build tools
-  apt:
-    name: "{{ packages }}"
-    state: absent
-  vars:
-    packages:
-    - ant
-    - gradle
-    - maven
-  tags:
-  - java
-  - build-tools
-  - clean-legacy
-
-- name: "install build tools"
-  apt:
-    name: "{{ packages }}"
-    state: "latest"
-  vars:
-    packages:
-    - "remake"
-  tags:
-  - "build-tools"
-  - "make"
+# #
+# # Install Meld
+# #
+# - name: install meld
+#   apt:
+#     name: "meld"
+#     state: "latest"
+#   tags:
+#     - git
+#     - meld
 
 
-#
-# File formating tools
-#
+# - name: "install linux tools for Subversion"
+#   apt:
+#     name: "{{ packages }}"
+#     state: "latest"
+#   vars:
+#     packages:
+#     - "subversion"
+#     - "libsvn-java"
+#   tags:
+#     - "subversion"
 
-- name: install file formating tools
-  apt:
-    name: "python3-demjson"
-    state: "latest"
+# #
+# # Build tools
+# #
 
-#
-# LDAP tools
-#
+# - name: clean legacy Java build tools
+#   apt:
+#     name: "{{ packages }}"
+#     state: absent
+#   vars:
+#     packages:
+#     - ant
+#     - gradle
+#     - maven
+#   tags:
+#   - java
+#   - build-tools
+#   - clean-legacy
 
-- name: "install linux tools for LDAP"
-  apt:
-    name: "{{ packages }}"
-    state: "latest"
-  vars:
-    packages:
-    - "ldap-utils"
-    - "ldapvi"
-  tags:
-    - "ldap"
+# - name: "install build tools"
+#   apt:
+#     name: "{{ packages }}"
+#     state: "latest"
+#   vars:
+#     packages:
+#     - "remake"
+#   tags:
+#   - "build-tools"
+#   - "make"
 
-#
-# Networking
-#
 
-- name: "add packages that are useful when developing networking software"
-  apt:
-    name: "{{ packages }}"
-    state: "latest"
-  vars:
-    packages:
-    - "wireshark"
-    - "nmapsi4"
-  tags:
-    - "networking"
+# #
+# # File formating tools
+# #
 
-#
-# Graphics
-#
+# - name: install file formating tools
+#   apt:
+#     name: "python3-demjson"
+#     state: "latest"
 
-- name: "add packages that are useful for designing UIs"
-  apt:
-    name: "{{ packages }}"
-    state: "latest"
-  vars:
-    packages:
-    - "gpick"
-    - "gimp"
-    - "inkscape"
-    - "screenruler"
-  tags:
-    - "graphics"
+# #
+# # LDAP tools
+# #
 
-#
-# Inform
-#
+# - name: "install linux tools for LDAP"
+#   apt:
+#     name: "{{ packages }}"
+#     state: "latest"
+#   vars:
+#     packages:
+#     - "ldap-utils"
+#     - "ldapvi"
+#   tags:
+#     - "ldap"
 
-- name: "add packages needed to develop IF games"
-  apt:
-    pkg:
-    - "inform"
-    - "inform-docs"
-    state: "latest"
-  vars:
-    packages:
-  when: ansible_distribution != "Debian"
-  tags:
-    - "interactive-fiction"
-    - "inform"
+# #
+# # Networking
+# #
 
-- name: "add stretch repositories needed for Inform7 dependencies"
-  apt_repository:
-    repo: "{{ item }}"
-    state: present
-    update_cache: yes
-  with_items:
-  - "deb http://deb.debian.org/debian stretch main"
-  - "deb-src http://deb.debian.org/debian stretch main"
-  when: ansible_distribution == "Debian"
-  tags:
-  - "interactive-fiction"
-  - "inform"
+# - name: "add packages that are useful when developing networking software"
+#   apt:
+#     name: "{{ packages }}"
+#     state: "latest"
+#   vars:
+#     packages:
+#     - "wireshark"
+#     - "nmapsi4"
+#   tags:
+#     - "networking"
 
-- name: "add old dependencies needed for Inform7"
-  apt:
-    pkg:
-    - libgoocanvas3
-    - libgtkspell0
-    - libjavascriptcoregtk-1.0-0
-    - libwebkitgtk-1.0-0
-    - libgtksourceview2.0-0
-    state: present
-  when: ansible_distribution == "Debian"
-  tags:
-  - "interactive-fiction"
-  - "inform"
+# #
+# # Graphics
+# #
 
-- name: "install Inform7"
-  apt:
-    deb: http://inform7.com/apps/6M62/gnome-inform7_6M62-1_amd64.deb
-    state: "present"
-  when: ansible_distribution == "Debian"
-  tags:
-    - "interactive-fiction"
-    - "inform"
+# - name: "add packages that are useful for designing UIs"
+#   apt:
+#     name: "{{ packages }}"
+#     state: "latest"
+#   vars:
+#     packages:
+#     - "gpick"
+#     - "gimp"
+#     - "inkscape"
+#     - "screenruler"
+#   tags:
+#     - "graphics"
 
-- name: "remove stretch repositories needed for Inform7 dependencies"
-  apt_repository:
-    repo: "{{ item }}"
-    state: absent
-    update_cache: yes
-  with_items:
-  - "deb http://deb.debian.org/debian stretch main"
-  - "deb-src http://deb.debian.org/debian stretch main"
-  when: ansible_distribution == "Debian"
-  tags:
-  - "interactive-fiction"
-  - "inform"
+# #
+# # Inform
+# #
 
-- name: "add packages needed to play IF games"
-  apt:
-    pkg:
-    - "frotz"
-    - "zoom-player"
-    state: "latest"
-  tags:
-    - "interactive-fiction"
+# - name: "add packages needed to develop IF games"
+#   apt:
+#     pkg:
+#     - "inform"
+#     - "inform-docs"
+#     state: "latest"
+#   vars:
+#     packages:
+#   when: ansible_distribution != "Debian"
+#   tags:
+#     - "interactive-fiction"
+#     - "inform"
 
-# RFC CLI browser
+# - name: "add stretch repositories needed for Inform7 dependencies"
+#   apt_repository:
+#     repo: "{{ item }}"
+#     state: present
+#     update_cache: yes
+#   with_items:
+#   - "deb http://deb.debian.org/debian stretch main"
+#   - "deb-src http://deb.debian.org/debian stretch main"
+#   when: ansible_distribution == "Debian"
+#   tags:
+#   - "interactive-fiction"
+#   - "inform"
 
-- name: "create the home directory for the RFC browser"
-  file:
-    name: "{{ rfc_home_directory }}"
-    state: "directory"
-  tags:
-  - rfc
+# - name: "add old dependencies needed for Inform7"
+#   apt:
+#     pkg:
+#     - libgoocanvas3
+#     - libgtkspell0
+#     - libjavascriptcoregtk-1.0-0
+#     - libwebkitgtk-1.0-0
+#     - libgtksourceview2.0-0
+#     state: present
+#   when: ansible_distribution == "Debian"
+#   tags:
+#   - "interactive-fiction"
+#   - "inform"
 
-- name: "install the RFC browser"
-  get_url:
-    url: "{{ rfc_url }}"
-    dest: "{{ rfc_home_directory }}"
-    mode: "755"
-  tags:
-  - rfc
+# - name: "install Inform7"
+#   apt:
+#     deb: http://inform7.com/apps/6M62/gnome-inform7_6M62-1_amd64.deb
+#     state: "present"
+#   when: ansible_distribution == "Debian"
+#   tags:
+#     - "interactive-fiction"
+#     - "inform"
 
-- name: "create a pretty symlink to the latest version of the RFC browser"
-  file:
-    src: "{{ rfc_home_directory }}"
-    dest: "{{ rfc_installation_directory }}/latest"
-    state: "link"
-  tags:
-  - "rfc"
+# - name: "remove stretch repositories needed for Inform7 dependencies"
+#   apt_repository:
+#     repo: "{{ item }}"
+#     state: absent
+#     update_cache: yes
+#   with_items:
+#   - "deb http://deb.debian.org/debian stretch main"
+#   - "deb-src http://deb.debian.org/debian stretch main"
+#   when: ansible_distribution == "Debian"
+#   tags:
+#   - "interactive-fiction"
+#   - "inform"
 
-- name: "create a symlink to the RFC browser executable"
-  file:
-    src: "{{ rfc_installation_directory }}/latest/{{ rfc_file }}"
-    dest: "/usr/bin/{{ rfc_file }}"
-    state: "link"
-  tags:
-  - "rfc"
+# - name: "add packages needed to play IF games"
+#   apt:
+#     pkg:
+#     - "frotz"
+#     - "zoom-player"
+#     state: "latest"
+#   tags:
+#     - "interactive-fiction"
 
-#
-# Test tools
-#
+# # RFC CLI browser
 
-- name: "install siege for HTTP load testing"
-  apt:
-    pkg:
-    - "siege"
-    state: "latest"
-  tags:
-  - "testing"
-  - "siege"
+# - name: "create the home directory for the RFC browser"
+#   file:
+#     name: "{{ rfc_home_directory }}"
+#     state: "directory"
+#   tags:
+#   - rfc
+
+# - name: "install the RFC browser"
+#   get_url:
+#     url: "{{ rfc_url }}"
+#     dest: "{{ rfc_home_directory }}"
+#     mode: "755"
+#   tags:
+#   - rfc
+
+# - name: "create a pretty symlink to the latest version of the RFC browser"
+#   file:
+#     src: "{{ rfc_home_directory }}"
+#     dest: "{{ rfc_installation_directory }}/latest"
+#     state: "link"
+#   tags:
+#   - "rfc"
+
+# - name: "create a symlink to the RFC browser executable"
+#   file:
+#     src: "{{ rfc_installation_directory }}/latest/{{ rfc_file }}"
+#     dest: "/usr/bin/{{ rfc_file }}"
+#     state: "link"
+#   tags:
+#   - "rfc"
+
+# #
+# # Test tools
+# #
+
+# - name: "install siege for HTTP load testing"
+#   apt:
+#     pkg:
+#     - "siege"
+#     state: "latest"
+#   tags:
+#   - "testing"
+#   - "siege"
