@@ -61,8 +61,8 @@
 #   roles:
   # - local
   # - asdf
-  # - go
-  # - codium
+  # - go ***** ASDF by project *****
+  # - codium ***** ASDF by project *****
   # - krew
   # - kubenav
   # - freemind

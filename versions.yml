@@ -55,6 +55,11 @@ op_cli_version: latest
 # tflint_version: latest
 # yq_version: latest
 
+#flatpak managed tool versions
+dbeaver: latest
+obsstudio: latest
+vscodium: latest
+
 #go manaaged tool versions
 delve_version: latest
 errcheck_version: latest

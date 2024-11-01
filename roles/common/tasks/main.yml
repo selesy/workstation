@@ -78,14 +78,14 @@
   tags:
   - dell
 
-- name: add the Dell repository
-  apt_repository: 
-    repo: "deb http://dell.archive.canonical.com/updates/ jammy-dell public"
-    state: "present"
-    mode: "644"
-  when: ansible_system_vendor == "Dell Inc."
-  tags:
-    - dell
+# - name: add the Dell repository
+#   apt_repository: 
+#     repo: "deb http://dell.archive.canonical.com/updates/ jammy-dell public"
+#     state: "present"
+#     mode: "644"
+#   when: ansible_system_vendor == "Dell Inc."
+#   tags:
+#     - dell
 
 # - name: add the Dell source repository
 #   apt_repository: 
@@ -96,14 +96,14 @@
 #   tags:
 #     - dell
 
-- name: add the Dell oem repository
-  apt_repository: 
-    repo: "deb http://dell.archive.canonical.com/updates/ jammy-oem public"
-    state: "present"
-    mode: "644"
-  when: ansible_system_vendor == "Dell Inc."
-  tags:
-    - dell
+# - name: add the Dell oem repository
+#   apt_repository: 
+#     repo: "deb http://dell.archive.canonical.com/updates/ jammy-oem public"
+#     state: "present"
+#     mode: "644"
+#   when: ansible_system_vendor == "Dell Inc."
+#   tags:
+#     - dell
 
 # - name: add the Dell oem source repository
 #   apt_repository: 
@@ -114,14 +114,14 @@
 #   tags:
 #     - dell
 
-- name: add the Dell somerville repository
-  apt_repository: 
-    repo: "deb http://dell.archive.canonical.com/updates/ jammy-somerville public"
-    state: "present"
-    mode: "644"
-  when: ansible_system_vendor == "Dell Inc."
-  tags:
-    - dell
+# - name: add the Dell somerville repository
+#   apt_repository: 
+#     repo: "deb http://dell.archive.canonical.com/updates/ noble-somerville public"
+#     state: "present"
+#     mode: "644"
+#   when: ansible_system_vendor == "Dell Inc."
+#   tags:
+#     - dell
 
 # - name: add the Dell somerville source repository
 #   apt_repository: 
@@ -132,14 +132,14 @@
 #   tags:
 #     - dell
 
-- name: add the Dell somerville-melisa repository
-  apt_repository: 
-    repo: "deb http://dell.archive.canonical.com/updates/ jammy-somerville-melisa public"
-    state: "present"
-    mode: "644"
-  when: ansible_system_vendor == "Dell Inc."
-  tags:
-    - dell
+# - name: add the Dell somerville-melisa repository
+#   apt_repository: 
+#     repo: "deb http://dell.archive.canonical.com/updates/ jammy-somerville-melisa public"
+#     state: "present"
+#     mode: "644"
+#   when: ansible_system_vendor == "Dell Inc."
+#   tags:
+#     - dell
 
 # - name: add the Dell somerville-melisa source repository
 #   apt_repository: 
@@ -165,17 +165,17 @@
   tags:
   - "biometrics"
 
-- name: install tools and libraries for biometrics on Dell
-  apt:
-    pkg:
-    - "oem-somerville-melisa-meta"
-    - "libfprint-2-tod1-goodix"
-    - "oem-somerville-meta"
-    - "tlp-config"
-  when: ansible_system_vendor == "Dell Inc."
-  tags:
-  - biometrics
-  - dell
+# - name: install tools and libraries for biometrics on Dell
+#   apt:
+#     pkg:
+#     # - "oem-somerville-melisa-meta"
+#     - "libfprint-2-tod1-goodix"
+#     - "oem-somerville-meta"
+#     - "tlp-config"
+#   when: ansible_system_vendor == "Dell Inc."
+#   tags:
+#   - biometrics
+#   - dell
 
 - name: install tools and libraries for bluetooth devices
   apt:
