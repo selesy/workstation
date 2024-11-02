@@ -1,25 +1,6 @@
 ---
 # File: roles/common/tasks/main.yml
 
-- name: "upgrade existing apt packages"
-  apt:
-    upgrade: "yes"
-    update_cache: "yes"
-    autoclean: "yes"
-    autoremove: "yes"
-    state: "latest"
-
-- name: "add the PIP package manager"
-  apt:
-    name: "{{ packages }}"
-    state: "latest"
-  vars:
-    packages:
-    - "python3-setuptools"
-    - "python3-pip"
-  tags:
-    - "python"
-
 - name: install basic Linux tools
   apt:
     pkg:

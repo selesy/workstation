@@ -1,0 +1,32 @@
+---
+
+- name: "upgrade existing apt packages"
+  apt:
+    upgrade: "yes"
+    update_cache: "yes"
+    autoclean: "yes"
+    autoremove: "yes"
+    state: "latest"
+
+- name: "add the PIP package manager"
+  apt:
+    pkg:
+    - "python3-setuptools"
+    - "python3-pip"
+  tags:
+    - "python"
+    - "packaging"
+
+- name: "add the flatpak package manager"
+  apt:
+    pkg:
+    - "flatpak"
+  tags:
+  - "flatpak"
+  - "packaging"
+
+- name: "upgrade existing flatpak applications"
+  command: "flatpak update --noninteractive"
+  tags:
+  - "flatpak"
+  - "packaging"
