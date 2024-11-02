@@ -25,8 +25,18 @@
   - "flatpak"
   - "packaging"
 
+- name: "add the flathub remote repository"
+  flatpak_remote:
+    name: "flathub"
+    flatpakrepo_url: "https://dl.flathub.org/repo/flathub.flatpakrepo"
+  tags:
+  - "flatpak"
+  - "packaging"
+
 - name: "upgrade existing flatpak applications"
   command: "flatpak update --noninteractive"
+  register: update_flatpak_apps_result
+  changed_when: "'Nothing to do.' not in update_flatpak_apps_result.stdout"
   tags:
   - "flatpak"
   - "packaging"
