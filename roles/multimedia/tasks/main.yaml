@@ -1,0 +1,11 @@
+---
+
+- name: "install OBS Studio and plugins via flatpak"
+  flatpak:
+    name: "{{ item }}"
+  with_items:
+  - "com.obsproject.Studio"
+  - "com.obsproject.Studio.Plugin.BackgroundRemoval"
+  tags:
+  - "obs-studio"
+  - "multimedia"
