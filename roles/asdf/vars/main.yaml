@@ -1,0 +1,14 @@
+---
+#
+
+tools:
+- { name: "1password-cli", version: "{{ op_cli_version }}"}
+- { name: "awscli", version: "{{ awscli_version }}"}
+- { name: "aws-vault", version: "{{ aws_vault_version }}"}
+- { name: "chezmoi", version: "{{ chezmoi_version }}"}
+- { name: "direnv", version: "{{ direnv_version }}"}
+- { name: "github-cli", version: "{{ github_cli_version }}"}
+- { name: "jq", version: "{{ jq_version }}"}
+- { name: "k9s", version: "{{ k9s_version }}"}
+- { name: "kubectl", version: "{{ kubectl_version }}"}
+- { name: "yq", version: "{{ yq_version }}"}

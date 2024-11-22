@@ -26,16 +26,17 @@
 #   tags:
 #   - asdf
 
-- name: install asdf and associated completions
-  blockinfile:
-    path: ~/.bashrc
-    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR asdf"
-    block: |
-      # enable asdf hook and completions
-      . ~/.asdf/asdf.sh
-      . ~/.asdf/completions/asdf.bash
-  tags:
-  - asdf
+# - name: install asdf and associated completions
+#   blockinfile:
+#     path: ~/.bashrc
+#     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR asdf"
+#     block: |
+#       # enable asdf hook and completions and add to path
+#       . ~/.asdf/asdf.sh
+#       . ~/.asdf/completions/asdf.bash
+#       export PATH=~/.asdf/bin:$PATH
+#   tags:
+#   - asdf
 
 # - name: add the up-to-date ansible asdf plugin
 #   shell: asdf plugin add ansible https://github.com/Bleacks/asdf-ansible-plugin.git
@@ -48,29 +49,29 @@
 #   - asdf
 #   - new-ansible
 
-- name: get asdf version
-  shell: asdf version
-  register: asdf_version_result
-  changed_when: false
-  failed_when: "asdf_version_result.rc > 0"
-  tags:
-  - asdf
+# - name: get asdf version
+#   shell: asdf version
+#   register: asdf_version_result
+#   changed_when: false
+#   failed_when: "asdf_version_result.rc > 0"
+#   tags:
+#   - asdf
 
-- set_fact:
-    asdf_version: "{{ asdf_version_result.stdout | ansible.builtin.split('-') }}"
-  changed_when: false
-  tags:
-  - asdf
+# - set_fact:
+#     asdf_version: "{{ asdf_version_result.stdout | ansible.builtin.split('-') }}"
+#   changed_when: false
+#   tags:
+#   - asdf
 
-- name: update installed asdf binary
-  shell: asdf update
-  register: asdf_update_result
-  changed_when:
-  - 'asdf_version[0] not in asdf_update_result.stderr'
-  - 'asdf_version[1] not in asdf_update_result.stderr'
-  failed_when: asdf_update_result.rc > 0
-  tags:
-  - asdf
+# - name: update installed asdf binary
+#   shell: asdf update
+#   register: asdf_update_result
+#   changed_when:
+#   - 'asdf_version[0] not in asdf_update_result.stderr'
+#   - 'asdf_version[1] not in asdf_update_result.stderr'
+#   failed_when: asdf_update_result.rc > 0
+#   tags:
+#   - asdf
 
 # Make sure we're using a GITHUB_TOKEN for authenticated GitHub acccess
 
@@ -80,7 +81,6 @@
     - lookup('env', 'GITHUB_TOKEN') | length > 0
   tags:
   - asdf
-
 
 - name: check that the GITHUB_TOKEN is authenticated
   shell: gh auth status | sed -n -e '/GITHUB_TOKEN/p'
@@ -93,7 +93,7 @@
 # TODO: figure out how to make this pretty by adding a newline
 
 - name: install tools via asdf
-  include_tasks: tools.yml
+  include_tasks: tools.yaml
   loop: "{{ tools }}"
   loop_control:
     loop_var: tool_item
@@ -110,23 +110,23 @@
   # TODO: add bash completion for minikube
   # TODO: add bash completion for terraform
 
-- name: hook direnv into the bash shell
-  blockinfile:
-    path: ~/.bashrc
-    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR direnv"
-    block: |
-      # hook direnv into the bash shell
-      eval "$(direnv hook bash)"
-  tags:
-  - asdf
+# - name: hook direnv into the bash shell
+#   blockinfile:
+#     path: ~/.bashrc
+#     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR direnv"
+#     block: |
+#       # hook direnv into the bash shell
+#       eval "$(direnv hook bash)"
+#   tags:
+#   - asdf
 
-- name: add Go programs to path
-  blockinfile:
-    path: ~/.bashrc
-    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR Go programs"
-    block: |
-      # add Go programs to path
-      export PATH=~/go/bin:$PATH
-  tags:
-  - asdf
+# - name: add Go programs to path
+#   blockinfile:
+#     path: ~/.bashrc
+#     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR Go programs"
+#     block: |
+#       # add Go programs to path
+#       export PATH=~/go/bin:$PATH
+#   tags:
+#   - asdf
 
