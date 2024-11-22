@@ -1,0 +1,5 @@
+---
+- import_playbook: "roles.yaml"
+  vars:
+    tasks_from_file: "main"
+

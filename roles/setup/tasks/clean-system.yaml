@@ -1,0 +1,15 @@
+---
+
+# Remove the privileged ansible user which was created by earlier versions
+# of workstation (before Ansible supported local execution).
+
+- name: "remove the ansible user's privileges (sudo)"
+  file:
+    path: "/etc/sudoers.d/ansible"
+    state: "absent"
+
+- name: "remove the ansible user's account"
+  user:
+    name: "ansible"
+    state: "absent"
+    remove: yes

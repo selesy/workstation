@@ -1,0 +1,66 @@
+---
+
+# Workstation set-up that's done system-wide (and requires root privileges)
+
+- hosts: "localhost"
+  connection: "local"
+  pre_tasks:
+    - name: "Fail if Ansible version is too old"
+      fail:
+        msg: "Workstation requires a minimum Ansible version of {{ ansible_minimum_version }}. Please update Ansible and run workstation.sh again."
+      when: "ansible_version.full is version(ansible_minimum_version, operator='lt', strict=True)"
+    - name: "abort execution on 32-bit environments"
+      fail:
+        msg: "These playbooks are now only available on 64-bit OSes"
+      when: 'ansible_architecture == "i386"'
+  become: yes
+  vars_files:
+    - "config.yaml"
+    - "versions.yaml"
+  tasks:
+    - import_role:
+        name: "setup"
+        tasks_from: "{{ tasks_from_file }}-system"
+    - import_role:
+        name: "common"
+        tasks_from: "{{ tasks_from_file }}"
+    - import_role:
+        name: "browser"
+        tasks_from: "{{ tasks_from_file }}"
+    - import_role:
+        name: "communication"
+        tasks_from: "{{ tasks_from_file }}"
+    - import_role:
+        name: "multimedia"
+        tasks_from: "{{ tasks_from_file }}"
+    - import_role:
+        name: "development"
+        tasks_from: "{{ tasks_from_file }}"
+    - import_role:
+        name: "containerization"
+        tasks_from: "{{ tasks_from_file }}"
+
+# Workstation set-up that's done as the current user
+
+- hosts: "localhost"
+  connection: "local"
+  pre_tasks:
+    - name: "Fail if Ansible version is too old"
+      fail:
+        msg: "Workstation requires a minimum Ansible version of {{ ansible_minimum_version }}. Please update Ansible and run workstation.sh again."
+      when: "ansible_version.full is version(ansible_minimum_version, operator='lt', strict=True)"
+    - name: "abort execution on 32-bit environments"
+      fail:
+        msg: "These playbooks are now only available on 64-bit OSes"
+      when: 'ansible_architecture == "i386"'
+  become: no
+  vars_files:
+    - "config.yaml"
+    - "versions.yaml"
+  tasks:
+    - import_role:
+        name: "setup"
+        tasks_from: "{{ tasks_from_file }}-user"
+    - import_role:
+        name: "asdf"
+        tasks_from: "{{ tasks_from_file }}"

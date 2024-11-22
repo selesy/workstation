@@ -1,5 +1,7 @@
 ---
 
+# apt - native Debian package manager
+
 - name: "upgrade existing apt packages"
   apt:
     upgrade: "yes"
@@ -7,15 +9,25 @@
     autoclean: "yes"
     autoremove: "yes"
     state: "latest"
+  tags:
+  - "packaging"
+  - "setup"
+
+# pip/pipx - install Python3 libraries and commands
 
 - name: "add the PIP package manager"
   apt:
     pkg:
     - "python3-setuptools"
     - "python3-pip"
+    - "python3-virtualenv"
+    - "pipx"
   tags:
     - "python"
     - "packaging"
+    - "setup"
+
+# flatpak - encapsulated applications with (optional) sandboxing
 
 - name: "add the flatpak package manager"
   apt:
@@ -24,6 +36,7 @@
   tags:
   - "flatpak"
   - "packaging"
+  - "setup"
 
 - name: "add the flathub remote repository"
   flatpak_remote:
@@ -32,11 +45,23 @@
   tags:
   - "flatpak"
   - "packaging"
+  - "setup"
 
 - name: "upgrade existing flatpak applications"
   command: "flatpak update --noninteractive"
-  register: update_flatpak_apps_result
+  register: "update_flatpak_apps_result"
   changed_when: "'Nothing to do.' not in update_flatpak_apps_result.stdout"
   tags:
   - "flatpak"
   - "packaging"
+  - "setup"
+
+# appimagelauncher - install daemon and desktop integration
+
+- name: "install appimagelauncher"
+  apt:
+    pkg: "appimagelauncher"
+  tags:
+  - "appimagelauncher"
+  - "packaging"
+  - "setup"
