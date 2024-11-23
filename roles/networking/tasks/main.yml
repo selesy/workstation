@@ -1,12 +1,54 @@
 ---
 
-- name: "install useful networking tools"
+- name: "install useful networking tools via apt"
   apt:
     pkg:
-    - net-tools
-    state: present
+    - "curl"
+    - "lynx"
+    - "net-tools"
+    - "sshfs"
+    - "tftp"
+    - "sshuttle"
+    - "traceroute"
+    - "whois"
+    state: "present"
   tags:
-  - networking
+  - "networking"
+
+# Install select browsers
+
+- name: "add the mozilla signing key"
+  apt_key:
+    url: "https://packages.mozilla.org/apt/repo-signing-key.gpg"
+    id: "35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3"
+    keyring: "{{ mozilla_apt_keyring }}"
+  tags:
+  - "mozilla"
+  - "browser"
+  - "networking"
+
+- name: "add the mozilla apt repository"
+  apt_repository: 
+    repo: "{{ item }}"
+  with_items:
+  - "deb [ signed-by={{ mozilla_apt_keyring }} ] https://packages.mozilla.org/apt mozilla main"
+  - "deb-src [ signed-by={{ mozilla_apt_keyring }} ] https://packages.mozilla.org/apt mozilla main"
+  tags:
+  - "mozilla"
+  - "browser"
+  - "networking"
+
+- name: "add browsers of choice"
+  apt:
+    pkg:
+    - "chromium"
+    - "firefox-devedition"
+    - "lynx"
+  tags:
+  - "browser"
+  - "networking"
+
+# Install VPN clients
 
 - name: "install OpenVPN client"
   apt:
