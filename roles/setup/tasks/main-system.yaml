@@ -65,3 +65,12 @@
   - "appimagelauncher"
   - "packaging"
   - "setup"
+
+# Install DBUS messaging for X11 applications
+
+- name: "install DBUS messaging"
+  apt:
+    pkg:
+    - "dbus-x11"
+  tags:
+  - "setup" 

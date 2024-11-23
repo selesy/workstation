@@ -25,7 +25,7 @@
         name: "common"
         tasks_from: "{{ tasks_from_file }}"
     - import_role:
-        name: "browser"
+        name: "networking"
         tasks_from: "{{ tasks_from_file }}"
     - import_role:
         name: "communication"
