@@ -4,49 +4,41 @@
 - name: install basic Linux tools
   apt:
     pkg:
-    - "asciinema"
-    - "asciidoc"
-    - "audacity"
-    - chromium
-    - "curl"
-    - "deborphan"
+    - "asciidoc" # Office
+    - "deborphan" # System
     - "fonts-opendyslexic"
-    - "gnupg2"
-    - "gparted"
-    # - "hopenpgp-tools"
-    - "lynx"
-    - "minicom"
+    - "gparted" # System
+    - "minicom" # System
+    - "screen"
+    - "secure-delete"
+    - "stacer"
+    - "tree"
+    - "wipe"
+    - "bash-completion"
+    - "byobu"
+    - "expect"
+    - "gdebi"
+    state: "latest"
+  tags:
+  - "common"
+
+- name: "install security tools"
+  apt:
+    pkg:
+    - "gnupg2" # Security
+    # - "hopenpgp-tools" # Security
     - "oathtool"
     - "parcimonie"
     - "pass"
     - "pass-extension-otp"
     - "qtpass"
     - "ssh-askpass-gnome"
-    - "recordmydesktop"
-    - "screen"
     - "seahorse"
-    - "secure-delete"
-    - "sshfs"
-    - "sshuttle"
-    - "stacer"
-    - "tftp"
-    - "traceroute"
-    - "tree"
-    - "vlc"
-    - "whois"
-    - "wipe"
-    state: "latest"
+  tags:
+  - "security"
+  - "common"
 
-- name: install basic Linux tools (Debian)
-  apt:
-    pkg:
-    - "bash-completion"
-    - "byobu"
-    - "expect"
-    - "gdebi"
-    - "libuvc0"
-    state: "latest"
-  when: ansible_distribution == "Debian"
+
 
 # Add support for Dell hardware - see: https://askubuntu.com/questions/1341912/goodix-fingerprint-driver-linux
 
@@ -188,39 +180,7 @@
     name: ntp
     state: latest
   
-# Remove f.lux (see https://justgetflux.com/linux.html) if installed
 
-- name: remove f.lux
-  apt:
-    name: fluxgui
-    state: absent
-  register: fluxgui_was_installed
-  tags:
-  - ergonomics
-
-- name: remove the f.lux repository
-  apt_repository:
-    repo: 'deb http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main'
-    state: absent
-  when: fluxgui_was_installed is changed
-  tags:
-  - ergonomics
-
-- name: remove the f.lux source repository
-  apt_repository:
-    repo: 'deb-src http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main'
-    state: absent
-  when: fluxgui_was_installed is changed
-  tags:
-  - ergonomics
-
-- name: remove the f.lux signing key
-  apt_key:
-    keyserver: keyserver.ubuntu.com id=428926204FE30238F00B98224CDB129629A4B41A
-    state: absent
-  when: fluxgui_was_installed is changed
-  tags:
-  - ergonomics
 
 # Install redshift (replaces flux)
 
@@ -254,10 +214,3 @@
   when: "tlp_installed is changed"
   tags:
   - "power-management"
-
-# install the AppImage-Launcher
-
-- name: "install the AppImage-Launcher"
-  apt:
-    deb: "{{ appimage_launcher_url }}"
-    state: present

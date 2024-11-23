@@ -1,5 +1,18 @@
 ---
 
+- name: "install multimedia tools via apt"
+  apt:
+    pkg:
+    - "asciinema"
+    - "audacity"
+    - "libuvc0"
+    - "guvcview"
+    - "recordmydesktop"
+    - "uvcdynctrl"
+    - "vlc"
+  tags:
+  - "multimedia"
+
 - name: "install OBS Studio and plugins via flatpak"
   flatpak:
     name: "{{ item }}"
