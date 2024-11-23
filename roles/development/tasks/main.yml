@@ -1,6 +1,15 @@
 ---
 # File: roles/development/tasks/main.yml
 
+- name: "install development tools via apt"
+  apt:
+    pkg:
+    - "ansible-lint"
+  tags:
+  - "development"
+
+# dbeaver
+
 - name: "add the dbeaver signing key"
   apt_key:
     url: "https://dbeaver.io/debs/dbeaver.gpg.key"
