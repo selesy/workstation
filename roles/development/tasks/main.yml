@@ -1,23 +1,5 @@
-# ---
-# # File: roles/development/tasks/main.yml
-
-# - name: "install flatpak remotes (repositories)"
-#   flatpak_remote:
-#     name: "{{ item.id }}"
-#     flatpakrepo_url: "{{ item.url }}"
-#   with_items: "{{ repos }}"
-#   tags:
-#   - "flatpak"
-#   - "development"
-
-# TODO: this should be a set-up step
-# - name: "install DBUS messaging"
-#   apt:
-#     pkg:
-#     - "dbus-x11"
-#   tags:
-#   - "flatpak"
-#   - "development"  
+---
+# File: roles/development/tasks/main.yml
 
 - name: "add the dbeaver signing key"
   apt_key:
