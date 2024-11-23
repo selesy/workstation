@@ -85,3 +85,13 @@
   - l2tp
   - vpn
   - networking
+
+# Apache Directory Studio
+
+- name: "Install Apache Directory Studio via flatpak"
+  community.general.flatpak:
+    name: "org.apache.directory.studio"
+  tags:
+    - "apache_directory_studio"
+    - "ldap"
+    - "networking"
