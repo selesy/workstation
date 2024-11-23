@@ -1,0 +1,10 @@
+---
+
+# Remove the kubectl installation created by earlier versions of
+# workstation (before kubectl was installed by asdf).
+
+- name: "remove Debian kubectl"
+  apt:
+    name: "kubectl"
+    state: "absent"
+    update_cache: "yes"
