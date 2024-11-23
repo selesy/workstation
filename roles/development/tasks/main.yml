@@ -105,6 +105,16 @@
     - "ide"
     - "development"
 
+# Install development tools via flatpak
+
+- name: "Install development tools via flatpak"
+  community.general.flatpak:
+    name: "rest.insomnia.Insomnia"
+  tags:
+    - "insomnia"
+    - "rest"
+    - "development"
+
 # #
 # # Editors
 # #
