@@ -13,5 +13,12 @@
       - "podman-docker"
       - "podman-toolbox"
   tags:
-    - "containerization"
     - "podman"
+    - "containerization"
+
+- name: "Install podman-desktop via flatpak"
+  community.general.flatpak:
+    name: "io.podman_desktop.PodmanDesktop"
+  tags:
+    - "podman"
+    - "containerization"
