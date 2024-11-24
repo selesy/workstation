@@ -38,7 +38,18 @@
   - "security"
   - "common"
 
-
+- name: "Install grephics tools"
+  ansible.builtin.apt:
+    pkg:
+      - "gpick"
+      - "gimp"
+      - "inkscape"
+      - "kruler"
+      - "screenruler"
+      - "xsane"
+  tags:
+    - "graphics"
+    - "common"
 
 # Add support for Dell hardware - see: https://askubuntu.com/questions/1341912/goodix-fingerprint-driver-linux
 

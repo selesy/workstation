@@ -390,19 +390,6 @@
 # # Graphics
 # #
 
-# - name: "add packages that are useful for designing UIs"
-#   apt:
-#     name: "{{ packages }}"
-#     state: "latest"
-#   vars:
-#     packages:
-#     - "gpick"
-#     - "gimp"
-#     - "inkscape"
-#     - "screenruler"
-#   tags:
-#     - "graphics"
-
 # #
 # # Inform
 # #
