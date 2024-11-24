@@ -5,14 +5,13 @@
 # Podman
 #
 
-- name: install podman and tools for container execution environment
-  apt:
+- name: "Install podman and tools for container execution environment"
+  ansible.builtin.apt:
     pkg:
-      - podman
-      - podman-compose
-      - podman-docker
-      - podman-toolbox
-    state: latest
+      - "podman"
+      - "podman-compose"
+      - "podman-docker"
+      - "podman-toolbox"
   tags:
-    - containerization
-    - podman
+    - "containerization"
+    - "podman"
