@@ -20,28 +20,6 @@ istio_url: "{{ istio_host }}/{{ istio_path }}/{{ istio_file }}"
 istio_installation_directory: "/opt/istio"
 istio_home_directory: "{{ istio_installation_directory }}/{{ istio_version }}"
 
-# https://github.com/boz/kail/releases/download/v0.7.0/kail_0.7.0_linux_amd64.tar.gz
-
-kail_host: "https://github.com"
-kail_path: "boz/kail/releases/download/v{{ kail_version }}"
-kail_file: "kail_{{ kail_version }}_linux_amd64.tar.gz"
-
-kail_url: "{{ kail_host }}/{{ kail_path }}/{{ kail_file }}"
-
-kail_installation_directory: "/opt/kail"
-kail_home_directory: "{{ kail_installation_directory }}/{{ kail_version }}"
-
-# https://github.com/stern/stern/releases/download/v1.13.1/stern_1.13.1_linux_amd64.tar.gz
-
-stern_host: "https://github.com"
-stern_path: "stern/stern/releases/download/v{{ stern_version }}"
-stern_file: "stern_{{ stern_version }}_linux_amd64"
-
-stern_url: "{{ stern_host }}/{{ stern_path }}/{{ stern_file }}.tar.gz"
-
-stern_installation_directory: "/opt/stern"
-stern_home_directory: "{{ stern_installation_directory }}/{{ stern_version }}"
-
 # https://github.com/GoogleContainerTools/skaffold/releases/download/v1.16.0/skaffold-linux-amd64
 
 skaffold_host: "https://github.com"
