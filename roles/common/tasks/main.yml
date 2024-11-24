@@ -5,10 +5,7 @@
   apt:
     pkg:
     - "asciidoc" # Office
-    - "deborphan" # System
     - "fonts-opendyslexic"
-    - "gparted" # System
-    - "minicom" # System
     - "screen"
     - "secure-delete"
     - "stacer"
@@ -21,6 +18,18 @@
     state: "latest"
   tags:
   - "common"
+
+- name: "Install common system tools"
+  ansible.builtin.apt:
+    pkg:
+      - "deborphan"
+      - "gparted"
+      - "minicom"
+      - "ncdu"
+  tags:
+    - "system"
+    - "common"
+
 
 - name: "install security tools"
   apt:
