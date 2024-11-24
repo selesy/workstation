@@ -60,10 +60,6 @@ burp_version: latest
 #dbeaver
 dbeaver_version: latest
 
-#Containerization
-istio_version: 1.14.3
-istio_checksum: "sha256:f5e2fbd1b15433fbf9597ee2818e837d221c45714a24f3aa392a46e0e1384eb4"
-
 #Eclipse
 eclipse_version: 2022-09
 eclipse_sr: R
