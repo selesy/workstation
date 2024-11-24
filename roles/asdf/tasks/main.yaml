@@ -1,132 +1,30 @@
 ---
 #
 
-# - name: install asdf
-#   git:
-#     repo: https://github.com/asdf-vm/asdf.git
-#     dest: ~/.asdf
-#     version: "{{ asdf_version }}"
-#     update: no
-#   tags:
-#   - asdf
-
-# - name: make bash version executable
-#   file:
-#     path: ~/.asdf/asdf.sh
-#     mode: 0500
-#   tags:
-#   - asdf
-
-# - name: symlink to the asdf bash executable
-#   file:
-#     src: ~/.asdf/asdf.sh
-#     dest: ~/bin/asdf
-#     mode: 0500
-#     state: link
-#   tags:
-#   - asdf
-
-# - name: install asdf and associated completions
-#   blockinfile:
-#     path: ~/.bashrc
-#     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR asdf"
-#     block: |
-#       # enable asdf hook and completions and add to path
-#       . ~/.asdf/asdf.sh
-#       . ~/.asdf/completions/asdf.bash
-#       export PATH=~/.asdf/bin:$PATH
-#   tags:
-#   - asdf
-
-# - name: add the up-to-date ansible asdf plugin
-#   shell: asdf plugin add ansible https://github.com/Bleacks/asdf-ansible-plugin.git
-#   environment:
-#     GITHUB_API_TOKEN: "{{ GITHUB_API_TOKEN }}"
-#   register: ansible_plugin_add_result
-#   changed_when: '"already added" not in ansible_plugin_add_result.stdout'
-#   failed_when: "ansible_plugin_add_result.rc == 1"
-#   tags:
-#   - asdf
-#   - new-ansible
-
-# - name: get asdf version
-#   shell: asdf version
-#   register: asdf_version_result
-#   changed_when: false
-#   failed_when: "asdf_version_result.rc > 0"
-#   tags:
-#   - asdf
-
-# - set_fact:
-#     asdf_version: "{{ asdf_version_result.stdout | ansible.builtin.split('-') }}"
-#   changed_when: false
-#   tags:
-#   - asdf
-
-# - name: update installed asdf binary
-#   shell: asdf update
-#   register: asdf_update_result
-#   changed_when:
-#   - 'asdf_version[0] not in asdf_update_result.stderr'
-#   - 'asdf_version[1] not in asdf_update_result.stderr'
-#   failed_when: asdf_update_result.rc > 0
-#   tags:
-#   - asdf
-
 # Make sure we're using a GITHUB_TOKEN for authenticated GitHub acccess
 
-- name: the GITHUB_TOKEN environment variable must be non-empty
-  assert:
+- name: The GITHUB_TOKEN environment variable must be non-empty
+  ansible.builtin.assert:
     that:
-    - lookup('env', 'GITHUB_TOKEN') | length > 0
+      - lookup('env', 'GITHUB_TOKEN') | length > 0
   tags:
-  - asdf
+    - asdf
 
-- name: check that the GITHUB_TOKEN is authenticated
-  shell: gh auth status | sed -n -e '/GITHUB_TOKEN/p'
+- name: Check that the GITHUB_TOKEN is authenticated
+  ansible.builtin.shell: |
+    set -o pipefail
+    gh auth status | sed -n -e '/GITHUB_TOKEN/p'
   register: github_auth_status_result
   changed_when: false
   failed_when: '"ailed to log in to github.com using token" in github_auth_status_result.stdout'
   tags:
-  - asdf
+    - asdf
 
-# TODO: figure out how to make this pretty by adding a newline
 
-- name: install tools via asdf
-  include_tasks: tools.yaml
+- name: Install tools via asdf
+  ansible.builtin.include_tasks: tools.yaml
   loop: "{{ tools }}"
   loop_control:
     loop_var: tool_item
   tags:
-  - asdf
-
-  # TODO: add bash completion for bazel (from install)
-  # TODO: add bash completion for go
-  # TODO: add bash completions for helm
-  # TODO: add bash completion for kind
-  # TODO: add bash completion for ko
-  # TODO: add bash completion for kubectx
-  # TODO: add bash completion for kubens
-  # TODO: add bash completion for minikube
-  # TODO: add bash completion for terraform
-
-# - name: hook direnv into the bash shell
-#   blockinfile:
-#     path: ~/.bashrc
-#     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR direnv"
-#     block: |
-#       # hook direnv into the bash shell
-#       eval "$(direnv hook bash)"
-#   tags:
-#   - asdf
-
-# - name: add Go programs to path
-#   blockinfile:
-#     path: ~/.bashrc
-#     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR Go programs"
-#     block: |
-#       # add Go programs to path
-#       export PATH=~/go/bin:$PATH
-#   tags:
-#   - asdf
-
+    - asdf
