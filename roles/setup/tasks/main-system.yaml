@@ -56,6 +56,14 @@
   - "packaging"
   - "setup"
 
+- name: "Install flatseal to manage flatpak sandbox permissions"
+  community.general.flatpak:
+    name: "com.github.tchx84.Flatseal"
+  tags:
+  - "flatpak"
+  - "packaging"
+  - "setup"
+
 # appimagelauncher - install daemon and desktop integration
 
 - name: "install appimagelauncher"
