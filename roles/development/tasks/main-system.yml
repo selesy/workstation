@@ -1,119 +1,24 @@
 ---
 # File: roles/development/tasks/main.yml
 
-- name: "install development tools via apt"
-  apt:
+- name: "Install development tools via apt"
+  ansible.builtin.apt:
     pkg:
-    - "ansible-lint"
+      - "ansible-lint"
   tags:
-  - "development"
-
-# dbeaver
-
-- name: "add the dbeaver signing key"
-  apt_key:
-    url: "https://dbeaver.io/debs/dbeaver.gpg.key"
-    id: "98F5A7CC1ABE72AC3852A007D33A1BD725ED047D"
-    keyring: "{{ dbeaver_apt_keyring }}"
-  tags:
-  - "dbeaver"
-  - "database"
-  - "development"
-
-- name: "add the dbeaver apt repository"
-  apt_repository: 
-    repo: "{{ item }}"
-  with_items:
-  - "deb [ signed-by={{ dbeaver_apt_keyring }} ] https://dbeaver.io/debs/dbeaver-ce /"
-  - "deb-src [ signed-by={{ dbeaver_apt_keyring }} ] https://dbeaver.io/debs/dbeaver-ce /"
-  tags:
-  - "dbeaver"
-  - "database"
-  - "development"
-
-- name: "install dbeaver apt"
-  apt:
-    pkg:
-    - "dbeaver-ce"
-  tags:
-    - "dbeaver"
-    - "database"
     - "development"
-    
-- name: "add the vscodium signing key"
-  apt_key:
-    url: "https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg"
-    id: "1302DE60231889FE1EBACADC54678CF75A278D9C"
-    keyring: "{{ vscodium_apt_keyring }}"
-  tags:
-  - "vscodium"
-  - "ide"
-  - "development"
-
-- name: "add the vscodium apt repository"
-  apt_repository:
-    repo: "{{ item }}"
-  with_items:
-    - "deb [ signed-by={{ vscodium_apt_keyring }} ] https://download.vscodium.com/debs vscodium main"
-    - "deb-src [ signed-by={{ vscodium_apt_keyring }} ] https://download.vscodium.com/debs vscodium main"
-  tags:
-    - "vscodium"
-    - "ide"
-    - "development"
-
-- name: "install vscodium"
-  apt:
-    pkg:
-    - "codium"
-  tags:
-    - "vscodium"
-    - "ide"
-    - "development"
-
-- name: install selected codium extensions
-  command:
-    cmd: "codium --install-extension {{ item }} --user-data-dir /usr/share/code --force"
-  with_items:
-  - asciidoctor.asciidoctor-vscode
-  - golang.go
-  - gruntfuggly.todo-tree
-  - hashicorp.terraform
-  - mkhl.direnv
-  - ms-azuretools.vscode-docker
-  - ms-kubernetes-tools.vscode-kubernetes-tools
-  - mtxr.sqltools
-  - mtxr.sqltools-driver-pg
-  - redhat.ansible
-  - vscodevim.vim
-  - vscjava.vscode-java-pack
-  - vscjava.vscode-maven
-  - zxh404.vscode-proto3
-  register: codium_extension
-  changed_when: "'already installed' not in codium_extension.stdout"
-  tags:
-    - "vscodium"
-    - "ide"
-    - "development"
-
-- name: "update installed codium extensions"
-  command:
-    cmd: "codium --update-extensions --user-data-dir /usr/share/code --force"
-  register: update_codium_extensions_result
-  changed_when: "update_codium_extensions_result.stdout != 'No extension to update'"
-  tags:
-    - "vscodium"
-    - "ide"
-    - "development"
-
-# Install development tools via flatpak
 
 - name: "Install development tools via flatpak"
   community.general.flatpak:
-    name: "rest.insomnia.Insomnia"
+    name: "{{ item }}"
+  with_items:
+    - "com.vscodium.codium"
+    - "rest.insomnia.Insomnia"
   tags:
     - "insomnia"
     - "rest"
     - "development"
+
 
 # #
 # # Editors

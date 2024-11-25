@@ -1,0 +1,37 @@
+---
+
+- name: install selected codium extensions
+  command:
+    # cmd: "codium --install-extension {{ item }} --user-data-dir /usr/share/code --force"
+    cmd: "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=codium --file-forwarding --session-bus com.vscodium.codium --install-extension {{ item }} --force"
+  with_items:
+  - asciidoctor.asciidoctor-vscode
+  - golang.go
+  - gruntfuggly.todo-tree
+  - hashicorp.terraform
+  - mkhl.direnv
+  - ms-azuretools.vscode-docker
+  - ms-kubernetes-tools.vscode-kubernetes-tools
+  # - mtxr.sqltools
+  # - mtxr.sqltools-driver-pg
+  - redhat.ansible
+  - vscodevim.vim
+  # - vscjava.vscode-java-pack
+  # - vscjava.vscode-maven
+  - zxh404.vscode-proto3
+  register: codium_extension
+  changed_when: "'already installed' not in codium_extension.stdout"
+  tags:
+    - "vscodium"
+    - "ide"
+    - "development"
+
+- name: "update installed codium extensions"
+  command:
+    cmd: "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=codium --file-forwarding --session-bus com.vscodium.codium --update-extensions --force"
+  register: update_codium_extensions_result
+  changed_when: "update_codium_extensions_result.stdout != 'No extension to update'"
+  tags:
+    - "vscodium"
+    - "ide"
+    - "development"

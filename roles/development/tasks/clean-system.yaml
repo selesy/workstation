@@ -1,0 +1,71 @@
+---
+
+# dbeaver
+
+- name: "Remove dbeaver apt"
+  ansible.builtin.apt:
+    pkg:
+      - "dbeaver-ce"
+    state: "absent"
+  tags:
+      - "dbeaver"
+      - "database"
+      - "development"
+
+- name: "Remove the dbeaver apt repository"
+  ansible.builtin.apt_repository: 
+    repo: "{{ item }}"
+    state: "absent"
+  with_items:
+    - "deb [ signed-by={{ dbeaver_apt_keyring }} ] https://dbeaver.io/debs/dbeaver-ce /"
+    - "deb-src [ signed-by={{ dbeaver_apt_keyring }} ] https://dbeaver.io/debs/dbeaver-ce /"
+  tags:
+    - "dbeaver"
+    - "database"
+    - "development"
+
+- name: "Remove the dbeaver signing key"
+  ansible.builtin.apt_key:
+    url: "https://dbeaver.io/debs/dbeaver.gpg.key"
+    id: "98F5A7CC1ABE72AC3852A007D33A1BD725ED047D"
+    keyring: "{{ dbeaver_apt_keyring }}"
+    state: "absent"
+  tags:
+    - "dbeaver"
+    - "database"
+    - "development"
+
+# Codium
+
+- name: "Remove vscodium"
+  ansible.builtin.apt:
+    pkg:
+      - "codium"
+    state: "absent"
+  tags:
+    - "vscodium"
+    - "ide"
+    - "development"
+
+- name: "Remove the vscodium apt repository"
+  ansible.builtin.apt_repository:
+    repo: "{{ item }}"
+    state: "absent"
+  with_items:
+    - "deb [ signed-by={{ vscodium_apt_keyring }} ] https://download.vscodium.com/debs vscodium main"
+    - "deb-src [ signed-by={{ vscodium_apt_keyring }} ] https://download.vscodium.com/debs vscodium main"
+  tags:
+    - "vscodium"
+    - "ide"
+    - "development"
+
+- name: "Remove the vscodium signing key"
+  ansible.builtin.apt_key:
+    url: "https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg"
+    id: "1302DE60231889FE1EBACADC54678CF75A278D9C"
+    keyring: "{{ vscodium_apt_keyring }}"
+    state: "absent"
+  tags:
+    - "vscodium"
+    - "ide"
+    - "development"
