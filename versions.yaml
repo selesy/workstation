@@ -28,6 +28,23 @@ kubectl_version: latest
 op_cli_version: latest
 yq_version: latest
 
+codium_extensions:
+  - asciidoctor.asciidoctor-vscode
+  - golang.go
+  - gruntfuggly.todo-tree
+  - hashicorp.terraform
+  - mkhl.direnv
+  - ms-azuretools.vscode-docker
+  - ms-kubernetes-tools.vscode-kubernetes-tools
+  - nguyenngoclong.asdf
+  # - mtxr.sqltools
+  # - mtxr.sqltools-driver-pg
+  - redhat.ansible
+  - vscodevim.vim
+  # - vscjava.vscode-java-pack
+  # - vscjava.vscode-maven
+  - zxh404.vscode-proto3
+
 #flatpak managed tool versions
 dbeaver: latest
 obsstudio: latest

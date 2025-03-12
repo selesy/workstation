@@ -4,21 +4,7 @@
   command:
     # cmd: "codium --install-extension {{ item }} --user-data-dir /usr/share/code --force"
     cmd: "/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=codium --file-forwarding --session-bus com.vscodium.codium --install-extension {{ item }} --force"
-  with_items:
-  - asciidoctor.asciidoctor-vscode
-  - golang.go
-  - gruntfuggly.todo-tree
-  - hashicorp.terraform
-  - mkhl.direnv
-  - ms-azuretools.vscode-docker
-  - ms-kubernetes-tools.vscode-kubernetes-tools
-  # - mtxr.sqltools
-  # - mtxr.sqltools-driver-pg
-  - redhat.ansible
-  - vscodevim.vim
-  # - vscjava.vscode-java-pack
-  # - vscjava.vscode-maven
-  - zxh404.vscode-proto3
+  with_items: "{{ codium_extensions }}"
   register: codium_extension
   changed_when: "'already installed' not in codium_extension.stdout"
   tags:
