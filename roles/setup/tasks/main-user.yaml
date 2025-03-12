@@ -15,11 +15,12 @@
   - "packaging"
   - "setup"
 
-- name: "update asdf to the latest version"
-  command: "~/.asdf/bin/asdf update"
-  register: "asdf_update_result"
-  changed_when: "'Previous HEAD position was' in asdf_update_result.stderr"
-  tags:
-  - "asdf"
-  - "packaging"
-  - "setup"
+# No longer supported
+# - name: "update asdf to the latest version"
+#   command: "~/.asdf/bin/asdf update"
+#   register: "asdf_update_result"
+#   changed_when: "'Previous HEAD position was' in asdf_update_result.stderr"
+#   tags:
+#   - "asdf"
+#   - "packaging"
+#   - "setup"
