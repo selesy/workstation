@@ -1,6 +1,22 @@
 ---
 # File: roles/common/tasks/main.yml
 
+- name: add kernel headers
+  apt:
+    pkg:
+      - "linux-headers-amd64"
+    state: "latest"
+  tags:
+    - "common"
+
+- name: "install (extra) DKMS modules"
+  apt:
+    pkg:
+      - "v4l2loopback-dkms"
+    state: "latest"
+  tags:
+    - "common"
+
 - name: install basic Linux tools
   apt:
     pkg:
