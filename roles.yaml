@@ -39,6 +39,9 @@
     - import_role:
         name: "containerization"
         tasks_from: "{{ tasks_from_file }}"
+    - import_role:
+        name: "security"
+        tasks_from: "{{ tasks_from_file }}"
 
 # Workstation set-up that's done as the current user
 
