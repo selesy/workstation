@@ -46,19 +46,29 @@
     - "system"
     - "common"
 
-
+# Some of these security tools are recommended due to their inclusion in
+# drduh's Yubikey Guide which is available at https://github.com/drduh/Yubikey-Guide
 - name: "install security tools"
   apt:
     pkg:
+    - "cryptsetup"
+    - "dirmngr"
     - "gnupg2" # Security
+    - "gnupg-agent"
     # - "hopenpgp-tools" # Security
     - "oathtool"
+    - "paperkey"
     - "parcimonie"
     - "pass"
     - "pass-extension-otp"
+    - "pcscd"
     - "qtpass"
-    - "ssh-askpass-gnome"
+    - "scdaemon"
     - "seahorse"
+    - "ssh-askpass-gnome"
+    - "wget"
+    - "yubikey-personalization"
+    - "yubikey-manager"
   tags:
   - "security"
   - "common"
@@ -250,3 +260,16 @@
   when: "tlp_installed is changed"
   tags:
   - "power-management"
+
+# Command-line tools
+
+- name: "command line tools"
+  apt:
+    name:
+      - "lynx"
+      - "mutt"
+      - "terminews"
+      - "transmission-cli"
+  tags:
+  - "command-line"
+  - "cli"
