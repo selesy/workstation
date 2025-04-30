@@ -1,0 +1,7 @@
+---
+
+- name: "install GPT4ALL via flatpak"
+  flatpak:
+    name: "io.gpt4all.gpt4all"
+  tags:
+  - "ai"
