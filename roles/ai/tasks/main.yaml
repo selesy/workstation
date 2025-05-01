@@ -1,6 +1,6 @@
 ---
 
-- name: "install GPT4ALL via flatpak"
+- name: "install GPT4All via flatpak"
   flatpak:
     name: "io.gpt4all.gpt4all"
   tags:
