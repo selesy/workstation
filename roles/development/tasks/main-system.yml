@@ -280,16 +280,17 @@
 # # Networking
 # #
 
-# - name: "add packages that are useful when developing networking software"
-#   apt:
-#     name: "{{ packages }}"
-#     state: "latest"
-#   vars:
-#     packages:
-#     - "wireshark"
-#     - "nmapsi4"
-#   tags:
-#     - "networking"
+- name: "add packages that are useful when developing networking software"
+  apt:
+    name: "{{ packages }}"
+    state: "latest"
+  vars:
+    packages:
+    - "wireshark"
+    - "nmap"
+    - "zenmap"
+  tags:
+    - "networking"
 
 # #
 # # Graphics
