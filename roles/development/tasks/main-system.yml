@@ -2,7 +2,7 @@
 # File: roles/development/tasks/main.yml
 
 - name: "Install development tools via apt"
-  ansible.builtin.apt:
+  apt:
     pkg:
       - "ansible-lint"
   tags:
@@ -15,6 +15,7 @@
     - "com.vscodium.codium"
     - "rest.insomnia.Insomnia"
   tags:
+    - "codium"
     - "insomnia"
     - "rest"
     - "development"
@@ -24,85 +25,21 @@
 # # Editors
 # #
 
-# - name: "add the full-featured versions of vim"
-#   apt:
-#     name: "{{ packages }}"
-#     state: "present"
-#   vars:
-#     packages:
-#     - "vim"
-#     - "vim-gtk"
-#   tags:
-#     - "editors"
-#     - "vim"
-
-# - name: add the typora signing key
-#   get_url:
-#     url: http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xba300b7755afcfae
-#     dest: /etc/apt/trusted.gpg.d/typora.asc
-#   tags:
-#     - editors
-#     - typora
-
-# - name: add the typora repository
-#   apt_repository: 
-#     repo: "deb https://typora.io/linux ./"
-#     state: "present"
-#     mode: "644"
-#   tags:
-#     - editors
-#     - typora
-
-# - name: install typora
-#   apt:
-#     pkg: "typora"
-#     state: "present"
-#   tags:
-#     - editors
-#     - typora
-    
-# #
-# # NodeJS
-# #
-
-# - name: remove the NodeJS signing key
-#   file:
-#     path: /etc/apt/trusted.gpg.d/nodesource.asc
-#     state: absent
-#   tags:
-#   - node
-
-# - name: add the NodeJS repositories
-#   apt_repository:
-#     repo: "{{ item }}"
-#     state: absent
-#   with_items:
-#     - deb https://deb.nodesource.com/{{ nodejs_legacy_repo }} focal main
-#     - deb-src https://deb.nodesource.com/{{ nodejs_legacy_repo }} focal main
-#   tags:
-#   - node
-    
-# - name: add NodeJS and NPM
-#   apt:
-#     pkg: 
-#     - nodejs
-#     state: absent
-#     purge: yes
-#   tags:
-#   - node
+- name: "add the full-featured versions of vim"
+  apt:
+    name: "{{ packages }}"
+    state: "present"
+  vars:
+    packages:
+    - "vim"
+    - "vim-gtk"
+  tags:
+    - "editors"
+    - "vim"
 
 # #
 # # Virtualization
 # #
-
-# - name: "install vagrant"
-#   apt:
-#     pkg:
-#     - "vagrant"
-#     state: "latest"
-#   tags:
-#   - vagrant
-#   - virtualization
 
 # - name: "install virtualbox (Ubuntu)"
 #   apt:
@@ -157,124 +94,19 @@
 #   - "virtualization"
 
 # #
-# # Source Code Management
-# #
-
-# - name: remove Github CLI repository key
-#   file:
-#     path: /etc/apt/trusted.gpg.d/github-cli.asc
-#     state: absent
-#   tags:
-#   - github
-#   - git
-#   - clean-legacy
-
-# - name: remmove the Github CLI repository
-#   apt_repository:
-#     repo: deb https://cli.github.com/packages focal main
-#     state: absent
-#   tags:
-#   - github
-#   - git
-#   - clean-legacy
-
-# - name: remove the legacy install of Github CLI
-#   apt:
-#     name: gh
-#     state: absent
-#   tags:
-#   - github
-#   - git
-#   - clean-legacy
-      
-# - name: install linux tools for git
-#   apt:
-#     name: "{{ packages }}"
-#     state: latest
-#   vars:
-#     packages:
-#     - git
-#     - git-doc
-#     - git-svn
-#   tags:
-#     - git
-
-# #
-# # Install Meld
-# #
-# - name: install meld
-#   apt:
-#     name: "meld"
-#     state: "latest"
-#   tags:
-#     - git
-#     - meld
-
-
-# - name: "install linux tools for Subversion"
-#   apt:
-#     name: "{{ packages }}"
-#     state: "latest"
-#   vars:
-#     packages:
-#     - "subversion"
-#     - "libsvn-java"
-#   tags:
-#     - "subversion"
-
-# #
-# # Build tools
-# #
-
-# - name: clean legacy Java build tools
-#   apt:
-#     name: "{{ packages }}"
-#     state: absent
-#   vars:
-#     packages:
-#     - ant
-#     - gradle
-#     - maven
-#   tags:
-#   - java
-#   - build-tools
-#   - clean-legacy
-
-# - name: "install build tools"
-#   apt:
-#     name: "{{ packages }}"
-#     state: "latest"
-#   vars:
-#     packages:
-#     - "remake"
-#   tags:
-#   - "build-tools"
-#   - "make"
-
-
-# #
-# # File formating tools
-# #
-
-# - name: install file formating tools
-#   apt:
-#     name: "python3-demjson"
-#     state: "latest"
-
-# #
 # # LDAP tools
 # #
 
-# - name: "install linux tools for LDAP"
-#   apt:
-#     name: "{{ packages }}"
-#     state: "latest"
-#   vars:
-#     packages:
-#     - "ldap-utils"
-#     - "ldapvi"
-#   tags:
-#     - "ldap"
+- name: "install linux tools for LDAP"
+  apt:
+    name: "{{ packages }}"
+    state: "latest"
+  vars:
+    packages:
+    - "ldap-utils"
+    - "ldapvi"
+  tags:
+    - "ldap"
 
 # #
 # # Networking
@@ -288,7 +120,7 @@
     packages:
     - "wireshark"
     - "nmap"
-    - "zenmap"
+    - "nmapi4"
   tags:
     - "networking"
 
