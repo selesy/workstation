@@ -28,23 +28,38 @@ kubectl_version: latest
 op_cli_version: latest
 yq_version: latest
 
+# These are shown in the order in which they appear in the Codium extensions
+# sidebar.  There doesn't appear to be a reason for this order.
 codium_extensions:
+  - redhat.ansible
   - asciidoctor.asciidoctor-vscode
-  - golang.go
-  - gruntfuggly.todo-tree
-  - opentofu.vscode-opentofu
-
+  - nguyenngoclong.asdf
+  - matthewpi.caddyfile-support
+  - saoudrizwan.claude-dev
+  - ms-azuretools.vscode-containers
   - mkhl.direnv
   - ms-azuretools.vscode-docker
+  - google.geminicodeassist
+  - github.vscode-github-actions
+  - golang.go
   - ms-kubernetes-tools.vscode-kubernetes-tools
-  - nguyenngoclong.asdf
+  - MermaidChart.vscode-mermaid-chart
+  - opentofu.vscode-opentofu
+  - johnpapa.vscode-peacock
+  - dreamcatcher45.podmanager
+  - ms-python.python
+  - ms-python.debugpy
+  - Gruntfuggly.todo-tree
+  - zxh404.vscode-proto3
+  - redhat.vscode-yaml
+  - amazonwebservices.amazon-q-vscode
+  - Privy.privy-vscode
+  - vscodevim.vim
+
   # - mtxr.sqltools
   # - mtxr.sqltools-driver-pg
-  - redhat.ansible
-  - vscodevim.vim
   # - vscjava.vscode-java-pack
   # - vscjava.vscode-maven
-  - zxh404.vscode-proto3
 
 #flatpak managed tool versions
 dbeaver: latest
