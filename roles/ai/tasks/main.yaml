@@ -5,6 +5,10 @@
 #    https://github.com/ollama/ollama/blob/main/docs/linux.md
 # And the command that's recommended is:
 #    curl -fsSL https://ollama.com/install.sh | sh
+# Or:
+#    curl -LO https://ollama.com/download/ollama-linux-amd64.tgz
+#    sudo rm -rf /usr/lib/ollama
+#    sudo tar -C /usr -xzf ollama-linux-amd64.tgz
 
 - name: "install Alpaca (and managed Ollama) via flathub"
   flatpak:
