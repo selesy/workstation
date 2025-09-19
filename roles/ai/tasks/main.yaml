@@ -1,7 +1,16 @@
 ---
 
-- name: "install GPT4All via flatpak"
+# Ollama should probably be installed on the host instead of running within
+# FlatPak as a sub-servrice of Alpaca.  See the instructions at
+#    https://github.com/ollama/ollama/blob/main/docs/linux.md
+# And the command that's recommended is:
+#    curl -fsSL https://ollama.com/install.sh | sh
+
+- name: "install Alpaca (and managed Ollama) via flathub"
   flatpak:
-    name: "io.gpt4all.gpt4all"
+    name: "{{ item }}"
+  with_items:
+    - "com.jeffser.Alpaca"
+    - "com.jeffser.Alpaca.Plugins.Ollama"
   tags:
   - "ai"
