@@ -83,6 +83,7 @@
   systemd:
     name: ollama
     state: started
+    daemon_reload: yes
   when: ollama_service_daemon_result.changed
   tags:
     - "ollama"
@@ -91,7 +92,7 @@
 - name: "restart the ollama service if a new version was installed"
   systemd:
     name: ollama
-    state: started
+    state: restarted
   when: ollama_latest_version_result.json.tag_name  !=  ollama_installed_version_result
   tags:
     - "ollama"
