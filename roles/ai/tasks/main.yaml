@@ -3,6 +3,22 @@
 # Install Ollama as a systemd service per the instructions at:
 #    https://github.com/ollama/ollama/blob/main/docs/linux.md
 
+- name: "create ollama user"
+  user:
+    name: ollama
+    state: present
+  tags:
+    - "ollama"
+    - "ai"
+
+- name: "create ollama group"
+  group:
+    name: ollama
+    state: present
+  tags:
+    - "ollama"
+    - "ai"
+
 - name: "get latest ollama version number"
   uri:
     url: https://api.github.com/repos/ollama/ollama/releases/latest
