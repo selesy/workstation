@@ -18,13 +18,14 @@
   command: ollama --version
   register: ollama_installed_version_result
   changed_when: false
+  failed_when: false
   tags:
     - "ollama"
     - "ai"
 
 - name: "trim installed ollama version number"
   set_fact:
-    ollama_installed_version_result: "v{{ ollama_installed_version_result.stdout | trim | split(' ') | last }}"
+    ollama_installed_version_result: "{{ ('command not found' in ollama_installed_version_result.msg | default('')) | ternary('', 'v' + (ollama_installed_version_result.stdout | trim | split(' ') | last)) }}"
   changed_when: false
   tags:
     - "ollama"
