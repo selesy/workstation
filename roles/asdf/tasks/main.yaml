@@ -20,7 +20,6 @@
   tags:
     - asdf
 
-
 - name: Install tools via asdf
   ansible.builtin.include_tasks: tools.yaml
   loop: "{{ tools }}"
