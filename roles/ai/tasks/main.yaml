@@ -1,15 +1,87 @@
 ---
 
-# Ollama should probably be installed on the host instead of running within
-# FlatPak as a sub-servrice of Alpaca.  See the instructions at
+# Install Ollama as a systemd service per the instructions at:
 #    https://github.com/ollama/ollama/blob/main/docs/linux.md
-# And the command that's recommended is:
-#    curl -fsSL https://ollama.com/install.sh | sh
-# Or:
-#    curl -LO https://ollama.com/download/ollama-linux-amd64.tgz
-#    sudo rm -rf /usr/lib/ollama
-#    sudo tar -C /usr -xzf ollama-linux-amd64.tgz
 
+- name: "get latest ollama version number"
+  uri:
+    url: https://api.github.com/repos/ollama/ollama/releases/latest
+    headers:
+      Accept: application/vnd.github+json
+      Authorization: Bearer {{ lookup('env','GITHUB_TOKEN') }}
+  register: ollama_latest_version_result
+  tags:
+    - "ollama"
+    - "ai"
+
+- name: "get installed ollama version number"
+  command: ollama --version
+  register: ollama_installed_version_result
+  changed_when: false
+  tags:
+    - "ollama"
+    - "ai"
+
+- name: "trim installed ollama version number"
+  set_fact:
+    ollama_installed_version_result: "v{{ ollama_installed_version_result.stdout | trim | split(' ') | last }}"
+  changed_when: false
+  tags:
+    - "ollama"
+    - "ai"
+
+
+- name: "remove previous installation's library files"
+  file: 
+    path: "/usr/local/lib/ollama"
+    state: absent
+  when: ollama_latest_version_result.json.tag_name  !=  ollama_installed_version_result
+  tags:
+    - "ollama"
+    - "ai"
+
+- name: "download and unarchive new Ollama installation"
+  unarchive:
+    src: "{{ ollama_archive_url }}"
+    remote_src: yes
+    dest: "/usr/local"
+    owner: "ollama"
+    group: "ollama"
+  when: ollama_latest_version_result.json.tag_name  !=  ollama_installed_version_result
+  tags:
+    - "ollama"
+    - "ai"
+
+- name: "copy the ollama daemon service description"
+  copy:
+    src: ../files/ollama.service
+    dest: /etc/systemd/system
+    mode: a+x
+  register: ollama_service_daemon_result
+  tags:
+    - "ollama"
+    - "ai"
+  
+- name: "start the ollama service if the service description was installed"
+  systemd:
+    name: ollama
+    state: started
+  when: ollama_service_daemon_result.changed
+  tags:
+    - "ollama"
+    - "ai"
+
+- name: "restart the ollama service if a new version was installed"
+  systemd:
+    name: ollama
+    state: started
+  when: ollama_latest_version_result.json.tag_name  !=  ollama_installed_version_result
+  tags:
+    - "ollama"
+    - "ai"
+
+# Should the Alpaca-managed Ollama be removed in favor of the full install
+# above?
 - name: "install Alpaca (and managed Ollama) via flathub"
   flatpak:
     name: "{{ item }}"
@@ -17,4 +89,5 @@
     - "com.jeffser.Alpaca"
     - "com.jeffser.Alpaca.Plugins.Ollama"
   tags:
-  - "ai"
+    - "alpaca"
+    - "ai"
