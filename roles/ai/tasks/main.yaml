@@ -3,17 +3,18 @@
 # Install Ollama as a systemd service per the instructions at:
 #    https://github.com/ollama/ollama/blob/main/docs/linux.md
 
-- name: "create ollama user"
-  user:
+- name: "create ollama group"
+  group:
     name: ollama
     state: present
   tags:
     - "ollama"
     - "ai"
 
-- name: "create ollama group"
-  group:
+- name: "create ollama user"
+  user:
     name: ollama
+    group: ollama
     state: present
   tags:
     - "ollama"
@@ -82,9 +83,9 @@
 - name: "start the ollama service if the service description was installed"
   systemd:
     name: ollama
+    enabled: yes
     state: started
     daemon_reload: yes
-  when: ollama_service_daemon_result.changed
   tags:
     - "ollama"
     - "ai"
