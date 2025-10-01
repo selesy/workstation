@@ -104,7 +104,7 @@ nodejs_legacy_version: 16.x
 nodejs_legacy_repo: node_{{ nodejs_version }}
 
 #Pencil
-pencil_version: 3.1.0.ga
+pencil_version: 3.1.1.ga
 
 #Postman
 postman_version: 9.25.2

@@ -7,7 +7,7 @@
 
 pencil_host: https://pencil.evolus.vn
 pencil_path: dl/V{{ pencil_version }}
-pencil_file: pencil_{{ pencil_version }}_amd64.deb
+pencil_file: Pencil_{{ pencil_version }}_amd64.deb
 
 pencil_url: "{{ pencil_host }}/{{ pencil_path }}/{{ pencil_file }}"
 
