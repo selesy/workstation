@@ -110,3 +110,40 @@
   tags:
     - "alpaca"
     - "ai"
+
+# Install the Crush AI assistant via the Debian package manager per the
+# instructions found at: https://deepwiki.com/charmbracelet/crush/2.1-installation-and-setup#debianubuntu
+
+- name: "add the Charm signing key"
+  ansible.builtin.get_url:
+    url: "{{ crush_apt_key_url }}"
+    dest: "{{ crush_apt_key_tmp_file }}"
+  tags:
+  - "crush"
+  - "ai"
+
+- name: add Charm signing key to keyring
+  ansible.builtin.apt_key:
+    id: "{{ crush_apt_key_id }}"
+    file: "{{ crush_apt_key_tmp_file }}"
+    state: present
+  tags:
+  - "crush"
+  - "ai"
+
+- name: add Charm apt repository into sources list
+  ansible.builtin.apt_repository:
+    repo: "{{ crush_apt_repo }}"
+    state: present
+    filename: "{{ crush_apt_repo_src_file }}"
+  tags:
+  - "crush"
+  - "ai"
+
+- name: add crush
+  ansible.builtin.apt:
+    pkg: crush
+    state: present
+  tags:
+  - "crush"
+  - "ai"
