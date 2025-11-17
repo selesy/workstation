@@ -19,12 +19,13 @@ asdf_version: v0.14.1
 awscli_version: latest
 aws_vault_version: latest
 azure_cli_version: latest
-chezmoi_version: latest
+chezmoi_version: 2.66.1 # TODO: No release for tag v2.66.2 yet
 direnv_version: latest
 github_cli_version: latest
 jq_version: latest
 k9s_version: latest
 kubectl_version: latest
+neovim_version: latest
 op_cli_version: latest
 yq_version: latest
 
