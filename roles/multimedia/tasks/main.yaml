@@ -19,6 +19,7 @@
   with_items:
   - "com.obsproject.Studio"
   - "com.obsproject.Studio.Plugin.BackgroundRemoval"
+  - "io.github.Soundux"
   tags:
   - "obs-studio"
   - "multimedia"
