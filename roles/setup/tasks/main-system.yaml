@@ -27,6 +27,15 @@
     - "packaging"
     - "setup"
 
+- name: "install github3.py in system venv"
+  ansible.builtin.pip:
+    name: "github3.py"
+    break_system_packages: true
+  tags:
+    - "python"
+    - "packaging"
+    - "setup"
+
 # flatpak - encapsulated applications with (optional) sandboxing
 
 - name: "add the flatpak package manager"
@@ -81,4 +90,47 @@
     pkg:
     - "dbus-x11"
   tags:
-  - "setup" 
+  - "setup"
+
+# NodeJS and NPM from NodeSource
+
+# - name: "add the NodeDource signing key"
+#   ansible.builtin.get_url:
+#     url: "{{ nodesource_apt_key_url }}"
+#     dest: "{{ nodesource_apt_key_tmp_file }}"
+#   tags:
+#   - "node"
+#   - "setup"
+
+# - name: add NodeDource signing key to keyring
+#   ansible.builtin.apt_key:
+#     id: "{{ nodesource_apt_key_id }}"
+#     file: "{{ nodesource_apt_key_tmp_file }}"
+#     state: present
+#   tags:
+#   - "node"
+#   - "setup"
+
+# - name: add NodeSource apt repository into sources list
+#   ansible.builtin.apt_repository:
+#     repo: "{{ nodesource_apt_repo }}"
+#     state: present
+#     filename: "{{ nodesource_apt_repo_src_file }}"
+#   tags:
+#   - "node"
+#   - "setup"
+
+# - name: add nodejs and npm
+#   ansible.builtin.apt:
+#     pkg:
+#     - nodejs
+#     - npm
+#     state: present
+#   tags:
+#   - "node"
+#   - "setup"
+
+      # Nodejs Config
+    # echo "Package: nodejs" | tee /etc/apt/preferences.d/nodejs > /dev/null
+    # echo "Pin: origin deb.nodesource.com" | tee -a /etc/apt/preferences.d/nodejs > /dev/null
+    # echo "Pin-Priority: 600" | tee -a /etc/apt/preferences.d/nodejs > /dev/null
