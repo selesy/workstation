@@ -2,25 +2,38 @@
 
 # asdf - the multiple runtime version manager
 
-- name: "install asdf"
-  git:
-    repo: "https://github.com/asdf-vm/asdf.git"
-    dest: "~/.asdf"
-    # version: "{{ asdf_version }}"
-    version: "v0.12.0"
-    update: no
-  register: "install_asdf_result"
+- name: "get latest asdf release information"
+  community.general.github_release:
+    user: "asdf-vm"
+    repo: "asdf"
+    action: "latest_release"
+  register: "release_asdf_result"
+  tags:
+  - "asdf"
+  - "packaging"
+  - "setup"
+  
+- ansible.builtin.debug:
+    msg: "{{ release_asdf_result.tag }}"
   tags:
   - "asdf"
   - "packaging"
   - "setup"
 
-# No longer supported
-# - name: "update asdf to the latest version"
-#   command: "~/.asdf/bin/asdf update"
-#   register: "asdf_update_result"
-#   changed_when: "'Previous HEAD position was' in asdf_update_result.stderr"
-#   tags:
-#   - "asdf"
-#   - "packaging"
-#   - "setup"
+- name: "save asdf version"
+  ansible.builtin.set_fact:
+    asdf_version: "{{ release_asdf_result.tag }}"
+  tags:
+  - "asdf"
+  - "packaging"
+  - "setup"
+
+- name: "unarchive latest release file"
+  ansible.builtin.unarchive:
+    src: https://github.com/asdf-vm/asdf/releases/download/v0.18.1/asdf-v0.18.1-linux-amd64.tar.gz
+    dest: "~/bin"
+    remote_src: yes
+  tags:
+  - "asdf"
+  - "packaging"
+  - "setup"
