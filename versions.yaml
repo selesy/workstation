@@ -3,7 +3,7 @@
 # https://dl.pstmn.io/download/version/5.0.0/linux64
 
 #Ansible
-ansible_minimum_version: 2.10.17
+ansible_minimum_version: 2.17
 
 #Apache Studio
 studio_version: 2.0.0
@@ -19,7 +19,7 @@ asdf_version: v0.14.1
 awscli_version: latest
 aws_vault_version: latest
 azure_cli_version: latest
-chezmoi_version: 2.66.1 # TODO: No release for tag v2.66.2 yet
+chezmoi_version: latest
 direnv_version: latest
 github_cli_version: latest
 jq_version: latest
@@ -56,6 +56,7 @@ codium_extensions:
   - amazonwebservices.amazon-q-vscode
   - Privy.privy-vscode
   - vscodevim.vim
+  - graphql.vscode-graphql
 
   # - mtxr.sqltools
   # - mtxr.sqltools-driver-pg
