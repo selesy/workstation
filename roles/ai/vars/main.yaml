@@ -1,6 +1,7 @@
 ---
 
-ollama_archive_url: https://ollama.com/download/ollama-linux-amd64.tgz
+# ollama_archive_url: https://ollama.com/download/ollama-linux-amd64.tgz
+ollama_archive_url: https://ollama.com/download/ollama-linux-amd64.tar.zst
 
 crush_apt_key_url: https://repo.charm.sh/apt/gpg.key
 crush_apt_key_tmp_file: /tmp/crush_apt.key
