@@ -8,7 +8,7 @@
   register: plugin_add_result
   changed_when: 
   - plugin_add_result.rc == 0
-  - '"already added" not in plugin_add_result.stdout'
+  - '"already added" not in plugin_add_result.stderr'
   failed_when: "plugin_add_result.rc == 1"
   tags:
   - asdf
@@ -18,19 +18,20 @@
   environment:
     GITHUB_API_TOKEN: "{{ GITHUB_API_TOKEN }}"
   register: tool_version_installed_result
-  changed_when: "'already installed' not in tool_version_installed_result.stdout"
+  changed_when: "'already installed' not in tool_version_installed_result.stderr"
+  failed_when: "tool_version_installed_result.rc == 1"
   tags:
   - asdf
 
 - name: get the current global version for {{ tool_item.name }}
-  shell: asdf list {{ tool_item.name }} | grep '*' | cut -f 2 -d '*'
+  shell: asdf list {{ tool_item.name }} | grep '^ \*' | cut -f 2 -d '*'
   register: current_tool_version_result
   changed_when: false
   tags:
   - asdf
 
 - name: get the latest available version for {{ tool_item.name }}
-  shell: asdf list all {{ tool_item.name }} | tail -n 1
+  shell: asdf list all {{ tool_item.name }} | grep '^[0-9]\+\.[0-9]\+\.[0-9]\+$' | tail -n 1
   register: latest_tool_version_result
   changed_when: false
   failed_when: latest_tool_version_result == ""
@@ -38,7 +39,7 @@
   - asdf
 
 - name: set the {{ tool_item.name }} global version to {{ tool_item.version }}
-  shell: asdf global {{ tool_item.name }} {{ tool_item.version }}
+  shell: asdf set --home {{ tool_item.name }} {{ tool_item.version }}
   environment:
     GITHUB_API_TOKEN: "{{ GITHUB_API_TOKEN }}"
   register: plugin_global_version_set_result
