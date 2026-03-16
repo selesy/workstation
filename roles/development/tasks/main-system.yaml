@@ -40,57 +40,45 @@
 # # Virtualization
 # #
 
-# - name: "install virtualbox (Ubuntu)"
-#   apt:
-#     pkg:
-#     - "virtualbox"
-#     - "virtualbox-qt"
-#     state: "latest"
-#   when: ansible_distribution == "Ubuntu"
-#   tags:
-#   - "virtualbox"
-#   - "virtualization"
+- name: "install fasttrack repo key (Debian)"
+  apt:
+    pkg:
+    - "fasttrack-archive-keyring"
+    state: "present"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "virtualbox"
+  - "virtualization"
 
-# - name: "install fasttrack repo key (Debian)"
-#   apt:
-#     pkg:
-#     - "fasttrack-archive-keyring"
-#     state: "present"
-#   when: ansible_distribution == "Debian"
-#   tags:
-#   - "virtualbox"
-#   - "virtualization"
+- name: "install fastrack repo (Debian)"
+  apt_repository:
+    repo: "deb https://fasttrack.debian.net/debian-fasttrack/ {{ ansible_distribution_release }}-fasttrack main contrib"
+    state: "present"
+    update_cache: "yes"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "virtualbox"
+  - "virtualization"
 
-# - name: "install fastrack repo (Debian)"
-#   apt_repository:
-#     repo: "deb https://fasttrack.debian.net/debian-fasttrack/ {{ ansible_distribution_release }}-fasttrack main contrib"
-#     state: "present"
-#     update_cache: "yes"
-#   when: ansible_distribution == "Debian"
-#   tags:
-#   - "virtualbox"
-#   - "virtualization"
+- name: "install staging repo (Debian)"
+  apt_repository:
+    repo: "deb https://fasttrack.debian.net/debian-fasttrack/ {{ ansible_distribution_release }}-backports-staging main contrib"
+    state: "present"
+    update_cache: "yes"
+  when: ansible_distribution == "Debian"
+  tags:
+  - "virtualbox"
+  - "virtualization"
 
-# - name: "install staging repo (Debian)"
-#   apt_repository:
-#     repo: "deb https://fasttrack.debian.net/debian-fasttrack/ {{ ansible_distribution_release }}-backports-staging main contrib"
-#     state: "present"
-#     update_cache: "yes"
-#   when: ansible_distribution == "Debian"
-#   tags:
-#   - "virtualbox"
-#   - "virtualization"
-
-# - name: "install virtualbox (Debian)"
-#   apt:
-#     pkg:
-#     - "virtualbox"
-#     - "virtualbox-qt"
-#     state: "present"
-#   when: ansible_distribution == "Debian"
-#   tags:
-#   - "virtualbox"
-#   - "virtualization"
+- name: "install virtualbox (Debian or Ubuntu)"
+  apt:
+    pkg:
+    - "virtualbox"
+    - "virtualbox-qt"
+    state: "present"
+  tags:
+  - "virtualbox"
+  - "virtualization"
 
 # #
 # # LDAP tools
