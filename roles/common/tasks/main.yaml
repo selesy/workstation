@@ -181,6 +181,25 @@
     - "bio-drv-api-0.10"
     - "biometric-utils"
     - "libpam-fprintd"
+  when:
+    - ansible_distribution == "Debian"
+    - ansible_distribution_major_version == "12"
+  tags:
+  - "biometrics"
+
+- name: install tools and libraries for biometrics
+  apt:
+    pkg:
+    - "libbiometric0"
+    - "libc6"
+    - "libfprint-2-2"
+    - "libglib2.0-0t64"
+    - "bio-drv-api-0.10"
+    - "biometric-utils"
+    - "libpam-fprintd"
+  when:
+    - ansible_distribution == "Debian"
+    - ansible_distribution_major_version == "13"
   tags:
   - "biometrics"
 
