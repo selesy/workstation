@@ -17,22 +17,15 @@
 
 # Install select browsers
 
-- name: "add the mozilla signing key"
-  apt_key:
-    url: "https://packages.mozilla.org/apt/repo-signing-key.gpg"
-    id: "35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3"
-    keyring: "{{ mozilla_apt_keyring }}"
-  tags:
-  - "mozilla"
-  - "browser"
-  - "networking"
-
 - name: "add the mozilla apt repository"
-  apt_repository: 
-    repo: "{{ item }}"
-  with_items:
-  - "deb [ signed-by={{ mozilla_apt_keyring }} ] https://packages.mozilla.org/apt mozilla main"
-  - "deb-src [ signed-by={{ mozilla_apt_keyring }} ] https://packages.mozilla.org/apt mozilla main"
+  ansible.builtin.deb822_repository:
+    name: mozilla
+    types: deb
+    uris: https://packages.mozilla.org/apt
+    suites: mozilla
+    components: main
+    architectures: amd64
+    signed_by: https://packages.mozilla.org/apt/repo-signing-key.gpg
   tags:
   - "mozilla"
   - "browser"
