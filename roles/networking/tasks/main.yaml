@@ -9,6 +9,7 @@
     - "sshfs"
     - "tftp"
     - "sshuttle"
+    - "tcpdump"
     - "traceroute"
     - "whois"
     state: "present"
