@@ -1,1 +1,9 @@
 ---
+
+- name: "remove old charm apt repository"
+  file:
+    path: "/etc/apt/sources.list.d/charm.list"
+    state: "absent"
+  tags:
+  - "crush"
+  - "ai"

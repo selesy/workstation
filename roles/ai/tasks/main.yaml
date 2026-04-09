@@ -114,14 +114,6 @@
 # Install the Crush AI assistant via the Debian package manager per the
 # instructions found at: https://deepwiki.com/charmbracelet/crush/2.1-installation-and-setup#debianubuntu
 
-- name: "remove old charm apt repository"
-  file:
-    path: "/etc/apt/sources.list.d/charm.list"
-    state: "absent"
-  tags:
-  - "crush"
-  - "ai"
-
 - name: "add the crush apt repository"
   ansible.builtin.deb822_repository:
     name: charm

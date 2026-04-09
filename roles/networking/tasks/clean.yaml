@@ -1,1 +1,11 @@
 ---
+
+- name: "remove old mozilla apt repository"
+  file:
+    path: "/etc/apt/sources.list.d/packages_mozilla_org_apt.list"
+    state: "absent"
+  tags:
+  - "mozilla"
+  - "browser"
+  - "networking"
+

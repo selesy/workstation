@@ -18,15 +18,6 @@
 
 # Install select browsers
 
-- name: "remove old mozilla apt repository"
-  file:
-    path: "/etc/apt/sources.list.d/packages_mozilla_org_apt.list"
-    state: "absent"
-  tags:
-  - "mozilla"
-  - "browser"
-  - "networking"
-
 - name: "add the mozilla apt repository"
   ansible.builtin.deb822_repository:
     name: mozilla
