@@ -51,20 +51,26 @@
   - "virtualization"
 
 - name: "install fastrack repo (Debian)"
-  apt_repository:
-    repo: "deb https://fasttrack.debian.net/debian-fasttrack/ {{ ansible_distribution_release }}-fasttrack main contrib"
+  ansible.builtin.deb822_repository:
+    name: debian-fasttrack
+    types: deb
+    uris: https://fasttrack.debian.net/debian-fasttrack/
+    suites: "{{ ansible_distribution_release }}-fasttrack"
+    components: "main contrib"
     state: "present"
-    update_cache: "yes"
   when: ansible_distribution == "Debian"
   tags:
   - "virtualbox"
   - "virtualization"
 
 - name: "install staging repo (Debian)"
-  apt_repository:
-    repo: "deb https://fasttrack.debian.net/debian-fasttrack/ {{ ansible_distribution_release }}-backports-staging main contrib"
+  ansible.builtin.deb822_repository:
+    name: debian-fasttrack-staging
+    types: deb
+    uris: https://fasttrack.debian.net/debian-fasttrack/
+    suites: "{{ ansible_distribution_release }}-backports-staging"
+    components: "main contrib"
     state: "present"
-    update_cache: "yes"
   when: ansible_distribution == "Debian"
   tags:
   - "virtualbox"

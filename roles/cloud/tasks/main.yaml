@@ -44,10 +44,15 @@
   - azure
 
 - name: "add the Azure CLI repository"
-  apt_repository:
-    repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main
+  ansible.builtin.deb822_repository:
+    name: azure-cli
+    types: deb
+    uris: https://packages.microsoft.com/repos/azure-cli/
+    suites: "{{ ansible_distribution_release }}"
+    components: main
+    architectures: amd64
+    signed_by: /etc/apt/trusted.gpg.d/microsoft.asc
     state: present
-    update_cache: yes
   tags:
   - cloud
   - azure

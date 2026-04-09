@@ -8,26 +8,16 @@
   tags:
     - ergonomics
 
-- name: remove the f.lux repository
-  apt_repository:
-    repo: "deb http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main"
+- name: remove legacy f.lux repository file
+  ansible.builtin.file:
+    path: "/etc/apt/sources.list.d/nathan-renniewaldock-ubuntu-flux-{{ ansible_distribution_release }}.list"
     state: absent
-  when: fluxgui_was_installed is changed
   tags:
     - ergonomics
 
-- name: remove the f.lux source repository
-  apt_repository:
-    repo: "deb-src http://ppa.launchpad.net/nathan-renniewaldock/flux/ubuntu bionic main"
+- name: remove legacy f.lux repository source file
+  ansible.builtin.file:
+    path: "/etc/apt/sources.list.d/nathan-renniewaldock-ubuntu-flux-{{ ansible_distribution_release }}-source.list"
     state: absent
-  when: fluxgui_was_installed is changed
-  tags:
-    - ergonomics
-
-- name: remove the f.lux signing key
-  apt_key:
-    keyserver: keyserver.ubuntu.com id=428926204FE30238F00B98224CDB129629A4B41A
-    state: absent
-  when: fluxgui_was_installed is changed
   tags:
     - ergonomics

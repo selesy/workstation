@@ -87,15 +87,8 @@
     - "common"
 
 # Add support for Dell hardware - see: https://askubuntu.com/questions/1341912/goodix-fingerprint-driver-linux
-
-- name: add the Dell signing key
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: F9FDA6BED73CDC22
-    state: present
-  when: ansible_system_vendor == "Dell Inc."
-  tags:
-  - dell
+# Note: Dell repositories are commented out, so the apt_key task has been removed as deprecated.
+# If you need to re-enable Dell repos, use deb822_repository instead of apt_key + apt_repository
 
 # - name: add the Dell repository
 #   apt_repository: 

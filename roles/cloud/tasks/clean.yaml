@@ -1,0 +1,9 @@
+---
+# Cleanup for Azure CLI repository migrated to deb822_repository
+- name: "Remove legacy Azure CLI repository file"
+  ansible.builtin.file:
+    path: "/etc/apt/sources.list.d/azure-cli.list"
+    state: "absent"
+  tags:
+    - cloud
+    - azure
