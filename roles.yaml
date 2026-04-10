@@ -76,3 +76,6 @@
     - import_role:
         name: "asdf"
         tasks_from: "{{ tasks_from_file }}"
+    - import_role:
+        name: "ai"
+        tasks_from: "{{ tasks_from_file }}-user"

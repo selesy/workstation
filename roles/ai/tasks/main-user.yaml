@@ -1,0 +1,13 @@
+---
+
+# Cline CLI AI coding assistant
+# Instructions found at: https://docs.cline.bot/cline-cli/installation
+
+- name: add cline CLI
+  npm:
+    name: cline
+    global: true
+    state: present
+  tags:
+  - "cline"
+  - "ai"
