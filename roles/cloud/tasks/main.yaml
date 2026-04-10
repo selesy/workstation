@@ -38,7 +38,7 @@
 - name: "add the Azure CLI signing key"
   get_url:
     url: https://packages.microsoft.com/keys/microsoft.asc
-    dest: /etc/apt/trusted.gpg.d/microsoft.asc
+    dest: /usr/share/keyrings/microsoft-archive-keyring.gpg
   tags:
   - cloud
   - azure
@@ -51,7 +51,7 @@
     suites: "{{ ansible_distribution_release if ansible_distribution_release in ['bookworm', 'trixie'] else 'bookworm' }}"
     components: main
     architectures: amd64
-    signed_by: /etc/apt/trusted.gpg.d/microsoft.asc
+    signed_by: /usr/share/keyrings/microsoft-archive-keyring.gpg
     state: present
   tags:
   - cloud

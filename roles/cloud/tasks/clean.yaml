@@ -7,3 +7,11 @@
   tags:
     - cloud
     - azure
+
+- name: "Remove legacy Azure CLI signing key from trusted.gpg.d"
+  ansible.builtin.file:
+    path: "/etc/apt/trusted.gpg.d/microsoft.asc"
+    state: "absent"
+  tags:
+    - cloud
+    - azure
