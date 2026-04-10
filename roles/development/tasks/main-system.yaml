@@ -40,53 +40,70 @@
 # # Virtualization
 # #
 
-- name: "install fasttrack repo key (Debian)"
+- name: "install GNOME Boxes and KVM/libvirt stack"
   apt:
     pkg:
-    - "fasttrack-archive-keyring"
+    - "gnome-boxes"
+    - "qemu-kvm"
+    - "libvirt-daemon-system"
+    - "libvirt-clients"
+    - "virt-manager"
     state: "present"
-  when: ansible_distribution == "Debian"
   tags:
-  - "virtualbox"
+  - "gnome-boxes"
   - "virtualization"
 
-- name: "install fastrack repo (Debian)"
-  ansible.builtin.deb822_repository:
-    name: debian-fasttrack
-    types: deb
-    uris: https://fasttrack.debian.net/debian-fasttrack/
-    suites: "{{ ansible_distribution_release }}-fasttrack"
-    components: "main contrib"
-    signed_by: /usr/share/keyrings/fasttrack-archive-keyring.gpg
-    state: "present"
-  when: ansible_distribution == "Debian" and ansible_distribution_release in ['bookworm', 'trixie']
-  tags:
-  - "virtualbox"
-  - "virtualization"
+# VirtualBox via Debian Fast-Track is disabled: the Fast-Track packages are
+# Bookworm builds (fto12) that require python3 < 3.12, which is incompatible
+# with Trixie's python3.13. Re-enable once a Trixie-native build (fto13) lands.
 
-- name: "install staging repo (Debian)"
-  ansible.builtin.deb822_repository:
-    name: debian-fasttrack-staging
-    types: deb
-    uris: https://fasttrack.debian.net/debian-fasttrack/
-    suites: "{{ ansible_distribution_release }}-backports-staging"
-    components: "main contrib"
-    signed_by: /usr/share/keyrings/fasttrack-archive-keyring.gpg
-    state: "present"
-  when: ansible_distribution == "Debian" and ansible_distribution_release in ['bookworm', 'trixie']
-  tags:
-  - "virtualbox"
-  - "virtualization"
-
-- name: "install virtualbox (Debian or Ubuntu)"
-  apt:
-    pkg:
-    - "virtualbox"
-    - "virtualbox-qt"
-    state: "present"
-  tags:
-  - "virtualbox"
-  - "virtualization"
+# - name: "install fasttrack repo key (Debian)"
+#   apt:
+#     pkg:
+#     - "fasttrack-archive-keyring"
+#     state: "present"
+#   when: ansible_distribution == "Debian"
+#   tags:
+#   - "virtualbox"
+#   - "virtualization"
+#
+# - name: "install fastrack repo (Debian)"
+#   ansible.builtin.deb822_repository:
+#     name: debian-fasttrack
+#     types: deb
+#     uris: https://fasttrack.debian.net/debian-fasttrack/
+#     suites: "{{ ansible_distribution_release }}-fasttrack"
+#     components: "main contrib"
+#     signed_by: /usr/share/keyrings/fasttrack-archive-keyring.gpg
+#     state: "present"
+#   when: ansible_distribution == "Debian" and ansible_distribution_release in ['bookworm', 'trixie']
+#   tags:
+#   - "virtualbox"
+#   - "virtualization"
+#
+# - name: "install staging repo (Debian)"
+#   ansible.builtin.deb822_repository:
+#     name: debian-fasttrack-staging
+#     types: deb
+#     uris: https://fasttrack.debian.net/debian-fasttrack/
+#     suites: "{{ ansible_distribution_release }}-backports-staging"
+#     components: "main contrib"
+#     signed_by: /usr/share/keyrings/fasttrack-archive-keyring.gpg
+#     state: "present"
+#   when: ansible_distribution == "Debian" and ansible_distribution_release in ['bookworm', 'trixie']
+#   tags:
+#   - "virtualbox"
+#   - "virtualization"
+#
+# - name: "install virtualbox (Debian or Ubuntu)"
+#   apt:
+#     pkg:
+#     - "virtualbox"
+#     - "virtualbox-qt"
+#     state: "present"
+#   tags:
+#   - "virtualbox"
+#   - "virtualization"
 
 # #
 # # LDAP tools
