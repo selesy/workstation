@@ -48,7 +48,7 @@
     name: azure-cli
     types: deb
     uris: https://packages.microsoft.com/repos/azure-cli/
-    suites: "{{ ansible_distribution_release }}"
+    suites: "{{ ansible_distribution_release if ansible_distribution_release in ['bookworm', 'trixie'] else 'bookworm' }}"
     components: main
     architectures: amd64
     signed_by: /etc/apt/trusted.gpg.d/microsoft.asc

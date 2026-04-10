@@ -27,6 +27,7 @@
     components: main
     architectures: amd64
     signed_by: https://packages.mozilla.org/apt/repo-signing-key.gpg
+    enabled: "{{ 'yes' if ansible_distribution_release in ['bookworm', 'trixie'] else 'no' }}"
   tags:
   - "mozilla"
   - "browser"

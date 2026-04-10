@@ -119,8 +119,8 @@
     name: charm
     types: deb
     uris: https://repo.charm.sh/apt/
-    suites: "*"
-    components: "*"
+    suites: "{{ ansible_distribution_release if ansible_distribution_release != 'trixie' else 'bookworm' }}"
+    components: main
     architectures: amd64
     signed_by: "{{ crush_apt_key_url }}"
   tags:
