@@ -1,1 +1,9 @@
 ---
+
+- name: "remove multimedia tools via apt"
+  apt:
+    pkg:
+      - "uvcdynctrl"
+    state: absent
+  tags:
+  - "multimedia"
