@@ -21,3 +21,12 @@
     state: absent
   tags:
     - ergonomics
+
+- name: "remove Obsidian previously installed via flatpak"
+  flatpak:
+    name: "md.obsidian.Obsidian"
+    state: "absent"
+  tags:
+  - "obsidian"
+  - "productivity"
+

@@ -238,13 +238,6 @@
     name: ntp
     state: latest
 
-- name: "install Obsidian via flatpak"
-  flatpak:
-    name: "md.obsidian.Obsidian"
-  tags:
-  - "obsidian"
-  - "productivity"
-
 # Install redshift (replaces flux)
 
 - name: add redshift

@@ -71,6 +71,9 @@
         name: "setup"
         tasks_from: "{{ tasks_from_file }}-user"
     - import_role:
+        name: "common"
+        tasks_from: "{{ tasks_from_file }}-user"
+    - import_role:
         name: "development"
         tasks_from: "{{ tasks_from_file }}-user"
     - import_role:

@@ -75,11 +75,13 @@
 
 # appimagelauncher - install daemon and desktop integration
 
-- name: "install appimagelauncher"
+- name: "install appimagelauncher and userspace FUSE"
   apt:
-    pkg: "appimagelauncher"
+    pkg:
+      - "appimagelauncher"
+      - "libfuse2t64"
   tags:
-  - "appimagelauncher"
+  - "appimage"
   - "packaging"
   - "setup"
 
