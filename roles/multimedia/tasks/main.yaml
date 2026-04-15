@@ -8,7 +8,7 @@
     - "libuvc0"
     - "guvcview"
     - "recordmydesktop"
-    - "uvcdynctrl"
+    - "v4l-utils"
     - "vlc"
   tags:
   - "multimedia"
