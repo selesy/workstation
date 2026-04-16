@@ -75,11 +75,23 @@
 
 # appimagelauncher - install daemon and desktop integration
 
+- name: "determine the correct FUSE package name"
+  set_fact:
+    fuse_package: "{{ fuse_map[ansible_distribution_major_version] | default('libfuse2') }}"
+  vars:
+    fuse_map:
+      "12": "libfuse2"
+      "13": "libfuse2t64"
+  tags:
+  - "appimage"
+  - "packaging"
+  - "setup"
+
 - name: "install appimagelauncher and userspace FUSE"
   apt:
     pkg:
       - "appimagelauncher"
-      - "libfuse2t64"
+      - "{{ fuse_package }}"
   tags:
   - "appimage"
   - "packaging"
