@@ -21,6 +21,7 @@
   apt:
     pkg:
     - "asciidoc" # Office
+    - "dex"
     - "fonts-opendyslexic"
     - "screen"
     - "secure-delete"
