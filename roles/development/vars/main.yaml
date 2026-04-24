@@ -1,4 +1,16 @@
 ---
+
+# https://github.com/VSCodium/vscodium/releases/download/1.112.01907/VSCodium-1.112.01907.glibc2.30-x86_64.AppImage
+# https://github.com/VSCodium/vscodium/releases/download/1.112.01907/VSCodium-1.112.01907.glibc2.30-x86_64.AppImage.sha256
+
+codium_org: "VSCodium"
+codium_repo: "vscodium"
+codium_version: "<placeholder>"
+codium_file: "VSCodium-{{ codium_version }}.glibc2.30-x86_64.AppImage"
+
+codium_appimage_url: "https://github.com/{{ codium_org }}/{{ codium_repo }}/releases/download/{{ codium_version }}/{{ codium_file }}"
+codium_appimage_checksum: "sha256:{{ codium_appimage_url }}.sha256"
+
 # RFC
 
 # https://raw.githubusercontent.com/bfontaine/rfc/v0.2.5/rfc

@@ -60,6 +60,18 @@
     - "ide"
     - "development"
 
+- name: "remove Codium installed via via flatpak"
+  community.general.flatpak:
+    name: "com.vscodium.codium"
+    state: "absent"
+  tags:
+    - "codium"
+    - "insomnia"
+    - "rest"
+    - "development"
+
+
+
 # Cleanup for fasttrack repositories migrated to deb822_repository
 - name: "Remove legacy fasttrack-fasttrack repository file"
   ansible.builtin.file:

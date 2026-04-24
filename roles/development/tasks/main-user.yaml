@@ -1,23 +1,81 @@
 ---
 
-- name: install selected codium extensions
-  command:
-    # cmd: "codium --install-extension {{ item }} --user-data-dir /usr/share/code --force"
-    cmd: "/usr/bin/flatpak run --branch=stable --arch=x86_64 --file-forwarding --session-bus com.vscodium.codium --install-extension {{ item }} --force"
-  with_items: "{{ codium_extensions }}"
-  register: codium_extension
-  changed_when: "'already installed' not in codium_extension.stdout"
+- name: "get latest Codium release version"
+  community.general.github_release:
+    user: "{{ codium_org }}"
+    repo: "{{ codium_repo }}"
+    action: latest_release
+  register: codium_release_result
   tags:
-    - "vscodium"
+    - "codium"
     - "ide"
     - "development"
+    - "appimage"
 
-- name: "update installed codium extensions"
-  command:
-    cmd: "/usr/bin/flatpak run --branch=stable --arch=x86_64 --file-forwarding --session-bus com.vscodium.codium --update-extensions --force"
-  register: update_codium_extensions_result
-  changed_when: "update_codium_extensions_result.stdout != 'No extension to update'"
+- name: "overwrite Codium version placeholder"
+  ansible.builtin.set_fact:
+    codium_version: "{{ codium_release_result.tag | regex_replace('^v', '') }}"
   tags:
-    - "vscodium"
+    - "codium"
     - "ide"
     - "development"
+    - "appimage"
+
+- name: "install Codium as AppImage"
+  ansible.builtin.get_url:
+    url: "{{ codium_appimage_url }}"
+    checksum: "{{ codium_appimage_checksum }}"
+    dest: "{{ user_appimage_directory }}"
+    mode: "0755"
+  tags:
+    - "codium"
+    - "ide"
+    - "development"
+    - "appimage"
+
+- name: create an unversioned symlink
+  file:
+    src: "{{ user_appimage_directory }}/{{ codium_file }}"
+    dest: "~/.local/bin/codium"
+    state: "link"
+  tags:
+    - "codium"
+    - "ide"
+    - "development"
+    - "appimage"
+
+- name: Codium extension management
+  block:
+    - name: extract Codium AppImage for CLI access
+      command:
+        cmd: "{{ user_appimage_directory }}/{{ codium_file}} --appimage-extract"
+        chdir: "{{ user_appimage_directory }}"
+        creates: "{{ user_appimage_directory }}/squashfs-root"
+      changed_when: false
+
+    - name: install/update extensions headlessly
+      shell: |
+        ELECTRON_RUN_AS_NODE=1 \
+        ./squashfs-root/usr/share/codium/codium \
+        ./squashfs-root/usr/share/codium/resources/app/out/cli.js \
+        --install-extension {{ item }} --force
+      args:
+        chdir: "{{ user_appimage_directory }}"
+      loop: "{{ codium_extensions }}"
+      register: extension_install_result
+      failed_when: 
+        - extension_install_result.rc != 0
+      changed_when:
+        - "'already installed' not in extension_install_result.stdout"
+
+  always:
+    - name: remove extracted files
+      file:
+        path: "{{ user_appimage_directory }}/squashfs-root"
+        state: absent
+      changed_when: false
+  tags:
+    - "codium"
+    - "ide"
+    - "development"
+    - "appimage"

@@ -12,7 +12,6 @@
   community.general.flatpak:
     name: "{{ item }}"
   with_items:
-    - "com.vscodium.codium" # https://github.com/VSCodium/vscodium/releases/download/1.112.01907/VSCodium-1.112.01907.glibc2.30-x86_64.AppImage
     - "rest.insomnia.Insomnia" # ?
   tags:
     - "codium"
