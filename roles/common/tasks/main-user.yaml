@@ -7,17 +7,31 @@
   tags:
     - "appimage"
 
+- name: "get latest Obsidian release version"
+  community.general.github_release:
+    user: obsidianmd
+    repo: obsidian-releases
+    action: latest_release
+  register: obsidian_release_result
+  tags:
+    - "obsidian"
+    - "productivity"
+    - "office"
+    - "appimage"
+
+- name: "Overwrite Obsidian version placeholder"
+  ansible.builtin.set_fact:
+    obsidian_version: "{{ obsidian_release_result.tag | regex_replace('^v', '') }}"
+  tags:
+    - "obsidian"
+    - "productivity"
+    - "office"
+    - "appimage"
+
 - name: "install Obsidian as AppImage"
   ansible.builtin.get_url:
     url: "{{ obsidian_appimage_url }}"
     dest: "{{ user_appimage_directory }}"
-  tags:
-    - "obsidian"
-    - "appimage"
-
-- name: "make the Obsidian AppImage executable"
-  ansible.builtin.file:
-    path: "{{ user_appimage_directory }}/Obsidian-1.12.7.AppImage"
     mode: "0755"
   tags:
     - "obsidian"

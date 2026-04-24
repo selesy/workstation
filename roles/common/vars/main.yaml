@@ -2,4 +2,5 @@
 
 user_appimage_directory: "~/Applications"
 
-obsidian_appimage_url: "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.12.7/Obsidian-1.12.7.AppImage"
+obsidian_version: "<placeholder>"
+obsidian_appimage_url: "https://github.com/obsidianmd/obsidian-releases/releases/download/v{{ obsidian_version }}/Obsidian-{{ obsidian_version }}.AppImage"
