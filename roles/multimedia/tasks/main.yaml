@@ -17,9 +17,9 @@
   flatpak:
     name: "{{ item }}"
   with_items:
-  - "com.obsproject.Studio"
-  - "com.obsproject.Studio.Plugin.BackgroundRemoval"
-  - "io.github.Soundux"
+  - "com.obsproject.Studio" # Deb - https://github.com/obsproject/obs-studio/wiki/install-instructions#linux
+  - "com.obsproject.Studio.Plugin.BackgroundRemoval" # Deb - https://github.com/obsproject/obs-studio/wiki/install-instructions#linux
+  - "io.github.Soundux" # Deb - https://github.com/Soundux/Soundux/releases
   tags:
   - "obs-studio"
   - "multimedia"

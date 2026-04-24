@@ -67,7 +67,7 @@
 
 - name: "Install flatseal to manage flatpak sandbox permissions"
   community.general.flatpak:
-    name: "com.github.tchx84.Flatseal"
+    name: "com.github.tchx84.Flatseal" # Not needed?
   tags:
   - "flatpak"
   - "packaging"

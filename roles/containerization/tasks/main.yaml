@@ -18,7 +18,7 @@
 
 - name: "Install podman-desktop via flatpak"
   community.general.flatpak:
-    name: "io.podman_desktop.PodmanDesktop"
+    name: "io.podman_desktop.PodmanDesktop" # https://appimage.github.io/Podman/
   tags:
     - "podman"
     - "containerization"

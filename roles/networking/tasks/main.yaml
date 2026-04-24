@@ -85,7 +85,7 @@
 
 - name: "Install Apache Directory Studio via flatpak"
   community.general.flatpak:
-    name: "org.apache.directory.studio"
+    name: "org.apache.directory.studio" # ? - https://directory.apache.org/studio/download/download-linux.html
   tags:
     - "apache_directory_studio"
     - "ldap"
