@@ -88,3 +88,11 @@
   tags:
     - "virtualbox"
     - "virtualization"
+
+- name: "Remove legacy fasttrack repository list"
+  ansible.builtin.file:
+    path: "/etc/apt/sources.list.d/fasttrack_debian_net_debian_fasttrack.list"
+    state: "absent"
+  tags:
+    - "virtualbox"
+    - "virtualization"
