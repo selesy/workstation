@@ -87,11 +87,19 @@
   - "packaging"
   - "setup"
 
-- name: "install appimagelauncher and userspace FUSE"
+- name: "install userspace FUSE"
   apt:
     pkg:
-      - "appimagelauncher"
+      # - "{{ appimage_launcher_deb_url }}"
       - "{{ fuse_package }}"
+  tags:
+  - "appimage"
+  - "packaging"
+  - "setup"
+
+- name: "install appimagelauncher"
+  apt:
+    deb: "{{ appimage_launcher_deb_url }}"
   tags:
   - "appimage"
   - "packaging"
