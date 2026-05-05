@@ -2,6 +2,21 @@
 
 # apt - native Debian package manager
 
+- name: "add trixie backports repository"
+  deb822_repository:
+    name: debian
+    types: deb
+    uris: http://deb.debian.org/debian
+    suites: trixie
+    components:
+      - backports
+  when:
+    - ansible_distribution == "Debian"
+    - ansible_distribution_major_version == "13"
+  tags:
+  - "packaging"
+  - "setup"
+
 - name: "upgrade existing apt packages"
   apt:
     upgrade: "yes"
