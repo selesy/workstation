@@ -4,12 +4,14 @@
 
 - name: "add trixie backports repository"
   deb822_repository:
-    name: debian
+    name: trixie-backports
     types: deb
     uris: http://deb.debian.org/debian
-    suites: trixie
+    suites: trixie-backports
     components:
-      - backports
+      - main
+      - contrib
+      - non-free
   when:
     - ansible_distribution == "Debian"
     - ansible_distribution_major_version == "13"
