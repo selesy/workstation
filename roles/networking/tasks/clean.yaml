@@ -9,3 +9,11 @@
   - "browser"
   - "networking"
 
+- name: "remove tftp (replaced by atftp) via apt"
+  apt:
+    pkg:
+    - "tftp"
+    state: "absent"
+  when: ansible_distribution_major_version == "13"
+  tags:
+  - "networking"

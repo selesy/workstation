@@ -7,7 +7,7 @@
     - "lynx"
     - "net-tools"
     - "sshfs"
-    - "tftp"
+    - "atftp"
     - "sshuttle"
     - "tcpdump"
     - "traceroute"
