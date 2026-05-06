@@ -28,20 +28,30 @@
     architectures: amd64
     signed_by: https://packages.mozilla.org/apt/repo-signing-key.gpg
     enabled: "{{ 'yes' if ansible_distribution_release in ['bookworm', 'trixie'] else 'no' }}"
+  register: mozilla_apt_repository_result
   tags:
-  - "mozilla"
-  - "browser"
-  - "networking"
+    - "mozilla"
+    - "browser"
+    - "networking"
+
+- name: "update apt cache with mozilla apt packages"
+  ansible.builtin.apt:
+    update_cache: true
+  when: mozilla_apt_repository_result.changed
+  tags:
+    - "mozilla"
+    - "browser"
+    - "networking"
 
 - name: "add browsers of choice"
-  apt:
+  ansible.builtin.apt:
     pkg:
     - "chromium"
     - "firefox-devedition"
     - "lynx"
   tags:
-  - "browser"
-  - "networking"
+    - "browser"
+    - "networking"
 
 # Install VPN clients
 
