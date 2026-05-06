@@ -108,7 +108,7 @@
   - "security"
   - "common"
 
-- name: "Install grephics tools"
+- name: "Install graphics tools"
   ansible.builtin.apt:
     pkg:
       - "gpick"
