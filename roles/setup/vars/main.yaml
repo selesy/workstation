@@ -8,6 +8,6 @@ nodesource_apt_repo: "deb [signed-by=/etc/apt/trusted.gpg] https://deb.nodesourc
 nodesource_apt_repo_src_file: nodesource
 
 
-asdf_archive_url: https://github.com/asdf-vm/asdf/releases/download/v0.18.1/asdf-v0.18.1-linux-amd64.tar.gz
+asdf_archive_url: https://github.com/asdf-vm/asdf/releases/download/v0.19.0/asdf-v0.19.0-linux-amd64.tar.gz
 
 appimage_launcher_deb_url: https://github.com/TheAssassin/AppImageLauncher/releases/download/v3.0.0-beta-3/appimagelauncher_3.0.0-beta-2-gha287.96cb937_amd64.deb

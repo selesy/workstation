@@ -30,7 +30,7 @@
 
 - name: "unarchive latest release file"
   ansible.builtin.unarchive:
-    src: https://github.com/asdf-vm/asdf/releases/download/v0.18.1/asdf-v0.18.1-linux-amd64.tar.gz
+    src: "{{ asdf_archive_url }}"
     dest: "~/bin"
     remote_src: yes
   tags:
