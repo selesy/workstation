@@ -6,7 +6,7 @@
 codium_org: "VSCodium"
 codium_repo: "vscodium"
 codium_version: "<placeholder>"
-codium_file: "VSCodium-{{ codium_version }}.glibc2.30-x86_64.AppImage"
+codium_file: "VSCodium-{{ codium_version }}.glibc2.34-x86_64.AppImage"
 
 codium_appimage_url: "https://github.com/{{ codium_org }}/{{ codium_repo }}/releases/download/{{ codium_version }}/{{ codium_file }}"
 codium_appimage_checksum: "sha256:{{ codium_appimage_url }}.sha256"
