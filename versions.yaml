@@ -46,6 +46,7 @@ codium_extensions:
   - ms-kubernetes-tools.vscode-kubernetes-tools
   - MermaidChart.vscode-mermaid-chart
   - opentofu.vscode-opentofu
+  - hashicorp.hcl
   - johnpapa.vscode-peacock
   - dreamcatcher45.podmanager
   - ms-python.python
@@ -57,6 +58,8 @@ codium_extensions:
   - Privy.privy-vscode
   - vscodevim.vim
   - graphql.vscode-graphql
+  
+  # - gruntwork.terragrunt-ls
 
   # - mtxr.sqltools
   # - mtxr.sqltools-driver-pg
