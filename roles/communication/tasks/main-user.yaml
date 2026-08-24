@@ -1,0 +1,72 @@
+---
+
+- name: "Download the Signal signing key"
+  ansible.builtin.get_url:
+    url: "{{ signal_key }}"
+    dest: "{{ user_appimage_directory }}/signal.asc"
+    mode: "0400"
+  register: signal_key_download_result
+  tags:
+    - "signal"
+    - "communication"
+    - "appimage"
+
+- name: "Check if Signal GPG key is already in keyring"
+  ansible.builtin.command: gpg --list-keys "{{ signal_key_fingerprint }}"
+  register: signal_key_import_check
+  changed_when: false
+  failed_when: false
+  tags:
+    - "signal"
+    - "communication"
+    - "appimage"
+
+- name: "Import Signal key into keyring"
+  ansible.builtin.command: gpg --import {{ user_appimage_directory }}/signal.asc
+  when: signal_key_import_check.rc != 0
+  changed_when: true
+  tags:
+    - "signal"
+    - "communication"
+    - "appimage"
+
+- name: "Download Signal AppImage"
+  ansible.builtin.get_url:
+    url: "{{ signal_url }}"
+    dest: "{{ user_appimage_directory }}/signal.AppImage"
+    mode: "0700"
+  tags:
+    - "signal"
+    - "communication"
+    - "appimage"
+
+- name: "Download signature for Signal AppImage"
+  ansible.builtin.get_url:
+    url: "{{ signal_sig }}"
+    dest: "{{ user_appimage_directory }}/signal.AppImage.gpg"
+    mode: "0400"
+  tags:
+    - "signal"
+    - "communication"
+    - "appimage"
+
+- name: "Verify the Signal binary"
+  ansible.builtin.command: gpg --verify {{ user_appimage_directory }}/signal.AppImage.gpg {{ user_appimage_directory }}/signal.AppImage
+  register: gpg_result
+  changed_when: false
+  # Optional: You might want to fail the play if the verification fails
+  failed_when: gpg_result.rc != 0
+  tags:
+    - "signal"
+    - "communication"
+    - "appimage"
+
+- name: "Create a symlink to Signal AppImage"
+  ansible.builtin.file:
+    src: "{{ user_appimage_directory }}/signal.AppImage"
+    dest: "~/.local/bin/signal"
+    state: link
+  tags:
+    - "signal"
+    - "communication"
+    - "appimage"

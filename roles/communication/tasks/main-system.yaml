@@ -1,0 +1,11 @@
+---
+
+- name: "Install communication tools via flatpak"
+  community.general.flatpak:
+    name: "{{ item }}"
+  with_items:
+    - "com.discordapp.Discord" # To AppImage - https://appimage.github.io/Discord/
+    - "com.slack.Slack" # To Deb or Franz or Pidgin or?
+    - "us.zoom.Zoom" # To AppImage - https://appimage.github.io/Zoom/
+  tags:
+    - "communication"

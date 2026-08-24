@@ -29,7 +29,7 @@
         tasks_from: "{{ tasks_from_file }}"
     - import_role:
         name: "communication"
-        tasks_from: "{{ tasks_from_file }}"
+        tasks_from: "{{ tasks_from_file }}-system"
     - import_role:
         name: "multimedia"
         tasks_from: "{{ tasks_from_file }}"
@@ -72,6 +72,9 @@
         tasks_from: "{{ tasks_from_file }}-user"
     - import_role:
         name: "common"
+        tasks_from: "{{ tasks_from_file }}-user"
+    - import_role:
+        name: "communication"
         tasks_from: "{{ tasks_from_file }}-user"
     - import_role:
         name: "development"

@@ -1,0 +1,9 @@
+---
+
+# TODO: move this to a workstation-wide variable
+user_appimage_directory: "~/Applications"
+
+signal_key: "https://updates.signal.org/static/desktop/appimage.asc"
+signal_key_fingerprint: "4B16B7232DFAA439AD791002EF9F501F13EED94C"
+signal_url: "https://updates.signal.org/desktop/signal-desktop.AppImage"
+signal_sig: "{{ signal_url }}.gpg"
