@@ -4,7 +4,7 @@
   ansible.builtin.get_url:
     url: "{{ signal_key }}"
     dest: "{{ user_appimage_directory }}/signal.asc"
-    mode: "0400"
+    mode: "0500"
   register: signal_key_download_result
   tags:
     - "signal"
@@ -44,7 +44,7 @@
   ansible.builtin.get_url:
     url: "{{ signal_sig }}"
     dest: "{{ user_appimage_directory }}/signal.AppImage.gpg"
-    mode: "0400"
+    mode: "0500"
   tags:
     - "signal"
     - "communication"
