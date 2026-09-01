@@ -40,7 +40,6 @@ codium_extensions:
   - ms-azuretools.vscode-containers
   - mkhl.direnv
   - ms-azuretools.vscode-docker
-  - google.geminicodeassist
   - github.vscode-github-actions
   - golang.go
   - ms-kubernetes-tools.vscode-kubernetes-tools
@@ -54,7 +53,6 @@ codium_extensions:
   - Gruntfuggly.todo-tree
   - zxh404.vscode-proto3
   - redhat.vscode-yaml
-  - amazonwebservices.amazon-q-vscode
   - Privy.privy-vscode
   - vscodevim.vim
   - graphql.vscode-graphql
