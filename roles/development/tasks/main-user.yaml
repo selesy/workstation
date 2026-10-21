@@ -46,19 +46,20 @@
 
 - name: Codium extension management
   block:
-    - name: extract Codium AppImage for CLI access
-      command:
-        cmd: "{{ user_appimage_directory }}/{{ codium_file}} --appimage-extract"
-        chdir: "{{ user_appimage_directory }}"
-        creates: "{{ user_appimage_directory }}/squashfs-root"
-      changed_when: false
+    # - name: extract Codium AppImage for CLI access
+    #   command:
+    #     cmd: "{{ user_appimage_directory }}/{{ codium_file}} --appimage-extract"
+    #     chdir: "{{ user_appimage_directory }}"
+    #     creates: "{{ user_appimage_directory }}/squashfs-root"
+    #   changed_when: false
 
     - name: install/update extensions headlessly
       shell: |
-        ELECTRON_RUN_AS_NODE=1 \
-        ./squashfs-root/usr/share/codium/codium \
-        ./squashfs-root/usr/share/codium/resources/app/out/cli.js \
-        --install-extension {{ item }} --force
+        codium --install-extension {{ item }} --force
+        # ELECTRON_RUN_AS_NODE=1 \
+        # ./squashfs-root/usr/share/codium/codium \
+        # ./squashfs-root/usr/share/codium/resources/app/out/cli.js \
+        # --install-extension {{ item }} --force
       args:
         chdir: "{{ user_appimage_directory }}"
       loop: "{{ codium_extensions }}"
@@ -68,12 +69,12 @@
       changed_when:
         - "'already installed' not in extension_install_result.stdout"
 
-  always:
-    - name: remove extracted files
-      file:
-        path: "{{ user_appimage_directory }}/squashfs-root"
-        state: absent
-      changed_when: false
+  # always:
+  #   - name: remove extracted files
+  #     file:
+  #       path: "{{ user_appimage_directory }}/squashfs-root"
+  #       state: absent
+  #     changed_when: false
   tags:
     - "codium"
     - "ide"
