@@ -43,7 +43,7 @@
   apt:
     pkg:
     - "gnome-boxes"
-    - "qemu-kvm"
+    - "qemu-system-x86"
     - "libvirt-daemon-system"
     - "libvirt-clients"
     - "virt-manager"
