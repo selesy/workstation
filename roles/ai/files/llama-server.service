@@ -1,0 +1,12 @@
+[Unit]
+Description=llama.cpp LLM Inference Server (User Space)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/llama-server -m %h/models/default.gguf --host 127.0.0.1 --port 8080 -ngl 99
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

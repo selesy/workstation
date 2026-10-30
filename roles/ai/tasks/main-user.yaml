@@ -3,11 +3,147 @@
 # Cline CLI AI coding assistant
 # Instructions found at: https://docs.cline.bot/cline-cli/installation
 
-- name: add cline CLI
-  npm:
+- name: Add cline CLI
+  community.general.npm:
     name: cline
     global: true
     state: present
   tags:
-  - "cline"
-  - "ai"
+    - "cline"
+    - "ai"
+
+# https://gemini.google.com/app/067d20586c569a63
+
+- name: Ensure target build and binary directories exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - "{{ llama_cpp_source_directory }}"
+    - "{{ llama_cpp_bin_directory }}"
+    - "{{ systemd_user_dir }}"
+  tags:
+    - "llama.cpp"
+    - "ai"
+
+- name: Check if llama-server binary already exists in local path
+  ansible.builtin.stat:
+    path: "{{ llama_cpp_bin_directory }}/llama-server"
+  register: binary_stat
+  tags:
+    - llama.cpp
+    - ai
+
+- name: Check for NVIDIA GPU hardware via lspci
+  ansible.builtin.command: lspci
+  register: lspci_check
+  changed_when: false
+  failed_when: false
+  tags:
+    - llama.cpp
+    - ai
+
+- name: Determine if an NVIDIA GPU is present
+  ansible.builtin.set_fact:
+    has_nvidia_gpu: "{{ lspci_check.rc == 0 and 'NVIDIA' in lspci_check.stdout }}"
+  tags:
+    - llama.cpp
+    - ai
+
+- name: Ensure non-free and non-free-firmware components are enabled in Debian sources
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "deb http://deb.debian.org/debian {{ ansible_distribution_release }} main contrib non-free non-free-firmware"
+    state: present
+    filename: debian-sources
+  when: has_nvidia_gpu
+  tags:
+    - llama.cpp
+    - ai
+
+- name: Install NVIDIA CUDA toolkit via apt when GPU is detected
+  become: true
+  ansible.builtin.apt:
+    name: nvidia-cuda-toolkit
+    state: present
+    update_cache: true
+  when: has_nvidia_gpu
+  tags:
+    - llama.cpp
+    - ai
+
+- name: Clone or update the llama.cpp git repository
+  ansible.builtin.git:
+    repo: 'https://github.com/ggml-org/llama.cpp.git'
+    dest: "{{ llama_cpp_source_directory }}"
+    version: master
+    update: true
+  register: git_repo
+  tags:
+    - llama.cpp
+    - ai
+
+- name: Build and install llama.cpp pipeline
+  block:
+    - name: Configure CMake build tree with appropriate hardware flags
+      ansible.builtin.command:
+        cmd: "cmake -B build -DCMAKE_BUILD_TYPE=Release {{ '-DGGML_CUDA=ON' if has_nvidia_gpu else '-DGGML_CUDA=OFF' }}"
+        chdir: "{{ llama_cpp_source_directory }}"
+      changed_when: true
+
+    - name: Compile llama.cpp binaries with parallel job scaling
+      ansible.builtin.command:
+        cmd: "cmake --build build --config Release -j {{ ansible_processor_vcpus | default(4) }}"
+        chdir: "{{ llama_cpp_source_directory }}"
+      changed_when: true
+
+    - name: Install compiled binaries into user local path (~/.local/bin)
+      ansible.builtin.command:
+        cmd: "cmake --install build --prefix {{ ansible_env.HOME }}/.local"
+        chdir: "{{ llama_cpp_source_directory }}"
+      changed_when: true
+  when: git_repo.changed or not binary_stat.stat.exists
+  tags:
+    - llama.cpp
+    - ai
+
+- name: Copy systemd user service file from role files
+  ansible.builtin.copy:
+    src: llama-server.service
+    dest: "{{ systemd_user_dir }}/llama-server.service"
+    mode: '0644'
+  register: service_file_update
+  tags:
+    - llama.cpp
+    - ai
+
+- name: Enable user lingering for background headless persistence
+  become: true
+  ansible.builtin.command:
+    cmd: "loginctl enable-linger {{ ansible_env.USER }}"
+  register: linger_check
+  changed_when: "'enabling' in linger_check.stdout or not ansible_check_mode"
+  failed_when: false
+  tags:
+    - llama.cpp
+    - ai
+
+- name: Daemon-reload systemd user manager
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+    scope: user
+  when: service_file_update is changed
+  tags:
+    - llama.cpp
+    - ai
+
+- name: Enable and start llama-server user service
+  ansible.builtin.systemd_service:
+    name: llama-server.service
+    enabled: true
+    state: started
+    scope: user
+  tags:
+    - llama.cpp
+    - ai

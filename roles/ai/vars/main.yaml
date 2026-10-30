@@ -6,3 +6,11 @@ ollama_archive_url: https://ollama.com/download/ollama-linux-amd64.tar.zst
 crush_apt_key_url: https://repo.charm.sh/apt/gpg.key
 crush_apt_repo: "deb [signed-by=/etc/apt/trusted.gpg] https://repo.charm.sh/apt/ * *"
 crush_apt_repo_src_file: charm
+
+llama_cpp_source_directory: "~/git/llama.cpp"
+llama_cpp_bin_directory: "~/.local/bin"
+
+llama_swap_source_directory: "~/git/llama-swap"
+llama_swap_bin_directory: "~/.local/bin"
+
+systemd_user_dir: "~/.config/systemd/user"
