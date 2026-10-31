@@ -19,7 +19,8 @@ models:
       llama-server --port ${PORT} \
         -hf unsloth/Qwen2.5-Coder-7B-Instruct-GGUF:q4_k_m \
         -c 2048 \
-        -ngl 18
+        -ngl 18 \
+        --chat-template chatml
 
   # Middleweight Coder (Qwen 2.5 Coder 3B) - 100% VRAM Full Speed
   qwen-2.5-coder-3b:
@@ -27,8 +28,9 @@ models:
     cmd: |
       llama-server --port ${PORT} \
         -hf unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q4_K_M \
-        -c 4096 \
-        -ngl 99
+        -c 32768 \
+        -ngl 99 \
+        --chat-template chatml
 
   # Lightweight Coder (Qwen 2.5 Coder 1.5B) - 100% VRAM Full Speed
   qwen-2.5-coder-1.5b:
@@ -36,8 +38,9 @@ models:
     cmd: |
       llama-server --port ${PORT} \
         -hf unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q4_K_M \
-        -c 4096 \
-        -ngl 99
+        -c 65536 \
+        -ngl 99\ 
+        --chat-template chatml
 
 #
 # Decision
