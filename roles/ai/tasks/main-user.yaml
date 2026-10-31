@@ -12,9 +12,14 @@
     - "cline"
     - "ai"
 
+# Install llama.cpp and llama-swap
 # https://gemini.google.com/app/067d20586c569a63
 
-- name: Ensure target build and binary directories exist
+# ==========================================
+# 1. llama.cpp Installation & Setup
+# ==========================================
+
+- name: Ensure target build, binary, and systemd user directories exist
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
@@ -24,8 +29,8 @@
     - "{{ llama_cpp_bin_directory }}"
     - "{{ systemd_user_dir }}"
   tags:
-    - "llama.cpp"
-    - "ai"
+    - llama.cpp
+    - ai
 
 - name: Check if llama-server binary already exists in local path
   ansible.builtin.stat:
@@ -88,7 +93,7 @@
   block:
     - name: Configure CMake build tree with appropriate hardware flags
       ansible.builtin.command:
-        cmd: "cmake -B build -DCMAKE_BUILD_TYPE=Release {{ '-DGGML_CUDA=ON' if has_nvidia_gpu else '-DGGML_CUDA=OFF' }}"
+        cmd: "cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF {{ '-DGGML_CUDA=ON' if has_nvidia_gpu else '-DGGML_CUDA=OFF' }}"
         chdir: "{{ llama_cpp_source_directory }}"
       changed_when: true
 
@@ -108,15 +113,97 @@
     - llama.cpp
     - ai
 
-- name: Copy systemd user service file from role files
-  ansible.builtin.copy:
-    src: llama-server.service
-    dest: "{{ systemd_user_dir }}/llama-server.service"
-    mode: '0644'
-  register: service_file_update
+# ==========================================
+# 2. llama-swap Installation & Setup
+# ==========================================
+
+# - name: Ensure Go and Node.js toolchains are installed for building llama-swap and UI
+#   become: true
+#   ansible.builtin.apt:
+#     name:
+#       - golang-go
+#       - nodejs
+#       - npm
+#     state: present
+#     update_cache: true
+#   tags:
+#     - llama-swap
+#     - ai
+
+- name: Clone or update the llama-swap git repository
+  ansible.builtin.git:
+    repo: 'https://github.com/mostlygeek/llama-swap.git'
+    dest: "{{ llama_swap_source_directory }}"
+    version: main
+    update: true
+  register: llama_swap_git
   tags:
-    - llama.cpp
+    - llama-swap
     - ai
+
+- name: Check if llama-swap binary already exists in local path
+  ansible.builtin.stat:
+    path: "{{ llama_swap_bin_directory }}/llama-swap"
+  register: swap_binary_stat
+  tags:
+    - llama-swap
+    - ai
+
+- name: Build llama-swap UI frontend assets
+  ansible.builtin.command:
+    cmd: "{{ item }}"
+    chdir: "{{ llama_swap_source_directory }}/ui"
+  loop:
+    - "npm install"
+    - "npm run build"
+  when: llama_swap_git.changed or not swap_binary_stat.stat.exists
+  changed_when: true
+  tags:
+    - llama-swap
+    - ai
+
+- name: Build and install llama-swap binary with embedded UI
+  ansible.builtin.command:
+    cmd: "go build -tags embed_ui -o {{ llama_swap_bin_directory }}/llama-swap"
+    chdir: "{{ llama_swap_source_directory }}"
+  when: llama_swap_git.changed or not swap_binary_stat.stat.exists
+  changed_when: true
+  tags:
+    - llama-swap
+    - ai
+
+- name: Ensure llama-swap configuration directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/llama-swap"
+    state: directory
+    mode: '0755'
+  tags:
+    - llama-swap
+    - ai
+
+- name: Copy llama-swap config.yaml from role files
+  ansible.builtin.copy:
+    src: llama-swap-config.yaml
+    dest: "{{ ansible_env.HOME }}/.config/llama-swap/config.yaml"
+    mode: '0644'
+  register: swap_config_update
+  tags:
+    - llama-swap
+    - ai
+
+- name: Copy llama-swap systemd user service file
+  ansible.builtin.copy:
+    src: llama-swap.service
+    dest: "{{ systemd_user_dir }}/llama-swap.service"
+    mode: '0644'
+  register: swap_service_update
+  tags:
+    - llama-swap
+    - ai
+
+# ==========================================
+# 3. Systemd User Service Management
+# ==========================================
 
 - name: Enable user lingering for background headless persistence
   become: true
@@ -126,24 +213,24 @@
   changed_when: "'enabling' in linger_check.stdout or not ansible_check_mode"
   failed_when: false
   tags:
-    - llama.cpp
+    - llama-swap
     - ai
 
 - name: Daemon-reload systemd user manager
   ansible.builtin.systemd_service:
     daemon_reload: true
     scope: user
-  when: service_file_update is changed
+  when: swap_service_update.changed | default(false)
   tags:
-    - llama.cpp
+    - llama-swap
     - ai
 
-- name: Enable and start llama-server user service
+- name: Enable and start llama-swap user service
   ansible.builtin.systemd_service:
-    name: llama-server.service
+    name: llama-swap.service
     enabled: true
     state: started
     scope: user
   tags:
-    - llama.cpp
+    - llama-swap
     - ai

@@ -1,0 +1,13 @@
+[Unit]
+Description=llama-swap Model Swapping Proxy (User Space)
+After=network.target
+
+[Service]
+Type=simple
+Environment="PATH=%h/.local/bin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=%h/.local/bin/llama-swap --config %h/.config/llama-swap/config.yaml --listen 127.0.0.1:7000
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target
