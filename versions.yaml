@@ -53,9 +53,11 @@ codium_extensions:
   - Gruntfuggly.todo-tree
   - zxh404.vscode-proto3
   - redhat.vscode-yaml
-  - Privy.privy-vscode
+  - privy.privy-vscode # abandoned
   - vscodevim.vim
   - graphql.vscode-graphql
+  - rjmacarthy.twinny # crashes the extension manager
+  - ggml-org.llama-vscode
   
   # - gruntwork.terragrunt-ls
 
