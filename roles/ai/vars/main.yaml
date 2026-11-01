@@ -14,3 +14,5 @@ llama_swap_source_directory: "~/git/llama-swap"
 llama_swap_bin_directory: "~/.local/bin"
 
 systemd_user_dir: "~/.config/systemd/user"
+
+huggingface_venv_path: "{{ ansible_env.HOME }}/.local/share/huggingface-env"

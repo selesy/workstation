@@ -234,3 +234,39 @@
   tags:
     - llama-swap
     - ai
+
+# Install the HuggingFace CLI
+
+- name: Ensure python3-venv is present (Debian/Ubuntu example)
+  ansible.builtin.apt:
+    name: python3-venv
+    state: present
+  become: true
+  tags:
+    - "huggingface-cli"
+    - "ai"
+
+- name: Create a virtual environment for Hugging Face tools
+  ansible.builtin.command:
+    cmd: python3 -m venv "{{ huggingface_venv_path }}"
+    creates: "{{ huggingface_venv_path }}/bin/python"
+  tags:
+    - "huggingface-cli"
+    - "ai"
+
+- name: Install huggingface_hub[cli] inside the virtual environment
+  ansible.builtin.pip:
+    name: huggingface_hub[cli]
+    virtualenv: "{{ huggingface_venv_path }}"
+  tags:
+    - "huggingface-cli"
+    - "ai"
+
+- name: Create a symlink for the 'hf' binary in user local bin
+  ansible.builtin.file:
+    src: "{{ huggingface_venv_path }}/bin/hf"
+    dest: "{{ ansible_env.HOME }}/.local/bin/hf"
+    state: link
+  tags:
+    - "huggingface-cli"
+    - "ai"
