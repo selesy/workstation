@@ -8,9 +8,9 @@ models:
         -c 4096 \
         -ngl 99
 
-#
-# Coding
-#
+  #
+  # Coding
+  #
 
   # Heavy Coder (Qwen 2.5 Coder 7B) - Tuned with max safe partial offload
   qwen-2.5-coder-7b:
@@ -27,8 +27,8 @@ models:
     ttl: 60
     cmd: |
       llama-server --port ${PORT} \
-        -hf unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q4_K_M \
-        -c 32768 \
+        -hf unsloth/Qwen2.5-Coder-3B-Instruct-GGUF:Q4_K_M \
+        -c 8192 \
         -ngl 99 \
         --chat-template chatml
 
@@ -38,13 +38,13 @@ models:
     cmd: |
       llama-server --port ${PORT} \
         -hf unsloth/Qwen2.5-Coder-1.5B-Instruct-GGUF:Q4_K_M \
-        -c 65536 \
-        -ngl 99\ 
+        -c 16384 \
+        -ngl 99 \
         --chat-template chatml
 
-#
-# Decision
-#
+  #
+  # Decision
+  #
 
   # System One Router (Julia-1)
   julia-1:
@@ -55,23 +55,36 @@ models:
         -c 2048 -b 2048 -ub 2048 \
         -ngl 99
 
-  pplx-decider-flash-v1.2:
-      ttl: 300
-      cmd: |
-        llama-server --port ${PORT} \
-          -hf Jakevin/pplx-decider-flash-v1.2-text-GGUF:Q4_K_M \
-          --hf-file pplx-decider-flash-v1.2-Q4_K_M.gguf         \
-          -c 3072 \
-          -ngl 99 \
-          -fa on \
-          -b 2048 \
-          -ub 2048 \
-          -t 6 \
-          -tb 12
+  kev-0.8b:
+    ttl: 300
+    cmd: |
+      llama-server --port ${PORT} \
+        -hf ggml-org/Kev-0.8B-GGUF \
+        -c 4096 \
+        -b 2560 \
+        -ub 2560 \
+        -np 1 \
+        -ngl 99 \
+        -ctk q8_0 \
+        -ctv q8_0
 
-#
-# Synthesizers - 
-#
+  pplx-decider-flash-v1.2:
+    ttl: 300
+    cmd: |
+      llama-server --port ${PORT} \
+        -hf Jakevin/pplx-decider-flash-v1.2-text-GGUF:Q4_K_M \
+        --hf-file pplx-decider-flash-v1.2-Q4_K_M.gguf \
+        -c 3072 \
+        -ngl 99 \
+        -fa on \
+        -b 2048 \
+        -ub 2048 \
+        -t 6 \
+        -tb 12
+
+  #
+  # Synthesizers -
+  #
 
   gemma-4b:
     ttl: 60
@@ -85,7 +98,7 @@ models:
     ttl: 60
     cmd: |
       llama-server --port ${PORT} \
-        -hf unsloth/gemma-3-4b-it-GGUF:q4_k_m \
+        -hf bartowski/Qwen2.5-3B-Instruct-GGUF:Q4_K_M \
         -c 4096 \
         -ngl 99
 
@@ -97,9 +110,9 @@ models:
         -c 4096 \
         -ngl 99
 
-#
-# Workers
-#
+  #
+  # Workers
+  #
 
   gemma-3-1b:
     ttl: 60
@@ -113,7 +126,7 @@ models:
     ttl: 60
     cmd: |
       llama-server --port ${PORT} \
-        -hf unsloth/gemma-3-1b-it-GGUF \
+        -hf unsloth/Qwen3.5-0.8B-GGUF \
         -c 4096 \
         -ngl 99
 
@@ -121,6 +134,6 @@ models:
     ttl: 60
     cmd: |
       llama-server --port ${PORT} \
-        -hf unsloth/gemma-3-1b-it-GGUF \
+        -hf bartowski/Qwen2.5-1.5B-Instruct-GGUF:Q4_K_M \
         -c 4096 \
         -ngl 99
